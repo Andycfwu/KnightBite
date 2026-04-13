@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --background: #f4f1eb;
+  --foreground: #171717;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.sheet-open,
+body.sheet-open {
+  overscroll-behavior: none;
+}
+
+body {
+  @apply min-h-screen bg-cream text-ink antialiased;
+  background-image:
+    radial-gradient(circle at top left, rgba(177, 31, 36, 0.06), transparent 24%),
+    radial-gradient(circle at top right, rgba(15, 118, 110, 0.05), transparent 22%);
+}
+
+a {
+  @apply text-inherit no-underline;
+}
+
+button {
+  @apply transition;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  @apply bg-brand/15 text-ink;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+input::placeholder {
+  color: rgba(23, 23, 23, 0.45);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sheet-transition {
+    transition:
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-radius 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
