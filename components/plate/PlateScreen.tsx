@@ -3,10 +3,12 @@
 import { MacroTotals } from "@/components/plate/MacroTotals";
 import { NutritionDisclaimer } from "@/components/ui/NutritionDisclaimer";
 import { usePlate } from "@/hooks/usePlate";
+import { useUserPreferences } from "@/hooks/useUserPreferences";
 import { hasMeaningfulNutrition } from "@/lib/nutrition";
 
 export function PlateScreen() {
   const plate = usePlate();
+  const { parsedMacroGoals } = useUserPreferences();
   const showDisclaimer = plate.plate.items.some((item) => !hasMeaningfulNutrition(item.nutrition));
 
   return (
@@ -16,7 +18,7 @@ export function PlateScreen() {
         <h1 className="text-[3rem] font-semibold leading-none tracking-[-0.06em] text-ink">My Plate Summary</h1>
       </section>
 
-      <MacroTotals totals={plate.totals} />
+      <MacroTotals totals={plate.totals} goals={parsedMacroGoals} />
 
       <section className="space-y-3">
         <h2 className="text-[2rem] font-semibold tracking-[-0.05em] text-ink">Added Items</h2>

@@ -3,10 +3,15 @@ import { cn } from "@/lib/utils";
 
 type MacroTotalsProps = {
   totals: Nutrition;
+  goals?: {
+    protein?: number;
+    carbs?: number;
+    fat?: number;
+  };
   variant?: "grid" | "inline";
 };
 
-export function MacroTotals({ totals, variant = "grid" }: MacroTotalsProps) {
+export function MacroTotals({ totals, goals, variant = "grid" }: MacroTotalsProps) {
   if (variant === "inline") {
     return (
       <p className="text-sm font-medium text-ink/62">
@@ -27,19 +32,22 @@ export function MacroTotals({ totals, variant = "grid" }: MacroTotalsProps) {
         label="Protein"
         value={Math.round(totals.protein)}
         color="bg-[#5b9cff]"
-        maxValue={Math.max(Math.round(totals.protein), Math.round(totals.carbs), Math.round(totals.fat), 1)}
+        goal={goals?.protein}
+        maxValue={goals?.protein ?? Math.max(Math.round(totals.protein), Math.round(totals.carbs), Math.round(totals.fat), 1)}
       />
       <MacroCard
         label="Carbs"
         value={Math.round(totals.carbs)}
         color="bg-[#65c48b]"
-        maxValue={Math.max(Math.round(totals.protein), Math.round(totals.carbs), Math.round(totals.fat), 1)}
+        goal={goals?.carbs}
+        maxValue={goals?.carbs ?? Math.max(Math.round(totals.protein), Math.round(totals.carbs), Math.round(totals.fat), 1)}
       />
       <MacroCard
         label="Fat"
         value={Math.round(totals.fat)}
         color="bg-[#ffcf4d]"
-        maxValue={Math.max(Math.round(totals.protein), Math.round(totals.carbs), Math.round(totals.fat), 1)}
+        goal={goals?.fat}
+        maxValue={goals?.fat ?? Math.max(Math.round(totals.protein), Math.round(totals.carbs), Math.round(totals.fat), 1)}
       />
     </div>
   );
@@ -49,12 +57,14 @@ function MacroCard({
   label,
   value,
   color,
-  maxValue
+  maxValue,
+  goal
 }: {
   label: string;
   value: number;
   color: string;
   maxValue: number;
+  goal?: number;
 }) {
   const ratio = Math.max(value / maxValue, 0.1);
 
@@ -65,7 +75,7 @@ function MacroCard({
       <div className="mt-4 h-3 rounded-full bg-[#e6e9ef]">
         <div className={cn("h-full rounded-full", color)} style={{ width: `${ratio * 100}%` }} />
       </div>
-      <p className="mt-3 text-[0.85rem] text-ink/46">Current total</p>
+      <p className="mt-3 text-[0.85rem] text-ink/46">{goal ? `Goal ${goal}g` : "Current total"}</p>
     </div>
   );
 }

@@ -2,52 +2,75 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { useState } from "react";
 
-import { usePlate } from "@/hooks/usePlate";
+import { useUserPreferences } from "@/hooks/useUserPreferences";
 
 const RU_EXPRESS_ACCOUNT_URL =
   "https://cas.rutgers.edu/login?service=https%3A%2F%2Fservices.jsatech.com%2Flogin.php%3Fcid%3D52";
 
 export function ProfileScreen() {
-  const { totalItems, totals } = usePlate();
-  const [preferences, setPreferences] = useState({
-    vegetarian: false,
-    vegan: false,
-    nutFree: true
-  });
+  const { dietaryPreferences, macroGoals, setDietaryPreference, setMacroGoal, resetMacroGoals } = useUserPreferences();
+  const hasAnyGoals = Boolean(macroGoals.protein || macroGoals.carbs || macroGoals.fat);
 
   return (
     <main className="space-y-6">
-      <ProfileCard title="Dining Stats">
-        <p className="-mt-1 text-sm leading-6 text-ink/46">
-          Local KnightBite snapshot from the meals you build here.
-        </p>
-        <StatRow icon="↗" label="Current Plate Calories" value={`${Math.round(totals.calories)} kcal`} />
-        <Divider />
-        <StatRow icon="◌" label="Items Added This Session" value={`${totalItems}`} />
-      </ProfileCard>
-
       <ProfileCard title="Dietary Preferences">
         <p className="-mt-1 text-sm leading-6 text-ink/46">
           Save your go-to preferences here. Full filtering can plug into these next.
         </p>
         <ToggleRow
           label="Vegetarian"
-          checked={preferences.vegetarian}
-          onChange={() => setPreferences((current) => ({ ...current, vegetarian: !current.vegetarian }))}
+          checked={dietaryPreferences.vegetarian}
+          onChange={() => setDietaryPreference("vegetarian", !dietaryPreferences.vegetarian)}
         />
         <ToggleRow
           label="Vegan"
-          checked={preferences.vegan}
-          onChange={() => setPreferences((current) => ({ ...current, vegan: !current.vegan }))}
+          checked={dietaryPreferences.vegan}
+          onChange={() => setDietaryPreference("vegan", !dietaryPreferences.vegan)}
         />
         <ToggleRow
           label="Nut-Free"
-          checked={preferences.nutFree}
+          checked={dietaryPreferences.nutFree}
           accent
-          onChange={() => setPreferences((current) => ({ ...current, nutFree: !current.nutFree }))}
+          onChange={() => setDietaryPreference("nutFree", !dietaryPreferences.nutFree)}
         />
+      </ProfileCard>
+
+      <ProfileCard title="Plate Goals">
+        <p className="-mt-1 text-sm leading-6 text-ink/46">
+          Set optional macro goals for your plate summary. Leave a field empty to keep the simpler no-target view.
+        </p>
+        {hasAnyGoals ? (
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={resetMacroGoals}
+              className="text-sm font-medium text-ink/46 transition hover:text-ink/68"
+            >
+              Reset goals
+            </button>
+          </div>
+        ) : null}
+        <div className="grid gap-3">
+          <GoalInput
+            label="Protein"
+            value={macroGoals.protein}
+            placeholder="e.g. 200"
+            onChange={(value) => setMacroGoal("protein", value)}
+          />
+          <GoalInput
+            label="Carbs"
+            value={macroGoals.carbs}
+            placeholder="e.g. 300"
+            onChange={(value) => setMacroGoal("carbs", value)}
+          />
+          <GoalInput
+            label="Fat"
+            value={macroGoals.fat}
+            placeholder="e.g. 70"
+            onChange={(value) => setMacroGoal("fat", value)}
+          />
+        </div>
       </ProfileCard>
 
       <ProfileCard title="Meal Swipe Balance">
@@ -95,15 +118,32 @@ function ProfileCard({ title, children }: { title: string; children: ReactNode }
   );
 }
 
-function StatRow({ icon, label, value }: { icon: string; label: string; value: string }) {
+function GoalInput({
+  label,
+  value,
+  placeholder,
+  onChange
+}: {
+  label: string;
+  value: string;
+  placeholder: string;
+  onChange: (value: string) => void;
+}) {
   return (
-    <div className="flex items-center gap-4">
-      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand/12 text-2xl">{icon}</span>
-      <div>
-        <p className="text-[1.05rem] text-ink/54">{label}:</p>
-        <p className="text-[1.15rem] font-semibold tracking-[-0.03em] text-ink">{value}</p>
+    <label className="flex items-center justify-between gap-4 rounded-[22px] border border-black/6 bg-white px-4 py-3 shadow-[0_10px_22px_rgba(23,23,23,0.05)]">
+      <span className="text-[1.05rem] font-medium text-ink">{label}</span>
+      <div className="flex items-center gap-2">
+        <input
+          inputMode="numeric"
+          pattern="[0-9]*"
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          placeholder={placeholder}
+          className="w-20 bg-transparent text-right text-[1rem] font-semibold tracking-[-0.02em] text-ink outline-none"
+        />
+        <span className="text-sm text-ink/46">g</span>
       </div>
-    </div>
+    </label>
   );
 }
 
@@ -132,10 +172,6 @@ function ToggleRow({
       </span>
     </button>
   );
-}
-
-function Divider() {
-  return <div className="h-px bg-black/8" />;
 }
 
 function ExternalLinkIcon() {
