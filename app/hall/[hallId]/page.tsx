@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { HallMenuView } from "@/components/menu/HallMenuView";
 import { getDiningHall, getHallMenuForDate } from "@/lib/menu";
 import { DiningHallId } from "@/lib/types";
+import { getTodayIsoDate } from "@/lib/utils";
 
 type HallPageProps = {
   params: Promise<{
@@ -18,9 +19,7 @@ export default async function HallPage({ params }: HallPageProps) {
     notFound();
   }
 
-  const todayIso = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000)
-    .toISOString()
-    .slice(0, 10);
+  const todayIso = getTodayIsoDate();
   const menu = await getHallMenuForDate(hall.id as DiningHallId, todayIso);
 
   return <HallMenuView hall={hall} menu={menu} />;

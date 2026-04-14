@@ -31,7 +31,6 @@ export function ProfileScreen() {
         <ToggleRow
           label="Nut-Free"
           checked={dietaryPreferences.nutFree}
-          accent
           onChange={() => setDietaryPreference("nutFree", !dietaryPreferences.nutFree)}
         />
       </ProfileCard>
@@ -150,19 +149,17 @@ function GoalInput({
 function ToggleRow({
   label,
   checked,
-  onChange,
-  accent = false
+  onChange
 }: {
   label: string;
   checked: boolean;
   onChange: () => void;
-  accent?: boolean;
 }) {
   return (
     <button type="button" onClick={onChange} className="flex w-full items-center justify-between gap-4 text-left">
       <span className="text-[1.15rem] text-ink">{label}</span>
       <span
-        className={`relative inline-flex h-11 w-20 rounded-full transition ${checked ? (accent ? "bg-brand" : "bg-[#b9c0ca]") : "bg-[#d7dce2]"}`}
+        className={`relative inline-flex h-11 w-20 rounded-full transition ${checked ? "bg-brand" : "bg-[#d7dce2]"}`}
       >
         <span
           className={`absolute top-1 h-9 w-9 rounded-full bg-white shadow-[0_4px_10px_rgba(23,23,23,0.12)] transition ${

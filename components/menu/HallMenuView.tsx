@@ -272,9 +272,8 @@ function FloatingPlateButton({
       aria-label="Open plate"
     >
       <ChevronUpIcon />
-      <span className="flex items-center gap-2 text-[1rem] font-semibold tracking-[-0.03em] text-ink">
-        <PlateIcon className="h-[21px] w-[21px]" />
-        <span>My Plate:</span>
+      <span className="flex items-center gap-2.5 text-[1rem] font-semibold tracking-[-0.03em] text-ink">
+        <PlateIcon className="h-[21px] w-[24px]" />
         <span className="text-brand">{Math.round(totalCalories)} kcal</span>
       </span>
       {totalItems > 0 ? (

@@ -5,7 +5,16 @@ import { APP_NAME, HALL_BLURBS } from "@/lib/constants";
 import { getHallMenuForDate } from "@/lib/menu";
 import { diningHalls } from "@/lib/mock-data";
 import { DailyMenu, DiningHallId } from "@/lib/types";
-import { formatShortDateLabel, formatUpdatedTime, getGreetingForHour, getTodayIsoDate } from "@/lib/utils";
+import {
+  formatRutgersServiceTime,
+  formatShortDateLabel,
+  formatUpdatedTime,
+  getGreetingForHour,
+  getRutgersCurrentDecimalHour,
+  getTodayIsoDate
+} from "@/lib/utils";
+
+export const dynamic = "force-dynamic";
 
 const SERVICE_WINDOWS: Record<
   DiningHallId,
@@ -22,48 +31,57 @@ const SERVICE_WINDOWS: Record<
 };
 
 function buildHallStatus(hallId: DiningHallId, menu: DailyMenu | null): HallCardStatus {
-  const now = new Date();
-  const hour = now.getHours() + now.getMinutes() / 60;
+  const hour = getRutgersCurrentDecimalHour();
   const windows = SERVICE_WINDOWS[hallId];
   const updatedLabel = menu?.lastUpdatedAt ? `Updated ${formatUpdatedTime(menu.lastUpdatedAt)}` : "Updated recently";
   const sourceLabel = menu?.isLiveData ? "Live today" : "Backup menu";
+  const orderedMeals = (Object.entries(windows) as Array<[keyof typeof windows, [number, number] | undefined]>).filter(
+    ([, range]) => Boolean(range)
+  ) as Array<[keyof typeof windows, [number, number]]>;
 
-  const openMeal = (Object.entries(windows) as Array<[keyof typeof windows, [number, number] | undefined]>).find(
+  const firstMeal = orderedMeals[0];
+  const lastMeal = orderedMeals[orderedMeals.length - 1];
+
+  const openMeal = orderedMeals.find(
     ([, range]) => range && hour >= range[0] && hour < range[1]
   );
 
+  const hallIsOpen = Boolean(firstMeal && lastMeal && hour >= firstMeal[1][0] && hour < lastMeal[1][1]);
+  const nextMeal = orderedMeals.find(([, range]) => hour < range[0]);
+
   if (openMeal) {
+    const currentMealLabel = openMeal[0].charAt(0).toUpperCase() + openMeal[0].slice(1);
+
     return {
       state: "open",
-      mealLabel: openMeal[0].charAt(0).toUpperCase() + openMeal[0].slice(1),
-      detail: HALL_BLURBS[hallId],
+      mealLabel: currentMealLabel,
+      detail: nextMeal
+        ? `${nextMeal[0].charAt(0).toUpperCase() + nextMeal[0].slice(1)} starts at ${formatRutgersServiceTime(nextMeal[1][0])}`
+        : `Serving ${openMeal[0]} now`,
       updatedLabel,
       sourceLabel
     };
   }
 
-  const nextMeal = (Object.entries(windows) as Array<[keyof typeof windows, [number, number] | undefined]>).find(
-    ([, range]) => range && hour < range[0]
-  );
+  if (hallIsOpen && nextMeal) {
+    return {
+      state: "open",
+      mealLabel: "Open now",
+      detail: `${nextMeal[0].charAt(0).toUpperCase() + nextMeal[0].slice(1)} starts at ${formatRutgersServiceTime(nextMeal[1][0])}`,
+      updatedLabel,
+      sourceLabel
+    };
+  }
 
   return {
     state: "closed",
-    detail: nextMeal
-      ? `Opens for ${nextMeal[0]} at ${formatHourLabel(nextMeal[1]![0])}`
-      : "Reopens tomorrow morning",
+    detail: firstMeal && hour >= lastMeal[1][1]
+      ? `Opens tomorrow at ${formatRutgersServiceTime(firstMeal[1][0])}`
+      : nextMeal
+        ? `Opens at ${formatRutgersServiceTime(nextMeal[1][0])}`
+        : "Check today’s hours",
     sourceLabel
   };
-}
-
-function formatHourLabel(value: number) {
-  const hours = Math.floor(value);
-  const minutes = value % 1 === 0 ? 0 : 30;
-  const date = new Date();
-  date.setHours(hours, minutes, 0, 0);
-  return new Intl.DateTimeFormat("en-US", {
-    hour: "numeric",
-    minute: "2-digit"
-  }).format(date);
 }
 
 async function getHomeHallStatus(hallId: DiningHallId, date: string) {
