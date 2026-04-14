@@ -1,85 +1,117 @@
 import { HallCardStatus } from "@/components/home/HallCard";
+import { RutgersMark } from "@/components/layout/RutgersMark";
 import { HallSelector } from "@/components/home/HallSelector";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
-import { APP_NAME, APP_SUBTITLE, HALL_BLURBS } from "@/lib/constants";
+import { APP_NAME, HALL_BLURBS } from "@/lib/constants";
 import { getHallMenuForDate } from "@/lib/menu";
 import { diningHalls } from "@/lib/mock-data";
 import { DailyMenu, DiningHallId } from "@/lib/types";
-import { formatUpdatedTime, getTodayIsoDate } from "@/lib/utils";
+import { formatShortDateLabel, formatUpdatedTime, getGreetingForHour, getTodayIsoDate } from "@/lib/utils";
 
-function buildHallStatus(menu: DailyMenu | null): HallCardStatus {
-  if (!menu) {
+const SERVICE_WINDOWS: Record<
+  DiningHallId,
+  {
+    breakfast?: [number, number];
+    lunch?: [number, number];
+    dinner?: [number, number];
+  }
+> = {
+  livingston: { breakfast: [7, 10.5], lunch: [11, 15], dinner: [16.5, 21] },
+  busch: { breakfast: [7, 10.5], lunch: [11, 15], dinner: [16.5, 21] },
+  neilson: { breakfast: [7.5, 10], lunch: [11.5, 14.5], dinner: [16.5, 20] },
+  atrium: { breakfast: [8, 10.5], lunch: [11, 15], dinner: [16.5, 21] }
+};
+
+function buildHallStatus(hallId: DiningHallId, menu: DailyMenu | null): HallCardStatus {
+  const now = new Date();
+  const hour = now.getHours() + now.getMinutes() / 60;
+  const windows = SERVICE_WINDOWS[hallId];
+  const updatedLabel = menu?.lastUpdatedAt ? `Updated ${formatUpdatedTime(menu.lastUpdatedAt)}` : "Updated recently";
+  const sourceLabel = menu?.isLiveData ? "Live today" : "Backup menu";
+
+  const openMeal = (Object.entries(windows) as Array<[keyof typeof windows, [number, number] | undefined]>).find(
+    ([, range]) => range && hour >= range[0] && hour < range[1]
+  );
+
+  if (openMeal) {
     return {
-      label: "Updating",
-      variant: "neutral",
-      detail: "Checking today’s menu"
+      state: "open",
+      mealLabel: openMeal[0].charAt(0).toUpperCase() + openMeal[0].slice(1),
+      detail: HALL_BLURBS[hallId],
+      updatedLabel,
+      sourceLabel
     };
   }
 
-  if (menu.isLiveData) {
-    return {
-      label: "Live",
-      variant: "live",
-      detail: menu.lastUpdatedAt ? `Updated ${formatUpdatedTime(menu.lastUpdatedAt)}` : "Rutgers menu data"
-    };
-  }
+  const nextMeal = (Object.entries(windows) as Array<[keyof typeof windows, [number, number] | undefined]>).find(
+    ([, range]) => range && hour < range[0]
+  );
 
   return {
-    label: "Backup",
-    variant: "fallback",
-    detail: "Showing backup menu right now"
+    state: "closed",
+    detail: nextMeal
+      ? `Opens for ${nextMeal[0]} at ${formatHourLabel(nextMeal[1]![0])}`
+      : "Reopens tomorrow morning",
+    sourceLabel
   };
+}
+
+function formatHourLabel(value: number) {
+  const hours = Math.floor(value);
+  const minutes = value % 1 === 0 ? 0 : 30;
+  const date = new Date();
+  date.setHours(hours, minutes, 0, 0);
+  return new Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "2-digit"
+  }).format(date);
+}
+
+async function getHomeHallStatus(hallId: DiningHallId, date: string) {
+  try {
+    const menu = await Promise.race<DailyMenu | null>([
+      getHallMenuForDate(hallId, date),
+      new Promise<null>((resolve) => {
+        setTimeout(() => resolve(null), 1100);
+      })
+    ]);
+
+    return buildHallStatus(hallId, menu);
+  } catch {
+    return buildHallStatus(hallId, null);
+  }
 }
 
 export default async function HomePage() {
   const todayIso = getTodayIsoDate();
   const statusEntries = await Promise.all(
     diningHalls.map(async (hall) => {
-      const menu = await getHallMenuForDate(hall.id as DiningHallId, todayIso);
-      return [hall.id, buildHallStatus(menu)] as const;
+      const status = await getHomeHallStatus(hall.id as DiningHallId, todayIso);
+      return [hall.id, status] as const;
     })
   );
 
   const statusByHall = Object.fromEntries(statusEntries);
-  const liveCount = statusEntries.filter(([, status]) => status.variant === "live").length;
-  const fallbackCount = statusEntries.filter(([, status]) => status.variant === "fallback").length;
-  const freshestLiveStatus = statusEntries.find(([, status]) => status.variant === "live")?.[1];
+  const liveCount = statusEntries.filter(([, status]) => status.sourceLabel === "Live today").length;
 
   return (
-    <main className="space-y-4 sm:space-y-5">
-      <Card className="overflow-hidden rounded-[26px] px-5 py-4 sm:px-6 sm:py-5">
-        <div className="relative">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-20 rounded-[22px] bg-[radial-gradient(circle_at_top_left,rgba(177,31,36,0.08),transparent_58%),radial-gradient(circle_at_top_right,rgba(15,118,110,0.08),transparent_50%)]" />
-          <div className="relative">
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand">Rutgers New Brunswick</p>
-                <h1 className="mt-2 text-[1.8rem] font-semibold tracking-tight text-ink sm:text-[2.15rem]">
-                  {APP_NAME}
-                </h1>
-                <p className="mt-1 max-w-xl text-sm leading-6 text-ink/62">{APP_SUBTITLE}</p>
-              </div>
-              <div className="hidden rounded-full border border-ink/10 bg-white/85 px-3 py-2 text-sm font-medium text-ink/70 sm:block">
-                {diningHalls.length} halls today
-              </div>
-            </div>
-
-            <div className="mt-4 flex flex-wrap items-center gap-2.5">
-              <Badge variant={liveCount > 0 ? "live" : "neutral"}>
-                {liveCount > 0 ? `${liveCount} live menu${liveCount === 1 ? "" : "s"}` : "Menus loading"}
-              </Badge>
-              {fallbackCount > 0 ? (
-                <Badge variant="fallback">{fallbackCount} backup{fallbackCount === 1 ? "" : "s"}</Badge>
-              ) : null}
-              <p className="text-sm text-ink/56">
-                Pick a hall to browse today’s stations and build your next bite fast.
-                {freshestLiveStatus?.detail ? ` ${freshestLiveStatus.detail}.` : ""}
-              </p>
-            </div>
+    <main className="space-y-6">
+      <section className="px-1 pt-1">
+        <div className="mb-5 flex items-center gap-3">
+          <RutgersMark />
+          <div>
+            <p className="text-base font-semibold tracking-tight text-ink">{APP_NAME}</p>
+            <p className="text-sm font-medium tracking-tight text-ink/46">Rutgers Dining, Reimagined</p>
           </div>
         </div>
-      </Card>
+        <h1 className="max-w-[10ch] text-[3rem] font-semibold leading-[0.96] tracking-[-0.05em] text-ink">
+          {getGreetingForHour()} Scarlet Knight
+        </h1>
+        <p className="mt-3 text-lg text-ink/46">{formatShortDateLabel(todayIso)}</p>
+        <div className="mt-5 inline-flex items-center rounded-full bg-white px-4 py-2 text-sm text-ink/60 shadow-[0_12px_26px_rgba(23,23,23,0.06)]">
+          <span className="mr-2 inline-flex h-2.5 w-2.5 rounded-full bg-[#34c759]" />
+          {liveCount} live menu{liveCount === 1 ? "" : "s"} today
+        </div>
+      </section>
 
       <HallSelector halls={diningHalls} blurbs={HALL_BLURBS} statusByHall={statusByHall} />
     </main>

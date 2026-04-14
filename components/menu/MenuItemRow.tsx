@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { hasMeaningfulNutrition } from "@/lib/nutrition";
 import { MenuItem } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 type MenuItemRowProps = {
   item: MenuItem;
@@ -28,7 +28,7 @@ export function MenuItemRow({ item, onAdd, onViewDetails }: MenuItemRowProps) {
   useEffect(() => {
     if (!justAdded) return;
 
-    const timer = window.setTimeout(() => setJustAdded(false), 700);
+    const timer = window.setTimeout(() => setJustAdded(false), 650);
     return () => window.clearTimeout(timer);
   }, [justAdded]);
 
@@ -38,45 +38,57 @@ export function MenuItemRow({ item, onAdd, onViewDetails }: MenuItemRowProps) {
   };
 
   return (
-    <Card className={`rounded-[22px] px-4 py-3 sm:px-5 ${justAdded ? "ring-1 ring-brand/30" : ""}`}>
+    <Card className={cn("rounded-[28px] border-white/80 px-4 py-4", justAdded && "ring-2 ring-brand/15")}>
       <div className="flex items-start gap-3">
         <div className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-center gap-1.5">
-            <h4 className="text-[15px] font-semibold leading-5 text-ink sm:text-base">{item.name}</h4>
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <h4 className="line-clamp-2 text-[1.08rem] font-semibold leading-[1.15] tracking-[-0.04em] text-ink">
+                {item.name}
+              </h4>
+              <p className="mt-1 text-sm text-ink/46">{item.servingSize ?? "Serving size unavailable"}</p>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleAdd}
+              className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-black/6 bg-white text-[2rem] font-light text-ink shadow-[0_10px_18px_rgba(23,23,23,0.06)] transition hover:bg-black/[0.02] active:scale-95"
+              aria-label={`Add ${item.name}`}
+            >
+              +
+              <span
+                className={cn(
+                  "pointer-events-none absolute -bottom-4 left-1/2 -translate-x-1/2 text-xs font-semibold text-brand transition",
+                  justAdded ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
+                )}
+              >
+                +1
+              </span>
+            </button>
+          </div>
+
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            {isVariableNutrition ? (
+              <>
+                <MacroPill label="Nutrition" value={item.isCustom ? "Varies" : "Limited"} />
+                {item.nutrition.calories > 0 ? <MacroPill label="kcal" value={item.nutrition.calories} primary /> : null}
+              </>
+            ) : (
+              <>
+                <MacroPill label="kcal" value={item.nutrition.calories} primary />
+                <MacroPill label="Protein" value={`${item.nutrition.protein}g`} dark />
+                {item.nutrition.carbs > 0 ? <MacroPill label="Carbs" value={`${item.nutrition.carbs}g`} /> : null}
+              </>
+            )}
             {item.isCustom ? <Badge variant="custom">Custom</Badge> : null}
             {visibleTags.slice(0, 2).map((tag) => (
-              <Badge key={tag} variant="muted">
+              <Badge key={tag} variant="muted" className="bg-black/[0.05] text-ink/56">
                 {tag}
               </Badge>
             ))}
           </div>
-          <p className="mt-1 text-[13px] text-ink/55">{item.servingSize ?? "Serving size unavailable"}</p>
-          {trustNote ? <p className="mt-1.5 text-[12px] leading-5 text-ink/52">{trustNote}</p> : null}
-          {isVariableNutrition ? (
-            <div className="mt-2 flex flex-wrap items-center gap-1.5 text-sm text-ink/65">
-              <InfoPill label="Nutrition" value={item.isCustom ? "Varies" : "Limited"} />
-              {item.nutrition.calories > 0 ? <InfoPill label="Cal" value={item.nutrition.calories} primary /> : null}
-            </div>
-          ) : (
-            <div className="mt-2 flex flex-wrap items-center gap-1.5 text-sm text-ink/65">
-              <InfoPill label="Cal" value={item.nutrition.calories} primary />
-              <InfoPill label="P" value={`${item.nutrition.protein}g`} />
-              <InfoPill label="C" value={`${item.nutrition.carbs}g`} />
-              <InfoPill label="F" value={`${item.nutrition.fat}g`} />
-            </div>
-          )}
-        </div>
-        <div className="relative shrink-0">
-          <Button type="button" size="sm" className="shrink-0" onClick={handleAdd}>
-            Add
-          </Button>
-          <span
-            className={`pointer-events-none absolute left-1/2 top-full mt-1 -translate-x-1/2 text-xs font-semibold text-brand transition ${
-              justAdded ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
-            }`}
-          >
-            +1
-          </span>
+
+          {trustNote ? <p className="mt-2 text-[13px] leading-5 text-ink/48">{trustNote}</p> : null}
         </div>
       </div>
 
@@ -89,23 +101,28 @@ export function MenuItemRow({ item, onAdd, onViewDetails }: MenuItemRowProps) {
   );
 }
 
-function InfoPill({
+function MacroPill({
   label,
   value,
-  primary = false
+  primary = false,
+  dark = false
 }: {
   label: string;
   value: string | number;
   primary?: boolean;
+  dark?: boolean;
 }) {
   return (
     <div
-      className={`rounded-full px-2 py-0.5 text-[11px] sm:px-2.5 ${
-        primary ? "bg-ink text-white" : "bg-sand text-ink/72"
-      }`}
+      className={cn(
+        "rounded-2xl px-3 py-1.5 text-[0.95rem] font-medium tracking-[-0.02em]",
+        primary && "bg-[linear-gradient(180deg,#d81f3e,#b4112d)] text-white",
+        dark && "bg-black text-white",
+        !primary && !dark && "bg-black/[0.05] text-ink/72"
+      )}
     >
-      <span className={`mr-1 ${primary ? "text-white/72" : "text-ink/45"}`}>{label}</span>
-      <span className={`font-medium ${primary ? "text-white" : "text-ink"}`}>{value}</span>
+      <span className={cn("mr-1", primary || dark ? "text-white/72" : "text-ink/48")}>{value}</span>
+      <span>{label}</span>
     </div>
   );
 }

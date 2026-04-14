@@ -12,6 +12,14 @@ export function formatDateLabel(date: string): string {
   }).format(new Date(`${date}T12:00:00`));
 }
 
+export function formatShortDateLabel(date: string): string {
+  return new Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric"
+  }).format(new Date(`${date}T12:00:00`));
+}
+
 export function formatUpdatedTime(date: string): string {
   return new Intl.DateTimeFormat("en-US", {
     hour: "numeric",
@@ -26,4 +34,18 @@ export function getTodayIsoDate() {
 
 export function slugToTitle(value: string): string {
   return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+export function getGreetingForHour(date = new Date()) {
+  const hour = date.getHours();
+
+  if (hour < 12) {
+    return "Good Morning,";
+  }
+
+  if (hour < 18) {
+    return "Good Afternoon,";
+  }
+
+  return "Good Evening,";
 }

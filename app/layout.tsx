@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 
 import { AppShell } from "@/components/layout/AppShell";
 import "./globals.css";
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
   description: "KnightBite keeps Rutgers dining simple, live, and easy to browse."
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
       <body>

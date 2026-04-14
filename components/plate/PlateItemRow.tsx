@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/Button";
 import { PlateItem } from "@/lib/types";
 
 type PlateItemRowProps = {
@@ -10,42 +9,40 @@ type PlateItemRowProps = {
 
 export function PlateItemRow({ item, onIncrement, onDecrement, onRemove }: PlateItemRowProps) {
   return (
-    <div className="rounded-[20px] border border-ink/12 bg-white px-3.5 py-3">
+    <div className="rounded-[24px] border border-black/6 bg-white px-4 py-3.5 shadow-[0_12px_28px_rgba(23,23,23,0.05)]">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="line-clamp-2 text-[15px] font-semibold leading-5 text-ink">{item.name}</p>
-          <p className="mt-1 text-[13px] text-ink/52">{item.servingSize ?? "Serving size unavailable"}</p>
+          <p className="line-clamp-2 text-[1rem] font-semibold leading-5 tracking-[-0.03em] text-ink">{item.name}</p>
+          <p className="mt-1 text-[13px] text-ink/46">{item.servingSize ?? "Serving size unavailable"}</p>
         </div>
         <button
           type="button"
           onClick={() => onRemove(item.itemId)}
-          className="text-xs font-medium text-ink/38 transition hover:text-ink/55"
+          className="rounded-full bg-black/[0.04] px-2.5 py-1 text-xs font-medium text-ink/42"
         >
           Remove
         </button>
       </div>
 
-      <div className="mt-2.5 flex items-center justify-between gap-3">
-        <div className="inline-flex items-center rounded-full border border-ink/10 bg-sand/45">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-9 w-9 rounded-full text-base"
+      <div className="mt-3 flex items-center justify-between gap-3">
+        <div className="inline-flex items-center rounded-full bg-[#f0f1f3] p-1">
+          <button
+            type="button"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-lg text-ink/75"
             onClick={() => onDecrement(item.itemId)}
           >
             -
-          </Button>
+          </button>
           <span className="min-w-7 text-center text-sm font-semibold text-ink">{item.quantity}</span>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-9 w-9 rounded-full text-base"
+          <button
+            type="button"
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-lg text-ink shadow-[0_2px_8px_rgba(23,23,23,0.08)]"
             onClick={() => onIncrement(item.itemId)}
           >
             +
-          </Button>
+          </button>
         </div>
-        <p className="text-sm font-medium text-ink/70">{Math.round(item.nutrition.calories * item.quantity)} cal</p>
+        <p className="text-sm font-semibold text-ink/70">{Math.round(item.nutrition.calories * item.quantity)} cal</p>
       </div>
     </div>
   );

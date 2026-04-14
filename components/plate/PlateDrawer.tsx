@@ -8,7 +8,7 @@ import { PlateSummary } from "@/components/plate/PlateSummary";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { NutritionDisclaimer } from "@/components/ui/NutritionDisclaimer";
 import { hasMeaningfulNutrition } from "@/lib/nutrition";
-import { Plate, Nutrition } from "@/lib/types";
+import { Nutrition, Plate } from "@/lib/types";
 
 type PlateDrawerProps = {
   open: boolean;
@@ -33,7 +33,6 @@ export function PlateDrawer({
   onRemove,
   onClear
 }: PlateDrawerProps) {
-  const [isDesktop, setIsDesktop] = useState(false);
   const [isRendered, setIsRendered] = useState(open);
   const [dragDelta, setDragDelta] = useState(0);
   const [snapPoint, setSnapPoint] = useState<"mid" | "full">("mid");
@@ -41,32 +40,17 @@ export function PlateDrawer({
   const startYRef = useRef<number | null>(null);
   const startTimeRef = useRef<number>(0);
   const startScrollTopRef = useRef(0);
-  const dragSourceRef = useRef<"handle" | "content" | null>(null);
   const draggingSheetRef = useRef(false);
   const lockedScrollYRef = useRef(0);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 1024px)");
-    const syncDesktop = () => {
-      setIsDesktop(mediaQuery.matches);
-      setDragDelta(0);
-      setSnapPoint(mediaQuery.matches ? "full" : "mid");
-    };
-
-    syncDesktop();
-    mediaQuery.addEventListener("change", syncDesktop);
-
-    return () => mediaQuery.removeEventListener("change", syncDesktop);
-  }, []);
-
-  useEffect(() => {
     if (open) {
       setIsRendered(true);
-      setSnapPoint(isDesktop ? "full" : "mid");
+      setSnapPoint("mid");
       return;
     }
 
-    const timer = window.setTimeout(() => setIsRendered(false), 220);
+    const timer = window.setTimeout(() => setIsRendered(false), 240);
     return () => window.clearTimeout(timer);
   }, [open]);
 
@@ -118,7 +102,6 @@ export function PlateDrawer({
     startYRef.current = clientY;
     startTimeRef.current = performance.now();
     startScrollTopRef.current = scrollContainerRef.current?.scrollTop ?? 0;
-    dragSourceRef.current = source;
     draggingSheetRef.current = source === "handle";
   };
 
@@ -138,21 +121,22 @@ export function PlateDrawer({
     }
 
     event.preventDefault();
-    const resistedDelta = delta > 0 ? delta : delta * 0.35;
+    const resistedDelta = delta > 0 ? delta : delta * 0.3;
     setDragDelta(resistedDelta);
   };
 
   const handleEnd = () => {
     if (startYRef.current === null) return;
+
     if (draggingSheetRef.current) {
       const elapsed = Math.max(performance.now() - startTimeRef.current, 1);
       const velocity = dragDelta / elapsed;
-      const current = snapPoint === "full" ? 8 : 56;
+      const current = snapPoint === "full" ? 8 : 42;
       const projected = current + dragDelta / 6 + velocity * 220;
 
-      if (projected > 80) {
+      if (projected > 74) {
         onOpenChange(false);
-      } else if (projected > 28) {
+      } else if (projected > 24) {
         setSnapPoint("mid");
       } else {
         setSnapPoint("full");
@@ -161,39 +145,30 @@ export function PlateDrawer({
 
     setDragDelta(0);
     startYRef.current = null;
-    dragSourceRef.current = null;
     draggingSheetRef.current = false;
   };
 
-  if (!isRendered) {
-    return null;
-  }
+  if (!isRendered) return null;
 
-  const baseTranslate = isDesktop ? 6 : snapPoint === "full" ? 8 : 56;
+  const baseTranslate = snapPoint === "full" ? 6 : 40;
   const translateY = open ? Math.min(Math.max(baseTranslate + dragDelta / 6, 4), 100) : 100;
   const showNutritionDisclaimer = plate.items.some((item) => !hasMeaningfulNutrition(item.nutrition));
 
   return (
-    <aside className="pointer-events-none fixed inset-0 z-50" aria-hidden={!open}>
+    <aside className="pointer-events-none fixed inset-0 z-50 mx-auto max-w-[430px]" aria-hidden={!open}>
       <button
         type="button"
         aria-label="Close plate"
-        className={`sheet-transition absolute inset-0 ${open ? "bg-ink/38 opacity-100" : "bg-ink/0 opacity-0"}`}
+        className={`sheet-transition absolute inset-0 ${open ? "bg-black/32 opacity-100" : "bg-black/0 opacity-0"}`}
         onClick={() => onOpenChange(false)}
       />
-      <div
-        className="pointer-events-auto absolute inset-x-0 bottom-0 mx-auto max-w-6xl overscroll-none px-0 sm:px-4 lg:px-6"
-      >
+      <div className="pointer-events-auto absolute inset-x-0 bottom-0">
         <div
-          style={{
-            transform: `translateY(${translateY}%)`
-          }}
-          className={`sheet-transition flex max-h-[92vh] flex-col overflow-hidden rounded-t-[28px] border border-b-0 border-ink/12 bg-white px-3 pb-4 pt-2 shadow-[0_-18px_40px_rgba(23,23,23,0.16)] ${
-            isDesktop ? "mx-auto max-w-3xl rounded-[28px] border-b px-5 pb-5 pt-3 shadow-soft" : ""
-          }`}
+          style={{ transform: `translateY(${translateY}%)` }}
+          className="sheet-transition flex max-h-[92vh] flex-col overflow-hidden rounded-t-[34px] border border-black/8 bg-[#fafafa] px-4 pb-4 pt-2 shadow-[0_-24px_50px_rgba(23,23,23,0.18)]"
         >
           <div
-            className="sticky top-0 z-10 -mx-3 border-b border-ink/8 bg-white/96 px-3 pb-3 pt-1 backdrop-blur sm:-mx-5 sm:px-5"
+            className="sticky top-0 z-10 -mx-4 border-b border-black/6 bg-[#fafafa]/96 px-4 pb-3 pt-1 backdrop-blur-xl"
             onTouchStart={(event) => handleStart(event.touches[0].clientY, "handle")}
             onTouchMove={(event) => handleMove(event, event.touches[0].clientY, "handle")}
             onTouchEnd={handleEnd}
@@ -219,7 +194,7 @@ export function PlateDrawer({
             onTouchEnd={handleEnd}
             onTouchCancel={handleEnd}
           >
-            <div className="space-y-2.5 pb-[calc(env(safe-area-inset-bottom)+0.5rem)]">
+            <div className="space-y-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)]">
               {plate.items.length > 0 ? (
                 plate.items.map((item) => (
                   <PlateItemRow

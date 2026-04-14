@@ -4,7 +4,7 @@
 
 :root {
   color-scheme: light;
-  --background: #f4f1eb;
+  --background: #f7f7f4;
   --foreground: #171717;
 }
 
@@ -18,10 +18,10 @@ body.sheet-open {
 }
 
 body {
-  @apply min-h-screen bg-cream text-ink antialiased;
+  @apply min-h-screen text-ink antialiased;
   background-image:
-    radial-gradient(circle at top left, rgba(177, 31, 36, 0.06), transparent 24%),
-    radial-gradient(circle at top right, rgba(15, 118, 110, 0.05), transparent 22%);
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.75), transparent 38%),
+    radial-gradient(circle at center, rgba(177, 31, 36, 0.05), transparent 55%);
 }
 
 a {
@@ -47,7 +47,7 @@ button {
 }
 
 input::placeholder {
-  color: rgba(23, 23, 23, 0.45);
+  color: rgba(23, 23, 23, 0.35);
 }
 
 @media (prefers-reduced-motion: no-preference) {

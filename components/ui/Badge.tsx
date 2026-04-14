@@ -5,12 +5,12 @@ import { cn } from "@/lib/utils";
 type BadgeVariant = "brand" | "live" | "fallback" | "custom" | "neutral" | "muted";
 
 const BADGE_STYLES: Record<BadgeVariant, string> = {
-  brand: "bg-brand/8 text-brand/85",
-  live: "bg-emerald-500/10 text-emerald-700",
-  fallback: "bg-amber-500/10 text-amber-700",
-  custom: "bg-sky-500/10 text-sky-700",
-  neutral: "bg-sand text-ink/72",
-  muted: "bg-ink/5 text-ink/58"
+  brand: "bg-brand/10 text-brand",
+  live: "bg-emerald-500/12 text-emerald-700",
+  fallback: "bg-amber-500/12 text-amber-700",
+  custom: "bg-sky-500/12 text-sky-700",
+  neutral: "bg-[#e5e7eb] text-ink/66",
+  muted: "bg-black/[0.05] text-ink/54"
 };
 
 export function Badge({
@@ -25,7 +25,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        "rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.04em]",
+        "inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-medium tracking-[-0.01em]",
         BADGE_STYLES[variant],
         className
       )}

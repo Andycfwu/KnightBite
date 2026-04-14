@@ -1,4 +1,5 @@
 import { Nutrition } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 type MacroTotalsProps = {
   totals: Nutrition;
@@ -8,7 +9,7 @@ type MacroTotalsProps = {
 export function MacroTotals({ totals, variant = "grid" }: MacroTotalsProps) {
   if (variant === "inline") {
     return (
-      <p className="text-sm font-medium text-ink/72">
+      <p className="text-sm font-medium text-ink/62">
         <span className="font-semibold text-ink">{Math.round(totals.calories)} cal</span>
         {" • "}
         {Math.round(totals.protein)}g protein
@@ -21,24 +22,50 @@ export function MacroTotals({ totals, variant = "grid" }: MacroTotalsProps) {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-3">
-      <MacroCard label="Calories" value={Math.round(totals.calories)} unit="" />
-      <MacroCard label="Protein" value={Math.round(totals.protein)} unit="g" />
-      <MacroCard label="Carbs" value={Math.round(totals.carbs)} unit="g" />
-      <MacroCard label="Fat" value={Math.round(totals.fat)} unit="g" />
-      <MacroCard label="Sodium" value={Math.round(totals.sodium ?? 0)} unit="mg" />
+    <div className="grid grid-cols-3 gap-3">
+      <MacroCard
+        label="Protein"
+        value={Math.round(totals.protein)}
+        color="bg-[#5b9cff]"
+        maxValue={Math.max(Math.round(totals.protein), Math.round(totals.carbs), Math.round(totals.fat), 1)}
+      />
+      <MacroCard
+        label="Carbs"
+        value={Math.round(totals.carbs)}
+        color="bg-[#65c48b]"
+        maxValue={Math.max(Math.round(totals.protein), Math.round(totals.carbs), Math.round(totals.fat), 1)}
+      />
+      <MacroCard
+        label="Fat"
+        value={Math.round(totals.fat)}
+        color="bg-[#ffcf4d]"
+        maxValue={Math.max(Math.round(totals.protein), Math.round(totals.carbs), Math.round(totals.fat), 1)}
+      />
     </div>
   );
 }
 
-function MacroCard({ label, value, unit }: { label: string; value: number; unit: string }) {
+function MacroCard({
+  label,
+  value,
+  color,
+  maxValue
+}: {
+  label: string;
+  value: number;
+  color: string;
+  maxValue: number;
+}) {
+  const ratio = Math.max(value / maxValue, 0.1);
+
   return (
-    <div className="rounded-2xl bg-white/8 px-3 py-3">
-      <p className="text-xs uppercase tracking-[0.08em] text-white/58">{label}</p>
-      <p className="mt-1 text-lg font-semibold text-white sm:text-xl">
-        {value}
-        {unit}
-      </p>
+    <div className="rounded-[24px] border border-black/6 bg-white px-4 py-4 shadow-[0_12px_28px_rgba(23,23,23,0.06)]">
+      <p className="text-[1rem] font-semibold tracking-[-0.04em] text-ink">{label}</p>
+      <p className="mt-1 text-[1.05rem] font-semibold tracking-[-0.03em] text-ink">{value}g</p>
+      <div className="mt-4 h-3 rounded-full bg-[#e6e9ef]">
+        <div className={cn("h-full rounded-full", color)} style={{ width: `${ratio * 100}%` }} />
+      </div>
+      <p className="mt-3 text-[0.85rem] text-ink/46">Current total</p>
     </div>
   );
 }
