@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/next";
 
 import { AppShell } from "@/components/layout/AppShell";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "KnightBite",
-  description: "KnightBite keeps Rutgers dining simple, live, and easy to browse."
+  description: "Rutgers Dining, Reimagined"
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
@@ -14,6 +15,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="en">
       <body>
         <AppShell>{children}</AppShell>
+        <Analytics />
       </body>
     </html>
   );
