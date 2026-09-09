@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 
 import { AppShell } from "@/components/layout/AppShell";
 import "./globals.css";
+import "./livingston.css";
 
 export const metadata: Metadata = {
   title: "KnightBite",
