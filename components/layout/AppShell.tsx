@@ -9,7 +9,7 @@ import { UserPreferencesProvider } from "@/hooks/useUserPreferences";
 
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const hasStationMap = pathname === "/hall/livingston" || pathname === "/hall/busch";
+  const hasStationMap = pathname === "/hall/livingston" || pathname === "/hall/busch" || pathname === "/hall/neilson";
   const showTabBar = pathname === "/" || pathname === "/plate" || pathname === "/profile";
 
   return (

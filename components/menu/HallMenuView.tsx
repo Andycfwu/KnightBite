@@ -7,6 +7,7 @@ import { MealTabs } from "@/components/menu/MealTabs";
 import { LivingstonMenuView } from "@/components/menu/LivingstonMenuView";
 import { HallStationExplorer } from "@/components/menu/HallStationExplorer";
 import { BUSCH_MAP } from "@/lib/busch-stations";
+import { NEILSON_MAP } from "@/lib/neilson-stations";
 import { MenuSearch } from "@/components/menu/MenuSearch";
 import { StationJumpBar } from "@/components/menu/StationJumpBar";
 import { StationSection } from "@/components/menu/StationSection";
@@ -35,6 +36,9 @@ export function HallMenuView({ hall, menu, requestedDate }: HallMenuViewProps) {
   }
   if (hall.id === "busch") {
     return <HallStationExplorer key={hall.id} menu={menu} requestedDate={requestedDate} map={BUSCH_MAP} />;
+  }
+  if (hall.id === "neilson") {
+    return <HallStationExplorer key={hall.id} menu={menu} requestedDate={requestedDate} map={NEILSON_MAP} />;
   }
   if (!menu) {
     return (

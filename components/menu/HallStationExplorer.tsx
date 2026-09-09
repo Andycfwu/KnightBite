@@ -95,21 +95,23 @@ export function HallStationExplorer({ menu, requestedDate, map }: { menu: DailyM
         </div>
       </div>
 
-      <div className={`livi-workspace ${map.minCanvasWidth ? "livi-wideMapWorkspace" : ""} ${view === "list" ? "livi-listWorkspace" : ""}`}>
+      <div className={`livi-workspace ${map.minCanvasWidth && map.image.width > map.image.height ? "livi-wideMapWorkspace" : ""} ${view === "list" ? "livi-listWorkspace" : ""}`}>
         {view === "map" ? <section ref={mapRef} tabIndex={-1} className="livi-mapSection" aria-label={`${map.name} illustrated station guide`}>
           <div className="livi-mapIntro"><span>Find your next bite.</span><span>Tap a station to explore</span></div>
           <div ref={mapViewportRef} className="livi-mapViewport" tabIndex={map.minCanvasWidth ? 0 : undefined}
+            style={{ maxWidth: map.maxCanvasWidth, marginInline: map.maxCanvasWidth ? "auto" : undefined }}
             role={map.minCanvasWidth ? "region" : undefined} aria-label={map.minCanvasWidth ? `${map.name} map; scroll horizontally to explore` : undefined}>
-          <div className={`livi-mapCanvas ${map.compactLabels ? "livi-compactPins" : ""}`}
+          <div className={`livi-mapCanvas ${map.compactLabels ? "livi-compactPins" : ""} ${map.image.height > map.image.width ? "livi-portraitCanvas" : ""}`}
             style={{ aspectRatio: `${map.image.width} / ${map.image.height}`, minWidth: map.minCanvasWidth }}>
             <Image src={map.image.src} alt={map.image.alt}
-              width={map.image.width} height={map.image.height} priority sizes={map.minCanvasWidth ? "(min-width: 1100px) 800px, 680px" : "(min-width: 860px) 650px, 100vw"} className="livi-artwork" />
+              width={map.image.width} height={map.image.height} priority sizes={map.minCanvasWidth ? `(min-width: 1100px) ${map.maxCanvasWidth ?? 800}px, ${map.minCanvasWidth}px` : "(min-width: 860px) 650px, 100vw"} className="livi-artwork" />
             {map.zones.flatMap((zone) => [{ x: zone.x, y: zone.y, label: "" }, ...(zone.additionalSpots ?? [])].map((spot, index) => <button key={`${zone.id}-${index}`} type="button" className="livi-mapPin" data-label-side={zone.labelSide}
               style={{ left: `${spot.x}%`, top: `${spot.y}%` }} aria-label={`Explore ${zone.name}${spot.label ? `, ${spot.label}` : ""}`}
               aria-pressed={selectedZone === zone.id && !search} aria-controls={`${map.hallId}-food-panel`} onClick={() => selectZone(zone.id)}>
               <span className="livi-pinNumber">{zone.number}</span><span className="livi-pinLabel">{zone.shortName}</span>
             </button>))}
             {map.entrance ? <span className="livi-mapEntrance" style={{ left: `${map.entrance.x}%`, top: `${map.entrance.y}%` }}><span aria-hidden="true">↑</span> Entrance</span> : null}
+            {map.landmarks?.map((landmark) => <span key={landmark.name} className="livi-mapLandmark" style={{ left: `${landmark.x}%`, top: `${landmark.y}%` }}>{landmark.name}</span>)}
             <span className="livi-mapCaption">{map.name.toUpperCase()} / STATION GUIDE</span>
           </div>
           </div>
@@ -124,6 +126,7 @@ export function HallStationExplorer({ menu, requestedDate, map }: { menu: DailyM
               <span>{group.name}</span><span className="livi-count">{menu ? group.itemCount : "—"}</span>
             </button>)}
           </div>
+          {map.guideNote ? <p className="livi-guideNote">{map.guideNote}</p> : null}
         </section> : null}
 
         <section id={`${map.hallId}-food-panel`} ref={panelRef} tabIndex={-1} className="livi-foodPanel" aria-labelledby={`${map.hallId}-panel-title`}>

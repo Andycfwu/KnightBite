@@ -22,8 +22,11 @@ export type StationMap = {
   defaultZone: string;
   zones: readonly StationZone[];
   minCanvasWidth?: number;
+  maxCanvasWidth?: number;
   compactLabels?: boolean;
   entrance?: { x: number; y: number };
+  landmarks?: readonly { name: string; x: number; y: number }[];
+  guideNote?: string;
 };
 
 export type StationGroup<Id extends string = string> = {

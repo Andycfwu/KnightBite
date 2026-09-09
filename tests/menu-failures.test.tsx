@@ -288,8 +288,8 @@ test("mock fixtures remain accessible only by deliberate use and are labeled as 
 });
 
 test("halls without maps retain the plain unavailable state and requested date", () => {
-  const neilson = diningHalls.find((entry) => entry.id === "neilson")!;
-  const html = renderToStaticMarkup(<HallMenuView hall={neilson} menu={null} requestedDate={requestedDate} />);
+  const atrium = diningHalls.find((entry) => entry.id === "atrium")!;
+  const html = renderToStaticMarkup(<HallMenuView hall={atrium} menu={null} requestedDate={requestedDate} />);
   assertUnavailableHall(html, requestedDate);
   assert.doesNotMatch(html, /type="search"|Open plate/);
 });
