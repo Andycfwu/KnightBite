@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import { getDefaultMealType } from "@/lib/menu";
+import { getDefaultMealType } from "@/lib/menu-helpers";
 import { DailyMenu, MealSection, MealType } from "@/lib/types";
 
 export function useMenuFilter(menu: DailyMenu) {

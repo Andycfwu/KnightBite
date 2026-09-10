@@ -2,7 +2,8 @@ import { DailyMenu, DiningHallId, MealSection, MealType } from "@/lib/types";
 
 export type FailureCategory = "timeout" | "http_error" | "request_error" | "malformed_json" |
   "unexpected_shape" | "parse_error" | "requested_date_missing" | "context_rejected" |
-  "no_items" | "unusable_menu" | "school_mapping_missing" | "internal_error";
+  "no_items" | "unusable_menu" | "school_mapping_missing" | "internal_error" |
+  "destination_rejected" | "response_too_large" | "resource_limit";
 export type Endpoint = "schools" | "menu" | "nutrition_label" | "normalization" | "ingestion";
 type Failure = { category: FailureCategory; endpoint: Endpoint; statusCode: number | null; reason: string | null };
 type Failures = { failures: Array<Failure & { count: number }>; omittedFailureCount: number };
@@ -31,7 +32,7 @@ export type MealAttempt = Failures & {
   parsed: { stations: number; items: number } | null;
   normalizationStarted: boolean;
   normalizationCompleted: boolean;
-  enrichment: Failures & { attemptedItems: number; failedItems: number };
+  enrichment: Failures & { attemptedItems: number; failedItems: number; skippedItems: number };
 };
 
 export type IngestionAttempt = Failures & {
@@ -49,7 +50,7 @@ export function createIngestionAttempt(hallId: DiningHallId, requestedDate: stri
     meals: Object.fromEntries(MEALS.map((meal) => [meal, {
       ...emptyFailures(), outcome: "not_started", parsed: null,
       normalizationStarted: false, normalizationCompleted: false,
-      enrichment: { ...emptyFailures(), attemptedItems: 0, failedItems: 0 }
+      enrichment: { ...emptyFailures(), attemptedItems: 0, failedItems: 0, skippedItems: 0 }
     }])) as Record<MealType, MealAttempt>
   };
 }
@@ -118,7 +119,7 @@ export function finishIngestionAttempt(
   try {
     const details = MEALS.map((meal) => attempt.meals[meal]);
     const hasIssues = attempt.failures.length > 0 || details.some((meal) =>
-      meal.outcome !== "parsed" || meal.failures.length > 0 || meal.enrichment.failedItems > 0);
+      meal.outcome !== "parsed" || meal.failures.length > 0 || meal.enrichment.failedItems > 0 || meal.enrichment.skippedItems > 0);
     const outcome = failed ? "error" : !menu ? "unavailable" : hasIssues ? "partial" : "success";
     const counts = readDiagnostics();
     const { parserWarnings, ...normalization } = counts;

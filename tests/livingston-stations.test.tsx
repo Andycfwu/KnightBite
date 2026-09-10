@@ -3,7 +3,7 @@ import { test } from "node:test";
 import { renderToStaticMarkup } from "react-dom/server";
 import { HallMenuView } from "@/components/menu/HallMenuView";
 import { PlateProvider } from "@/hooks/usePlate";
-import { groupLivingstonStations } from "@/lib/livingston-stations";
+import { groupLivingstonStations, LIVINGSTON_MAP } from "@/lib/livingston-stations";
 import type { DailyMenu, Station } from "@/lib/types";
 
 const hall = { id: "livingston" as const, name: "Livingston Dining Commons", shortName: "Livingston" };
@@ -38,6 +38,20 @@ test("Grouping another meal cannot retain a previous meal's foods", () => {
   assert.equal(lunch.find((group) => group.id === "salad")?.itemCount, 1);
   assert.equal(dinner.find((group) => group.id === "salad")?.itemCount, 0);
   assert.equal(dinner.find((group) => group.id === "rotisserie")?.itemCount, 1);
+});
+
+test("Livingston places fresh fruit on the shared island without inferring dietary locations", () => {
+  const fruit = station("FRESH FRUIT");
+  const input = [fruit, station("SALAD BAR"), station("DELI BAR"), station("VEGAN SPECIAL"), station("YOGURT BAR")];
+  const groups = groupLivingstonStations(input);
+  assert.deepEqual(groups.find(group => group.id === "salad")?.stations, input.slice(0, 3));
+  assert.deepEqual(groups.find(group => group.id === "other")?.stations, input.slice(3));
+  assert.equal(groups.flatMap(group => group.stations).filter(entry => entry === fruit).length, 1);
+  const html = render(null);
+  assert.equal((html.match(/class="livi-mapEntrance"/g) ?? []).length, 2);
+  assert.doesNotMatch(html, /Dietary needs/);
+  assert.doesNotMatch(html, /aria-label="Explore Dietary/);
+  assert.deepEqual(LIVINGSTON_MAP.entrances.map(entry => entry.direction), ["right", "up"]);
 });
 
 function render(value: DailyMenu | null) {

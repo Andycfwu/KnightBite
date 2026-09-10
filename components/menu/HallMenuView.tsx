@@ -20,8 +20,8 @@ import { PlateIcon } from "@/components/ui/PlateIcon";
 import { useMenuFilter } from "@/hooks/useMenuFilter";
 import { usePlate } from "@/hooks/usePlate";
 import { MEAL_LABELS } from "@/lib/constants";
-import { getAvailableMealTypes } from "@/lib/menu";
-import { hasMeaningfulNutrition } from "@/lib/nutrition";
+import { getAvailableMealTypes } from "@/lib/menu-helpers";
+import { hasCompleteNutrition, formatTotal } from "@/lib/nutrition";
 import { DailyMenu, DiningHall } from "@/lib/types";
 import { formatDateLabel, formatUpdatedTime } from "@/lib/utils";
 
@@ -67,7 +67,7 @@ function HallMenuContent({ hall, menu }: { hall: DiningHall; menu: DailyMenu }) 
   const previousTotalItemsRef = useRef(plate.totalItems);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
   const { filteredMeal, query, resultCount, selectedMeal, setQuery, setSelectedMeal } = useMenuFilter(menu);
-  const stations = filteredMeal?.stations ?? [];
+  const stations = useMemo(() => filteredMeal?.stations ?? [], [filteredMeal]);
 
   const stationNavItems = useMemo(
     () =>
@@ -79,7 +79,7 @@ function HallMenuContent({ hall, menu }: { hall: DiningHall; menu: DailyMenu }) 
   );
 
   const mealHasIncompleteNutrition = useMemo(
-    () => stations.some((station) => station.items.some((item) => item.isCustom || !hasMeaningfulNutrition(item.nutrition))),
+    () => stations.some((station) => station.items.some((item) => item.isCustom || !hasCompleteNutrition(item.nutrition))),
     [stations]
   );
 
@@ -211,7 +211,7 @@ function HallMenuContent({ hall, menu }: { hall: DiningHall; menu: DailyMenu }) 
       <FloatingPlateButton
         open={plateOpen}
         totalItems={plate.totalItems}
-        totalCalories={plate.totals.calories}
+        totalCalories={formatTotal(plate.totals, "calories", " kcal")}
         platePulse={platePulse}
         onOpen={() => setPlateOpen(true)}
       />
@@ -276,7 +276,7 @@ function FloatingPlateButton({
 }: {
   open: boolean;
   totalItems: number;
-  totalCalories: number;
+  totalCalories: string;
   platePulse: boolean;
   onOpen: () => void;
 }) {
@@ -292,7 +292,7 @@ function FloatingPlateButton({
       <ChevronUpIcon />
       <span className="flex items-center gap-2.5 text-[1rem] font-semibold tracking-[-0.03em] text-ink">
         <PlateIcon className="h-[21px] w-[24px]" />
-        <span className="text-brand">{Math.round(totalCalories)} kcal</span>
+        <span className="text-brand">{totalCalories}</span>
       </span>
       {totalItems > 0 ? (
         <span className="rounded-full bg-brand/10 px-2 py-1 text-xs font-semibold text-brand">{totalItems}</span>

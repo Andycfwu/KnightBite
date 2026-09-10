@@ -1,81 +1,35 @@
-import { Nutrition } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import { Nutrition, PlateTotals } from "@/lib/types";
+import { formatNutrient, formatTotal } from "@/lib/nutrition";
 
 type MacroTotalsProps = {
   totals: Nutrition;
-  goals?: {
-    protein?: number;
-    carbs?: number;
-    fat?: number;
-  };
+  goals?: { protein?: number; carbs?: number; fat?: number };
   variant?: "grid" | "inline";
 };
 
 export function MacroTotals({ totals, goals, variant = "grid" }: MacroTotalsProps) {
-  if (variant === "inline") {
-    return (
-      <p className="text-sm font-medium text-ink/62">
-        <span className="font-semibold text-ink">{Math.round(totals.calories)} cal</span>
-        {" • "}
-        {Math.round(totals.protein)}g protein
-        {" • "}
-        {Math.round(totals.carbs)}g carbs
-        {" • "}
-        {Math.round(totals.fat)}g fat
-      </p>
-    );
-  }
+  if (variant === "inline") return <p className="text-sm font-medium text-ink/70">
+    <span className="font-semibold text-ink">{formatTotal(totals, "calories", " cal")}</span>
+    {" • "}{formatTotal(totals, "protein", "g")} protein
+    {" • "}{formatTotal(totals, "carbs", "g")} carbs
+    {" • "}{formatTotal(totals, "fat", "g")} fat
+  </p>;
 
-  return (
-    <div className="grid grid-cols-3 gap-3">
-      <MacroCard
-        label="Protein"
-        value={Math.round(totals.protein)}
-        color="bg-[#5b9cff]"
-        goal={goals?.protein}
-        maxValue={goals?.protein ?? Math.max(Math.round(totals.protein), Math.round(totals.carbs), Math.round(totals.fat), 1)}
-      />
-      <MacroCard
-        label="Carbs"
-        value={Math.round(totals.carbs)}
-        color="bg-[#65c48b]"
-        goal={goals?.carbs}
-        maxValue={goals?.carbs ?? Math.max(Math.round(totals.protein), Math.round(totals.carbs), Math.round(totals.fat), 1)}
-      />
-      <MacroCard
-        label="Fat"
-        value={Math.round(totals.fat)}
-        color="bg-[#ffcf4d]"
-        goal={goals?.fat}
-        maxValue={goals?.fat ?? Math.max(Math.round(totals.protein), Math.round(totals.carbs), Math.round(totals.fat), 1)}
-      />
-    </div>
-  );
-}
-
-function MacroCard({
-  label,
-  value,
-  color,
-  maxValue,
-  goal
-}: {
-  label: string;
-  value: number;
-  color: string;
-  maxValue: number;
-  goal?: number;
-}) {
-  const ratio = Math.max(value / maxValue, 0.1);
-
-  return (
-    <div className="rounded-[24px] border border-black/6 bg-white px-4 py-4 shadow-[0_12px_28px_rgba(23,23,23,0.06)]">
-      <p className="text-[1rem] font-semibold tracking-[-0.04em] text-ink">{label}</p>
-      <p className="mt-1 text-[1.05rem] font-semibold tracking-[-0.03em] text-ink">{value}g</p>
-      <div className="mt-4 h-3 rounded-full bg-[#e6e9ef]">
-        <div className={cn("h-full rounded-full", color)} style={{ width: `${ratio * 100}%` }} />
-      </div>
-      <p className="mt-3 text-[0.85rem] text-ink/46">{goal ? `Goal ${goal}g` : "Current total"}</p>
-    </div>
-  );
+  return <section className="plate-macroGrid" aria-label="Plate macro totals">
+    {([['protein', 'Protein'], ['carbs', 'Carbs'], ['fat', 'Fat']] as const).map(([key, label]) => {
+      const value = totals[key];
+      const goal = goals?.[key];
+      const hasGoal = goal !== undefined && goal > 0;
+      const percent = hasGoal && value !== null ? Math.round(value / goal * 100) : null;
+      const coverage = (totals as Partial<PlateTotals>).coverage?.[key];
+      return <div key={key} className={`plate-macroCard nutrient-${key}`}>
+        <div className="plate-macroHeading"><h2>{label}</h2><span className="plate-nutrientDot" /></div>
+        <p className="plate-macroValue">{coverage?.missing && value !== null ? <small className="plate-subtotalLabel">Known subtotal: </small> : null}{formatNutrient(value, "g")} {hasGoal ? <span>/ {goal}g</span> : null}</p>
+        {percent !== null ? <div className="plate-macroTrack" aria-hidden="true"><div style={{ width: `${Math.min(100, Math.max(0, percent))}%` }} /></div> : null}
+        <p className="plate-macroCaption">{hasGoal ? (percent !== null ? `${coverage?.missing ? "Known amount: " : ""}${percent}% of goal` : `Goal ${goal}g`) : "Current total · no goal set"}</p>
+        {hasGoal && value !== null && value > goal ? <p className="plate-coverageNote">{coverage?.missing ? "Known amount " : ""}{Math.round((value - goal) * 10) / 10}g over goal</p> : null}
+        {coverage?.missing ? <p className="plate-coverageNote">Unknown for {coverage.missing} serving{coverage.missing === 1 ? "" : "s"}</p> : null}
+      </div>;
+    })}
+  </section>;
 }

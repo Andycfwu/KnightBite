@@ -1,70 +1,49 @@
-import { Nutrition, PlateItem } from "@/lib/types";
+import { Nutrition, PlateItem, PlateTotals } from "@/lib/types";
 
-function withDefaults(nutrition: Nutrition): Required<Nutrition> {
-  return {
-    calories: nutrition.calories ?? 0,
-    protein: nutrition.protein ?? 0,
-    carbs: nutrition.carbs ?? 0,
-    fat: nutrition.fat ?? 0,
-    sodium: nutrition.sodium ?? 0,
-    sugar: nutrition.sugar ?? 0
-  };
+export const NUTRIENTS = ["calories", "protein", "carbs", "fat", "sodium", "sugar"] as const;
+export const unknownNutrition = (): Nutrition => ({ calories: null, protein: null, carbs: null, fat: null, sodium: null, sugar: null });
+export function isKnownNutrient(value: unknown): value is number {
+  return typeof value === "number" && Number.isFinite(value) && value >= 0;
 }
-
+// Presence, including verified zero, is distinct from absence.
 export function hasMeaningfulNutrition(nutrition: Nutrition): boolean {
-  const normalized = withDefaults(nutrition);
-
-  return (
-    normalized.calories > 0 ||
-    normalized.protein > 0 ||
-    normalized.carbs > 0 ||
-    normalized.fat > 0 ||
-    normalized.sodium > 0 ||
-    normalized.sugar > 0
-  );
+  return NUTRIENTS.some((key) => isKnownNutrient(nutrition[key]));
 }
-
+export function hasCompleteNutrition(nutrition: Nutrition): boolean {
+  return NUTRIENTS.every((key) => isKnownNutrient(nutrition[key]));
+}
+export function formatNutrient(value: number | null | undefined, unit = ""): string {
+  return isKnownNutrient(value) ? `${Math.round(value * 10) / 10}${unit}` : "Unknown";
+}
+export function formatTotal(totals: Nutrition, key: keyof Nutrition, unit = ""): string {
+  const coverage = (totals as Partial<PlateTotals>).coverage?.[key];
+  const value = totals[key];
+  return `${isKnownNutrient(value) && coverage?.missing ? "Known subtotal: " : ""}${formatNutrient(value, unit)}`;
+}
 export function multiplyNutrition(nutrition: Nutrition, quantity: number): Nutrition {
-  const normalized = withDefaults(nutrition);
-
-  return {
-    calories: normalized.calories * quantity,
-    protein: normalized.protein * quantity,
-    carbs: normalized.carbs * quantity,
-    fat: normalized.fat * quantity,
-    sodium: normalized.sodium * quantity,
-    sugar: normalized.sugar * quantity
-  };
+  return Object.fromEntries(NUTRIENTS.map((key) => [key,
+    isKnownNutrient(nutrition[key]) ? nutrition[key]! * quantity : null])) as Nutrition;
 }
-
+// Strict addition is useful outside a plate: unknown + known remains unknown.
 export function addNutrition(a: Nutrition, b: Nutrition): Nutrition {
-  const left = withDefaults(a);
-  const right = withDefaults(b);
-
-  return {
-    calories: left.calories + right.calories,
-    protein: left.protein + right.protein,
-    carbs: left.carbs + right.carbs,
-    fat: left.fat + right.fat,
-    sodium: left.sodium + right.sodium,
-    sugar: left.sugar + right.sugar
-  };
+  return Object.fromEntries(NUTRIENTS.map((key) => [key,
+    isKnownNutrient(a[key]) && isKnownNutrient(b[key]) ? a[key]! + b[key]! : null])) as Nutrition;
 }
-
-export function calculatePlateTotals(items: PlateItem[]): Nutrition {
-  return items.reduce<Nutrition>(
-    (totals, item) => addNutrition(totals, multiplyNutrition(item.nutrition, item.quantity)),
-    {
-      calories: 0,
-      protein: 0,
-      carbs: 0,
-      fat: 0,
-      sodium: 0,
-      sugar: 0
+export function calculatePlateTotals(items: PlateItem[]): PlateTotals {
+  const totals = { ...unknownNutrition(), coverage: {} } as PlateTotals;
+  for (const key of NUTRIENTS) {
+    let known = 0, missing = 0, sum = 0;
+    for (const item of items) {
+      if (!item.isCustom && isKnownNutrient(item.nutrition[key])) {
+        sum += item.nutrition[key]! * item.quantity;
+        known += item.quantity;
+      } else missing += item.quantity;
     }
-  );
+    totals[key] = known || !items.length ? Math.round(sum * 10) / 10 : null;
+    totals.coverage[key] = { known, missing };
+  }
+  return totals;
 }
-
 export function getTotalPlateItemCount(items: PlateItem[]): number {
   return items.reduce((count, item) => count + item.quantity, 0);
 }

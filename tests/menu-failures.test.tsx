@@ -5,6 +5,8 @@ import { renderToStaticMarkup } from "react-dom/server";
 
 import HomePage from "@/app/page";
 import HallPage from "@/app/hall/[hallId]/page";
+import HallLoading from "@/app/hall/[hallId]/loading";
+import HallError from "@/app/hall/[hallId]/error";
 import { HallMenuView } from "@/components/menu/HallMenuView";
 import { PlateProvider } from "@/hooks/usePlate";
 import { UserPreferencesProvider } from "@/hooks/useUserPreferences";
@@ -102,7 +104,8 @@ function assertUnavailableHall(html: string, date: string) {
   }
 }
 
-beforeEach((t) => {
+beforeEach((context) => {
+  const t = context as TestContext;
   const fetchMock = t.mock.method(globalThis, "fetch", async () => {
     throw new Error("Network requests are forbidden in menu regression tests");
   });
@@ -116,7 +119,7 @@ for (const environment of ["development", "production"] as const) {
       const previousEnvironment = process.env.NODE_ENV;
       Object.assign(process.env, { NODE_ENV: environment });
       t.after(() => {
-        if (previousEnvironment === undefined) delete process.env.NODE_ENV;
+        if (previousEnvironment === undefined) Reflect.deleteProperty(process.env, "NODE_ENV");
         else Object.assign(process.env, { NODE_ENV: previousEnvironment });
       });
       forbidMockFallback(t);
@@ -143,6 +146,40 @@ test("loader preserves the successful Rutgers menu, including contents and times
   assert.deepEqual(result, original);
 });
 
+for (const later of ["never settles", "resolves", "rejects"] as const) {
+  test(`Atrium exits loading after 15 seconds when the provider ${later}`, async (t) => {
+    forbidMockFallback(t);
+    t.mock.timers.enable({ apis: ["Date", "setTimeout"], now: lunchtime });
+    const pending = deferred<DailyMenu | null>();
+    t.mock.method(rutgersMenuProvider, "getDailyMenu", () => pending.promise);
+    let finished = false;
+    const page = HallPage({ params: Promise.resolve({ hallId: "atrium" }) }).then((view) => { finished = true; return view; });
+    await new Promise<void>((resolve) => setImmediate(resolve));
+    t.mock.timers.tick(14_999);
+    await Promise.resolve();
+    assert.equal(finished, false);
+    t.mock.timers.tick(1);
+    const view = await page;
+    assertUnavailableHall(renderMenuView(view), requestedDate);
+    if (later === "resolves") pending.resolve(realMenu("atrium"));
+    else if (later === "rejects") pending.reject(new Error("Late provider failure"));
+    await new Promise<void>((resolve) => setImmediate(resolve));
+    assertUnavailableHall(renderMenuView(view), requestedDate);
+  });
+}
+
+test("hall loading and error screens expose status and a way back to the hall list", () => {
+  const loading = renderToStaticMarkup(<HallLoading />);
+  assert.match(loading, /Loading your dining hall/);
+  assert.match(loading, /role="status"/);
+  assert.match(loading, /href="\/">Back to dining halls/);
+  const error = renderToStaticMarkup(<HallError error={new Error("Private exception content")} reset={() => {}} />);
+  assert.match(error, /role="alert"/);
+  assert.match(error, /Try again/);
+  assert.match(error, /href="\/">Back to dining halls/);
+  assert.doesNotMatch(error, /Private exception content|Backup menu|Sample menu/);
+});
+
 for (const outcome of ["null", "throw"] as const) {
   test(`homepage reports unconfirmed status when Rutgers ${outcome}s`, async (t) => {
     forbidMockFallback(t);
@@ -152,9 +189,9 @@ for (const outcome of ["null", "throw"] as const) {
       return null;
     });
 
-    const html = renderToStaticMarkup(await HomePage());
+    const html = renderMenuView(await HomePage());
     assertUnavailableHome(html);
-    assert.equal(html.match(/>OPEN</g)?.length, diningHalls.length, "Menu failure must not change operating-hours status");
+    assert.equal(html.match(/>TYPICAL HOURS</g)?.length, diningHalls.length, "Menu failure must not change operating-hours status");
   });
 }
 
@@ -172,12 +209,12 @@ for (const lateOutcome of ["resolve", "reject"] as const) {
     assert.equal(finished, false);
     t.mock.timers.tick(1);
     const result = await page;
-    assertUnavailableHome(renderToStaticMarkup(result));
+    assertUnavailableHome(renderMenuView(result));
 
     if (lateOutcome === "resolve") pending.resolve(realMenu());
     else pending.reject(new Error("Late Rutgers failure"));
     await pending.promise.catch(() => {});
-    assertUnavailableHome(renderToStaticMarkup(result));
+    assertUnavailableHome(renderMenuView(result));
   });
 }
 
@@ -185,7 +222,7 @@ test("homepage mixed results count only confirmed real menus and use only real u
   forbidMockFallback(t);
   t.mock.timers.enable({ apis: ["Date", "setTimeout"], now: lunchtime });
   const pending = deferred<DailyMenu | null>();
-  const provider = t.mock.method(rutgersMenuProvider, "getDailyMenu", async (hallId) => {
+  const provider = t.mock.method(rutgersMenuProvider, "getDailyMenu", async (hallId: DiningHallId) => {
     if (hallId === "busch") return realMenu(hallId);
     if (hallId === "livingston") return { ...realMenu(hallId), lastUpdatedAt: undefined };
     if (hallId === "neilson") return { ...realMenu(hallId), isLiveData: false };
@@ -196,7 +233,7 @@ test("homepage mixed results count only confirmed real menus and use only real u
   // Let already-resolved menus win their races before advancing the deadline.
   await new Promise<void>((resolve) => queueMicrotask(resolve));
   t.mock.timers.tick(1100);
-  const html = renderToStaticMarkup(await page);
+  const html = renderMenuView(await page);
   assert.match(html, /2 menus confirmed for today/);
   assert.equal(html.match(/Live today/g)?.length, 2);
   assert.equal(html.match(/Menu status unavailable/g)?.length, 2);
@@ -210,11 +247,11 @@ test("homepage mixed results count only confirmed real menus and use only real u
 test("homepage uses singular wording for one confirmed menu without inventing its missing timestamp", async (t) => {
   forbidMockFallback(t);
   t.mock.timers.enable({ apis: ["Date", "setTimeout"], now: lunchtime });
-  t.mock.method(rutgersMenuProvider, "getDailyMenu", async (hallId) => (
+  t.mock.method(rutgersMenuProvider, "getDailyMenu", async (hallId: DiningHallId) => (
     hallId === "busch" ? { ...realMenu(), lastUpdatedAt: undefined } : null
   ));
 
-  const html = renderToStaticMarkup(await HomePage());
+  const html = renderMenuView(await HomePage());
   assert.match(html, /1 menu confirmed for today/);
   assert.equal(html.match(/Menu status unavailable/g)?.length, 3);
   assert.doesNotMatch(html, /Updated|Backup menu/);
@@ -225,9 +262,9 @@ test("closed hall cards still show that menu status is unavailable", async (t) =
   t.mock.timers.enable({ apis: ["Date", "setTimeout"], now: new Date("2026-09-09T02:00:00Z") });
   t.mock.method(rutgersMenuProvider, "getDailyMenu", async () => null);
 
-  const html = renderToStaticMarkup(await HomePage());
+  const html = renderMenuView(await HomePage());
   assertUnavailableHome(html);
-  assert.equal(html.match(/>CLOSED</g)?.length, diningHalls.length);
+  assert.equal(html.match(/>OUTSIDE TYPICAL HOURS</g)?.length, diningHalls.length);
 });
 
 for (const now of [lunchtime, new Date("2026-09-09T01:00:00Z")]) {

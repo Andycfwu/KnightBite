@@ -5,6 +5,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { AppShell } from "@/components/layout/AppShell";
 import "./globals.css";
 import "./livingston.css";
+import "./home.css";
+import "./account.css";
 
 export const metadata: Metadata = {
   title: "KnightBite",
@@ -16,7 +18,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="en">
       <body>
         <AppShell>{children}</AppShell>
-        <Analytics />
+        {process.env.NEXT_PUBLIC_ANALYTICS_DISABLED !== "1" ? <Analytics /> : null}
       </body>
     </html>
   );

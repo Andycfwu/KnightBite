@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
-import { hasMeaningfulNutrition } from "@/lib/nutrition";
+import { hasMeaningfulNutrition, hasCompleteNutrition, formatNutrient } from "@/lib/nutrition";
 import { MenuItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -20,7 +20,7 @@ export function MenuItemRow({ item, onAdd, onViewDetails }: MenuItemRowProps) {
   const isVariableNutrition = item.isCustom || !hasNutrition;
   const trustNote = item.isCustom
     ? item.description ?? "Nutrition varies based on your selections"
-    : !hasNutrition
+    : !hasCompleteNutrition(item.nutrition)
       ? item.description ?? "Nutrition may be incomplete"
       : null;
   const visibleTags = (item.tags ?? []).filter((tag) => !["custom", "build-your-own"].includes(tag.toLowerCase()));
@@ -71,13 +71,13 @@ export function MenuItemRow({ item, onAdd, onViewDetails }: MenuItemRowProps) {
             {isVariableNutrition ? (
               <>
                 <MacroPill label="Nutrition" value={item.isCustom ? "Varies" : "Limited"} />
-                {item.nutrition.calories > 0 ? <MacroPill label="kcal" value={item.nutrition.calories} primary /> : null}
+                {item.nutrition.calories !== null ? <MacroPill label="kcal" value={formatNutrient(item.nutrition.calories)} primary /> : null}
               </>
             ) : (
               <>
-                <MacroPill label="kcal" value={item.nutrition.calories} primary />
-                <MacroPill label="Protein" value={`${item.nutrition.protein}g`} dark />
-                {item.nutrition.carbs > 0 ? <MacroPill label="Carbs" value={`${item.nutrition.carbs}g`} /> : null}
+                <MacroPill label="kcal" value={formatNutrient(item.nutrition.calories)} primary />
+                <MacroPill label="Protein" value={formatNutrient(item.nutrition.protein, "g")} dark />
+                {item.nutrition.carbs !== null ? <MacroPill label="Carbs" value={formatNutrient(item.nutrition.carbs, "g")} /> : null}
               </>
             )}
             {item.isCustom ? <Badge variant="custom">Custom</Badge> : null}

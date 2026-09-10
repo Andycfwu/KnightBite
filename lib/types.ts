@@ -3,12 +3,16 @@ export type DiningHallId = "busch" | "livingston" | "neilson" | "atrium";
 export type MealType = "breakfast" | "lunch" | "dinner";
 
 export type Nutrition = {
-  calories: number;
-  protein: number;
-  carbs: number;
-  fat: number;
-  sodium?: number;
-  sugar?: number;
+  calories: number | null;
+  protein: number | null;
+  carbs: number | null;
+  fat: number | null;
+  sodium?: number | null;
+  sugar?: number | null;
+};
+
+export type PlateTotals = Nutrition & {
+  coverage: Record<keyof Nutrition, { known: number; missing: number }>;
 };
 
 export type MenuItem = {
@@ -18,12 +22,14 @@ export type MenuItem = {
   stationName: string;
   hallId: DiningHallId;
   mealType: MealType;
+  menuDate?: string;
   servingSize?: string;
   nutrition: Nutrition;
   description?: string;
   ingredients?: string[];
   allergens?: string[];
   tags?: string[];
+  sourceLabels?: string[];
   imageUrl?: string | null;
   isCustom?: boolean;
   available: boolean;
@@ -59,6 +65,9 @@ export type DiningHall = {
 
 export type PlateItem = {
   itemId: string;
+  sourceItemId?: string;
+  menuDate?: string;
+  isCustom?: boolean;
   name: string;
   quantity: number;
   servingSize?: string;

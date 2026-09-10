@@ -1,15 +1,11 @@
 import { HallCardStatus } from "@/components/home/HallCard";
-import { RutgersMark } from "@/components/layout/RutgersMark";
-import { HallSelector } from "@/components/home/HallSelector";
-import { APP_NAME, HALL_BLURBS } from "@/lib/constants";
+import { HomeScreen } from "@/components/home/HomeScreen";
 import { getHallMenuForDate } from "@/lib/menu";
 import { diningHalls } from "@/lib/dining-halls";
 import { DailyMenu, DiningHallId } from "@/lib/types";
 import {
   formatRutgersServiceTime,
-  formatShortDateLabel,
   formatUpdatedTime,
-  getGreetingForHour,
   getRutgersCurrentDecimalHour,
   getTodayIsoDate
 } from "@/lib/utils";
@@ -57,8 +53,8 @@ function buildHallStatus(hallId: DiningHallId, menu: DailyMenu | null): HallCard
       state: "open",
       mealLabel: currentMealLabel,
       detail: nextMeal
-        ? `${nextMeal[0].charAt(0).toUpperCase() + nextMeal[0].slice(1)} starts at ${formatRutgersServiceTime(nextMeal[1][0])}`
-        : `Serving ${openMeal[0]} now`,
+        ? `Typical ${nextMeal[0].charAt(0).toUpperCase() + nextMeal[0].slice(1)} starts at ${formatRutgersServiceTime(nextMeal[1][0])}`
+        : `Typical ${openMeal[0]} hours`,
       updatedLabel,
       menuConfirmed,
       sourceLabel
@@ -68,8 +64,8 @@ function buildHallStatus(hallId: DiningHallId, menu: DailyMenu | null): HallCard
   if (hallIsOpen && nextMeal) {
     return {
       state: "open",
-      mealLabel: "Open now",
-      detail: `${nextMeal[0].charAt(0).toUpperCase() + nextMeal[0].slice(1)} starts at ${formatRutgersServiceTime(nextMeal[1][0])}`,
+      mealLabel: "Typical hours",
+      detail: `Typical ${nextMeal[0].charAt(0).toUpperCase() + nextMeal[0].slice(1)} starts at ${formatRutgersServiceTime(nextMeal[1][0])}`,
       updatedLabel,
       menuConfirmed,
       sourceLabel
@@ -79,9 +75,9 @@ function buildHallStatus(hallId: DiningHallId, menu: DailyMenu | null): HallCard
   return {
     state: "closed",
     detail: firstMeal && hour >= lastMeal[1][1]
-      ? `Opens tomorrow at ${formatRutgersServiceTime(firstMeal[1][0])}`
+      ? `Typical first service: ${formatRutgersServiceTime(firstMeal[1][0])}`
       : nextMeal
-        ? `Opens at ${formatRutgersServiceTime(nextMeal[1][0])}`
+        ? `Typical next service: ${formatRutgersServiceTime(nextMeal[1][0])}`
         : "Check today’s hours",
     menuConfirmed,
     sourceLabel
@@ -117,31 +113,5 @@ export default async function HomePage() {
   );
 
   const statusByHall = Object.fromEntries(statusEntries);
-  const confirmedCount = statusEntries.filter(([, status]) => status.menuConfirmed).length;
-
-  return (
-    <main className="space-y-6">
-      <section className="px-1 pt-1">
-        <div className="mb-5 flex items-center gap-3">
-          <RutgersMark />
-          <div>
-            <p className="text-base font-semibold tracking-tight text-ink">{APP_NAME}</p>
-            <p className="text-sm font-medium tracking-tight text-ink/46">Rutgers Dining, Reimagined</p>
-          </div>
-        </div>
-        <h1 className="max-w-[10ch] text-[3rem] font-semibold leading-[0.96] tracking-[-0.05em] text-ink">
-          {getGreetingForHour()} Scarlet Knight
-        </h1>
-        <p className="mt-3 text-lg text-ink/46">{formatShortDateLabel(todayIso)}</p>
-        <div className="mt-5 inline-flex items-center rounded-full bg-white px-4 py-2 text-sm text-ink/60 shadow-[0_12px_26px_rgba(23,23,23,0.06)]">
-          <span className={`mr-2 inline-flex h-2.5 w-2.5 rounded-full ${confirmedCount > 0 ? "bg-[#34c759]" : "bg-[#b9bcc2]"}`} />
-          {confirmedCount > 0
-            ? `${confirmedCount} menu${confirmedCount === 1 ? "" : "s"} confirmed for today`
-            : "Menu status could not be confirmed"}
-        </div>
-      </section>
-
-      <HallSelector halls={diningHalls} blurbs={HALL_BLURBS} statusByHall={statusByHall} />
-    </main>
-  );
+  return <HomeScreen date={todayIso} statusByHall={statusByHall} />;
 }

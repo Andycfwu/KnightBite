@@ -11,7 +11,6 @@ import type { MealType } from "@/lib/types";
 const fixture = (name: string) => readFileSync(`tests/fixtures/foodpronet/${name}.html`, "utf8");
 const lunch = fixture("observed-lunch");
 const date = "2026-09-08";
-const meals: MealType[] = ["breakfast", "lunch", "dinner"];
 const label = (meal: MealType) => meal[0].toUpperCase() + meal.slice(1);
 
 // Synthetic meal variants retain the observed lunch items; they are not observed breakfast/dinner menus.
@@ -61,7 +60,8 @@ const rejections: Array<{ name: string; change: (page: string, meal: MealType) =
 ];
 
 let testNumber = 0;
-beforeEach((t) => {
+beforeEach((context) => {
+  const t = context as TestContext;
   // Expire all existing daily/page/label entries between cases without changing production caches.
   t.mock.timers.enable({ apis: ["Date"], now: new Date(Date.UTC(2026, 8, 8, 12) + ++testNumber * 16 * 60 * 1000) });
   const network = t.mock.method(globalThis, "fetch", async () => { throw new Error("Unexpected upstream request"); });
@@ -77,7 +77,7 @@ function stubFoodProNet(t: TestContext, responseForMeal: (meal: MealType) => str
   const menuUrls: URL[] = [];
   const labelUrls: URL[] = [];
   const unexpected: string[] = [];
-  t.mock.method(globalThis, "fetch", async (input) => {
+  t.mock.method(globalThis, "fetch", async (input: RequestInfo | URL) => {
     const url = new URL(String(input));
     if (url.origin === "https://menuportal23.dining.rutgers.edu" && url.pathname === "/FoodPronet/pickmenu.aspx") {
       menuUrls.push(url);
@@ -158,17 +158,17 @@ test("matching context preserves normalized content, nutrition, identifiers, dat
     stations: [{ id: "salad-bar", name: "SALAD BAR", items: [
       {
         id: "atrium-lunch-salad-bar-atrium-house-salad-dressing", name: "ATRIUM HOUSE SALAD DRESSING",
-        stationId: "salad-bar", stationName: "SALAD BAR", hallId: "atrium", mealType: "lunch", servingSize: "1 OZL",
+        stationId: "salad-bar", stationName: "SALAD BAR", hallId: "atrium", mealType: "lunch", menuDate: date, servingSize: "1 OZL",
         // Preserve the existing parser's output, including fields it cannot extract from this label markup.
-        nutrition: { calories: 152, protein: 0, carbs: 2.7, fat: 16.2, sodium: 0, sugar: 0 },
+        nutrition: { calories: 152, protein: 0.3, carbs: 2.7, fat: 16.2, sodium: 103.8, sugar: 1.8 },
         description: undefined, ingredients: menu.meals[0].stations[0].items[0].ingredients,
-        tags: ["low carbon footprint"], imageUrl: null, isCustom: undefined, available: true
+        tags: undefined, allergens: undefined, sourceLabels: ["low carbon footprint"], imageUrl: null, isCustom: undefined, available: true
       },
       {
         id: "atrium-lunch-salad-bar-baby-spinach", name: "BABY SPINACH",
-        stationId: "salad-bar", stationName: "SALAD BAR", hallId: "atrium", mealType: "lunch", servingSize: "4 OZ",
-        nutrition: { calories: 26, protein: 0, carbs: 4.1, fat: 0.4, sodium: 0, sugar: 0 },
-        description: undefined, ingredients: ["BABY SPINACH"], tags: ["low carbon footprint"],
+        stationId: "salad-bar", stationName: "SALAD BAR", hallId: "atrium", mealType: "lunch", menuDate: date, servingSize: "4 OZ",
+        nutrition: { calories: 26, protein: 3.2, carbs: 4.1, fat: 0.4, sodium: 89.6, sugar: 0.5 },
+        description: undefined, ingredients: ["BABY SPINACH"], tags: undefined, allergens: undefined, sourceLabels: ["low carbon footprint"],
         imageUrl: null, isCustom: undefined, available: true
       }
     ] }]

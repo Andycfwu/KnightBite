@@ -45,7 +45,7 @@ The menu excerpts preserve the heading, complete date-option list, active/inacti
 - [Dressing label, recipe 150157, portion 1](https://menuportal23.dining.rutgers.edu/FoodPronet/label.aspx?locationNum=13&locationName=&dtdate=9%2f8%2f2026&RecNumAndPort=150157*1)
 - [Spinach label, recipe 130019, portion 4](https://menuportal23.dining.rutgers.edu/FoodPronet/label.aspx?locationNum=13&locationName=&dtdate=9%2f8%2f2026&RecNumAndPort=130019*4)
 
-The integration test preserves the existing nutrition parser's output, including zeros for fields whose observed markup it does not currently extract. Fixing that extraction is outside this change.
+The September 10 remediation extracts the observed whitespace/bold variants for protein, sodium and sugars. Unavailable fields now remain null instead of becoming zero. These snippets have no independent recipe/name metadata; returned identity checks cover explicit context form fields when provided, with synthetic mismatch tests. A full sanitized label capture is still needed before adding other identity selectors.
 
 All mutations in `atrium-menu-context.test.tsx` are **synthetic**: mismatches, omissions, duplicate/conflicting fields, invalid dates, comment/script-only context, empty/unusable menus, and lunch-item responses adapted to different meals. The observed breakfast/dinner excerpts are tested directly by the helper; synthetic meal variants support provider-integration tests with the two captured lunch labels. Fake-clock advances of 16 minutes expire all existing daily/page/label caches between tests; the production cache API and policies are unchanged.
 

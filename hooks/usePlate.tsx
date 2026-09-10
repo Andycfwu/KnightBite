@@ -2,8 +2,10 @@
 
 import { createContext, ReactNode, useContext, useMemo, useState } from "react";
 
+import { addPlateItem } from "@/lib/plate";
+
 import { calculatePlateTotals, getTotalPlateItemCount } from "@/lib/nutrition";
-import { MenuItem, Nutrition, Plate, PlateItem } from "@/lib/types";
+import { MenuItem, PlateTotals, Plate } from "@/lib/types";
 
 export type UsePlateReturn = {
   plate: Plate;
@@ -13,38 +15,16 @@ export type UsePlateReturn = {
   decrementItem: (itemId: string) => void;
   clearPlate: () => void;
   totalItems: number;
-  totals: Nutrition;
+  totals: PlateTotals;
 };
 
 const PlateContext = createContext<UsePlateReturn | null>(null);
-
-function toPlateItem(item: MenuItem): PlateItem {
-  return {
-    itemId: item.id,
-    name: item.name,
-    quantity: 1,
-    servingSize: item.servingSize,
-    nutrition: item.nutrition
-  };
-}
 
 export function PlateProvider({ children }: { children: ReactNode }) {
   const [plate, setPlate] = useState<Plate>({ items: [] });
 
   const addItem = (item: MenuItem) => {
-    setPlate((current) => {
-      const existing = current.items.find((plateItem) => plateItem.itemId === item.id);
-
-      if (!existing) {
-        return { items: [...current.items, toPlateItem(item)] };
-      }
-
-      return {
-        items: current.items.map((plateItem) =>
-          plateItem.itemId === item.id ? { ...plateItem, quantity: plateItem.quantity + 1 } : plateItem
-        )
-      };
-    });
+    setPlate((current) => ({ items: addPlateItem(current.items, item) }));
   };
 
   const removeItem = (itemId: string) => {
@@ -56,7 +36,7 @@ export function PlateProvider({ children }: { children: ReactNode }) {
   const incrementItem = (itemId: string) => {
     setPlate((current) => ({
       items: current.items.map((item) =>
-        item.itemId === itemId ? { ...item, quantity: item.quantity + 1 } : item
+        item.itemId === itemId ? { ...item, quantity: Math.min(item.quantity + 1, 999) } : item
       )
     }));
   };

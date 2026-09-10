@@ -11,16 +11,17 @@ type HallSelectorProps = {
 
 export function HallSelector({ halls, blurbs, statusByHall }: HallSelectorProps) {
   return (
-    <section className="grid gap-4 pb-2">
-      {halls.map((hall) => (
+    <div className="home-hallGrid">
+      {halls.map((hall, index) => (
         <HallCard
           key={hall.id}
           hall={hall}
           description={blurbs[hall.id]}
           href={`/hall/${hall.id}` as Route}
           status={statusByHall?.[hall.id]}
+          priority={index < 2}
         />
       ))}
-    </section>
+    </div>
   );
 }

@@ -1,4 +1,10 @@
+import { BoundedPromiseCache, readBoundedText, validateJsonBudget, MENU_RESPONSE_BYTES, WEEK_RESPONSE_BYTES, WEEK_JSON_NODES, LABEL_RESPONSE_BYTES, MAX_MEAL_ITEMS, MAX_MENU_ENTRIES } from "@/lib/providers/ingestion-limits";
+import { classifyDietaryLabels } from "@/lib/providers/dietary-labels";
+import { assignUniqueItemIds } from "@/lib/menu-item-identity";
+import { hasMeaningfulNutrition, unknownNutrition } from "@/lib/nutrition";
 import { MenuProvider } from "@/lib/providers/menu-provider";
+import { foodProNetLabelUrl } from "@/lib/providers/foodpronet-url";
+import { assertLabelIdentity } from "@/lib/providers/foodpronet-label-identity";
 import { validateAtriumMenuContext } from "@/lib/providers/atrium-menu-context";
 import { addError, addFailure, createIngestionAttempt, finishIngestionAttempt, IngestionAttempt, IngestionFailure, MealAttempt, trackMeal } from "@/lib/providers/menu-ingestion-log";
 import { DailyMenu, DiningHallId, MealSection, MealType, MenuItem, Nutrition, Station } from "@/lib/types";
@@ -14,6 +20,9 @@ const ATRIUM_LOCATION_NUM = 13;
 const NUTRISLICE_TIMEOUT_MS = 4500;
 const FOODPRONET_MENU_TIMEOUT_MS = 5000;
 const FOODPRONET_LABEL_TIMEOUT_MS = 2500;
+// Limit successive label batches as well as individual requests. Keep the retrieved
+// food when enrichment is slow; the existing UI marks missing nutrition honestly.
+const FOODPRONET_ENRICHMENT_BUDGET_MS = 6000;
 
 const HALL_CONFIG: Record<
   DiningHallId,
@@ -52,8 +61,6 @@ const FALLBACK_MENU_TYPE_IDS: Record<MealType, number> = {
 const CUSTOM_STATION_PATTERN =
   /\b(build your own|byo|omelet|omelette|stir ?fry|pasta|saute|saut[eé]|custom|made[- ]to[- ]order)\b/i;
 
-const ALLERGEN_PATTERN =
-  /\b(milk|dairy|egg|soy|wheat|gluten|peanut|tree nut|nuts|sesame|shellfish|fish)\b/i;
 
 type RutgersSchool = {
   id?: number;
@@ -104,16 +111,6 @@ type RutgersFood = {
   image_url?: string | null;
   use_custom_sizes?: boolean | null;
   has_options_or_sides?: boolean | null;
-};
-
-type CacheEntry = {
-  expiresAt: number;
-  promise: Promise<DailyMenu | null>;
-};
-
-type TextCacheEntry = {
-  expiresAt: number;
-  promise: Promise<string>;
 };
 
 type SchoolCacheEntry = {
@@ -170,9 +167,9 @@ const NUTRITION_RULES: Record<NutritionKey, NutritionFieldRule> = {
 };
 
 let schoolCache: SchoolCacheEntry | null = null;
-const menuCache = new Map<string, CacheEntry>();
-const atriumPageCache = new Map<string, TextCacheEntry>();
-const atriumLabelCache = new Map<string, TextCacheEntry>();
+const menuCache = new BoundedPromiseCache<DailyMenu | null>(16, 16 * 1024 * 1024);
+const atriumPageCache = new BoundedPromiseCache<string>(12, 8 * 1024 * 1024);
+const atriumLabelCache = new BoundedPromiseCache<string>(128, 8 * 1024 * 1024);
 
 function isDevelopment() {
   return process.env.NODE_ENV !== "production";
@@ -274,7 +271,8 @@ function toNumber(value: unknown) {
   }
 
   if (typeof value === "string") {
-    const parsed = Number.parseFloat(value.replace(/[^0-9.-]/g, ""));
+    if (!/^[-+]?(?:\d+\.?\d*|\.\d+)\s*(?:g|mg|kcal)?$/i.test(value.trim())) return null;
+    const parsed = Number.parseFloat(value);
     return Number.isFinite(parsed) ? parsed : null;
   }
 
@@ -295,7 +293,7 @@ function normalizeNutritionValue(
       diagnostics.invalidNutritionFields.push({ mealType, itemName, field, rawValue: value });
     }
 
-    return 0;
+    return null;
   }
 
   return NUTRITION_RULES[field].allowDecimal ? Number(parsed.toFixed(1)) : Math.round(parsed);
@@ -317,16 +315,6 @@ function normalizeNutrition(
   };
 }
 
-function hasMeaningfulNutrition(nutrition: Nutrition) {
-  return (
-    nutrition.calories > 0 ||
-    nutrition.protein > 0 ||
-    nutrition.carbs > 0 ||
-    nutrition.fat > 0 ||
-    (nutrition.sodium ?? 0) > 0 ||
-    (nutrition.sugar ?? 0) > 0
-  );
-}
 
 function normalizeServingSize(entry: RutgersMenuEntry, food: RutgersFood) {
   const amount = normalizeWhitespace(
@@ -360,30 +348,8 @@ function getIconLabel(icon: Record<string, unknown>) {
   return null;
 }
 
-function normalizeTags(food: RutgersFood) {
-  const iconLabels = (food.icons?.food_icons ?? [])
-    .map((icon) => getIconLabel(icon))
-    .filter((label): label is string => Boolean(label));
-
-  const tags = iconLabels
-    .filter((label) => !ALLERGEN_PATTERN.test(label))
-    .map((label) => label.toLowerCase())
-    .filter(Boolean);
-
-  return tags.length > 0 ? Array.from(new Set(tags)) : undefined;
-}
-
-function normalizeAllergens(food: RutgersFood) {
-  const iconLabels = (food.icons?.food_icons ?? [])
-    .map((icon) => getIconLabel(icon))
-    .filter((label): label is string => Boolean(label));
-
-  const allergens = iconLabels
-    .filter((label) => ALLERGEN_PATTERN.test(label))
-    .map((label) => label.toLowerCase())
-    .filter(Boolean);
-
-  return allergens.length > 0 ? Array.from(new Set(allergens)) : undefined;
+function normalizeDietaryLabels(food: RutgersFood) {
+  return classifyDietaryLabels((food.icons?.food_icons ?? []).map(getIconLabel).filter((label): label is string => Boolean(label)));
 }
 
 function isCustomizableName(value: string | null | undefined) {
@@ -418,12 +384,12 @@ function buildItemId(hallId: DiningHallId, mealType: MealType, stationId: string
 
 function getDedupeKey(item: MenuItem) {
   const nutritionSignature = [
-    item.nutrition.calories,
-    item.nutrition.protein,
-    item.nutrition.carbs,
-    item.nutrition.fat,
-    item.nutrition.sodium ?? 0,
-    item.nutrition.sugar ?? 0
+    item.nutrition.calories ?? "unknown",
+    item.nutrition.protein ?? "unknown",
+    item.nutrition.carbs ?? "unknown",
+    item.nutrition.fat ?? "unknown",
+    item.nutrition.sodium ?? "unknown",
+    item.nutrition.sugar ?? "unknown"
   ].join(":");
 
   // Conservative dedupe: only collapse entries that match within the same station on
@@ -438,57 +404,64 @@ function getDedupeKey(item: MenuItem) {
   ].join("|");
 }
 
-async function fetchJson<T>(url: string): Promise<T> {
-  const response = await fetchWithTimeout(url, {
+async function fetchJson<T>(url: string, byteLimit = MENU_RESPONSE_BYTES, nodeLimit?: number): Promise<T> {
+  return fetchWithTimeout(url, {
     headers: {
       accept: "application/json"
     }
-  }, NUTRISLICE_TIMEOUT_MS);
-
-  try {
-    return (await response.json()) as T;
-  } catch (error) {
-    throw new IngestionFailure(error instanceof SyntaxError ? "malformed_json" : "request_error");
-  }
+  }, NUTRISLICE_TIMEOUT_MS, async (response, signal) => {
+    try {
+      const value = JSON.parse(await readBoundedText(response, byteLimit, signal));
+      validateJsonBudget(value, nodeLimit);
+      return value as T;
+    } catch (error) {
+      if (error instanceof IngestionFailure) throw error;
+      throw new IngestionFailure(error instanceof SyntaxError ? "malformed_json" : "request_error");
+    }
+  });
 }
 
 async function fetchText(url: string): Promise<string> {
-  const response = await fetchWithTimeout(
+  return fetchWithTimeout(
     url,
     {
       headers: {
         accept: "text/html,application/xhtml+xml"
       }
     },
-    FOODPRONET_MENU_TIMEOUT_MS
+    FOODPRONET_MENU_TIMEOUT_MS,
+    readResponseText
   );
-
-  return readResponseText(response);
 }
 
-async function readResponseText(response: Response) {
-  try {
-    return await response.text();
-  } catch {
-    throw new IngestionFailure("request_error");
-  }
+function readResponseText(response: Response, signal?: AbortSignal) {
+  return readBoundedText(response, MENU_RESPONSE_BYTES, signal);
 }
 
-async function fetchWithTimeout(url: string, init: RequestInit, timeoutMs: number) {
+async function fetchWithTimeout<T>(url: string, init: RequestInit, timeoutMs: number, readResponse: (response: Response, signal: AbortSignal) => Promise<T>) {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  let timeout: ReturnType<typeof setTimeout> | undefined;
+  const deadline = new Promise<never>((_resolve, reject) => {
+    timeout = setTimeout(() => {
+      reject(new IngestionFailure("timeout"));
+      controller.abort();
+    }, timeoutMs);
+  });
 
   try {
-    const response = await fetch(url, {
-      ...init,
-      signal: controller.signal
-    });
-
-    if (!response.ok) {
-      throw new IngestionFailure("http_error", response.status);
-    }
-
-    return response;
+    // Keep the deadline active through body consumption, and settle even if a
+    // fetch implementation ignores abort. Promise.race observes later rejections.
+    return await Promise.race([
+      (async () => {
+        const response = await fetch(url, { ...init, redirect: "manual", signal: controller.signal });
+        if (response.redirected || (response.status >= 300 && response.status < 400)) {
+          throw new IngestionFailure("destination_rejected");
+        }
+        if (!response.ok) throw new IngestionFailure("http_error", response.status);
+        return readResponse(response, controller.signal);
+      })(),
+      deadline
+    ]);
   } catch (error) {
     if (controller.signal.aborted) {
       throw new IngestionFailure("timeout");
@@ -517,29 +490,8 @@ function buildAtriumMenuUrl(date: string, mealType: MealType) {
   return `${FOODPRONET_BASE}/pickmenu.aspx?${params.toString()}`;
 }
 
-function buildAtriumLabelUrl(href: string) {
-  return href.startsWith("http") ? href : `${FOODPRONET_BASE}/${href.replace(/^\//, "")}`;
-}
-
-function getCachedText(cache: Map<string, TextCacheEntry>, key: string, loader: () => Promise<string>) {
-  const now = Date.now();
-  const cached = cache.get(key);
-
-  if (cached && cached.expiresAt > now) {
-    return cached.promise;
-  }
-
-  const promise = loader().catch((error) => {
-    cache.delete(key);
-    throw error;
-  });
-
-  cache.set(key, {
-    expiresAt: now + CACHE_TTL_MS,
-    promise
-  });
-
-  return promise;
+function getCachedText(cache: BoundedPromiseCache<string>, key: string, loader: () => Promise<string>) {
+  return cache.load(key, loader, () => CACHE_TTL_MS);
 }
 
 async function fetchAtriumMenuPage(date: string, mealType: MealType) {
@@ -547,25 +499,27 @@ async function fetchAtriumMenuPage(date: string, mealType: MealType) {
   return getCachedText(atriumPageCache, key, () => fetchText(buildAtriumMenuUrl(date, mealType)));
 }
 
-async function fetchAtriumLabelPage(url: string) {
-  return getCachedText(atriumLabelCache, url, async () => {
-    const response = await fetchWithTimeout(
+async function fetchAtriumLabelPage(href: string, date: string) {
+  const url = foodProNetLabelUrl(href, date);
+  return getCachedText(atriumLabelCache, url, () =>
+    fetchWithTimeout(
       url,
       {
         headers: {
           accept: "text/html,application/xhtml+xml"
         }
       },
-      FOODPRONET_LABEL_TIMEOUT_MS
-    );
-
-    return readResponseText(response);
-  });
+      FOODPRONET_LABEL_TIMEOUT_MS,
+      (response, signal) => readBoundedText(response, LABEL_RESPONSE_BYTES, signal)
+    )
+  );
 }
 
 function extractNutritionMetric(labelHtml: string, label: string) {
-  const regex = new RegExp(`<b>${label}[\\s\\S]*?<\\/b>&nbsp;([^<]+)`, "i");
-  const match = labelHtml.match(regex);
+  // The observed label places &nbsp; on either side of </b>; sugars may be unbolded.
+  const plain = labelHtml.replace(/&nbsp;/gi, " ");
+  const regex = new RegExp(`(?:<b>\\s*${label}\\s*</b>|${label})\\s*([^<]+)`, "i");
+  const match = plain.match(regex);
   return match ? stripHtml(match[1]) : undefined;
 }
 
@@ -710,14 +664,7 @@ function createCustomPlaceholderItem(
     stationName,
     hallId,
     mealType,
-    nutrition: {
-      calories: 0,
-      protein: 0,
-      carbs: 0,
-      fat: 0,
-      sodium: 0,
-      sugar: 0
-    },
+    nutrition: unknownNutrition(),
     description: "Nutrition varies based on your selections",
     tags: ["custom", "build-your-own"],
     imageUrl: null,
@@ -732,6 +679,8 @@ type AtriumParsedItem = {
   stationName: string;
   stationId: string;
   labelUrl?: string;
+  allergens?: string[];
+  sourceLabels?: string[];
   tags?: string[];
 };
 
@@ -785,13 +734,14 @@ function parseAtriumMenuItems(
       continue;
     }
 
+    if (parsedItems.length >= MAX_MEAL_ITEMS) throw new IngestionFailure("resource_limit");
     parsedItems.push({
       name: itemName,
       servingSize: servingMatch ? stripHtml(servingMatch[1]) : undefined,
       stationName: currentStationName,
       stationId: slugify(currentStationName),
-      labelUrl: labelHrefMatch ? buildAtriumLabelUrl(labelHrefMatch[1].replace(/&amp;/g, "&")) : undefined,
-      tags: iconAltMatches.length > 0 ? Array.from(new Set(iconAltMatches)) : undefined
+      labelUrl: labelHrefMatch ? labelHrefMatch[1].replace(/&amp;/g, "&") : undefined,
+      ...classifyDietaryLabels(iconAltMatches)
     });
   }
 
@@ -845,15 +795,19 @@ async function fetchAtriumMealSection(
       return null;
     }
 
+    const enrichmentDeadline = Date.now() + FOODPRONET_ENRICHMENT_BUDGET_MS;
     const normalizedItems = await mapWithConcurrency(parsedItems, 6, async (parsedItem) => {
       let labelDetails: AtriumLabelDetails | null = null;
 
-      if (parsedItem.labelUrl) {
+      if (parsedItem.labelUrl && Date.now() >= enrichmentDeadline) {
+        detail.enrichment.skippedItems += 1;
+      } else if (parsedItem.labelUrl) {
         detail.enrichment.attemptedItems += 1;
         let parsingLabel = false;
         try {
-          const labelHtml = await fetchAtriumLabelPage(parsedItem.labelUrl);
+          const labelHtml = await fetchAtriumLabelPage(parsedItem.labelUrl, date);
           parsingLabel = true;
+          assertLabelIdentity(labelHtml, parsedItem.labelUrl, date);
           labelDetails = parseAtriumLabelNutrition(labelHtml, mealType, parsedItem.name, diagnostics);
         } catch (error) {
           detail.enrichment.failedItems += 1;
@@ -862,7 +816,8 @@ async function fetchAtriumMealSection(
             mealType,
             message: `Could not load Atrium nutrition label for ${parsedItem.name}.`
           });
-          logDevError(`Failed to fetch Atrium label for ${parsedItem.name}.`, error);
+          // The bounded development diagnostics and ingestion summary aggregate
+          // these failures; logging every label can flood the dev server console.
         }
       }
 
@@ -871,14 +826,7 @@ async function fetchAtriumMealSection(
         isCustomizableName(parsedItem.name) ||
         isCustomizableName(stationName) ||
         /\b(toppings|bases|sides)\b/i.test(stationName);
-      const nutrition = labelDetails?.nutrition ?? {
-        calories: 0,
-        protein: 0,
-        carbs: 0,
-        fat: 0,
-        sodium: 0,
-        sugar: 0
-      };
+      const nutrition = labelDetails?.nutrition ?? unknownNutrition();
       const shouldDeemphasizeNutrition = itemLooksCustom && !hasMeaningfulNutrition(nutrition);
 
       return {
@@ -888,22 +836,18 @@ async function fetchAtriumMealSection(
         stationName,
         hallId: "atrium" as const,
         mealType,
+        menuDate: date,
         servingSize: labelDetails?.servingSize ?? parsedItem.servingSize,
         nutrition: shouldDeemphasizeNutrition
-          ? {
-              calories: 0,
-              protein: 0,
-              carbs: 0,
-              fat: 0,
-              sodium: 0,
-              sugar: 0
-            }
+          ? unknownNutrition()
           : nutrition,
         description: shouldDeemphasizeNutrition ? "Nutrition varies based on your selections" : labelDetails?.description,
         ingredients: labelDetails?.ingredients,
         tags: itemLooksCustom
           ? Array.from(new Set([...(parsedItem.tags ?? []), "custom", "build-your-own"]))
           : parsedItem.tags,
+        allergens: parsedItem.allergens,
+        sourceLabels: parsedItem.sourceLabels,
         imageUrl: null,
         isCustom: shouldDeemphasizeNutrition || undefined,
         available: true
@@ -933,6 +877,7 @@ async function fetchAtriumMealSection(
       }
       dedupeKeys.add(dedupeKey);
 
+
       if (!stationMap.has(item.stationId)) {
         stationMap.set(item.stationId, {
           id: item.stationId,
@@ -945,6 +890,7 @@ async function fetchAtriumMealSection(
       stationMap.get(item.stationId)!.items.push(item);
     }
 
+    assignUniqueItemIds(Array.from(stationMap.values()).flatMap((station) => station.items));
     const stations = stationOrder
       .map((stationId) => stationMap.get(stationId))
       .filter((station): station is Station => Boolean(station))
@@ -998,7 +944,11 @@ function normalizeMealSection(
     return stationMap.get(normalizedStationId)!;
   };
 
+  if (!Array.isArray(day.menu_items ?? [])) throw new IngestionFailure("unexpected_shape");
+  if ((day.menu_items?.length ?? 0) > MAX_MENU_ENTRIES || (day.menu_items ?? []).filter(entry => entry?.food).length > MAX_MEAL_ITEMS) throw new IngestionFailure("resource_limit");
   for (const entry of day.menu_items ?? []) {
+    if (!entry || typeof entry !== "object" || (entry.food != null && typeof entry.food !== "object")) throw new IngestionFailure("unexpected_shape");
+    if (entry.food?.icons?.food_icons != null && (!Array.isArray(entry.food.icons.food_icons) || entry.food.icons.food_icons.some(icon => !icon || typeof icon !== "object"))) throw new IngestionFailure("unexpected_shape");
     if (entry.is_section_title || entry.is_station_header) {
       const rawStationName = normalizeWhitespace(entry.text);
       if (!rawStationName) {
@@ -1049,7 +999,8 @@ function normalizeMealSection(
       customStations.add(stationId);
     }
 
-    const tags = new Set(normalizeTags(food) ?? []);
+    const dietary = normalizeDietaryLabels(food);
+    const tags = new Set(dietary.tags ?? []);
     if (itemLooksCustom) {
       tags.add("custom");
       tags.add("build-your-own");
@@ -1064,20 +1015,14 @@ function normalizeMealSection(
       mealType,
       servingSize: normalizeServingSize(entry, food),
       nutrition: shouldDeemphasizeNutrition
-        ? {
-            calories: 0,
-            protein: 0,
-            carbs: 0,
-            fat: 0,
-            sodium: 0,
-            sugar: 0
-          }
+        ? unknownNutrition()
         : nutrition,
       description: shouldDeemphasizeNutrition
         ? "Nutrition varies based on your selections"
         : normalizeWhitespace(food.description) || undefined,
       ingredients: normalizeStringList(food.synced_ingredients ?? food.ingredients),
-      allergens: normalizeAllergens(food),
+      allergens: dietary.allergens,
+      sourceLabels: dietary.sourceLabels,
       tags: tags.size > 0 ? Array.from(tags) : undefined,
       imageUrl: food.image_url ?? null,
       isCustom: shouldDeemphasizeNutrition || undefined,
@@ -1116,6 +1061,7 @@ function normalizeMealSection(
     diagnostics.itemsWithoutNutrition += 1;
   }
 
+  assignUniqueItemIds(Array.from(stationMap.values()).flatMap((station) => station.items));
   const stations = stationOrder
     .map((stationId) => stationMap.get(stationId))
     .filter((station): station is Station => Boolean(station))
@@ -1162,9 +1108,9 @@ async function fetchMealSection(
   let shapeIssue = false;
   let readingPayload = true;
   try {
-    const payload = await fetchJson<RutgersWeekResponse>(url);
+    const payload = await fetchJson<RutgersWeekResponse>(url, WEEK_RESPONSE_BYTES, WEEK_JSON_NODES);
     readingPayload = false;
-    // Observe the shape, but leave the existing find/normalization path and acceptance unchanged.
+    // Record malformed context; requested-day matching remains exact and normalization rejects invalid collections.
     if (!payload || !Array.isArray(payload.days) || payload.days.some((day) => !day || typeof day.date !== "string")) {
       shapeIssue = true;
       addFailure(detail, "unexpected_shape", "menu");
@@ -1185,6 +1131,7 @@ async function fetchMealSection(
     }
     detail.normalizationStarted = true;
     const section = normalizeMealSection(hallId, mealType, requestedDay, diagnostics);
+    for (const station of section?.stations ?? []) for (const item of station.items) item.menuDate = date;
     detail.normalizationCompleted = true;
     if (!section) {
       detail.outcome = "empty";
@@ -1357,34 +1304,11 @@ async function loadDailyMenuWithSummary(hallId: DiningHallId, date: string) {
 
 export const rutgersMenuProvider: MenuProvider = {
   async getDailyMenu(hallId, date) {
-    const cacheKey = `${hallId}:${date}`;
-    const cached = menuCache.get(cacheKey);
-    const now = Date.now();
-
-    if (cached && cached.expiresAt > now) {
-      return cached.promise;
-    }
-
-    const cacheEntry: CacheEntry = {
-      expiresAt: now + CACHE_TTL_MS,
-      promise: Promise.resolve(null)
-    };
-
-    const promise = loadDailyMenuWithSummary(hallId, date)
-      .then((menu) => {
-        cacheEntry.expiresAt = Date.now() + (menu ? CACHE_TTL_MS : FAILED_CACHE_TTL_MS);
-        return menu;
-      })
-      .catch((error) => {
+    return menuCache.load(`${hallId}:${date}`, () => loadDailyMenuWithSummary(hallId, date),
+      menu => menu ? CACHE_TTL_MS : FAILED_CACHE_TTL_MS).catch((error) => {
         logDevError(`Live Rutgers provider failed for ${hallId} on ${date}.`, error);
-        menuCache.delete(cacheKey);
         return null;
       });
-
-    cacheEntry.promise = promise;
-    menuCache.set(cacheKey, cacheEntry);
-
-    return promise;
   }
 };
 

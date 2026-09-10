@@ -7,7 +7,7 @@ import { PlateItemRow } from "@/components/plate/PlateItemRow";
 import { PlateSummary } from "@/components/plate/PlateSummary";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { NutritionDisclaimer } from "@/components/ui/NutritionDisclaimer";
-import { hasMeaningfulNutrition } from "@/lib/nutrition";
+import { hasCompleteNutrition, formatTotal } from "@/lib/nutrition";
 import { Nutrition, Plate } from "@/lib/types";
 
 type PlateDrawerProps = {
@@ -33,6 +33,8 @@ export function PlateDrawer({
   onRemove,
   onClear
 }: PlateDrawerProps) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
   const [isRendered, setIsRendered] = useState(open);
   const [dragDelta, setDragDelta] = useState(0);
   const [snapPoint, setSnapPoint] = useState<"mid" | "full">("mid");
@@ -55,17 +57,14 @@ export function PlateDrawer({
   }, [open]);
 
   useEffect(() => {
-    if (!open) return;
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onOpenChange(false);
-      }
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [onOpenChange, open]);
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    if (open && isRendered && !dialog.open) {
+      dialog.showModal();
+      closeRef.current?.focus();
+    } else if (!open && dialog.open) dialog.close();
+    return () => { if (dialog.open) dialog.close(); };
+  }, [open, isRendered]);
 
   useEffect(() => {
     if (!open) return;
@@ -152,17 +151,31 @@ export function PlateDrawer({
 
   const baseTranslate = snapPoint === "full" ? 6 : 40;
   const translateY = open ? Math.min(Math.max(baseTranslate + dragDelta / 6, 4), 100) : 100;
-  const showNutritionDisclaimer = plate.items.some((item) => !hasMeaningfulNutrition(item.nutrition));
+  const showNutritionDisclaimer = plate.items.some((item) => item.isCustom || !hasCompleteNutrition(item.nutrition));
 
   return (
-    <aside className="pointer-events-none fixed inset-0 z-50 mx-auto max-w-[430px]" aria-hidden={!open}>
+    <dialog ref={dialogRef} aria-labelledby="plate-dialog-title" aria-describedby="plate-lifecycle"
+      onCancel={(event) => { event.preventDefault(); onOpenChange(false); }}
+      onKeyDown={(event) => {
+        if (event.key !== "Tab") return;
+        // Safari's keyboard-navigation preference can skip buttons at the modal
+        // boundary. Wrap explicitly while retaining native dialog inertness.
+        const controls = Array.from(event.currentTarget.querySelectorAll<HTMLElement>(
+          'button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex]'
+        )).filter((node) => node.tabIndex >= 0 && node.getClientRects().length > 0 && node.getAttribute("aria-hidden") !== "true");
+        const first = controls[0], last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+      }}
+      className="fixed inset-0 z-50 m-0 h-full max-h-none w-full max-w-none border-0 bg-transparent p-0 text-ink">
       <button
         type="button"
-        aria-label="Close plate"
+        aria-hidden="true"
+        tabIndex={-1}
         className={`sheet-transition absolute inset-0 ${open ? "pointer-events-auto bg-black/32 opacity-100" : "bg-black/0 opacity-0"}`}
         onClick={() => onOpenChange(false)}
       />
-      <div className="pointer-events-auto absolute inset-x-0 bottom-0">
+      <div className="pointer-events-auto absolute inset-x-0 bottom-0 mx-auto max-w-[430px]">
         <div
           style={{ transform: `translateY(${translateY}%)` }}
           className="sheet-transition flex max-h-[92vh] flex-col overflow-hidden rounded-t-[34px] border border-black/8 bg-[#fafafa] px-4 pb-4 pt-2 shadow-[0_-24px_50px_rgba(23,23,23,0.18)]"
@@ -174,7 +187,12 @@ export function PlateDrawer({
             onTouchEnd={handleEnd}
             onTouchCancel={handleEnd}
           >
-            <PlateSummary totalItems={totalItems} totalCalories={totals.calories} />
+            <div className="flex items-center justify-between gap-3">
+              <h2 id="plate-dialog-title" className="sr-only">My Plate</h2>
+              <p id="plate-lifecycle" className="text-xs text-ink/65">Temporary plate · clears on reload</p>
+              <button ref={closeRef} type="button" aria-label="Close plate" onClick={() => onOpenChange(false)} className="rounded-full px-3 py-2 text-sm font-medium">Close</button>
+            </div>
+            <PlateSummary totalItems={totalItems} totalCalories={formatTotal(totals, "calories", " kcal")} />
             <div className="mt-3 flex items-center justify-between gap-3">
               <MacroTotals totals={totals} variant="inline" />
               {plate.items.length > 0 ? (
@@ -216,6 +234,6 @@ export function PlateDrawer({
           </div>
         </div>
       </div>
-    </aside>
+    </dialog>
   );
 }

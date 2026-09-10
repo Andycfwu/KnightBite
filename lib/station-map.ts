@@ -25,6 +25,7 @@ export type StationMap = {
   maxCanvasWidth?: number;
   compactLabels?: boolean;
   entrance?: { x: number; y: number };
+  entrances?: readonly { x: number; y: number; direction: "up" | "right" }[];
   landmarks?: readonly { name: string; x: number; y: number }[];
   guideNote?: string;
 };

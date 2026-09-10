@@ -1,111 +1,58 @@
 "use client";
 
+import Link from "next/link";
+import { AccountLayout } from "@/components/layout/AccountLayout";
 import { MacroTotals } from "@/components/plate/MacroTotals";
+import { PlateItemRow } from "@/components/plate/PlateItemRow";
+import { DiningIcon } from "@/components/ui/DiningIcon";
 import { NutritionDisclaimer } from "@/components/ui/NutritionDisclaimer";
+import { PlateIcon } from "@/components/ui/PlateIcon";
 import { usePlate } from "@/hooks/usePlate";
 import { useUserPreferences } from "@/hooks/useUserPreferences";
-import { hasMeaningfulNutrition } from "@/lib/nutrition";
+import { hasCompleteNutrition, formatTotal } from "@/lib/nutrition";
 
 export function PlateScreen() {
   const plate = usePlate();
   const { parsedMacroGoals } = useUserPreferences();
-  const showDisclaimer = plate.plate.items.some((item) => !hasMeaningfulNutrition(item.nutrition));
-
+  const showDisclaimer = plate.plate.items.some((item) => item.isCustom || !hasCompleteNutrition(item.nutrition));
   return (
-    <main className="space-y-6">
-      <section className="space-y-2 pt-1">
-        <p className="text-sm text-ink/44">Plate</p>
-        <h1 className="text-[3rem] font-semibold leading-none tracking-[-0.06em] text-ink">My Plate Summary</h1>
-      </section>
-
-      <MacroTotals totals={plate.totals} goals={parsedMacroGoals} />
-
-      <section className="space-y-3">
-        <h2 className="text-[2rem] font-semibold tracking-[-0.05em] text-ink">Added Items</h2>
-        <div className="rounded-[28px] border border-black/6 bg-white px-5 py-3 shadow-[0_16px_36px_rgba(23,23,23,0.07)]">
-          {plate.plate.items.length > 0 ? (
-            <>
-              <div className="divide-y divide-black/8">
-                {plate.plate.items.map((item) => (
-                  <div key={item.itemId} className="flex items-center gap-3 py-4">
-                    <div className="min-w-0 flex-1">
-                      <p className="text-[1rem] font-semibold tracking-[-0.03em] text-ink">{item.name}</p>
-                      <p className="mt-1 text-sm text-ink/48">{item.servingSize ?? "1 serving"}</p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="inline-flex items-center rounded-full bg-[#f1f2f4] p-1">
-                        <button
-                          type="button"
-                          onClick={() => plate.decrementItem(item.itemId)}
-                          className="flex h-7 w-7 items-center justify-center rounded-full text-base text-ink/75"
-                        >
-                          -
-                        </button>
-                        <span className="min-w-6 text-center text-sm font-semibold text-ink">{item.quantity}</span>
-                        <button
-                          type="button"
-                          onClick={() => plate.incrementItem(item.itemId)}
-                          className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-base shadow-[0_2px_8px_rgba(23,23,23,0.08)]"
-                        >
-                          +
-                        </button>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => plate.removeItem(item.itemId)}
-                        className="flex h-9 w-9 items-center justify-center rounded-full bg-black/[0.05] text-xl text-ink/65"
-                      >
-                        ×
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="flex justify-end pt-4">
-                <p className="text-[1.05rem] font-semibold tracking-[-0.03em] text-ink">
-                  Total Calories: {Math.round(plate.totals.calories)} kcal
-                </p>
-              </div>
-            </>
-          ) : (
-            <p className="py-6 text-center text-sm text-ink/48">Your plate is empty right now.</p>
-          )}
-        </div>
-      </section>
-
-      <section className="rounded-[28px] border border-black/6 bg-white px-5 py-5 shadow-[0_16px_36px_rgba(23,23,23,0.07)]">
-        <h2 className="text-[2rem] font-semibold tracking-[-0.05em] text-ink">Nutrition Summary</h2>
-        <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-[1.05rem]">
-          <SummaryRow label="Calories" value={`${Math.round(plate.totals.calories)} kcal`} />
-          <SummaryRow label="Protein" value={`${Math.round(plate.totals.protein)} g`} />
-          <SummaryRow label="Carbs" value={`${Math.round(plate.totals.carbs)} g`} />
-          <SummaryRow label="Fat" value={`${Math.round(plate.totals.fat)} g`} />
-          <SummaryRow label="Sodium" value={`${Math.round(plate.totals.sodium ?? 0)} mg`} />
-        </div>
-        {showDisclaimer ? <NutritionDisclaimer className="mt-4" /> : null}
-      </section>
-
-      <button
-        type="button"
-        onClick={plate.clearPlate}
-        className="w-full rounded-[20px] border border-black/8 bg-white px-5 py-4 text-[1.05rem] font-medium text-ink shadow-[0_12px_28px_rgba(23,23,23,0.05)]"
-      >
-        Clear Plate
-      </button>
-    </main>
-  );
-}
-
-function SummaryRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand/12 text-sm font-semibold text-brand">
-        {label.charAt(0)}
-      </span>
-      <div>
-        <p className="text-sm text-ink/46">{label}</p>
-        <p className="font-medium tracking-[-0.02em] text-ink">{value}</p>
+    <AccountLayout active="plate">
+      <div className="account-pageHeading">
+        <div><p className="account-eyebrow">YOUR MEAL, AT A GLANCE</p><h1>My Plate Summary</h1><p>Bring your picks together. Find the balance that works for you.</p></div>
+        <Link href="/profile#plate-goals" className="account-secondaryButton"><DiningIcon name="target" />Edit goals</Link>
       </div>
-    </div>
+      <section className="plate-overview" aria-label="Plate totals">
+        <div className="plate-calorieSummary">
+          <span className="plate-summaryIcon"><PlateIcon /></span>
+          <div><p className="account-label">{plate.totals.coverage.calories.missing ? "Known calorie subtotal" : "Total calories"}</p>
+            <p className="plate-calorieValue">{formatTotal(plate.totals, "calories", " kcal").replace("Known subtotal: ", "")}</p>
+            {plate.totals.coverage.calories.missing ? <p className="plate-coverageNote">Unknown for {plate.totals.coverage.calories.missing} serving{plate.totals.coverage.calories.missing === 1 ? "" : "s"}</p> : null}
+          </div>
+        </div>
+        <div className="plate-selectedCount"><span className="account-label">Selected items</span><strong>{plate.totalItems}<small>item{plate.totalItems === 1 ? "" : "s"}</small></strong></div>
+        <div className="plate-sessionNote"><span className="account-dot" /><p>Your plate is temporary and clears on reload. Items keep the nutrition shown when added.</p></div>
+      </section>
+      <MacroTotals totals={plate.totals} goals={parsedMacroGoals} />
+      <div className="plate-detailLayout">
+        <section className="plate-itemsSection" aria-labelledby="plate-items-title">
+          <div className="account-sectionHeading"><h2 id="plate-items-title">Plate items</h2><span>{plate.plate.items.length} selection{plate.plate.items.length === 1 ? "" : "s"}</span></div>
+          {plate.plate.items.length > 0 ? <div className="plate-itemList">{plate.plate.items.map((item) => <PlateItemRow key={item.itemId} item={item} onIncrement={plate.incrementItem} onDecrement={plate.decrementItem} onRemove={plate.removeItem} detailed />)}</div> : (
+            <div className="plate-empty"><span><PlateIcon /></span><h3>A good meal starts with a first pick.</h3><p>Your plate is empty right now. Explore a dining hall and add items from its menu.</p><Link href="/#dining-halls" className="account-primaryButton">Explore dining halls<DiningIcon name="arrow" /></Link></div>
+          )}
+          {plate.plate.items.length > 0 ? <Link href="/#dining-halls" className="plate-addMore"><span aria-hidden="true">＋</span>Add more items from a menu<DiningIcon name="arrow" /></Link> : null}
+        </section>
+        <aside className="plate-nutritionAside">
+          <section className="account-card plate-nutrition" aria-labelledby="nutrition-summary-title">
+            <div className="account-cardHeading"><span className="account-cardIcon"><DiningIcon name="chart" /></span><h2 id="nutrition-summary-title">Nutrition breakdown</h2></div>
+            <p className="account-cardDescription">Totals for the portions on this plate.</p>
+            <dl className="plate-nutritionList">
+              {([['calories', 'Calories', ' kcal'], ['protein', 'Protein', ' g'], ['carbs', 'Carbohydrates', ' g'], ['fat', 'Dietary fat', ' g'], ['sodium', 'Sodium', ' mg'], ['sugar', 'Total sugars', ' g']] as const).map(([key, label, unit]) => <div key={key}><dt><span className={`plate-nutrientDot nutrient-${key}`} />{label}</dt><dd>{formatTotal(plate.totals, key, unit)}</dd></div>)}
+            </dl>
+            {showDisclaimer ? <NutritionDisclaimer className="mt-4" /> : null}
+          </section>
+          <button type="button" onClick={plate.clearPlate} disabled={plate.totalItems === 0} className="plate-clearButton"><DiningIcon name="trash" />Clear Plate</button>
+        </aside>
+      </div>
+    </AccountLayout>
   );
 }

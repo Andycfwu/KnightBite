@@ -93,7 +93,9 @@ test("Busch real menu renders station food, accessible controls and the existing
   assert.match(html, /More stations/);
   assert.match(html, /Listed on today’s menu/);
   assert.match(html, /Retrieved/);
-  assert.doesNotMatch(html, /Livingston/);
+  // Other halls are offered in the switcher; the active guide must still be Busch's.
+  assert.match(html, /<h1>Busch Dining Hall<\/h1>/);
+  assert.doesNotMatch(html, /livingston-station-map|aria-controls="livingston-food-panel"/);
 });
 
 test("Busch fruit stands share one menu group and removed counters do not hide upstream food", () => {

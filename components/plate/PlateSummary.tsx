@@ -1,6 +1,6 @@
 type PlateSummaryProps = {
   totalItems: number;
-  totalCalories: number;
+  totalCalories: string;
 };
 
 export function PlateSummary({ totalItems, totalCalories }: PlateSummaryProps) {
@@ -15,7 +15,7 @@ export function PlateSummary({ totalItems, totalCalories }: PlateSummaryProps) {
           </p>
         </div>
         <div className="rounded-full bg-brand/8 px-3 py-2 text-sm font-semibold text-brand">
-          {Math.round(totalCalories)} kcal
+          {totalCalories}
         </div>
       </div>
     </div>
