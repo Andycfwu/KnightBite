@@ -158,14 +158,17 @@ export function PlateDrawer({
       onCancel={(event) => { event.preventDefault(); onOpenChange(false); }}
       onKeyDown={(event) => {
         if (event.key !== "Tab") return;
-        // Safari's keyboard-navigation preference can skip buttons at the modal
-        // boundary. Wrap explicitly while retaining native dialog inertness.
+        // Safari can skip every button when full keyboard navigation is off.
+        // Move through all dialog controls explicitly, retaining native inertness.
         const controls = Array.from(event.currentTarget.querySelectorAll<HTMLElement>(
           'button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex]'
         )).filter((node) => node.tabIndex >= 0 && node.getClientRects().length > 0 && node.getAttribute("aria-hidden") !== "true");
-        const first = controls[0], last = controls[controls.length - 1];
-        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
-        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+        if (!controls.length) return;
+        const current = controls.indexOf(document.activeElement as HTMLElement);
+        const next = current < 0 ? (event.shiftKey ? controls.length - 1 : 0)
+          : (current + (event.shiftKey ? -1 : 1) + controls.length) % controls.length;
+        event.preventDefault();
+        controls[next].focus();
       }}
       className="fixed inset-0 z-50 m-0 h-full max-h-none w-full max-w-none border-0 bg-transparent p-0 text-ink">
       <button
