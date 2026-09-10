@@ -1,0 +1,69 @@
+{
+  "checkedAt": "2026-09-10T21:08:21.709829+00:00",
+  "observedWindowUTC": "2026-09-10 21:00\u201321:09",
+  "method": "Authenticated read-only Vercel UI. Member filters and security dashboard; deployment details/settings; build settings and unsaved Add Checks provider chooser; Production settings; analytics actions. No secret/recovery page or value accessed and no setting saved.",
+  "freshlyVerified": {
+    "team": "andycfwus-projects",
+    "plan": "Hobby",
+    "project": "knight-bite",
+    "personalTwoFactorEnabled": true,
+    "twoFactorEvidence": "Sole Owner remained in 2FA Enabled filter; absent in Disabled filter. Security dashboard independently says all team members have 2FA.",
+    "recoveryCodes": "User reports saved; neither inspected nor requested.",
+    "teamTwoFactorEnforcement": false,
+    "members": 1,
+    "role": "Owner",
+    "pendingInvitations": 0,
+    "requiredVerifiedCommits": false,
+    "ipVisibilityDashboard": true,
+    "ipVisibilityDrains": true,
+    "deploymentId": "dpl_BT9hARabzozdRpqMutPju4P2xF5F",
+    "alias": "knightbitenb.vercel.app",
+    "commit": "70166c4fd04bb0d5ca25b792283924eff36c1f31",
+    "status": "Ready; Production; Current Domains includes public alias",
+    "createdUTC": "2026-09-10T03:19:13Z",
+    "generatedUrl": "https://knight-bite-91ztd8vhb-andycfwus-projects.vercel.app",
+    "productionBranch": "main",
+    "autoAssignProductionDomains": true,
+    "deploymentChecks": "No checks configured",
+    "githubCheckImportAvailableInUI": true,
+    "buildCommandOverride": false,
+    "installCommandOverride": false,
+    "node": "24.x",
+    "fluidCompute": true,
+    "region": "iad1",
+    "functionCpu": 1,
+    "functionMemoryGiB": 2,
+    "deploymentProtection": "Standard Protection",
+    "analyticsEnabled": true,
+    "customEvents": "No custom events",
+    "speedInsights": "Not Enabled"
+  },
+  "reusedEarlierEvidence": {
+    "source": "../next-release-evidence/vercel-current.json",
+    "checkedAt": "2026-09-10T20:25:03.280682+00:00",
+    "fields": [
+      "Deployed Next 15.5.15 and sharp 0.34.5 build-log lines",
+      "Function project default 300 seconds",
+      "Deployment retention 30 days",
+      "No project deploy hooks",
+      "Hobby Alerts/Drains upgrade requirement",
+      "AI training preference disabled globally"
+    ],
+    "reason": "Same immutable deployment confirmed; these additional settings were not re-opened this pass and may change independently."
+  },
+  "notVerified": [
+    "Exact deployed Node patch or native libraries",
+    "Complete historical share/bypass links and token metadata inventory",
+    "Analytics/log deletion schedule, residency and vendor access",
+    "GitHub-hosted check execution or actual Vercel gate enforcement"
+  ],
+  "pages": [
+    "https://vercel.com/andycfwus-projects/~/settings/members",
+    "https://vercel.com/andycfwus-projects/~/settings/security",
+    "https://vercel.com/andycfwus-projects/~/security",
+    "https://vercel.com/andycfwus-projects/knight-bite/BT9hARabzozdRpqMutPju4P2xF5F",
+    "https://vercel.com/andycfwus-projects/knight-bite/settings/build-and-deployment",
+    "https://vercel.com/andycfwus-projects/knight-bite/settings/environments/production",
+    "https://vercel.com/andycfwus-projects/knight-bite/analytics"
+  ]
+}

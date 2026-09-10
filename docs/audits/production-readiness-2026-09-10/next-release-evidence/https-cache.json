@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-09-10T20:20:08.830671+00:00",
+  "method": "HEAD to known static routes/assets, with no JavaScript execution or image transformation",
+  "httpRedirect": {
+    "status": 308,
+    "headers": {
+      "Content-Type": "text/plain",
+      "Location": "https://knightbitenb.vercel.app/profile",
+      "Refresh": "0;url=https://knightbitenb.vercel.app/profile",
+      "server": "Vercel"
+    }
+  },
+  "staticCss": {
+    "status": 200,
+    "headers": {
+      "Accept-Ranges": "bytes",
+      "Access-Control-Allow-Origin": "*",
+      "Age": "4566",
+      "Cache-Control": "public,max-age=31536000,immutable",
+      "Content-Disposition": "inline; filename=\"50f80df83c61540c.css\"",
+      "Content-Length": "29036",
+      "Content-Type": "text/css; charset=utf-8",
+      "Date": "Thu, 10 Sep 2026 20:20:09 GMT",
+      "Etag": "\"2b495804de3f57c145d757f4cd3bfc3d\"",
+      "Last-Modified": "Thu, 10 Sep 2026 19:04:02 GMT",
+      "Server": "Vercel",
+      "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+      "X-Matched-Path": "/_next/static/css/50f80df83c61540c.css",
+      "X-Vercel-Cache": "HIT",
+      "X-Vercel-Id": "iad1::vn9m6-1789071609103-be9ec00ff80e",
+      "Connection": "close"
+    }
+  },
+  "tls": {
+    "verifiedHostname": true,
+    "protocol": "TLSv1.2",
+    "notBefore": "Aug 29 19:48:09 2026 GMT",
+    "notAfter": "Nov 27 19:48:08 2026 GMT",
+    "issuer": [
+      [
+        [
+          "countryName",
+          "US"
+        ]
+      ],
+      [
+        [
+          "organizationName",
+          "Google Trust Services"
+        ]
+      ],
+      [
+        [
+          "commonName",
+          "WR1"
+        ]
+      ]
+    ]
+  }
+}

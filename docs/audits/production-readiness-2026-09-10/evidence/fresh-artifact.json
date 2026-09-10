@@ -1,0 +1,24 @@
+{
+  "buildId": "M3i2ysXVZzl0rLdZfgzDl",
+  "imageSettings": {
+    "domains": [],
+    "remotePatterns": [],
+    "localPatterns": null,
+    "formats": [
+      "image/webp"
+    ],
+    "unoptimized": false,
+    "dangerouslyAllowSVG": false
+  },
+  "serverActions": {
+    "node": 0,
+    "edge": 0
+  },
+  "clientArtifactSearch": {
+    "mockMenuProvider": [],
+    "debugRunLiveMenuSanityCheck": [],
+    "debugInspectRutgersDailyMenu": [],
+    "SECRET_CANARY": []
+  },
+  "scope": "Symbol string search in fresh client JS; minification may remove symbol names; source import graph also inspected. Does not prove deployed artifact."
+}

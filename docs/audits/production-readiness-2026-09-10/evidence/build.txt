@@ -1,0 +1,31 @@
+ ⚠ `experimental.typedRoutes` has been moved to `typedRoutes`. Please update your next.config.ts file accordingly.
+   ▲ Next.js 15.5.15
+   - Experiments (use with caution):
+     ✓ typedRoutes
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 4.0s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/5) ...
+   Generating static pages (1/5)
+   Generating static pages (2/5)
+   Generating static pages (3/5)
+ ✓ Generating static pages (5/5)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ƒ /                                     3.5 kB         119 kB
+├ ○ /_not-found                            993 B         103 kB
+├ ƒ /hall/[hallId]                       11.9 kB         128 kB
+├ ○ /plate                               3.42 kB         105 kB
+└ ○ /profile                              2.6 kB         108 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/839-a16a5060d9f27118.js       45.7 kB
+  ├ chunks/d0b0299e-0cb49aaf51e76110.js  54.2 kB
+  └ other shared chunks (total)          1.93 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand

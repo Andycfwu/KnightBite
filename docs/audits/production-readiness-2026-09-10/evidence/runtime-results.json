@@ -1,0 +1,75 @@
+{
+  "command": [
+    "node",
+    "/Users/andywu/Desktop/Codex/Nutrition/node_modules/next/dist/bin/next",
+    "start",
+    "-H",
+    "127.0.0.1",
+    "-p",
+    "59102"
+  ],
+  "cwd": "/var/folders/56/j0s2mygx0td8cz7dc12zh5xh0000gn/T/knightbite-audit-build-i02ffeb0",
+  "scope": "Isolated production server; outbound fetch/http/https disabled, loopback inbound only",
+  "results": [
+    {
+      "route": "/",
+      "status": 200,
+      "elapsedMs": 488,
+      "headers": {
+        "X-Powered-By": "Next.js",
+        "Cache-Control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "menuUnavailableText": true,
+      "hasAnalyticsScript": false
+    },
+    {
+      "route": "/plate",
+      "status": 200,
+      "elapsedMs": 19,
+      "headers": {
+        "X-Powered-By": "Next.js",
+        "Cache-Control": "s-maxage=31536000",
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "menuUnavailableText": false,
+      "hasAnalyticsScript": false
+    },
+    {
+      "route": "/profile",
+      "status": 200,
+      "elapsedMs": 6,
+      "headers": {
+        "X-Powered-By": "Next.js",
+        "Cache-Control": "s-maxage=31536000",
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "menuUnavailableText": false,
+      "hasAnalyticsScript": false
+    },
+    {
+      "route": "/hall/not-a-hall",
+      "status": 200,
+      "elapsedMs": 7,
+      "headers": {
+        "X-Powered-By": "Next.js",
+        "Cache-Control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "menuUnavailableText": false,
+      "hasAnalyticsScript": false
+    },
+    {
+      "route": "/hall/atrium",
+      "status": 200,
+      "elapsedMs": 7,
+      "headers": {
+        "X-Powered-By": "Next.js",
+        "Cache-Control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "menuUnavailableText": true,
+      "hasAnalyticsScript": false
+    }
+  ]
+}

@@ -1,0 +1,255 @@
+{
+  "config": {
+    "argv": [
+      "/opt/node/bin/node",
+      "/work/node_modules/.bin/playwright",
+      "test",
+      "tests/browser/release-evidence.spec.ts"
+    ],
+    "configFile": "/work/playwright.config.ts",
+    "rootDir": "/work/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/work/test-results/playwright",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/work/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/work/test-results/playwright",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/work/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/browser-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "node scripts/synthetic-server.mjs",
+      "url": "http://127.0.0.1:3217/profile",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "release-evidence.spec.ts",
+      "file": "release-evidence.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "analytics-enabled bundle and CSP: captured Vercel script",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6734,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-10T21:18:54.664Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "analytics-intercept-evidence",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY3JpcHRNb2RlIjogImNhcHR1cmVkLXBsYXRmb3JtLXNjcmlwdCIsCiAgInNjcmlwdFNoYTI1NiI6ICIwYmQyYWQyNzZmMTNiYTE3MTJmNzQ0NGE0MGYxMzEzZGY2Mzk5YjkyMGE2NGVkZTc4OTIyZGVlZGRjNWQzNDA4IiwKICAiYnVpbGRJZCI6ICJJRFB2bENHdGRUMC15Q0MzbDE2ZHAiLAogICJzY3JpcHRSZXF1ZXN0cyI6IDIsCiAgImludGVyY2VwdGVkUmVxdWVzdHMiOiBbCiAgICB7CiAgICAgICJwYXRoIjogIi9fdmVyY2VsL2luc2lnaHRzL3ZpZXciLAogICAgICAiYm9keSI6IHsKICAgICAgICAibyI6ICJodHRwOi8vMTI3LjAuMC4xOjMyMTcvcHJvZmlsZSIsCiAgICAgICAgInN2IjogIjAuMS4zIiwKICAgICAgICAic2RrbiI6ICJAdmVyY2VsL2FuYWx5dGljcy9uZXh0IiwKICAgICAgICAic2RrdiI6ICIyLjAuMSIsCiAgICAgICAgInRzIjogMTc4OTA3NTEzOTA4NSwKICAgICAgICAiZHAiOiAiL3Byb2ZpbGUiLAogICAgICAgICJyIjogIiIKICAgICAgfQogICAgfSwKICAgIHsKICAgICAgInBhdGgiOiAiL192ZXJjZWwvaW5zaWdodHMvdmlldyIsCiAgICAgICJib2R5IjogewogICAgICAgICJvIjogImh0dHA6Ly8xMjcuMC4wLjE6MzIxNy9wbGF0ZSIsCiAgICAgICAgInN2IjogIjAuMS4zIiwKICAgICAgICAic2RrbiI6ICJAdmVyY2VsL2FuYWx5dGljcy9uZXh0IiwKICAgICAgICAic2RrdiI6ICIyLjAuMSIsCiAgICAgICAgInRzIjogMTc4OTA3NTE0MDIyMiwKICAgICAgICAiZHAiOiAiL3BsYXRlIgogICAgICB9CiAgICB9LAogICAgewogICAgICAicGF0aCI6ICIvX3ZlcmNlbC9pbnNpZ2h0cy92aWV3IiwKICAgICAgImJvZHkiOiB7CiAgICAgICAgIm8iOiAiaHR0cDovLzEyNy4wLjAuMTozMjE3L2hhbGwvYnVzY2giLAogICAgICAgICJzdiI6ICIwLjEuMyIsCiAgICAgICAgInNka24iOiAiQHZlcmNlbC9hbmFseXRpY3MvbmV4dCIsCiAgICAgICAgInNka3YiOiAiMi4wLjEiLAogICAgICAgICJ0cyI6IDE3ODkwNzUxNDE2MjYsCiAgICAgICAgImRwIjogIi9oYWxsL1toYWxsSWRdIiwKICAgICAgICAiciI6ICIiCiAgICAgIH0KICAgIH0sCiAgICB7CiAgICAgICJwYXRoIjogIi9fdmVyY2VsL2luc2lnaHRzL3ZpZXciLAogICAgICAiYm9keSI6IHsKICAgICAgICAibyI6ICJodHRwOi8vMTI3LjAuMC4xOjMyMTcvcHJvZmlsZSIsCiAgICAgICAgInN2IjogIjAuMS4zIiwKICAgICAgICAic2RrbiI6ICJAdmVyY2VsL2FuYWx5dGljcy9uZXh0IiwKICAgICAgICAic2RrdiI6ICIyLjAuMSIsCiAgICAgICAgInRzIjogMTc4OTA3NTE0MjIxNywKICAgICAgICAiZHAiOiAiL3Byb2ZpbGUiCiAgICAgIH0KICAgIH0KICBdLAogICJleHRlcm5hbFJlcXVlc3RzIjogW10sCiAgImRlbGl2ZXJlZEFuYWx5dGljc0V2ZW50cyI6IDAKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1893a65209a45967956c-b4322ae11f2d007c666b",
+          "file": "release-evidence.spec.ts",
+          "line": 20,
+          "column": 5
+        },
+        {
+          "title": "plate dialog has a complete forward/backward keyboard cycle and named quantity actions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3294,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-10T21:19:02.365Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1893a65209a45967956c-834bbb788f3cd6137c69",
+          "file": "release-evidence.spec.ts",
+          "line": 82,
+          "column": 5
+        },
+        {
+          "title": "analytics-enabled bundle and CSP: captured Vercel script",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6378,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-10T21:19:06.924Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "analytics-intercept-evidence",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY3JpcHRNb2RlIjogImNhcHR1cmVkLXBsYXRmb3JtLXNjcmlwdCIsCiAgInNjcmlwdFNoYTI1NiI6ICIwYmQyYWQyNzZmMTNiYTE3MTJmNzQ0NGE0MGYxMzEzZGY2Mzk5YjkyMGE2NGVkZTc4OTIyZGVlZGRjNWQzNDA4IiwKICAiYnVpbGRJZCI6ICJJRFB2bENHdGRUMC15Q0MzbDE2ZHAiLAogICJzY3JpcHRSZXF1ZXN0cyI6IDIsCiAgImludGVyY2VwdGVkUmVxdWVzdHMiOiBbCiAgICB7CiAgICAgICJwYXRoIjogIi9fdmVyY2VsL2luc2lnaHRzL3ZpZXciLAogICAgICAiYm9keSI6IHsKICAgICAgICAibyI6ICJodHRwOi8vMTI3LjAuMC4xOjMyMTcvcHJvZmlsZSIsCiAgICAgICAgInN2IjogIjAuMS4zIiwKICAgICAgICAic2RrbiI6ICJAdmVyY2VsL2FuYWx5dGljcy9uZXh0IiwKICAgICAgICAic2RrdiI6ICIyLjAuMSIsCiAgICAgICAgInRzIjogMTc4OTA3NTE1MDU1NiwKICAgICAgICAiZHAiOiAiL3Byb2ZpbGUiLAogICAgICAgICJyIjogIiIKICAgICAgfQogICAgfSwKICAgIHsKICAgICAgInBhdGgiOiAiL192ZXJjZWwvaW5zaWdodHMvdmlldyIsCiAgICAgICJib2R5IjogewogICAgICAgICJvIjogImh0dHA6Ly8xMjcuMC4wLjE6MzIxNy9wbGF0ZSIsCiAgICAgICAgInN2IjogIjAuMS4zIiwKICAgICAgICAic2RrbiI6ICJAdmVyY2VsL2FuYWx5dGljcy9uZXh0IiwKICAgICAgICAic2RrdiI6ICIyLjAuMSIsCiAgICAgICAgInRzIjogMTc4OTA3NTE1MjA2MSwKICAgICAgICAiZHAiOiAiL3BsYXRlIgogICAgICB9CiAgICB9LAogICAgewogICAgICAicGF0aCI6ICIvX3ZlcmNlbC9pbnNpZ2h0cy92aWV3IiwKICAgICAgImJvZHkiOiB7CiAgICAgICAgIm8iOiAiaHR0cDovLzEyNy4wLjAuMTozMjE3L2hhbGwvYnVzY2giLAogICAgICAgICJzdiI6ICIwLjEuMyIsCiAgICAgICAgInNka24iOiAiQHZlcmNlbC9hbmFseXRpY3MvbmV4dCIsCiAgICAgICAgInNka3YiOiAiMi4wLjEiLAogICAgICAgICJ0cyI6IDE3ODkwNzUxNTI4MjYsCiAgICAgICAgImRwIjogIi9oYWxsL1toYWxsSWRdIiwKICAgICAgICAiciI6ICIiCiAgICAgIH0KICAgIH0KICBdLAogICJleHRlcm5hbFJlcXVlc3RzIjogW10sCiAgImRlbGl2ZXJlZEFuYWx5dGljc0V2ZW50cyI6IDAKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1893a65209a45967956c-08779656c6f3bd8bdadb",
+          "file": "release-evidence.spec.ts",
+          "line": 20,
+          "column": 5
+        },
+        {
+          "title": "plate dialog has a complete forward/backward keyboard cycle and named quantity actions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5743,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-10T21:19:13.680Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1893a65209a45967956c-2da1acf8a7fdb515f24c",
+          "file": "release-evidence.spec.ts",
+          "line": 82,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-10T21:18:49.991Z",
+    "duration": 29807.865,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

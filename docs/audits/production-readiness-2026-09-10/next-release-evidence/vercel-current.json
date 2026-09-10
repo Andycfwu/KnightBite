@@ -1,0 +1,104 @@
+{
+  "checkedAt": "2026-09-10T20:25:03.280682+00:00",
+  "method": "Authenticated Vercel dashboard, read-only UI navigation; settings transcribed from visible text/checked controls. No Save, Add, Enable, Promote, Rollback, Invite, Revoke, or Upgrade action was submitted.",
+  "scope": "andycfwus-projects",
+  "plan": "Hobby",
+  "project": "knight-bite",
+  "projectId": "prj_9YAmvm8vdwwNn8hdgLhl4ZqomKDw",
+  "repository": "Andycfwu/KnightBite",
+  "production": {
+    "alias": "knightbitenb.vercel.app",
+    "deploymentId": "dpl_BT9hARabzozdRpqMutPju4P2xF5F",
+    "deploymentUrl": "https://knight-bite-91ztd8vhb-andycfwus-projects.vercel.app",
+    "commit": "70166c4fd04bb0d5ca25b792283924eff36c1f31",
+    "branch": "main",
+    "status": "Ready / Current",
+    "createdUTC": "2026-09-10T03:19:13Z",
+    "buildDurationSeconds": 31,
+    "publicNextBuildId": "jdlvZvs26JKotB4wyx-C5"
+  },
+  "buildLogEvidence": [
+    "Cloning github.com/Andycfwu/KnightBite (Branch: main, Commit: 70166c4)",
+    "Running build in Washington, D.C., USA (East) \u2013 iad1",
+    "Build machine configuration: 2 cores, 8 GB",
+    "Detected Next.js version: 15.5.15",
+    "Running \"npm run build\"",
+    "sharp@0.34.5 install-script warning"
+  ],
+  "releasePath": {
+    "gitIntegrationConnected": true,
+    "productionBranch": "main",
+    "autoAssignProductionDomains": true,
+    "deploymentChecks": "No checks configured",
+    "deployHooksCount": 0,
+    "requiredVerifiedCommits": "Inherit from Team (Disabled)",
+    "onDemandConcurrentBuilds": false,
+    "prioritizeProductionBuilds": true,
+    "rollingReleases": false
+  },
+  "runtime": {
+    "node": "24.x (exact patch not exposed)",
+    "region": "iad1",
+    "fluidCompute": true,
+    "functionCpu": 1,
+    "functionMemoryGiB": 2,
+    "projectDefaultMaxDurationSeconds": 300,
+    "maxDurationEvidence": "Visible Functions > Advanced Settings input; individual deployed function overrides not verified",
+    "failover": false,
+    "skewProtection": false,
+    "nativeLibraryVersions": "Not exposed by inspected deployment resource/source UI"
+  },
+  "protection": {
+    "vercelAuthentication": true,
+    "scope": "Standard Protection",
+    "productionAliasPublic": true,
+    "generatedDeploymentUrl": "Unauthenticated access redirects to Vercel sign-in",
+    "passwordProtection": false,
+    "trustedIPs": false,
+    "automationBypassSecret": "UI offered Add a secret; no secret value read",
+    "preProductionExceptions": "No exception added; complete historical bypass/share-link inventory not verified"
+  },
+  "iam": {
+    "ownerRowsInEveryoneFilter": 1,
+    "ownerRowsInTwoFactorEnabledFilter": 0,
+    "ownerRowsInTwoFactorDisabledFilter": 1,
+    "teamTwoFactorEnforcement": false,
+    "risk": "Enforcing 2FA before owner enrollment/recovery could block owner access and user-owned pipeline tokens",
+    "tokenInventoryAndRecoveryMethods": "Not read; no token or credential values exposed"
+  },
+  "data": {
+    "webAnalyticsEnabled": true,
+    "customEventsPanel": "No custom events; feature requires Pro",
+    "speedInsights": "Not Enabled on this project",
+    "drains": "No configured project drain; Upgrade to Pro to create first drain",
+    "nativeAlerts": "Upgrade to Pro; not configured/available on current plan",
+    "deploymentRetentionDays": {
+      "canceled": 30,
+      "errored": 30,
+      "preProduction": 30,
+      "production": 30
+    },
+    "ipVisibilityDashboard": true,
+    "ipVisibilityDrains": true,
+    "aiTrainingPreference": "Disabled globally at Team level",
+    "runtimeLogsAccess": true,
+    "runtimeLogsObservedWindow": "Last 30 minutes; historical retention not proven by this view",
+    "analyticsLogRegionRetentionContract": "Requires owner/vendor evidence; function region does not establish analytics/log data residency"
+  },
+  "pages": [
+    "https://vercel.com/andycfwus-projects/knight-bite",
+    "https://vercel.com/andycfwus-projects/knight-bite/BT9hARabzozdRpqMutPju4P2xF5F",
+    "https://vercel.com/andycfwus-projects/knight-bite/settings/build-and-deployment",
+    "https://vercel.com/andycfwus-projects/knight-bite/settings/environments/production",
+    "https://vercel.com/andycfwus-projects/knight-bite/settings/functions",
+    "https://vercel.com/andycfwus-projects/knight-bite/settings/deployment-protection",
+    "https://vercel.com/andycfwus-projects/knight-bite/settings/git",
+    "https://vercel.com/andycfwus-projects/knight-bite/settings/alerts",
+    "https://vercel.com/andycfwus-projects/knight-bite/settings/drains",
+    "https://vercel.com/andycfwus-projects/~/settings/security",
+    "https://vercel.com/andycfwus-projects/~/settings/members",
+    "https://vercel.com/andycfwus-projects/knight-bite/analytics",
+    "https://vercel.com/andycfwus-projects/knight-bite/logs"
+  ],
+  "observedWindowUTC": "2026-09-10 20:09\u201320:24"
+}

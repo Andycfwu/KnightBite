@@ -1,0 +1,48 @@
+{
+  "source": "Existing /tmp/knightbite-livingston/lunch.json; no network acquisition this pass",
+  "sourceMtimeUTC": "2026-09-10T16:06:55.542039+00:00",
+  "sourceSha256": "9341369b6618b786e1ceb532d544cc90dc5fcc555b2e152d8fc7d2065e66925a",
+  "sourceBytes": 6551705,
+  "sanitizedBytes": 7065491,
+  "sanitizedSha256": "f99ddd45c79f3a41bdc665246c83de2120e9ac0f95a2a57c637b95458453e946",
+  "compressedBytes": 216690,
+  "weekStart": "2026-09-07",
+  "mealTypeId": "33316",
+  "days": [
+    {
+      "date": "2026-09-06",
+      "entries": 200,
+      "foodCandidates": 179
+    },
+    {
+      "date": "2026-09-07",
+      "entries": 215,
+      "foodCandidates": 192
+    },
+    {
+      "date": "2026-09-08",
+      "entries": 215,
+      "foodCandidates": 192
+    },
+    {
+      "date": "2026-09-09",
+      "entries": 226,
+      "foodCandidates": 203
+    },
+    {
+      "date": "2026-09-10",
+      "entries": 218,
+      "foodCandidates": 195
+    },
+    {
+      "date": "2026-09-11",
+      "entries": 199,
+      "foodCandidates": 178
+    },
+    {
+      "date": "2026-09-12",
+      "entries": 197,
+      "foodCandidates": 176
+    }
+  ]
+}

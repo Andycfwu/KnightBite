@@ -1,0 +1,2550 @@
+[
+  {
+    "ghsa_id": "GHSA-2xp9-vwfh-vxw4",
+    "cve_id": null,
+    "summary": "Unauthenticated Remote Code Execution in Image Optimization API when AVIF files are used",
+    "severity": "critical",
+    "published_at": "2026-08-25T16:16:28Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-2xp9-vwfh-vxw4",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 10.0.0 < 15.5.24",
+        "patched_versions": "15.5.24",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "< 16.3.3",
+        "patched_versions": "16.3.3",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-p293-qw3h-jr36",
+    "cve_id": "CVE-2026-75604",
+    "summary": "Unauthenticated Remote Code Execution on windows-hosted servers",
+    "severity": "critical",
+    "published_at": "2026-08-25T16:15:42Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-p293-qw3h-jr36",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 13.4 < 15.5.24",
+        "patched_versions": "15.5.24",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0 < 16.3.3",
+        "patched_versions": "16.3.3",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-p9j2-gv94-2wf4",
+    "cve_id": "CVE-2026-64645",
+    "summary": "Server-Side Request Forgery in rewrites via attacker-controlled destination hostname",
+    "severity": "high",
+    "published_at": "2026-07-21T16:02:54Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-p9j2-gv94-2wf4",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 12.0.0 < 15.5.21",
+        "patched_versions": "15.5.21",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0 < 16.2.11",
+        "patched_versions": "16.2.11",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-4c39-4ccg-62r3",
+    "cve_id": "CVE-2026-64646",
+    "summary": "Unbounded Server Action payload in Edge runtime",
+    "severity": "medium",
+    "published_at": "2026-07-21T16:02:59Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-4c39-4ccg-62r3",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=13.0.0 < 15.5.21",
+        "patched_versions": "15.5.21",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0 < 16.2.11",
+        "patched_versions": "16.2.11",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-89xv-2m56-2m9x",
+    "cve_id": "CVE-2026-64649",
+    "summary": "Server-Side Request Forgery in Server Actions on custom servers",
+    "severity": "high",
+    "published_at": "2026-07-21T16:03:06Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-89xv-2m56-2m9x",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 14.1.1 < 15.5.21",
+        "patched_versions": "15.5.21",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0 < 16.2.11",
+        "patched_versions": "16.2.11",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-68g3-v927-f742",
+    "cve_id": "CVE-2026-64648",
+    "summary": "Cache confusion of response bodies for requests with bodies",
+    "severity": "medium",
+    "published_at": "2026-07-21T16:03:02Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-68g3-v927-f742",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=13.0.0 < 15.5.21",
+        "patched_versions": "15.5.21",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": " >= 16.0.0 < 16.2.11",
+        "patched_versions": "16.2.11",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-6gpp-xcg3-4w24",
+    "cve_id": "CVE-2026-64642",
+    "summary": "Middleware / Proxy bypass in App Router applications using Turbopack and single locale",
+    "severity": "high",
+    "published_at": "2026-07-21T16:02:47Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-6gpp-xcg3-4w24",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": " >= 16.0.0 < 16.2.11",
+        "patched_versions": "16.2.11",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-m99w-x7hq-7vfj",
+    "cve_id": "CVE-2026-64641",
+    "summary": "Denial of Service in App Router using Server Actions",
+    "severity": "high",
+    "published_at": "2026-07-21T16:02:35Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-m99w-x7hq-7vfj",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=13.0.0 < 15.5.21",
+        "patched_versions": "15.5.21",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": " >= 16.0.0 < 16.2.11",
+        "patched_versions": "16.2.11",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-4633-3j49-mh5q",
+    "cve_id": "CVE-2026-64647",
+    "summary": "Cache confusion of response bodies for requests with bodies containing invalid UTF-8 byte sequences",
+    "severity": "medium",
+    "published_at": "2026-07-21T16:03:04Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-4633-3j49-mh5q",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=13.0.0 < 15.5.21",
+        "patched_versions": "15.5.21",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": " >= 16.0.0 < 16.2.11",
+        "patched_versions": "16.2.11",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-q8wf-6r8g-63ch",
+    "cve_id": "CVE-2026-64644",
+    "summary": "Denial of Service in the Image Optimization API using SVGs",
+    "severity": "medium",
+    "published_at": "2026-07-21T16:02:56Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-q8wf-6r8g-63ch",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=15.5.0 < 15.5.21",
+        "patched_versions": "15.5.21",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": " >= 16.0.0 < 16.2.11",
+        "patched_versions": "16.2.11",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-955p-x3mx-jcvp",
+    "cve_id": "CVE-2026-64643",
+    "summary": "Unauthenticated disclosure of internal Server Function endpoints",
+    "severity": "medium",
+    "published_at": "2026-07-21T16:02:51Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-955p-x3mx-jcvp",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 13.0.0 < 15.5.21",
+        "patched_versions": "15.5.21",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": " >= 16.0.0 < 16.2.11",
+        "patched_versions": "16.2.11",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-26hh-7cqf-hhc6",
+    "cve_id": "CVE-2026-45109",
+    "summary": "Middleware / Proxy bypass in App Router applications via segment-prefetch routes - Incomplete Fix Follow-Up",
+    "severity": "high",
+    "published_at": "2026-05-07T19:42:05Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-26hh-7cqf-hhc6",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 15.2.0 < 15.5.18",
+        "patched_versions": "15.5.18",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0 < 16.2.6",
+        "patched_versions": "16.2.6",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-267c-6grr-h53f",
+    "cve_id": "CVE-2026-44575",
+    "summary": "Middleware / Proxy bypass in App Router applications via segment-prefetch routes",
+    "severity": "high",
+    "published_at": "2026-05-06T18:42:50Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-267c-6grr-h53f",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 15.2.0 < 15.5.16",
+        "patched_versions": "15.5.16",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0 < 16.2.5",
+        "patched_versions": "16.2.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-ffhc-5mcf-pf4q",
+    "cve_id": "CVE-2026-44581",
+    "summary": "Cross-site scripting in App Router applications using CSP nonces",
+    "severity": "medium",
+    "published_at": "2026-05-06T18:44:34Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-ffhc-5mcf-pf4q",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 13.4.0 < 15.5.16",
+        "patched_versions": "15.5.16",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0 < 16.2.5",
+        "patched_versions": "16.2.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-vfv6-92ff-j949",
+    "cve_id": "CVE-2026-44582",
+    "summary": "Cache poisoning via collisions in React Server Component cache-busting",
+    "severity": "low",
+    "published_at": "2026-05-06T18:44:23Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-vfv6-92ff-j949",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 13.4.6 < 15.5.16",
+        "patched_versions": "15.5.16",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0 < 16.2.5",
+        "patched_versions": "16.2.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-gx5p-jg67-6x7h",
+    "cve_id": "CVE-2026-44580",
+    "summary": "Cross-site scripting in beforeInteractive scripts with untrusted input",
+    "severity": "medium",
+    "published_at": "2026-05-06T18:44:07Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-gx5p-jg67-6x7h",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=13.0.0 < 15.5.16",
+        "patched_versions": "15.5.16",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0 < 16.2.5",
+        "patched_versions": "16.2.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-mg66-mrh9-m8jx",
+    "cve_id": "CVE-2026-44579",
+    "summary": "Denial of Service via connection exhaustion in applications using Cache Components",
+    "severity": "high",
+    "published_at": "2026-05-06T18:43:50Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-mg66-mrh9-m8jx",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=15.0.0 < 15.5.16",
+        "patched_versions": "15.5.16",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=16.0.0 < 16.2.5",
+        "patched_versions": "16.2.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-492v-c6pp-mqqv",
+    "cve_id": "CVE-2026-44574",
+    "summary": "Middleware / Proxy bypass through dynamic route parameter injection",
+    "severity": "high",
+    "published_at": "2026-05-06T18:42:36Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-492v-c6pp-mqqv",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 15.4.0 < 15.5.16",
+        "patched_versions": "15.5.16",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0 < 16.2.5",
+        "patched_versions": "16.2.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-h64f-5h5j-jqjh",
+    "cve_id": "CVE-2026-44577",
+    "summary": "Denial of Service in the Image Optimization API",
+    "severity": "medium",
+    "published_at": "2026-05-06T18:43:34Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-h64f-5h5j-jqjh",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=10.0.0 < 15.5.16",
+        "patched_versions": "15.5.16",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0 < 16.2.5",
+        "patched_versions": "16.2.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-c4j6-fc7j-m34r",
+    "cve_id": "CVE-2026-44578",
+    "summary": "Server-side request forgery in applications using WebSocket upgrades",
+    "severity": "high",
+    "published_at": "2026-05-06T18:43:19Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-c4j6-fc7j-m34r",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 13.4.13 < 15.5.16",
+        "patched_versions": "15.5.16",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0 < 16.2.5",
+        "patched_versions": "16.2.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-wfc6-r584-vfw7",
+    "cve_id": "CVE-2026-44576",
+    "summary": "Cache poisoning in React Server Component responses",
+    "severity": "medium",
+    "published_at": "2026-05-06T18:43:05Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-wfc6-r584-vfw7",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 14.2.0 < 15.5.16",
+        "patched_versions": "15.5.16",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0 < 16.2.5",
+        "patched_versions": "16.2.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-36qx-fr4f-26g5",
+    "cve_id": "CVE-2026-44573",
+    "summary": "Middleware / Proxy bypass in Pages Router applications using i18n",
+    "severity": "high",
+    "published_at": "2026-05-06T18:42:18Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-36qx-fr4f-26g5",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= v12.2.0 < 15.5.16",
+        "patched_versions": "15.5.16",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0 < 16.2.5",
+        "patched_versions": "16.2.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-8h8q-6873-q5fj",
+    "cve_id": "CVE-2026-23870",
+    "summary": "Denial of Service with Server Components",
+    "severity": "high",
+    "published_at": "2026-05-06T18:40:57Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-8h8q-6873-q5fj",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=13.0.0 < 15.5.16",
+        "patched_versions": "15.5.16",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0 < 16.2.5",
+        "patched_versions": "16.2.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-3g8h-86w9-wvmq",
+    "cve_id": "CVE-2026-44572",
+    "summary": "Middleware / Proxy redirects can be cache-poisoned",
+    "severity": "low",
+    "published_at": "2026-05-06T18:41:26Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-3g8h-86w9-wvmq",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 12.2.0 < 15.5.16",
+        "patched_versions": "15.5.16",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 16.0.0 < 16.2.5",
+        "patched_versions": "16.2.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-q4gf-8mx6-v5v3",
+    "cve_id": "CVE-2026-23869",
+    "summary": "Denial of Service with Server Components",
+    "severity": "high",
+    "published_at": "2026-04-08T19:09:37Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-q4gf-8mx6-v5v3",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=13.0.0 < 15.5.15, >= 16.0 < 16.2.3",
+        "patched_versions": "15.5.15, 16.2.3",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-3x4c-7xq6-9pq8",
+    "cve_id": "CVE-2026-27980",
+    "summary": "Unbounded next/image disk cache growth can exhaust storage",
+    "severity": "medium",
+    "published_at": "2026-03-16T23:18:02Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-3x4c-7xq6-9pq8",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=10.0.0",
+        "patched_versions": "15.5.14, 16.1.7",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-mq59-m269-xvcx",
+    "cve_id": "CVE-2026-27978",
+    "summary": "null origin can bypass Server Actions CSRF checks",
+    "severity": "medium",
+    "published_at": "2026-03-16T23:17:47Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-mq59-m269-xvcx",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=16.0.1",
+        "patched_versions": "16.1.7",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-jcc7-9wpm-mj36",
+    "cve_id": "CVE-2026-27977",
+    "summary": "Origin: null can bypass allowedDevOrigins protections for internal dev endpoints",
+    "severity": "medium",
+    "published_at": "2026-03-16T23:17:28Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-jcc7-9wpm-mj36",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=16.0.1",
+        "patched_versions": "16.1.7",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-h27x-g6w4-24gq",
+    "cve_id": "CVE-2026-27979",
+    "summary": "Unbounded postponed resume buffering can lead to DoS",
+    "severity": "medium",
+    "published_at": "2026-03-16T23:16:46Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-h27x-g6w4-24gq",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=16.1.0",
+        "patched_versions": "16.1.7",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-ggv3-7p47-pfv8",
+    "cve_id": "CVE-2026-29057",
+    "summary": "HTTP request smuggling in rewrites",
+    "severity": "medium",
+    "published_at": "2026-03-16T23:16:21Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-ggv3-7p47-pfv8",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=9.5.0",
+        "patched_versions": "16.1.7, 15.5.13",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-9g9p-9gw9-jx7f",
+    "cve_id": "CVE-2025-59471",
+    "summary": "Denial of Service in Image Optimizer",
+    "severity": "medium",
+    "published_at": "2026-01-26T19:13:02Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-9g9p-9gw9-jx7f",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "10.0.0",
+        "patched_versions": "",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "11.0.0",
+        "patched_versions": "",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "12.0.0",
+        "patched_versions": "",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "13.0.0",
+        "patched_versions": "",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "14.0.0",
+        "patched_versions": "",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.0.0",
+        "patched_versions": "15.5.10",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "16.0.0",
+        "patched_versions": "16.1.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-5f7q-jpqc-wp7h",
+    "cve_id": "CVE-2025-59472",
+    "summary": "Denial of Service in Partial Pre Rendering",
+    "severity": "medium",
+    "published_at": "2026-01-26T19:13:06Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-5f7q-jpqc-wp7h",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.0.0-canary.0",
+        "patched_versions": "15.0.0",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.0.1-canary.0",
+        "patched_versions": "15.0.1",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.0.2-canary.0",
+        "patched_versions": "15.0.2",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.0.3-canary.0",
+        "patched_versions": "15.0.3",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.0.4-canary.0",
+        "patched_versions": "15.0.4",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.1.0-canary.0",
+        "patched_versions": "15.1.0",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.1.1-canary.0",
+        "patched_versions": "15.1.1",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.1.2-canary.0",
+        "patched_versions": "15.1.2",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.1.3-canary.0",
+        "patched_versions": "15.1.3",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.1.4-canary.0",
+        "patched_versions": "15.1.4",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.1.5-canary.0",
+        "patched_versions": "15.1.5",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.1.6-canary.0",
+        "patched_versions": "15.1.6",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.1.7-canary.0",
+        "patched_versions": "15.1.7",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.2.0-canary.0",
+        "patched_versions": "15.2.0",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.2.1-canary.0",
+        "patched_versions": "15.2.1",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.2.2-canary.0",
+        "patched_versions": "15.2.2",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.2.3-canary.0",
+        "patched_versions": "15.2.3",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.2.4-canary.0",
+        "patched_versions": "15.2.4",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.2.5-canary.0",
+        "patched_versions": "15.2.5",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.3.0-canary.0",
+        "patched_versions": "15.3.0",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.3.1-canary.0",
+        "patched_versions": "15.3.1",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.3.2-canary.0",
+        "patched_versions": "15.3.2",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.1.8-canary.0",
+        "patched_versions": "15.1.8",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.3.3-canary.0",
+        "patched_versions": "15.3.3",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.4.0-canary.0",
+        "patched_versions": "15.4.0",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.3.4-canary.0",
+        "patched_versions": "15.3.4",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.3.5-canary.0",
+        "patched_versions": "15.3.5",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.4.1-canary.0",
+        "patched_versions": "15.4.1",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.4.2-canary.0",
+        "patched_versions": "15.4.2",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.4.3-canary.0",
+        "patched_versions": "15.4.3",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.4.4-canary.0",
+        "patched_versions": "15.4.4",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.4.5-canary.0",
+        "patched_versions": "15.4.5",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.4.6-canary.0",
+        "patched_versions": "15.4.6",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.4.7-canary.0",
+        "patched_versions": "15.4.7",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.5.0-canary.0",
+        "patched_versions": "15.5.0",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.5.1-canary.0",
+        "patched_versions": "15.5.1",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.5.2-canary.0",
+        "patched_versions": "15.5.2",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.5.3-canary.0",
+        "patched_versions": "15.5.3",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.5.4-canary.0",
+        "patched_versions": "15.5.4",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.5.5-canary.0",
+        "patched_versions": "15.5.5",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.5.6-canary.0",
+        "patched_versions": "15.5.6",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.5.7-canary.0",
+        "patched_versions": "15.5.7",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.4.8-canary.0",
+        "patched_versions": "15.4.8",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.1.9-canary.0",
+        "patched_versions": "15.1.9",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.0.5-canary.0",
+        "patched_versions": "15.0.5",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.3.6-canary.0",
+        "patched_versions": "15.3.6",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.2.6-canary.0",
+        "patched_versions": "15.2.6",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.5.8-canary.0",
+        "patched_versions": "15.5.8",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.4.9-canary.0",
+        "patched_versions": "15.4.9",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.3.7-canary.0",
+        "patched_versions": "15.3.7",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.2.7-canary.0",
+        "patched_versions": "15.2.7",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.1.10-canary.0",
+        "patched_versions": "15.1.10",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.0.6-canary.0",
+        "patched_versions": "15.0.6",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.5.9-canary.0",
+        "patched_versions": "15.5.9",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.4.10-canary.0",
+        "patched_versions": "15.4.10",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.3.8-canary.0",
+        "patched_versions": "15.3.8",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.2.8-canary.0",
+        "patched_versions": "15.2.8",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.1.11-canary.0",
+        "patched_versions": "15.1.11",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "15.0.7-canary.0",
+        "patched_versions": "15.0.7",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "16.1.0",
+        "patched_versions": "16.1.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-h25m-26qc-wcjf",
+    "cve_id": "CVE-2026-23864",
+    "summary": "Denial of Service with Server Components",
+    "severity": "high",
+    "published_at": "2026-01-26T19:17:26Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-h25m-26qc-wcjf",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=13.0.0 <15.0.8, >=15.0.0 <15.6.0-canary.61, >=16.0.0 <16.1.5",
+        "patched_versions": "15.0.8, 15.1.12, 15.2.9, 15.3.9, 15.4.11, 15.5.10, 15.6.0-canary.61, 16.0.11, 16.1.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-5j59-xgg2-r9c4",
+    "cve_id": "CVE-2025-67779",
+    "summary": "Denial of Service with Server Components - Incomplete Fix Follow-Up",
+    "severity": "high",
+    "published_at": "2025-12-11T23:51:32Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-5j59-xgg2-r9c4",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 13.3, >= 14, >=15, >=16",
+        "patched_versions": "14.2.35, 15.0.7, 15.1.11, 15.2.8, 15.3.8, 15.4.10, 15.5.9, 15.6.0-canary.60, 16.0.10, 16.1.0-canary.19",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-w37m-7fhw-fmv9",
+    "cve_id": "CVE-2025-55183",
+    "summary": "Server Actions Source Code Exposure ",
+    "severity": "medium",
+    "published_at": "2025-12-11T21:05:54Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-w37m-7fhw-fmv9",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=15, >=16",
+        "patched_versions": "16.0.9, 15.5.8, 15.4.9, 15.3.7, 15.2.7, 15.1.10, 15.0.6, 15.6.0-canary.59, 16.1.0-canary.17",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-mwv6-3258-q52c",
+    "cve_id": "CVE-2025-55184",
+    "summary": "Denial of Service with Server Components",
+    "severity": "high",
+    "published_at": "2025-12-11T21:05:41Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-mwv6-3258-q52c",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 13.3, >= 14, >=15, >=16",
+        "patched_versions": "16.0.9, 15.5.8, 15.4.9, 15.3.7, 15.2.7, 15.1.10, 15.0.6, 14.2.34, 15.6.0-canary.59, 16.1.0-canary.17",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-9qr9-h5gf-34mp",
+    "cve_id": "CVE-2025-55182",
+    "summary": "RCE in React Server Components",
+    "severity": "critical",
+    "published_at": "2025-12-03T15:43:12Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-9qr9-h5gf-34mp",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=14.3.0-canary.77, >=15, >=16",
+        "patched_versions": "v16.0.7, v15.5.7, v15.4.8, v15.3.6, v15.2.6, v15.1.9, v15.0.5, 15.6.0-canary.58, 16.1.0-canary.12",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-4342-x723-ch2f",
+    "cve_id": "CVE-2025-57822",
+    "summary": "Improper Middleware Redirect Handling Leads to SSRF",
+    "severity": "medium",
+    "published_at": "2025-08-29T21:23:04Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-4342-x723-ch2f",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next.js"
+        },
+        "vulnerable_version_range": "<14.2.32, <15.4.7",
+        "patched_versions": "14.2.32, 15.4.7",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-xv57-4mr9-wg8v",
+    "cve_id": "CVE-2025-55173",
+    "summary": "Content Injection for Image Optimization",
+    "severity": "medium",
+    "published_at": "2025-08-29T21:36:06Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-xv57-4mr9-wg8v",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next.js"
+        },
+        "vulnerable_version_range": "< 14.2.31, 15.0.0 - 15.4.4",
+        "patched_versions": "15.4.5, 14.2.31",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-g5qg-72qw-gw5v",
+    "cve_id": "CVE-2025-57752",
+    "summary": "Cache Key Confusion for Image Optimization API Routes",
+    "severity": "medium",
+    "published_at": "2025-08-29T21:36:23Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-g5qg-72qw-gw5v",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "< 14.2.31, 15.0.0 - 15.4.4",
+        "patched_versions": "15.4.5, 14.2.31",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-r2fc-ccr8-96c4",
+    "cve_id": "CVE-2025-49005",
+    "summary": "Cache poisoning due to omission of Vary header",
+    "severity": "low",
+    "published_at": "2025-07-03T19:37:40Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-r2fc-ccr8-96c4",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 15.3.0 < 15.3.3",
+        "patched_versions": "15.3.3",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-67rr-84xm-4c7r",
+    "cve_id": "CVE-2025-49826",
+    "summary": "DoS via cache poisoning ",
+    "severity": "high",
+    "published_at": "2025-07-03T19:25:20Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-67rr-84xm-4c7r",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">15.0.4 and <15.2.0",
+        "patched_versions": "\u226415.0.4 and \u226515.2.0",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-223j-4rm8-mrmf",
+    "cve_id": "CVE-2025-30218",
+    "summary": "x-middleware-subrequest-id may be leaked to external hosts",
+    "severity": "low",
+    "published_at": "2025-04-02T17:25:20Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-223j-4rm8-mrmf",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "<=12.3.5, <=13.5.9, <=14.2.25, <=15.2.3",
+        "patched_versions": "=>12.3.6, =>13.5.10, =>14.2.26, =>15.2.4",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-qpjv-v59x-3qc4",
+    "cve_id": "CVE-2025-32421",
+    "summary": "Race condition to Cache Poisoning ",
+    "severity": "low",
+    "published_at": "2025-05-14T21:54:58Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-qpjv-v59x-3qc4",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "",
+          "name": "next"
+        },
+        "vulnerable_version_range": "<14.2.24, >15.0.0 and <15.1.6",
+        "patched_versions": "\u226514.2.24 <15.0.0, \u226515.1.6",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-f82v-jwr5-mffw",
+    "cve_id": "CVE-2025-29927",
+    "summary": "Authorization Bypass in Next.js Middleware",
+    "severity": "critical",
+    "published_at": "2025-03-21T10:17:21Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-f82v-jwr5-mffw",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "=> 11.1.4 < 12.3.5",
+        "patched_versions": "12.3.5",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "=>14.0 <14.2.25",
+        "patched_versions": "14.2.25",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "=>15.0 <15.2.3",
+        "patched_versions": "15.2.3",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 13.0.0, < 13.5.9",
+        "patched_versions": "13.5.9",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-3h52-269p-cp9r",
+    "cve_id": "CVE-2025-48068",
+    "summary": "Information exposure in Next.js dev server due to lack of origin verification",
+    "severity": "low",
+    "published_at": "2025-05-28T21:42:07Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-3h52-269p-cp9r",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=13.0.0 <14.2.30, >=15.0.0 <15.2.2",
+        "patched_versions": "14.2.30, >= 15.2.2",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-7m27-7ghc-44w9",
+    "cve_id": "CVE-2024-56332",
+    "summary": "Denial of Service (DoS) with Server Actions",
+    "severity": "medium",
+    "published_at": "2025-01-03T20:07:18Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-7m27-7ghc-44w9",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">= 13.0.0 < 14.2.21, >= 15.0.0 < 15.1.1",
+        "patched_versions": "15.1.2, 14.2.21, 13.5.8",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-7gfc-8cq8-jh5f",
+    "cve_id": "CVE-2024-51479",
+    "summary": "Authorization bypass in Next.js",
+    "severity": "high",
+    "published_at": "2024-12-17T14:18:11Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-7gfc-8cq8-jh5f",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=9.5.5 <=14.2.14",
+        "patched_versions": "14.2.15",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-g77x-44xx-532m",
+    "cve_id": "CVE-2024-47831",
+    "summary": "Denial of Service condition in Next.js image optimization",
+    "severity": "medium",
+    "published_at": "2024-10-14T08:46:56Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-g77x-44xx-532m",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "10.x",
+        "patched_versions": "",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "11.x",
+        "patched_versions": "",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "12.x",
+        "patched_versions": "",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "13.x",
+        "patched_versions": "",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "<14.2.7",
+        "patched_versions": ">=14.2.7",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-gp8f-8m3g-qvj9",
+    "cve_id": "CVE-2024-46982",
+    "summary": "Cache Poisoning",
+    "severity": "high",
+    "published_at": "2024-09-17T20:37:13Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-gp8f-8m3g-qvj9",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=13.5.1",
+        "patched_versions": "13.5.7",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "<14.2.10",
+        "patched_versions": "14.2.10",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-fq54-2j52-jc42",
+    "cve_id": "CVE-2024-39693",
+    "summary": "Denial of Service (DoS) condition",
+    "severity": "high",
+    "published_at": "2024-07-10T09:29:38Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-fq54-2j52-jc42",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=13.3.1 <13.5",
+        "patched_versions": ">=13.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-77r5-gw3j-2mpf",
+    "cve_id": "CVE-2024-34350",
+    "summary": "HTTP Request Smuggling",
+    "severity": "high",
+    "published_at": "2024-05-09T15:50:30Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-77r5-gw3j-2mpf",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=13.4 <13.5.1",
+        "patched_versions": ">=13.5.1",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-fr5h-rqp8-mj6g",
+    "cve_id": "CVE-2024-34351",
+    "summary": "Server-Side Request Forgery in Server Actions",
+    "severity": "high",
+    "published_at": "2024-05-09T15:47:01Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-fr5h-rqp8-mj6g",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": ">=13.4 <14.1.1",
+        "patched_versions": "14.1.1",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-wff4-fpwg-qqv3",
+    "cve_id": "CVE-2022-36046",
+    "summary": "Unexpected server crash in Next.js version 12.2.3",
+    "severity": "medium",
+    "published_at": "2022-08-24T17:10:11Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-wff4-fpwg-qqv3",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "12.2.3",
+        "patched_versions": "12.2.4",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-fmvm-x8mv-47mj",
+    "cve_id": "CVE-2022-23646",
+    "summary": "Improper CSP in Image Optimization API for Next.js versions between 10.0.0 and 12.0.10",
+    "severity": "medium",
+    "published_at": "2022-02-17T17:08:06Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-fmvm-x8mv-47mj",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "10.0.0 <= 12.0.10",
+        "patched_versions": "12.1.0",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-wr66-vrwm-5g5x",
+    "cve_id": "CVE-2022-21721",
+    "summary": "DOS Vulnerability for self-hosted next.js apps using i18n",
+    "severity": "medium",
+    "published_at": "2022-01-28T15:30:16Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-wr66-vrwm-5g5x",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "12.0.0 <= 12.0.8",
+        "patched_versions": "12.0.9",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-25mp-g6fv-mqxx",
+    "cve_id": "CVE-2021-43803",
+    "summary": "Unexpected server crash in Next.js versions above 11.1.0 and below 12.0.5",
+    "severity": "high",
+    "published_at": "2021-12-06T10:53:03Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-25mp-g6fv-mqxx",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "< 12.0.5",
+        "patched_versions": "12.0.5,11.1.3",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-9gr3-7897-pp7m",
+    "cve_id": "CVE-2021-39178",
+    "summary": "XSS in Image Optimization API for Next.js versions between 10.0.0 and 11.1.0",
+    "severity": "medium",
+    "published_at": "2021-08-30T22:14:41Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-9gr3-7897-pp7m",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "10.0.0 <= 11.1.0",
+        "patched_versions": "11.1.1",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-vxf5-wxwp-m7g9",
+    "cve_id": "CVE-2021-37699",
+    "summary": "Open Redirect in Next.js versions below 11.1.0",
+    "severity": "medium",
+    "published_at": "2021-08-11T16:11:59Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-vxf5-wxwp-m7g9",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "<=11.0.1",
+        "patched_versions": "11.1.0",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-x56p-c8cg-q435",
+    "cve_id": "CVE-2020-15242",
+    "summary": "Open Redirect in Next.js versions between 9.5.0 and 9.5.3",
+    "severity": "medium",
+    "published_at": "2020-10-08T09:04:06Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-x56p-c8cg-q435",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "9.5.0 <= 9.5.3",
+        "patched_versions": "9.5.4",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-fq77-7p7r-83rj",
+    "cve_id": "CVE-2020-5284",
+    "summary": "Directory Traversal in Next.js versions below 9.3.2",
+    "severity": "medium",
+    "published_at": "2020-03-30T08:36:57Z",
+    "html_url": "https://github.com/vercel/next.js/security/advisories/GHSA-fq77-7p7r-83rj",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "next"
+        },
+        "vulnerable_version_range": "< 9.3.2",
+        "patched_versions": "9.3.2",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "vercel/next.js"
+  },
+  {
+    "ghsa_id": "GHSA-wx67-qw84-cm4g",
+    "cve_id": "CVE-2026-44907",
+    "summary": "Denial of Service in Server Functions",
+    "severity": "high",
+    "published_at": "2026-07-21T15:44:16Z",
+    "html_url": "https://github.com/react/react/security/advisories/GHSA-wx67-qw84-cm4g",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-webpack"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.0.2, 19.0.3, 19.0.4, 19.0.5, 19.0.6, 19.0.7, 19.1.0, 19.1.1, 19.1.2, 19.1.3, 19.1.4, 19.1.5 , 19.1.6, 19.1.7, 19.1.8, 19.2.0, 19.2.1, 19.2.2, 19.2.3, 19.2.4, 19.2.5, 19.2.6, 19.2.7",
+        "patched_versions": "19.0.8, 19.1.9, 19.2.8",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-parcel"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.0.2, 19.0.3, 19.0.4, 19.0.5, 19.0.6, 19.0.7, 19.1.0, 19.1.1, 19.1.2, 19.1.3, 19.1.4, 19.1.5 , 19.1.6, 19.1.7, 19.1.8, 19.2.0, 19.2.1, 19.2.2, 19.2.3, 19.2.4, 19.2.5, 19.2.6, 19.2.7",
+        "patched_versions": "19.0.8, 19.1.9, 19.2.8",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-turbopack"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.0.2, 19.0.3, 19.0.4, 19.0.5, 19.0.6, 19.0.7, 19.1.0, 19.1.1, 19.1.2, 19.1.3, 19.1.4, 19.1.5 , 19.1.6, 19.1.7, 19.1.8, 19.2.0, 19.2.1, 19.2.2, 19.2.3, 19.2.4, 19.2.5, 19.2.6, 19.2.7",
+        "patched_versions": "19.0.8, 19.1.9, 19.2.8",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "facebook/react"
+  },
+  {
+    "ghsa_id": "GHSA-rv78-f8rc-xrxh",
+    "cve_id": "CVE-2026-23870",
+    "summary": "Denial of Service Vulnerability in React Server Components",
+    "severity": "high",
+    "published_at": "2026-05-06T16:20:20Z",
+    "html_url": "https://github.com/react/react/security/advisories/GHSA-rv78-f8rc-xrxh",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-parcel"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.0.2, 19.0.3, 19.0.4, 19.0.5, 19.1.0, 19.1.1, 19.1.2, 19.1.3, 19.1.4, 19.1.5 , 19.1.6, 19.2.0, 19.2.1, 19.2.2, 19.2.3, 19.2.4, 19.2.5",
+        "patched_versions": "19.0.6, 19.1.7, 19.2.6",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-turbopack"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.0.2, 19.0.3, 19.0.4, 19.0.5, 19.1.0, 19.1.1, 19.1.2, 19.1.3, 19.1.4, 19.1.5 , 19.1.6, 19.2.0, 19.2.1, 19.2.2, 19.2.3, 19.2.4, 19.2.5",
+        "patched_versions": "19.0.6, 19.1.7, 19.2.6",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-webpack"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.0.2, 19.0.3, 19.0.4, 19.0.5, 19.1.0, 19.1.1, 19.1.2, 19.1.3, 19.1.4, 19.1.5 , 19.1.6, 19.2.0, 19.2.1, 19.2.2, 19.2.3, 19.2.4, 19.2.5",
+        "patched_versions": "19.0.6, 19.1.7, 19.2.6",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "facebook/react"
+  },
+  {
+    "ghsa_id": "GHSA-479c-33wc-g2pg",
+    "cve_id": "CVE-2026-23869",
+    "summary": "Denial of Service Vulnerability in React Server Components",
+    "severity": "high",
+    "published_at": "2026-04-08T19:04:06Z",
+    "html_url": "https://github.com/react/react/security/advisories/GHSA-479c-33wc-g2pg",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-parcel"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.0.2, 19.0.3, 19.0.4, 19.1.0, 19.1.1, 19.1.2, 19.1.3, 19.1.4, 19.1.5 19.2.0, 19.2.1, 19.2.2, 19.2.3, 19.2.4",
+        "patched_versions": "19.0.5, 19.1.6, 19.2.5",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-turbopack"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.0.2, 19.0.3, 19.0.4, 19.1.0, 19.1.1, 19.1.2, 19.1.3, 19.1.4, 19.1.5 19.2.0, 19.2.1, 19.2.2, 19.2.3, 19.2.4",
+        "patched_versions": "19.0.5, 19.1.6, 19.2.5",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-webpack"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.0.2, 19.0.3, 19.0.4, 19.1.0, 19.1.1, 19.1.2, 19.1.3, 19.1.4, 19.1.5 19.2.0, 19.2.1, 19.2.2, 19.2.3, 19.2.4",
+        "patched_versions": "19.0.5, 19.1.6, 19.2.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "facebook/react"
+  },
+  {
+    "ghsa_id": "GHSA-83fc-fqcc-2hmg",
+    "cve_id": "CVE-2026-23864",
+    "summary": "Denial of Service Vulnerabilities in React Server Components",
+    "severity": "high",
+    "published_at": "2026-01-26T19:10:52Z",
+    "html_url": "https://github.com/react/react/security/advisories/GHSA-83fc-fqcc-2hmg",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-parcel"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.0.2, 19.0.3, 19.1.0, 19.1.1, 19.1.2, 19.1.3, 19.1.4, 19.2.0, 19.2.1, 19.2.2, 19.2.3",
+        "patched_versions": "19.0.4, 19.1.5, 19.2.4",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-turbopack"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.0.2, 19.0.3, 19.1.0, 19.1.1, 19.1.2, 19.1.3, 19.1.4, 19.2.0, 19.2.1, 19.2.2, 19.2.3",
+        "patched_versions": "19.0.4, 19.1.5, 19.2.4",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-webpack"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.0.2, 19.0.3, 19.1.0, 19.1.1, 19.1.2, 19.1.3, 19.1.4, 19.2.0, 19.2.1, 19.2.2, 19.2.3",
+        "patched_versions": "19.0.4, 19.1.5, 19.2.4",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "facebook/react"
+  },
+  {
+    "ghsa_id": "GHSA-7gmr-mq3h-m5h9",
+    "cve_id": "CVE-2025-67779",
+    "summary": "Denial of Service Vulnerability in React Server Components",
+    "severity": "high",
+    "published_at": "2025-12-12T00:17:25Z",
+    "html_url": "https://github.com/react/react/security/advisories/GHSA-7gmr-mq3h-m5h9",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-parcel"
+        },
+        "vulnerable_version_range": "19.0.2, 19.1.3, 19.2.2",
+        "patched_versions": "19.0.3, 19.1.4, 19.2.3",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-turbopack"
+        },
+        "vulnerable_version_range": "19.0.2, 19.1.3, 19.2.2",
+        "patched_versions": "19.0.3, 19.1.4, 19.2.3",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-webpack"
+        },
+        "vulnerable_version_range": "19.0.2, 19.1.3, 19.2.2",
+        "patched_versions": "19.0.3, 19.1.4, 19.2.3",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "facebook/react"
+  },
+  {
+    "ghsa_id": "GHSA-2m3v-v2m8-q956",
+    "cve_id": "CVE-2025-55184",
+    "summary": "Denial of Service Vulnerability in React Server Components",
+    "severity": "high",
+    "published_at": "2025-12-11T20:20:55Z",
+    "html_url": "https://github.com/react/react/security/advisories/GHSA-2m3v-v2m8-q956",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-parcel"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.1.0, 19.1.1, 19.1.2, 19.2.0, 19.2.1",
+        "patched_versions": "19.0.2, 19.1.3, 19.2.2",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-turbopack"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.1.0, 19.1.1, 19.1.2, 19.2.0, 19.2.1",
+        "patched_versions": "19.0.2, 19.1.3, 19.2.2",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-webpack"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.1.0, 19.1.1, 19.1.2, 19.2.0, 19.2.1",
+        "patched_versions": "19.0.2, 19.1.3, 19.2.2",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "facebook/react"
+  },
+  {
+    "ghsa_id": "GHSA-925w-6v3x-g4j4",
+    "cve_id": "CVE-2025-55183",
+    "summary": "Source Code Exposure Vulnerability in React Server Components",
+    "severity": "medium",
+    "published_at": "2025-12-11T20:20:52Z",
+    "html_url": "https://github.com/react/react/security/advisories/GHSA-925w-6v3x-g4j4",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-parcel"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.1.0, 19.1.1, 19.1.2, 19.2.0, 19.2.1",
+        "patched_versions": "19.0.2, 19.1.3, 19.2.2",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-turbopack"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.1.0, 19.1.1, 19.1.2, 19.2.0, 19.2.1",
+        "patched_versions": "19.0.2, 19.1.3, 19.2.2",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-webpack"
+        },
+        "vulnerable_version_range": "19.0.0, 19.0.1, 19.1.0, 19.1.1, 19.1.2, 19.2.0, 19.2.1",
+        "patched_versions": "19.0.2, 19.1.3, 19.2.2",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "facebook/react"
+  },
+  {
+    "ghsa_id": "GHSA-fv66-9v8q-g76r",
+    "cve_id": "CVE-2025-55182",
+    "summary": "Critical Security Vulnerability in React Server Components",
+    "severity": "critical",
+    "published_at": "2025-12-03T15:48:19Z",
+    "html_url": "https://github.com/react/react/security/advisories/GHSA-fv66-9v8q-g76r",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-parcel"
+        },
+        "vulnerable_version_range": "19.0.0, 19.1.0, 19.1.1, 19.2.0",
+        "patched_versions": "19.0.1, 19.1.2, 19.2.1",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-turbopack"
+        },
+        "vulnerable_version_range": "19.0.0, 19.1.0, 19.1.1, 19.2.0",
+        "patched_versions": "19.0.1, 19.1.2, 19.2.1",
+        "vulnerable_functions": []
+      },
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "react-server-dom-webpack"
+        },
+        "vulnerable_version_range": "19.0.0, 19.1.0, 19.1.1, 19.2.0",
+        "patched_versions": "19.0.1, 19.1.2, 19.2.1",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "facebook/react"
+  },
+  {
+    "ghsa_id": "GHSA-fxqj-rqcc-2cmp",
+    "cve_id": "CVE-2026-69153",
+    "summary": "PostCSS: incomplete fix of GHSA-6g55-p6wh-862q \u2014 attacker-controlled sourceMappingURL reads arbitrary .map files when `from` is unset",
+    "severity": "medium",
+    "published_at": "2026-07-24T17:06:11Z",
+    "html_url": "https://github.com/postcss/postcss/security/advisories/GHSA-fxqj-rqcc-2cmp",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "postcss"
+        },
+        "vulnerable_version_range": "<= 8.5.22",
+        "patched_versions": "8.5.23",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "postcss/postcss"
+  },
+  {
+    "ghsa_id": "GHSA-r28c-9q8g-f849",
+    "cve_id": "CVE-2026-73646",
+    "summary": "Path Traversal in Previous Source Map Auto-Loading (sourceMappingURL) leads to Arbitrary .map File Disclosure",
+    "severity": "high",
+    "published_at": "2026-07-20T22:11:48Z",
+    "html_url": "https://github.com/postcss/postcss/security/advisories/GHSA-r28c-9q8g-f849",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "postcss"
+        },
+        "vulnerable_version_range": "<= 8.5.17",
+        "patched_versions": "8.5.18",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "postcss/postcss"
+  },
+  {
+    "ghsa_id": "GHSA-6g55-p6wh-862q",
+    "cve_id": "CVE-2026-45623",
+    "summary": "Arbitrary file read and information disclosure via attacker-controlled sourceMappingURL in CSS comments",
+    "severity": "high",
+    "published_at": "2026-07-20T22:11:45Z",
+    "html_url": "https://github.com/postcss/postcss/security/advisories/GHSA-6g55-p6wh-862q",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "postcss"
+        },
+        "vulnerable_version_range": "<= 8.5.11",
+        "patched_versions": "8.5.12",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "postcss/postcss"
+  },
+  {
+    "ghsa_id": "GHSA-qx2v-qp2m-jg93",
+    "cve_id": "CVE-2026-41305",
+    "summary": "XSS via Unescaped </style> in CSS Stringify Output",
+    "severity": "medium",
+    "published_at": "2026-04-20T19:34:55Z",
+    "html_url": "https://github.com/postcss/postcss/security/advisories/GHSA-qx2v-qp2m-jg93",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "postcss"
+        },
+        "vulnerable_version_range": "<8.5.10",
+        "patched_versions": "8.5.10",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "postcss/postcss"
+  },
+  {
+    "ghsa_id": "GHSA-rgj7-g3m4-5g8c",
+    "cve_id": null,
+    "summary": "Vulnerabilities in libheif: CVE-2026-84383 and GHSA-2jg2-4ch7-h545",
+    "severity": "high",
+    "published_at": "2026-08-27T09:33:22Z",
+    "html_url": "https://github.com/lovell/sharp/security/advisories/GHSA-rgj7-g3m4-5g8c",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "sharp"
+        },
+        "vulnerable_version_range": "< 0.35.4",
+        "patched_versions": ">= 0.35.4",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "lovell/sharp"
+  },
+  {
+    "ghsa_id": "GHSA-f88m-g3jw-g9cj",
+    "cve_id": null,
+    "summary": "Vulnerabilities in libvips: CVE-2026-33327, CVE-2026-33328, CVE-2026-35590, CVE-2026-35591, CVE-2026-69242",
+    "severity": "high",
+    "published_at": "2026-07-17T10:48:23Z",
+    "html_url": "https://github.com/lovell/sharp/security/advisories/GHSA-f88m-g3jw-g9cj",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "sharp"
+        },
+        "vulnerable_version_range": "< 0.35.0",
+        "patched_versions": ">= 0.35.0",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "lovell/sharp"
+  },
+  {
+    "ghsa_id": "GHSA-54xq-cgqr-rpm3",
+    "cve_id": "CVE-2023-4863",
+    "summary": "Vulnerability in libwebp dependency CVE-2023-4863",
+    "severity": "high",
+    "published_at": "2023-11-16T13:48:39Z",
+    "html_url": "https://github.com/lovell/sharp/security/advisories/GHSA-54xq-cgqr-rpm3",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "sharp"
+        },
+        "vulnerable_version_range": "< 0.32.6",
+        "patched_versions": ">= 0.32.6",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "lovell/sharp"
+  },
+  {
+    "ghsa_id": "GHSA-gp95-ppv5-3jc5",
+    "cve_id": "CVE-2022-29256",
+    "summary": "Possible vulnerability at 'npm install' time if an attacker has control over build environment",
+    "severity": "medium",
+    "published_at": "2022-05-25T08:42:48Z",
+    "html_url": "https://github.com/lovell/sharp/security/advisories/GHSA-gp95-ppv5-3jc5",
+    "vulnerabilities": [
+      {
+        "package": {
+          "ecosystem": "npm",
+          "name": "sharp"
+        },
+        "vulnerable_version_range": "<= 0.30.4",
+        "patched_versions": ">= 0.30.5",
+        "vulnerable_functions": []
+      }
+    ],
+    "repository": "lovell/sharp"
+  }
+]

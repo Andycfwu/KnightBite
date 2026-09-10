@@ -1,0 +1,38 @@
+{
+  "date": "2026-09-10",
+  "results": [
+    {
+      "probe": "Atrium off-origin label link",
+      "outcome": "CONFIRMED DEFECT",
+      "attemptedMockRequests": 2,
+      "actualNetworkRequests": 0
+    },
+    {
+      "probe": "Nutrislice portions sharing provider food ID",
+      "outcome": "CONFIRMED DEFECT",
+      "portions": [
+        "1 cup",
+        "2 cup"
+      ],
+      "distinctPlateIds": 1
+    },
+    {
+      "probe": "Missing macros on calorie-only item",
+      "outcome": "CONFIRMED DEFECT",
+      "unknownProteinShownAs": 0,
+      "consideredMeaningful": true
+    },
+    {
+      "probe": "Explicit Nutrislice Gluten Free icon",
+      "outcome": "CONFIRMED DEFECT",
+      "passedGlutenFreeFilter": false,
+      "classifiedAsAllergen": true
+    },
+    {
+      "probe": "Preferences write denied by browser",
+      "outcome": "CONFIRMED DEFECT",
+      "errorEscapesEffect": "SecurityError",
+      "scope": "Isolated hook-effect simulation; browser recovery not exercised"
+    }
+  ]
+}

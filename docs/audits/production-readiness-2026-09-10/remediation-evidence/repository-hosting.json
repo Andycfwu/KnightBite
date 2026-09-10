@@ -1,0 +1,52 @@
+{
+  "inspectedDate": "2026-09-10",
+  "readOnly": true,
+  "productionUrl": "https://knightbitenb.vercel.app",
+  "repository": "https://github.com/Andycfwu/KnightBite",
+  "defaultBranch": "main",
+  "visibility": "public",
+  "github": {
+    "mainBranchProtection": "404 Branch not protected",
+    "rulesets": [],
+    "actions": {
+      "enabled": true,
+      "allowedActions": "all",
+      "shaPinningRequired": false
+    },
+    "productionEnvironment": {
+      "protectionRules": [],
+      "deploymentBranchPolicy": null
+    },
+    "security": {
+      "secretScanning": "enabled",
+      "pushProtection": "enabled",
+      "dependabotSecurityUpdates": "disabled"
+    }
+  },
+  "latestGithubDeploymentObserved": {
+    "id": 6363843191,
+    "sha": "70166c4fd04bb0d5ca25b792283924eff36c1f31",
+    "createdAt": "2026-09-10T03:19:14Z",
+    "environment": "Production",
+    "productionEnvironment": false,
+    "status": "success",
+    "environmentUrl": "https://knight-bite-91ztd8vhb-andycfwus-projects.vercel.app",
+    "aliasToDeploymentMappingVerified": false
+  },
+  "productionProfileHead": {
+    "method": "HEAD",
+    "status": 200,
+    "server": "Vercel",
+    "strictTransportSecurity": "max-age=63072000; includeSubDomains; preload",
+    "applicationSecurityHeadersObserved": false
+  },
+  "unverified": [
+    "Vercel project/account IAM and MFA",
+    "deployed runtime and native versions",
+    "alias mapping to reviewed source",
+    "logs and analytics retention/access/region",
+    "effective resource and rate limits",
+    "alert ownership and rollback rehearsal",
+    "service/privacy owner"
+  ]
+}

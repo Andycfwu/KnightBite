@@ -1,0 +1,704 @@
+[
+  {
+    "id": "ARC-01",
+    "applicability": "YES",
+    "status": "PASS",
+    "priority": "\u2014",
+    "actual": "One Next.js web release; menu browsing, station maps, plate and preferences have real entry points.",
+    "evidence": "app/page.tsx:106-117; app/hall/[hallId]/page.tsx:14-25; package.json:5-11",
+    "actions": "\u2014"
+  },
+  {
+    "id": "ARC-02",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P2",
+    "actual": "Live and unavailable states are real; sample fallback is isolated. Profile filters remain a labeled placeholder; operating hours are static.",
+    "evidence": "lib/menu.ts:13-30; components/profile/ProfileScreen.tsx:17-35; app/page.tsx:15-26",
+    "actions": "A014"
+  },
+  {
+    "id": "ARC-03",
+    "applicability": "YES",
+    "status": "FAIL",
+    "priority": "P1",
+    "actual": "Hall IDs are allowlisted, but upstream HTML can choose an outbound label host.",
+    "evidence": "lib/menu.ts:9-10; lib/providers/rutgers-provider.ts:528-529,777-800,865; evidence/audit-probes.json",
+    "actions": "A002"
+  },
+  {
+    "id": "ARC-04",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Public upstreams and cache policy are identifiable; operating owner, hosting and recovery expectations are not evidenced.",
+    "evidence": "lib/providers/rutgers-provider.ts:6-19; README.md:169; no deployment configuration in initial inventory",
+    "actions": "A011"
+  },
+  {
+    "id": "ARC-05",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Failure scenarios have tests; malicious links, resource exhaustion and storage denial were not covered by the existing suite. This audit supplies a threat map.",
+    "evidence": "tests/menu-ingestion-logs.test.tsx:31-61; evidence/audit-probes.json",
+    "actions": "A002 A005 A007 A012"
+  },
+  {
+    "id": "DATA-01",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Browser preferences, transient plate, public menus and logs are mapped below; provider analytics/account retention is unknown.",
+    "evidence": "hooks/useUserPreferences.tsx:32,71-112; hooks/usePlate.tsx:31-32; app/layout.tsx:20",
+    "actions": "A009 A011"
+  },
+  {
+    "id": "DATA-02",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Preferences are plaintext origin storage. No app credentials or server user database observed; HTTPS/cloud access and at-rest protection remain unverified.",
+    "evidence": "hooks/useUserPreferences.tsx:73-111; lib/providers/rutgers-provider.ts:6-7; evidence/runtime-results.json",
+    "actions": "A009 A011"
+  },
+  {
+    "id": "DATA-03",
+    "applicability": "YES",
+    "status": "FAIL",
+    "priority": "P1",
+    "actual": "Preference reads recover, but writes can throw without handling. Plate is memory only.",
+    "evidence": "hooks/useUserPreferences.tsx:71-112; hooks/usePlate.tsx:31-32; evidence/audit-probes.json",
+    "actions": "A005 A013"
+  },
+  {
+    "id": "DATA-04",
+    "applicability": "YES",
+    "status": "FAIL",
+    "priority": "P1",
+    "actual": "Range checks exist, but nutrition presence is lost and Nutrislice portion IDs can collide; schemas rely substantially on casts.",
+    "evidence": "lib/providers/rutgers-provider.ts:293-330,410-412,1080-1126; evidence/audit-probes.json",
+    "actions": "A003 A004 A007"
+  },
+  {
+    "id": "DATA-05",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P2",
+    "actual": "Cache TTL prevents fresh reads of expired entries but does not evict old date/URL keys; preferences have no expiry.",
+    "evidence": "lib/providers/rutgers-provider.ts:174-178,532-550,1380-1409; hooks/useUserPreferences.tsx:100-112",
+    "actions": "A007 A009"
+  },
+  {
+    "id": "DATA-06",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Clear plate and reset goals exist; no unified clear-preferences control, export policy or analytics deletion scope is documented.",
+    "evidence": "components/plate/PlateScreen.tsx:88-94; hooks/useUserPreferences.tsx:123-131; components/profile/ProfileScreen.tsx:42-52",
+    "actions": "A009 A013"
+  },
+  {
+    "id": "DATA-07",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P2",
+    "actual": "Functional state updates avoid ordinary click races. Two tabs can overwrite the shared preferences record; no account isolation is promised.",
+    "evidence": "hooks/usePlate.tsx:34-69; hooks/useUserPreferences.tsx:100-131; no storage-event subscription in this module",
+    "actions": "A013 A009"
+  },
+  {
+    "id": "DATA-08",
+    "applicability": "NO",
+    "status": "UNKNOWN",
+    "priority": "\u2014",
+    "actual": "Not assessed: out of scope. No irreplaceable server records; menus can be refetched, plate is a temporary calculation and goals can be re-entered. No enterprise backup requirement inferred.",
+    "evidence": "hooks/usePlate.tsx:31-32; hooks/useUserPreferences.tsx:34-44; README.md:22",
+    "actions": "\u2014"
+  },
+  {
+    "id": "SEC-01",
+    "applicability": "YES",
+    "status": "PASS",
+    "priority": "\u2014",
+    "actual": "No secret-pattern matches in the scoped local scan: 95 workspace text files, 181 reachable Git text blobs (10 commits), 52 existing build files. Not a universal absence claim.",
+    "evidence": "evidence/secret-scan.json; evidence/initial-snapshot.json",
+    "actions": "\u2014"
+  },
+  {
+    "id": "SEC-02",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P2",
+    "actual": "App has no provider API secrets; common env files are ignored. Deployment credentials and rotation/access policy are unknown; other .env variants are not ignored.",
+    "evidence": ".gitignore:1-6; lib/providers/rutgers-provider.ts:6-7,494; no credential injection in app inventory",
+    "actions": "A011 A012"
+  },
+  {
+    "id": "SEC-03",
+    "applicability": "YES",
+    "status": "PASS",
+    "priority": "\u2014",
+    "actual": "Current operations are intentionally public and browser local; account balance navigation leaves the app for Rutgers CAS. No pretend login.",
+    "evidence": "components/profile/ProfileScreen.tsx:75-104; app/plate/page.tsx:1-5; app/profile/page.tsx:1-5",
+    "actions": "\u2014"
+  },
+  {
+    "id": "SEC-04",
+    "applicability": "YES",
+    "status": "PASS",
+    "priority": "\u2014",
+    "actual": "Within app scope, no private remote objects/actions exist. Hall path is resolved against four known halls before fetch.",
+    "evidence": "app/hall/[hallId]/page.tsx:14-23; lib/menu.ts:9-10; lib/dining-halls.ts:3-8",
+    "actions": "\u2014"
+  },
+  {
+    "id": "SEC-05",
+    "applicability": "NO",
+    "status": "UNKNOWN",
+    "priority": "\u2014",
+    "actual": "Not assessed: out of scope. No application sessions, invitations, password recovery or privileged account operations.",
+    "evidence": "components/profile/ProfileScreen.tsx:75-104; app route inventory; no middleware or use-server actions",
+    "actions": "\u2014"
+  },
+  {
+    "id": "SEC-06",
+    "applicability": "YES",
+    "status": "UNKNOWN",
+    "priority": "P1",
+    "actual": "Host, deployer, log-reader and analytics-dashboard privileges have not been supplied. Source-only debug guards are present.",
+    "evidence": "lib/menu.ts:33-40; lib/providers/rutgers-provider.ts:1413-1416; missing hosting/IAM evidence",
+    "actions": "A011"
+  },
+  {
+    "id": "SEC-07",
+    "applicability": "NO",
+    "status": "UNKNOWN",
+    "priority": "\u2014",
+    "actual": "Not assessed: out of scope. No authenticated roles/tenants/credentials to test. Public route behavior is assessed under SEC-03/04 and SERVICE-01.",
+    "evidence": "app route inventory; evidence/fresh-artifact.json (zero server actions)",
+    "actions": "\u2014"
+  },
+  {
+    "id": "INT-01",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Hall/date selection is server controlled and numbers have limits; upstream body bytes, collection lengths and complete JSON schemas are not bounded.",
+    "evidence": "app/hall/[hallId]/page.tsx:14-23; lib/providers/rutgers-provider.ts:439-478,634-663,1187-1209",
+    "actions": "A007"
+  },
+  {
+    "id": "INT-02",
+    "applicability": "YES",
+    "status": "FAIL",
+    "priority": "P1",
+    "actual": "React text rendering avoids executable upstream markup; concrete server-side request forgery path exists through label links.",
+    "evidence": "components/menu/HallStationExplorer.tsx:280-288; lib/providers/rutgers-provider.ts:528-529,777-800; evidence/audit-probes.json",
+    "actions": "A002"
+  },
+  {
+    "id": "INT-03",
+    "applicability": "YES",
+    "status": "FAIL",
+    "priority": "P1",
+    "actual": "Primary menu URLs use HTTPS, but accepted absolute label URLs may use HTTP or another host; fetch follows redirects by default.",
+    "evidence": "lib/providers/rutgers-provider.ts:6-7,480-505,528-529; evidence/audit-probes.json",
+    "actions": "A002 A011"
+  },
+  {
+    "id": "INT-04",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Atrium validates date, meal and location; Nutrislice selects exact date. Label origin/identity and full schema validation remain incomplete.",
+    "evidence": "lib/providers/atrium-menu-context.ts:84-151; lib/providers/rutgers-provider.ts:579-605,1194-1209",
+    "actions": "A002 A003 A007"
+  },
+  {
+    "id": "INT-05",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Abortable body deadlines, 6 label workers per meal and a 6-second launch budget exist. No body/item/cache caps or verified edge abuse limits.",
+    "evidence": "lib/providers/rutgers-provider.ts:480-510,608-625,855-865; lib/menu.ts:18-20",
+    "actions": "A007 A011"
+  },
+  {
+    "id": "INT-06",
+    "applicability": "YES",
+    "status": "PASS",
+    "priority": "\u2014",
+    "actual": "Upstream operations are reads; concurrent same-hall/date calls share a promise and do not repeat consequential external writes.",
+    "evidence": "lib/providers/rutgers-provider.ts:1380-1409; tests/menu-ingestion-logs.test.tsx; evidence/npm-test.txt",
+    "actions": "\u2014"
+  },
+  {
+    "id": "INT-07",
+    "applicability": "YES",
+    "status": "PASS",
+    "priority": "\u2014",
+    "actual": "Production ingestion uses allowlisted error categories and bounded aggregate summaries; hall error UI hides raw error details.",
+    "evidence": "lib/providers/menu-ingestion-log.ts:10-14,57-76,110-158; app/hall/[hallId]/error.tsx:5-18; tests/menu-ingestion-logs.test.tsx:31-61",
+    "actions": "\u2014"
+  },
+  {
+    "id": "RLY-01",
+    "applicability": "YES",
+    "status": "FAIL",
+    "priority": "P1",
+    "actual": "Menu context/date correctness is tested; missing macros and ID collisions can make plate totals misleading or incorrect.",
+    "evidence": "evidence/npm-test.txt; evidence/audit-probes.json; hooks/usePlate.tsx:34-45",
+    "actions": "A003 A004 A006"
+  },
+  {
+    "id": "RLY-02",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Timeouts and null results fail visibly without fake menus; recovery is refetch after TTL, without persisted fallback. Operational availability target is unknown.",
+    "evidence": "lib/menu.ts:13-30; lib/providers/rutgers-provider.ts:1380-1409; README.md:22,169",
+    "actions": "A007 A011"
+  },
+  {
+    "id": "RLY-03",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P2",
+    "actual": "Server restart loses only refetchable caches. Browser reload loses the plate without a visible lifecycle notice.",
+    "evidence": "hooks/usePlate.tsx:31-32; components/plate/PlateScreen.tsx:15-95; README.md:22",
+    "actions": "A013"
+  },
+  {
+    "id": "RLY-04",
+    "applicability": "YES",
+    "status": "FAIL",
+    "priority": "P1",
+    "actual": "Functional updates and request coalescing work; portion-ID collisions merge distinct quantities and tabs can overwrite preferences.",
+    "evidence": "hooks/usePlate.tsx:34-69; hooks/useUserPreferences.tsx:100-112; evidence/audit-probes.json",
+    "actions": "A004 A013"
+  },
+  {
+    "id": "RLY-05",
+    "applicability": "YES",
+    "status": "FAIL",
+    "priority": "P1",
+    "actual": "Storage-denied writes escape the preference effect; upstream byte/collection limits are missing.",
+    "evidence": "hooks/useUserPreferences.tsx:105-111; lib/providers/rutgers-provider.ts:439-478; evidence/audit-probes.json",
+    "actions": "A005 A007"
+  },
+  {
+    "id": "RLY-06",
+    "applicability": "YES",
+    "status": "UNKNOWN",
+    "priority": "P1",
+    "actual": "Local HTTP smoke timings and bundle size are recorded; no supported traffic, mobile performance or memory budget is evidenced.",
+    "evidence": "evidence/runtime-results.json; evidence/build.txt; missing deployed load/browser measurements",
+    "actions": "A007 A011 A012"
+  },
+  {
+    "id": "RLY-07",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "178 tests pass with no skips and TypeScript/build pass. Tests lack real browser/storage/keyboard and the five reproduced regression scenarios.",
+    "evidence": "evidence/npm-test.txt; evidence/typecheck.txt; evidence/build.txt; evidence/audit-probes.json",
+    "actions": "A002 A003 A004 A005 A006 A010 A012"
+  },
+  {
+    "id": "PRV-01",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Preferences and plate have a clear local purpose. Analytics is mounted globally; user-facing purpose/minimization choices are not documented.",
+    "evidence": "app/layout.tsx:3,20; hooks/useUserPreferences.tsx:71-112; components/profile/ProfileScreen.tsx:17-40",
+    "actions": "A009"
+  },
+  {
+    "id": "PRV-02",
+    "applicability": "YES",
+    "status": "UNKNOWN",
+    "priority": "P1",
+    "actual": "No privacy notice or release-jurisdiction decision is present; required consent cannot be decided from source alone.",
+    "evidence": "app route inventory; components/home/HomeScreen.tsx:115-124; missing product/privacy owner decision",
+    "actions": "A009"
+  },
+  {
+    "id": "PRV-03",
+    "applicability": "YES",
+    "status": "UNKNOWN",
+    "priority": "P1",
+    "actual": "Nutrislice, Rutgers FoodProNet and analytics integration identified; hosting/analytics regions, access and retention are unverified.",
+    "evidence": "lib/providers/rutgers-provider.ts:6-7; app/layout.tsx:20; missing account configuration",
+    "actions": "A009 A011"
+  },
+  {
+    "id": "PRV-04",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "App production logs exclude raw menu bodies, URLs and errors in tests. Host logs and deployed analytics payloads/retention are not verified.",
+    "evidence": "lib/providers/menu-ingestion-log.ts:57-76,110-158; tests/menu-ingestion-logs.test.tsx:31-61",
+    "actions": "A009 A011"
+  },
+  {
+    "id": "PRV-05",
+    "applicability": "YES",
+    "status": "UNKNOWN",
+    "priority": "P1",
+    "actual": "No published app policy or deletion/support commitment available to compare to implementation.",
+    "evidence": "app route inventory; README.md:1-22; missing publication requirements",
+    "actions": "A009"
+  },
+  {
+    "id": "OPS-01",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Per-attempt structured logs expose provider failures; they are not uptime monitoring and do not cover browser failures.",
+    "evidence": "lib/providers/menu-ingestion-log.ts:110-158; README.md:169",
+    "actions": "A011"
+  },
+  {
+    "id": "OPS-02",
+    "applicability": "YES",
+    "status": "UNKNOWN",
+    "priority": "P1",
+    "actual": "No deployed alert routing, responder or alert exercise is available.",
+    "evidence": "README.md:169; no monitoring configuration in initial snapshot",
+    "actions": "A011"
+  },
+  {
+    "id": "OPS-03",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Refetch/unavailable behavior and local setup are documented; outage, rollback and incident procedures need an owner and exercise.",
+    "evidence": "README.md:18-22,54,169",
+    "actions": "A011 A012"
+  },
+  {
+    "id": "OPS-04",
+    "applicability": "NO",
+    "status": "UNKNOWN",
+    "priority": "\u2014",
+    "actual": "Not assessed: out of scope. No application administrative/security event stream is needed for public reads. Hosting administrative audit access is assessed under SEC-06.",
+    "evidence": "app route inventory; evidence/fresh-artifact.json",
+    "actions": "\u2014"
+  },
+  {
+    "id": "OPS-05",
+    "applicability": "YES",
+    "status": "UNKNOWN",
+    "priority": "P1",
+    "actual": "No demonstrated deployed rollback or emergency provider-disable procedure; source absence is not proof the hosting platform lacks rollback.",
+    "evidence": "README.md:169; missing hosting/release records",
+    "actions": "A011 A012"
+  },
+  {
+    "id": "REL-01",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Lockfile and isolated build establish current source buildability; runtime is not pinned and deployed commit/build linkage is unknown.",
+    "evidence": "package.json:5-28; package-lock.json:1909-1944; evidence/build-metadata.json; evidence/fresh-artifact.json",
+    "actions": "A011 A012"
+  },
+  {
+    "id": "REL-02",
+    "applicability": "YES",
+    "status": "FAIL",
+    "priority": "P1",
+    "actual": "Next 15.5.15, sharp 0.34.5 and PostCSS 8.5.9/8.4.31 lag relevant security fixes. Reachability varies; see advisory triage.",
+    "evidence": "package-lock.json:1910,1962,2073,2376; evidence/public-advisories.json; external sources below",
+    "actions": "A001"
+  },
+  {
+    "id": "REL-03",
+    "applicability": "YES",
+    "status": "UNKNOWN",
+    "priority": "P1",
+    "actual": "No repository CI configuration; branch protection, deployment credentials and release approvals are inaccessible.",
+    "evidence": "initial inventory (.github absent); package.json:5-11; missing repository/hosting settings",
+    "actions": "A012 A011"
+  },
+  {
+    "id": "REL-04",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Existing tests stub network and the audit build was isolated. Staging/live environment separation is not evidenced.",
+    "evidence": "tests/atrium-menu-context.test.tsx:64-76; tests/menu-ingestion-logs.test.tsx:31-61; evidence/build-metadata.json",
+    "actions": "A011 A012"
+  },
+  {
+    "id": "REL-05",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Fresh build has zero server actions and no searched mock/debug symbols in client JS; deployed artifact/secrets remain unverified.",
+    "evidence": "evidence/fresh-artifact.json; lib/menu.ts:33-40; evidence/secret-scan.json",
+    "actions": "A011 A012"
+  },
+  {
+    "id": "REL-06",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Small web release has no server database migrations; local preferences have no schema version and rollout/rollback is untested.",
+    "evidence": "hooks/useUserPreferences.tsx:75-90,105-110; evidence/build.txt",
+    "actions": "A005 A012 A013"
+  },
+  {
+    "id": "REL-07",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P2",
+    "actual": "Detailed ingestion/fixture notes exist. Setup lint is interactive; supported browsers, maintainership/support and release license decisions need documentation.",
+    "evidence": "README.md:54-60,169; package.json:1-28; no root LICENSE/CI in initial inventory",
+    "actions": "A012 A014"
+  },
+  {
+    "id": "UX-01",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Unavailable/loading/added-item states are clear; partial nutrition and denied preference saves are not represented truthfully.",
+    "evidence": "app/hall/[hallId]/error.tsx:9-15; components/menu/HallStationExplorer.tsx:277-284; hooks/useUserPreferences.tsx:105-111",
+    "actions": "A003 A005"
+  },
+  {
+    "id": "UX-02",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P2",
+    "actual": "Clear/remove affect only an ephemeral plate; actions have no undo and can lose calculation work. No server-destructive action exists.",
+    "evidence": "components/plate/PlateScreen.tsx:53-58,88-94; hooks/usePlate.tsx:50-73",
+    "actions": "A013"
+  },
+  {
+    "id": "UX-03",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P2",
+    "actual": "Menus have explicit empty/error states; storage behavior and inactive saved dietary preferences need clearer explanation.",
+    "evidence": "components/profile/ProfileScreen.tsx:17-35; components/plate/PlateScreen.tsx:71-94",
+    "actions": "A005 A013 A014"
+  },
+  {
+    "id": "UX-04",
+    "applicability": "YES",
+    "status": "FAIL",
+    "priority": "P1",
+    "actual": "Map controls have names/focus support; plate drawer lacks modal focus handling and profile switches lack a programmatic state.",
+    "evidence": "components/plate/PlateDrawer.tsx:55-69,157-168; components/profile/ProfileScreen.tsx:159-170; components/plate/PlateScreen.tsx:37-59",
+    "actions": "A010"
+  },
+  {
+    "id": "UX-05",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P2",
+    "actual": "Maps disclose approximate placement and live status is separated from source availability; static open-hours and uncapped goal bars can mislead.",
+    "evidence": "components/menu/HallStationExplorer.tsx:199; app/page.tsx:15-84; components/plate/MacroTotals.tsx:69-78",
+    "actions": "A013 A014"
+  },
+  {
+    "id": "WEB-01",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P2",
+    "actual": "Upstream fields are React text; no unsafe HTML/eval sinks found. Fresh local HTTP responses lack CSP, framing, nosniff and referrer headers.",
+    "evidence": "components/menu/HallStationExplorer.tsx:280-288; next.config.ts:1-9; evidence/runtime-results.json",
+    "actions": "A008"
+  },
+  {
+    "id": "WEB-02",
+    "applicability": "NO",
+    "status": "UNKNOWN",
+    "priority": "\u2014",
+    "actual": "Not assessed: out of scope. No app cookies/session authentication or cross-origin mutation API. There is no account action requiring CSRF/CORS enforcement.",
+    "evidence": "app route inventory; evidence/fresh-artifact.json; hooks/usePlate.tsx:31-73",
+    "actions": "\u2014"
+  },
+  {
+    "id": "WEB-03",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Only public shells/menus are server-rendered and cacheable. Dietary preferences are visible to the next person using the same browser profile; analytics runtime access is unverified.",
+    "evidence": "hooks/useUserPreferences.tsx:32,71-112; evidence/runtime-results.json; app/layout.tsx:20",
+    "actions": "A009 A013"
+  },
+  {
+    "id": "WEB-04",
+    "applicability": "YES",
+    "status": "FAIL",
+    "priority": "P1",
+    "actual": "Map focus/labels and some reduced motion support are implemented; drawer, profile toggles and plate controls remain incomplete.",
+    "evidence": "components/menu/HallStationExplorer.tsx:89-109,190-191; app/livingston.css:302; components/plate/PlateDrawer.tsx:157-168; components/profile/ProfileScreen.tsx:159-170",
+    "actions": "A010"
+  },
+  {
+    "id": "WEB-05",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P2",
+    "actual": "Build and isolated HTTP smoke pass. Real-browser workflows, device/browser coverage, live links, and trustworthy hours still need validation.",
+    "evidence": "evidence/build.txt; evidence/runtime-results.json; README.md:34,38,44; app/page.tsx:15-26",
+    "actions": "A010 A012 A014"
+  },
+  {
+    "id": "SERVICE-01",
+    "applicability": "YES",
+    "status": "PASS",
+    "priority": "\u2014",
+    "actual": "Public pages are /, /hall/[hallId], /plate and /profile; no app API/Server Action mutation routes. Unsupported halls short-circuit before upstream retrieval.",
+    "evidence": "app/hall/[hallId]/page.tsx:14-23; evidence/fresh-artifact.json; evidence/runtime-results.json",
+    "actions": "\u2014"
+  },
+  {
+    "id": "SERVICE-02",
+    "applicability": "NO",
+    "status": "UNKNOWN",
+    "priority": "\u2014",
+    "actual": "Not assessed: out of scope. No app database, object store, upload or signed-link implementation. Local images are public assets.",
+    "evidence": "app route inventory; lib/providers/rutgers-provider.ts:6-7; public/images inventory",
+    "actions": "\u2014"
+  },
+  {
+    "id": "SERVICE-03",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Per-process coalescing and fetch limits exist; global request/resource budgets, edge rate limits and readiness checks are unverified.",
+    "evidence": "lib/providers/rutgers-provider.ts:608-625,1380-1409; README.md:169",
+    "actions": "A007 A011"
+  },
+  {
+    "id": "SERVICE-04",
+    "applicability": "NO",
+    "status": "UNKNOWN",
+    "priority": "\u2014",
+    "actual": "Not assessed: out of scope. No distributed transactions, write queues, callbacks or consequential remote writes. Read-cache behavior is assessed under INT-06.",
+    "evidence": "lib/providers/rutgers-provider.ts:439-570,1380-1409",
+    "actions": "\u2014"
+  },
+  {
+    "id": "SERVICE-05",
+    "applicability": "YES",
+    "status": "UNKNOWN",
+    "priority": "P1",
+    "actual": "Live origin, hosting OS, network rules, deployed version, IAM and recovery evidence are unavailable.",
+    "evidence": "no hosting/IaC/project environment files in initial inventory; evidence/build-metadata.json is local only",
+    "actions": "A011"
+  },
+  {
+    "id": "PIPELINE-01",
+    "applicability": "YES",
+    "status": "FAIL",
+    "priority": "P1",
+    "actual": "Request-triggered ingestion tracks source/date and validates Atrium context; missing nutrient fields and icon semantics are corrupted during normalization.",
+    "evidence": "lib/providers/atrium-menu-context.ts:84-151; lib/providers/rutgers-provider.ts:293-330,368-394; evidence/audit-probes.json",
+    "actions": "A003 A006 A007"
+  },
+  {
+    "id": "PIPELINE-02",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Read-only refresh, same-key coalescing and dedupe exist; Nutrislice portion IDs collide. No batch checkpoint is needed for these reproducible reads.",
+    "evidence": "lib/providers/rutgers-provider.ts:1119-1126,1380-1409; evidence/audit-probes.json",
+    "actions": "A004"
+  },
+  {
+    "id": "PIPELINE-03",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P2",
+    "actual": "No scheduler; Rutgers timezone and per-key in-flight sharing work. Cache entries accumulate across dates and coalescing does not span instances.",
+    "evidence": "lib/utils.ts:57-89; lib/providers/rutgers-provider.ts:532-550,1380-1409",
+    "actions": "A007 A011"
+  },
+  {
+    "id": "PIPELINE-04",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "Rejected meals and error counts are isolated without retaining sensitive raw logs; raw HTML caching, body size and item count are unbounded.",
+    "evidence": "lib/providers/menu-ingestion-log.ts:57-71; lib/providers/rutgers-provider.ts:439-478,532-550,833-852",
+    "actions": "A007"
+  },
+  {
+    "id": "PIPELINE-05",
+    "applicability": "YES",
+    "status": "PARTIAL",
+    "priority": "P1",
+    "actual": "No external write side effects; production summaries include counts/outcomes. Stale/failure alert delivery is not established.",
+    "evidence": "lib/providers/menu-ingestion-log.ts:125-155; README.md:169",
+    "actions": "A011"
+  },
+  {
+    "id": "NATIVE",
+    "applicability": "NO",
+    "status": "UNKNOWN",
+    "priority": "\u2014",
+    "actual": "Not assessed: out of scope. Browser-only app; no native project, permissions or OS bridge.",
+    "evidence": "package.json:1-28; app/lib inventory; evidence/initial-snapshot.json",
+    "actions": "\u2014"
+  },
+  {
+    "id": "PACKAGE",
+    "applicability": "NO",
+    "status": "UNKNOWN",
+    "priority": "\u2014",
+    "actual": "Not assessed: out of scope. private:true web app, no distributed library/CLI entrypoints.",
+    "evidence": "package.json:1-28; app/lib inventory; evidence/initial-snapshot.json",
+    "actions": "\u2014"
+  },
+  {
+    "id": "AI",
+    "applicability": "NO",
+    "status": "UNKNOWN",
+    "priority": "\u2014",
+    "actual": "Not assessed: out of scope. Static map images and prompts exist, but no runtime inference, retrieval or model API.",
+    "evidence": "package.json:1-28; app/lib inventory; evidence/initial-snapshot.json",
+    "actions": "\u2014"
+  },
+  {
+    "id": "INFRA",
+    "applicability": "NO",
+    "status": "UNKNOWN",
+    "priority": "\u2014",
+    "actual": "Not assessed: out of scope. No IaC, containers or deployment provisioning in inspected repository; hosted state remains SERVICE-05 UNKNOWN.",
+    "evidence": "package.json:1-28; app/lib inventory; evidence/initial-snapshot.json",
+    "actions": "\u2014"
+  },
+  {
+    "id": "SPECIAL-01",
+    "applicability": "YES",
+    "status": "FAIL",
+    "priority": "P1",
+    "actual": "Nutrition completeness must survive normalization and total calculation; current zero substitution loses that distinction.",
+    "evidence": "lib/types.ts:5-12,60-65; lib/providers/rutgers-provider.ts:293-330; components/plate/PlateScreen.tsx:12,79-85",
+    "actions": "A003"
+  },
+  {
+    "id": "SPECIAL-02",
+    "applicability": "YES",
+    "status": "FAIL",
+    "priority": "P1",
+    "actual": "Positive gluten-free icons can be placed under Listed allergens and dropped from dietary filters; absence of allergen data is not proof of safety.",
+    "evidence": "lib/providers/rutgers-provider.ts:56-57,368-394; lib/menu-filters.ts:15-20; evidence/audit-probes.json",
+    "actions": "A006"
+  },
+  {
+    "id": "SPECIAL-03",
+    "applicability": "YES",
+    "status": "UNKNOWN",
+    "priority": "P1",
+    "actual": "App is a general dining aid. Any allergy-safety, clinical or institutional assurance requires explicit product scope and qualified review; no such use is established.",
+    "evidence": "README.md:3,21; components/ui/NutritionDisclaimer.tsx:5-9; missing product/domain decision",
+    "actions": "A006 A009"
+  }
+]
