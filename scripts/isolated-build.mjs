@@ -5,7 +5,7 @@ import { join, resolve } from 'node:path';
 import { spawn } from 'node:child_process';
 const root=process.cwd();
 const destination=await mkdtemp(join(tmpdir(),'knightbite-release-'));
-const files=['app','components','hooks','lib','public','tests','scripts','package.json','package-lock.json','next.config.ts','tsconfig.json','tsconfig.test.json','next-env.d.ts','tailwind.config.ts','postcss.config.js','eslint.config.mjs','playwright.config.ts','.nvmrc'];
+const files=['app','components','hooks','lib','public','tests','scripts','package.json','package-lock.json','next.config.ts','tsconfig.json','tsconfig.test.json','next-env.d.ts','tailwind.config.ts','postcss.config.js','eslint.config.mjs','playwright.config.ts','playwright.unavailable.config.ts','.nvmrc'];
 for(const name of files) {
   try { await cp(join(root,name),join(destination,name),{recursive:true}); }
   catch(error) { if(error.code!=='ENOENT')throw error; }

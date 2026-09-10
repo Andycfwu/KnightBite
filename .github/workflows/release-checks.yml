@@ -33,3 +33,13 @@ jobs:
       - run: npm run check
       - run: npm audit --audit-level=moderate
       - run: git diff --check
+      # Keep the named required check green only when the current hosting floor
+      # passes the same complete gate as the preferred developer runtime.
+      - name: Use the reviewed Vercel runtime floor
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24.19.0'
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: git diff --check

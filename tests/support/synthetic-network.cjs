@@ -4,6 +4,19 @@ const path = require('node:path');
 const http = require('node:http');
 const https = require('node:https');
 const root = process.env.KNIGHTBITE_FIXTURE_ROOT;
+// Dedicated failure-browser run: UTC is September 9 while Rutgers is September 8.
+// This preloader is test-only; production has no failure or date override.
+if (process.env.KNIGHTBITE_TEST_ATRIUM_UNAVAILABLE === '1') {
+  const NativeDate = Date;
+  const now = NativeDate.parse('2026-09-09T00:30:00Z');
+  globalThis.Date = class extends NativeDate {
+    constructor(...args) { super(...(args.length ? args : [now])); }
+    static now() { return now; }
+    // Next copies Date's own static methods when installing its request wrapper.
+    static UTC(...args) { return NativeDate.UTC(...args); }
+    static parse(value) { return NativeDate.parse(value); }
+  };
+}
 function block() { throw new Error('External network disabled by KnightBite test harness'); }
 for (const mod of [http,https]) { mod.request=block; mod.get=block; }
 const fixture = name => fs.readFileSync(path.join(root, 'tests/fixtures/foodpronet',name+'.html'),'utf8');
@@ -32,6 +45,7 @@ globalThis.fetch=async function(input,init) {
     ]}]});
   }
   if(url.origin==='https://menuportal23.dining.rutgers.edu') {
+    if(process.env.KNIGHTBITE_TEST_ATRIUM_UNAVAILABLE==='1') return new Response('Synthetic unavailable',{status:503});
     if(url.pathname==='/FoodPronet/pickmenu.aspx') {
       const meal=url.searchParams.get('activeMeal');const date=url.searchParams.get('dtdate');
       const [month,day,year]=date.split('/');const parsed=new Date(Date.UTC(+year,+month-1,+day));

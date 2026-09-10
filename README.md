@@ -55,7 +55,7 @@ Run only one Next.js development server per checkout: two servers sharing `.next
 
 ## Automated checks
 
-Use the Node 24 LTS version in `.nvmrc` (24.21.0 for this pass), then `npm ci`. Global Node was not changed by remediation.
+Use the Node 24 LTS version in `.nvmrc` (24.21.0 for this pass), then `npm ci`. Vercel currently supplies 24.19.0; both versions must pass the full release gate. `prebuild` rejects runtimes below the reviewed floor and records build/native versions. See [runtime policy](docs/RUNTIME_POLICY.md) for the security assessment and managed-host limitations. Global Node was not changed by remediation.
 
 - `npm test`: offline Node/tsx regressions, including controlled deadlines, single synchronous failure summaries, SSRF rejection, returned-label context checks, missing/zero nutrition, portion identity, storage faults, dietary labels, and cache/response bounds.
 - `npm run typecheck`: regenerate Next route types, then TypeScript without incremental output.
