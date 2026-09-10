@@ -287,9 +287,10 @@ test("mock fixtures remain accessible only by deliberate use and are labeled as 
   assert.doesNotMatch(html, /Backup menu|Updated|Live today/);
 });
 
-test("halls without maps retain the plain unavailable state and requested date", () => {
+test("Atrium keeps its station guide while unavailable and retains the requested date", () => {
   const atrium = diningHalls.find((entry) => entry.id === "atrium")!;
-  const html = renderToStaticMarkup(<HallMenuView hall={atrium} menu={null} requestedDate={requestedDate} />);
+  const html = renderMenuView(<HallMenuView hall={atrium} menu={null} requestedDate={requestedDate} />);
   assertUnavailableHall(html, requestedDate);
-  assert.doesNotMatch(html, /type="search"|Open plate/);
+  assert.match(html, /type="search"[^>]*disabled=""/);
+  assert.match(html, /Open plate/);
 });
