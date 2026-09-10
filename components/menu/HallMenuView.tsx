@@ -4,11 +4,6 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { MealTabs } from "@/components/menu/MealTabs";
-import { LivingstonMenuView } from "@/components/menu/LivingstonMenuView";
-import { HallStationExplorer } from "@/components/menu/HallStationExplorer";
-import { BUSCH_MAP } from "@/lib/busch-stations";
-import { NEILSON_MAP } from "@/lib/neilson-stations";
-import { ATRIUM_MAP } from "@/lib/atrium-stations";
 import { MenuSearch } from "@/components/menu/MenuSearch";
 import { StationJumpBar } from "@/components/menu/StationJumpBar";
 import { StationSection } from "@/components/menu/StationSection";
@@ -28,29 +23,16 @@ import { formatDateLabel, formatUpdatedTime } from "@/lib/utils";
 type HallMenuViewProps = {
   hall: DiningHall;
   menu: DailyMenu | null;
-  requestedDate: string;
 };
 
-export function HallMenuView({ hall, menu, requestedDate }: HallMenuViewProps) {
-  if (hall.id === "livingston") {
-    return <LivingstonMenuView menu={menu} requestedDate={requestedDate} />;
-  }
-  if (hall.id === "busch") {
-    return <HallStationExplorer key={hall.id} menu={menu} requestedDate={requestedDate} map={BUSCH_MAP} />;
-  }
-  if (hall.id === "neilson") {
-    return <HallStationExplorer key={hall.id} menu={menu} requestedDate={requestedDate} map={NEILSON_MAP} />;
-  }
-  if (hall.id === "atrium") {
-    return <HallStationExplorer key={hall.id} menu={menu} requestedDate={requestedDate} map={ATRIUM_MAP} />;
-  }
+export function HallMenuView({ hall, menu }: HallMenuViewProps) {
   if (!menu) {
     return (
       <main className="space-y-5">
-        <HallHeader hall={hall} dateLabel={formatDateLabel(requestedDate)} />
+        <HallHeader hall={hall} dateLabel={formatDateLabel(new Date().toISOString().slice(0, 10))} />
         <EmptyState
-          title="Menu unavailable right now."
-          description="We couldn’t load a menu for this hall for today. Try another hall or check back later."
+          title="No menu available right now."
+          description="We couldn’t find a menu for this hall right now. Try another hall or check back a little later."
         />
       </main>
     );
@@ -258,9 +240,9 @@ function HallHeader({
       {typeof isLiveData === "boolean" ? (
         <div className="flex items-center justify-center gap-2">
           <Badge variant={isLiveData ? "live" : "fallback"} className="px-3 py-1">
-            {isLiveData ? "Live today" : "Sample menu"}
+            {isLiveData ? "Live today" : "Backup menu"}
           </Badge>
-          {isLiveData && lastUpdatedAt ? <span className="text-sm text-ink/42">Updated {formatUpdatedTime(lastUpdatedAt)}</span> : null}
+          {lastUpdatedAt ? <span className="text-sm text-ink/42">Updated {formatUpdatedTime(lastUpdatedAt)}</span> : null}
         </div>
       ) : null}
     </section>

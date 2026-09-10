@@ -159,7 +159,7 @@ export function PlateDrawer({
       <button
         type="button"
         aria-label="Close plate"
-        className={`sheet-transition absolute inset-0 ${open ? "pointer-events-auto bg-black/32 opacity-100" : "bg-black/0 opacity-0"}`}
+        className={`sheet-transition absolute inset-0 ${open ? "bg-black/32 opacity-100" : "bg-black/0 opacity-0"}`}
         onClick={() => onOpenChange(false)}
       />
       <div className="pointer-events-auto absolute inset-x-0 bottom-0">

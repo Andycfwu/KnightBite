@@ -1,6 +1,4 @@
 import { MenuProvider } from "@/lib/providers/menu-provider";
-import { validateAtriumMenuContext } from "@/lib/providers/atrium-menu-context";
-import { addError, addFailure, createIngestionAttempt, finishIngestionAttempt, IngestionAttempt, IngestionFailure, MealAttempt, trackMeal } from "@/lib/providers/menu-ingestion-log";
 import { DailyMenu, DiningHallId, MealSection, MealType, MenuItem, Nutrition, Station } from "@/lib/types";
 
 const NUTRISLICE_API_BASE = "https://rutgers.api.nutrislice.com/menu/api";
@@ -211,12 +209,30 @@ function createDiagnostics(): NormalizationDiagnostics {
   };
 }
 
-function logNormalizationDiagnostics(diagnostics: NormalizationDiagnostics) {
+function logNormalizationDiagnostics(hallId: DiningHallId, date: string, diagnostics: NormalizationDiagnostics) {
   if (!isDevelopment()) {
     return;
   }
 
-  // Counts are in the structured attempt summary; retain detailed development-only examples.
+  const summary = {
+    hallId,
+    date,
+    blankStationHeaders: diagnostics.blankStationHeaders,
+    blankItemNames: diagnostics.blankItemNames,
+    droppedItems: diagnostics.droppedItems.length,
+    dedupedItems: diagnostics.dedupedItems.length,
+    invalidNutritionFields: diagnostics.invalidNutritionFields.length,
+    emptyMeals: diagnostics.emptyMeals,
+    fallbackStationLabels: diagnostics.fallbackStationLabels,
+    totalItems: diagnostics.totalItems,
+    usableItems: diagnostics.usableItems,
+    itemsWithNutrition: diagnostics.itemsWithNutrition,
+    itemsWithoutNutrition: diagnostics.itemsWithoutNutrition,
+    parserWarnings: diagnostics.parserWarnings.length
+  };
+
+  console.info("[rutgers-provider] Normalization summary", summary);
+
   if (diagnostics.droppedItems.length > 0) {
     console.info("[rutgers-provider] Dropped live items", diagnostics.droppedItems.slice(0, 12));
   }
@@ -445,11 +461,7 @@ async function fetchJson<T>(url: string): Promise<T> {
     }
   }, NUTRISLICE_TIMEOUT_MS);
 
-  try {
-    return (await response.json()) as T;
-  } catch (error) {
-    throw new IngestionFailure(error instanceof SyntaxError ? "malformed_json" : "request_error");
-  }
+  return (await response.json()) as T;
 }
 
 async function fetchText(url: string): Promise<string> {
@@ -463,15 +475,7 @@ async function fetchText(url: string): Promise<string> {
     FOODPRONET_MENU_TIMEOUT_MS
   );
 
-  return readResponseText(response);
-}
-
-async function readResponseText(response: Response) {
-  try {
-    return await response.text();
-  } catch {
-    throw new IngestionFailure("request_error");
-  }
+  return await response.text();
 }
 
 async function fetchWithTimeout(url: string, init: RequestInit, timeoutMs: number) {
@@ -485,16 +489,16 @@ async function fetchWithTimeout(url: string, init: RequestInit, timeoutMs: numbe
     });
 
     if (!response.ok) {
-      throw new IngestionFailure("http_error", response.status);
+      throw new Error(`Request failed with ${response.status} for ${url}`);
     }
 
     return response;
   } catch (error) {
     if (controller.signal.aborted) {
-      throw new IngestionFailure("timeout");
+      throw new Error(`Request timed out after ${timeoutMs}ms for ${url}`);
     }
 
-    throw error instanceof IngestionFailure ? error : new IngestionFailure("request_error");
+    throw error;
   } finally {
     clearTimeout(timeout);
   }
@@ -559,7 +563,7 @@ async function fetchAtriumLabelPage(url: string) {
       FOODPRONET_LABEL_TIMEOUT_MS
     );
 
-    return readResponseText(response);
+    return await response.text();
   });
 }
 
@@ -633,46 +637,31 @@ async function getSchools() {
   return schools;
 }
 
-async function resolveSchool(hallId: DiningHallId, attempt: IngestionAttempt) {
+async function resolveSchool(hallId: DiningHallId) {
   const config = HALL_CONFIG[hallId];
 
   if (!config.schoolSlug && !config.fallbackSchoolId) {
-    attempt.schoolResolution = "unavailable";
-    addFailure(attempt, "school_mapping_missing", "schools");
     return null;
   }
 
-  let discoveryIssue = false;
   try {
-    const fromCache = Boolean(schoolCache && schoolCache.expiresAt > Date.now());
     const schools = await getSchools();
-    if (!Array.isArray(schools)) {
-      addFailure(attempt, "unexpected_shape", "schools");
-      discoveryIssue = true;
-    }
     const matchedSchool =
       schools.find((school) => school.slug === config.schoolSlug) ??
       schools.find((school) => school.id === config.fallbackSchoolId) ??
       schools.find((school) => school.name?.toLowerCase() === config.hallName.toLowerCase());
 
     if (matchedSchool) {
-      attempt.schoolResolution = fromCache ? "cached" : "discovered";
       return matchedSchool;
     }
   } catch (error) {
-    if (!discoveryIssue) addError(attempt, error, "schools", "parse_error");
-    discoveryIssue = true;
     logDevError(`Falling back to static school mapping for ${hallId}.`, error);
   }
 
   if (!config.fallbackSchoolId) {
-    attempt.schoolResolution = "unavailable";
-    if (!discoveryIssue) addFailure(attempt, "school_mapping_missing", "schools");
     return null;
   }
 
-  attempt.schoolResolution = "static_fallback";
-  if (!discoveryIssue) addFailure(attempt, "school_mapping_missing", "schools");
   return {
     id: config.fallbackSchoolId,
     name: config.hallName,
@@ -808,168 +797,136 @@ function parseAtriumMenuItems(
 async function fetchAtriumMealSection(
   date: string,
   mealType: MealType,
-  diagnostics: NormalizationDiagnostics,
-  detail: MealAttempt
+  diagnostics: NormalizationDiagnostics
 ): Promise<MealSection | null> {
   let html: string;
 
   try {
     html = await fetchAtriumMenuPage(date, mealType);
   } catch (error) {
-    detail.outcome = "failed";
-    addError(detail, error, "menu", "request_error");
     diagnostics.emptyMeals.push(mealType);
     logDevError(`Failed to fetch Atrium ${mealType} menu page.`, error);
     return null;
   }
 
-  try {
-    const context = validateAtriumMenuContext(html, date, mealType);
-    if ("reason" in context) {
-      detail.outcome = "rejected";
-      addFailure(detail, "context_rejected", "menu", null, context.reason);
-      diagnostics.emptyMeals.push(mealType);
-      diagnostics.parserWarnings.push({ mealType, message: `Atrium menu context rejected: ${context.reason}.` });
-      return null;
-    }
+  const parsedItems = parseAtriumMenuItems(html, mealType, diagnostics);
 
-    detail.normalizationStarted = true;
-    const parsedItems = parseAtriumMenuItems(context.menuHtml, mealType, diagnostics);
+  if (parsedItems.length === 0) {
+    diagnostics.emptyMeals.push(mealType);
+    return null;
+  }
 
-    if (parsedItems.length === 0) {
-      detail.normalizationCompleted = true;
-      detail.outcome = "empty";
-      detail.parsed = { stations: 0, items: 0 };
-      addFailure(detail, "no_items", "normalization");
-      diagnostics.emptyMeals.push(mealType);
-      return null;
-    }
+  const normalizedItems = await mapWithConcurrency(parsedItems, 6, async (parsedItem) => {
+    let labelDetails: AtriumLabelDetails | null = null;
 
-    const normalizedItems = await mapWithConcurrency(parsedItems, 6, async (parsedItem) => {
-      let labelDetails: AtriumLabelDetails | null = null;
-
-      if (parsedItem.labelUrl) {
-        detail.enrichment.attemptedItems += 1;
-        let parsingLabel = false;
-        try {
-          const labelHtml = await fetchAtriumLabelPage(parsedItem.labelUrl);
-          parsingLabel = true;
-          labelDetails = parseAtriumLabelNutrition(labelHtml, mealType, parsedItem.name, diagnostics);
-        } catch (error) {
-          detail.enrichment.failedItems += 1;
-          addError(detail.enrichment, error, "nutrition_label", parsingLabel ? "parse_error" : "request_error");
-          diagnostics.parserWarnings.push({
-            mealType,
-            message: `Could not load Atrium nutrition label for ${parsedItem.name}.`
-          });
-          logDevError(`Failed to fetch Atrium label for ${parsedItem.name}.`, error);
-        }
-      }
-
-      const stationName = sanitizeStationName(parsedItem.stationName, diagnostics);
-      const itemLooksCustom =
-        isCustomizableName(parsedItem.name) ||
-        isCustomizableName(stationName) ||
-        /\b(toppings|bases|sides)\b/i.test(stationName);
-      const nutrition = labelDetails?.nutrition ?? {
-        calories: 0,
-        protein: 0,
-        carbs: 0,
-        fat: 0,
-        sodium: 0,
-        sugar: 0
-      };
-      const shouldDeemphasizeNutrition = itemLooksCustom && !hasMeaningfulNutrition(nutrition);
-
-      return {
-        id: `atrium-${mealType}-${parsedItem.stationId}-${slugify(parsedItem.name)}`,
-        name: parsedItem.name,
-        stationId: parsedItem.stationId,
-        stationName,
-        hallId: "atrium" as const,
-        mealType,
-        servingSize: labelDetails?.servingSize ?? parsedItem.servingSize,
-        nutrition: shouldDeemphasizeNutrition
-          ? {
-              calories: 0,
-              protein: 0,
-              carbs: 0,
-              fat: 0,
-              sodium: 0,
-              sugar: 0
-            }
-          : nutrition,
-        description: shouldDeemphasizeNutrition ? "Nutrition varies based on your selections" : labelDetails?.description,
-        ingredients: labelDetails?.ingredients,
-        tags: itemLooksCustom
-          ? Array.from(new Set([...(parsedItem.tags ?? []), "custom", "build-your-own"]))
-          : parsedItem.tags,
-        imageUrl: null,
-        isCustom: shouldDeemphasizeNutrition || undefined,
-        available: true
-      } satisfies MenuItem;
-    });
-
-    const stationMap = new Map<string, Station>();
-    const stationOrder: string[] = [];
-    const dedupeKeys = new Set<string>();
-
-    for (const item of normalizedItems) {
-      diagnostics.totalItems += 1;
-      if (hasMeaningfulNutrition(item.nutrition)) {
-        diagnostics.itemsWithNutrition += 1;
-      } else {
-        diagnostics.itemsWithoutNutrition += 1;
-      }
-
-      if (hasMeaningfulNutrition(item.nutrition) || item.isCustom) {
-        diagnostics.usableItems += 1;
-      }
-
-      const dedupeKey = getDedupeKey(item);
-      if (dedupeKeys.has(dedupeKey)) {
-        diagnostics.dedupedItems.push({ mealType, name: item.name, stationName: item.stationName });
-        continue;
-      }
-      dedupeKeys.add(dedupeKey);
-
-      if (!stationMap.has(item.stationId)) {
-        stationMap.set(item.stationId, {
-          id: item.stationId,
-          name: item.stationName,
-          items: []
+    if (parsedItem.labelUrl) {
+      try {
+        const labelHtml = await fetchAtriumLabelPage(parsedItem.labelUrl);
+        labelDetails = parseAtriumLabelNutrition(labelHtml, mealType, parsedItem.name, diagnostics);
+      } catch (error) {
+        diagnostics.parserWarnings.push({
+          mealType,
+          message: `Could not load Atrium nutrition label for ${parsedItem.name}.`
         });
-        stationOrder.push(item.stationId);
+        logDevError(`Failed to fetch Atrium label for ${parsedItem.name}.`, error);
       }
-
-      stationMap.get(item.stationId)!.items.push(item);
     }
 
-    const stations = stationOrder
-      .map((stationId) => stationMap.get(stationId))
-      .filter((station): station is Station => Boolean(station))
-      .filter((station) => station.items.length > 0);
-
-    detail.normalizationCompleted = true;
-    if (stations.length === 0) {
-      detail.outcome = "empty";
-      detail.parsed = { stations: 0, items: 0 };
-      addFailure(detail, "no_items", "normalization");
-      diagnostics.emptyMeals.push(mealType);
-      return null;
-    }
+    const stationName = sanitizeStationName(parsedItem.stationName, diagnostics);
+    const itemLooksCustom =
+      isCustomizableName(parsedItem.name) ||
+      isCustomizableName(stationName) ||
+      /\b(toppings|bases|sides)\b/i.test(stationName);
+    const nutrition = labelDetails?.nutrition ?? {
+      calories: 0,
+      protein: 0,
+      carbs: 0,
+      fat: 0,
+      sodium: 0,
+      sugar: 0
+    };
+    const shouldDeemphasizeNutrition = itemLooksCustom && !hasMeaningfulNutrition(nutrition);
 
     return {
-      id: `atrium-${mealType}`,
-      type: mealType,
-      label: toMealLabel(mealType),
-      stations
-    };
-  } catch (error) {
-    addError(detail, error, detail.normalizationStarted ? "normalization" : "menu",
-      detail.normalizationStarted ? "parse_error" : "internal_error");
-    throw error;
+      id: `atrium-${mealType}-${parsedItem.stationId}-${slugify(parsedItem.name)}`,
+      name: parsedItem.name,
+      stationId: parsedItem.stationId,
+      stationName,
+      hallId: "atrium" as const,
+      mealType,
+      servingSize: labelDetails?.servingSize ?? parsedItem.servingSize,
+      nutrition: shouldDeemphasizeNutrition
+        ? {
+            calories: 0,
+            protein: 0,
+            carbs: 0,
+            fat: 0,
+            sodium: 0,
+            sugar: 0
+          }
+        : nutrition,
+      description: shouldDeemphasizeNutrition ? "Nutrition varies based on your selections" : labelDetails?.description,
+      ingredients: labelDetails?.ingredients,
+      tags: itemLooksCustom
+        ? Array.from(new Set([...(parsedItem.tags ?? []), "custom", "build-your-own"]))
+        : parsedItem.tags,
+      imageUrl: null,
+      isCustom: shouldDeemphasizeNutrition || undefined,
+      available: true
+    } satisfies MenuItem;
+  });
+
+  const stationMap = new Map<string, Station>();
+  const stationOrder: string[] = [];
+  const dedupeKeys = new Set<string>();
+
+  for (const item of normalizedItems) {
+    diagnostics.totalItems += 1;
+    if (hasMeaningfulNutrition(item.nutrition)) {
+      diagnostics.itemsWithNutrition += 1;
+    } else {
+      diagnostics.itemsWithoutNutrition += 1;
+    }
+
+    if (hasMeaningfulNutrition(item.nutrition) || item.isCustom) {
+      diagnostics.usableItems += 1;
+    }
+
+    const dedupeKey = getDedupeKey(item);
+    if (dedupeKeys.has(dedupeKey)) {
+      diagnostics.dedupedItems.push({ mealType, name: item.name, stationName: item.stationName });
+      continue;
+    }
+    dedupeKeys.add(dedupeKey);
+
+    if (!stationMap.has(item.stationId)) {
+      stationMap.set(item.stationId, {
+        id: item.stationId,
+        name: item.stationName,
+        items: []
+      });
+      stationOrder.push(item.stationId);
+    }
+
+    stationMap.get(item.stationId)!.items.push(item);
   }
+
+  const stations = stationOrder
+    .map((stationId) => stationMap.get(stationId))
+    .filter((station): station is Station => Boolean(station))
+    .filter((station) => station.items.length > 0);
+
+  if (stations.length === 0) {
+    diagnostics.emptyMeals.push(mealType);
+    return null;
+  }
+
+  return {
+    id: `atrium-${mealType}`,
+    type: mealType,
+    label: toMealLabel(mealType),
+    stations
+  };
 }
 
 function normalizeMealSection(
@@ -1143,59 +1100,28 @@ async function fetchMealSection(
   date: string,
   school: RutgersSchool,
   mealType: MealType,
-  diagnostics: NormalizationDiagnostics,
-  detail: MealAttempt
+  diagnostics: NormalizationDiagnostics
 ) {
   if (!school.id) {
-    detail.outcome = "failed";
-    addFailure(detail, "school_mapping_missing", "schools");
     return null;
   }
 
-  if (school.active_menu_types != null && !Array.isArray(school.active_menu_types)) {
-    addFailure(detail, "unexpected_shape", "schools");
-  }
   const menuTypeId = resolveMenuTypeId(school, mealType);
   const [year, month, day] = date.split("-");
   const url = `${NUTRISLICE_API_BASE}/weeks/school/${school.id}/menu-type/${menuTypeId}/${year}/${month}/${day}/`;
 
-  let shapeIssue = false;
-  let readingPayload = true;
   try {
     const payload = await fetchJson<RutgersWeekResponse>(url);
-    readingPayload = false;
-    // Observe the shape, but leave the existing find/normalization path and acceptance unchanged.
-    if (!payload || !Array.isArray(payload.days) || payload.days.some((day) => !day || typeof day.date !== "string")) {
-      shapeIssue = true;
-      addFailure(detail, "unexpected_shape", "menu");
-    }
     const requestedDay = payload.days?.find((menuDay) => menuDay.date === date);
 
     if (!requestedDay) {
-      detail.outcome = "failed";
-      if (!shapeIssue) addFailure(detail, "requested_date_missing", "menu");
       diagnostics.emptyMeals.push(mealType);
       debugLog(`No ${mealType} day matched ${date} for ${hallId}.`, { url });
       return null;
     }
 
-    if (requestedDay.menu_items != null && !Array.isArray(requestedDay.menu_items)) {
-      shapeIssue = true;
-      addFailure(detail, "unexpected_shape", "menu");
-    }
-    detail.normalizationStarted = true;
-    const section = normalizeMealSection(hallId, mealType, requestedDay, diagnostics);
-    detail.normalizationCompleted = true;
-    if (!section) {
-      detail.outcome = "empty";
-      detail.parsed = { stations: 0, items: 0 };
-      addFailure(detail, "no_items", "normalization");
-    }
-    return section;
+    return normalizeMealSection(hallId, mealType, requestedDay, diagnostics);
   } catch (error) {
-    detail.outcome = "failed";
-    if (!shapeIssue) addError(detail, error, detail.normalizationStarted ? "normalization" : "menu",
-      readingPayload ? "request_error" : "parse_error");
     diagnostics.emptyMeals.push(mealType);
     logDevError(`Failed to fetch ${mealType} menu for ${hallId}.`, error);
     return null;
@@ -1247,28 +1173,26 @@ function isMeaningfullyUsableMenu(meals: MealSection[], diagnostics: Normalizati
     return false;
   }
 
-  // Conservative usability check: treat live data as unusable only when normalization leaves almost
+  // Conservative fallback: treat live data as unusable only when normalization leaves almost
   // nothing to show. A single well-formed meal or a couple of trustworthy/custom items still render.
   return trustworthyItemCount >= MIN_MEANINGFUL_ITEM_COUNT || meals.length >= 2;
 }
 
-async function loadDailyMenu(
-  hallId: DiningHallId, date: string, diagnostics: NormalizationDiagnostics, attempt: IngestionAttempt
-): Promise<DailyMenu | null> {
+async function loadDailyMenu(hallId: DiningHallId, date: string): Promise<DailyMenu | null> {
   if (hallId === "atrium") {
+    const diagnostics = createDiagnostics();
     const mealSections = (
       await Promise.all([
-        trackMeal(attempt, "breakfast", () => fetchAtriumMealSection(date, "breakfast", diagnostics, attempt.meals.breakfast)),
-        trackMeal(attempt, "lunch", () => fetchAtriumMealSection(date, "lunch", diagnostics, attempt.meals.lunch)),
-        trackMeal(attempt, "dinner", () => fetchAtriumMealSection(date, "dinner", diagnostics, attempt.meals.dinner))
+        fetchAtriumMealSection(date, "breakfast", diagnostics),
+        fetchAtriumMealSection(date, "lunch", diagnostics),
+        fetchAtriumMealSection(date, "dinner", diagnostics)
       ])
     ).filter((meal): meal is MealSection => Boolean(meal));
 
-    logNormalizationDiagnostics(diagnostics);
+    logNormalizationDiagnostics(hallId, date, diagnostics);
 
     if (!isMeaningfullyUsableMenu(mealSections, diagnostics)) {
-      if (mealSections.length > 0) addFailure(attempt, "unusable_menu", "normalization");
-      debugLog(`Atrium live menu for ${date} was not usable after parsing; returning unavailable.`, {
+      debugLog(`Atrium live menu for ${date} was not usable after parsing; falling back to mock data.`, {
         mealCount: mealSections.length,
         usableItems: diagnostics.usableItems,
         totalItems: diagnostics.totalItems
@@ -1287,26 +1211,26 @@ async function loadDailyMenu(
   }
 
   const hallConfig = HALL_CONFIG[hallId];
-  const school = await resolveSchool(hallId, attempt);
+  const school = await resolveSchool(hallId);
 
   if (!school) {
-    debugLog(`No live school mapping available for ${hallId}; returning unavailable.`);
+    debugLog(`No live school mapping available for ${hallId}; returning null so mock fallback can take over.`);
     return null;
   }
 
+  const diagnostics = createDiagnostics();
   const mealSections = (
     await Promise.all([
-      trackMeal(attempt, "breakfast", () => fetchMealSection(hallId, date, school, "breakfast", diagnostics, attempt.meals.breakfast)),
-      trackMeal(attempt, "lunch", () => fetchMealSection(hallId, date, school, "lunch", diagnostics, attempt.meals.lunch)),
-      trackMeal(attempt, "dinner", () => fetchMealSection(hallId, date, school, "dinner", diagnostics, attempt.meals.dinner))
+      fetchMealSection(hallId, date, school, "breakfast", diagnostics),
+      fetchMealSection(hallId, date, school, "lunch", diagnostics),
+      fetchMealSection(hallId, date, school, "dinner", diagnostics)
     ])
   ).filter((meal): meal is MealSection => Boolean(meal));
 
-  logNormalizationDiagnostics(diagnostics);
+  logNormalizationDiagnostics(hallId, date, diagnostics);
 
   if (!isMeaningfullyUsableMenu(mealSections, diagnostics)) {
-    if (mealSections.length > 0) addFailure(attempt, "unusable_menu", "normalization");
-    debugLog(`Live menu for ${hallId} on ${date} was not usable after normalization; returning unavailable.`, {
+    debugLog(`Live menu for ${hallId} on ${date} was not usable after normalization; falling back to mock data.`, {
       mealCount: mealSections.length,
       usableItems: diagnostics.usableItems,
       totalItems: diagnostics.totalItems
@@ -1324,37 +1248,6 @@ async function loadDailyMenu(
   };
 }
 
-async function loadDailyMenuWithSummary(hallId: DiningHallId, date: string) {
-  const attempt = createIngestionAttempt(hallId, date);
-  const diagnostics = createDiagnostics();
-  let menu: DailyMenu | null = null;
-  let failed = false;
-  try {
-    menu = await loadDailyMenu(hallId, date, diagnostics, attempt);
-    return menu;
-  } catch (error) {
-    failed = true;
-    if (!Object.values(attempt.meals).some((meal) => meal.outcome === "failed" && meal.failures.length > 0)) {
-      addError(attempt, error, "ingestion");
-    }
-    throw error;
-  } finally {
-    finishIngestionAttempt(attempt, menu, failed, () => ({
-      processedItemsBeforeDedup: diagnostics.totalItems,
-      droppedItems: diagnostics.droppedItems.length,
-      deduplicatedItems: diagnostics.dedupedItems.length,
-      itemsWithMeaningfulNutritionBeforeDedup: diagnostics.itemsWithNutrition,
-      itemsWithoutMeaningfulNutritionBeforeDedup: diagnostics.itemsWithoutNutrition,
-      meaningfulOrCustomItemsBeforeDedup: diagnostics.usableItems,
-      blankStationHeaders: diagnostics.blankStationHeaders,
-      blankItemNames: diagnostics.blankItemNames,
-      fallbackStationLabels: diagnostics.fallbackStationLabels,
-      invalidNutritionFields: diagnostics.invalidNutritionFields.length,
-      parserWarnings: diagnostics.parserWarnings.length - Object.values(attempt.meals).reduce((sum, meal) => sum + meal.enrichment.failedItems, 0)
-    }));
-  }
-}
-
 export const rutgersMenuProvider: MenuProvider = {
   async getDailyMenu(hallId, date) {
     const cacheKey = `${hallId}:${date}`;
@@ -1370,7 +1263,7 @@ export const rutgersMenuProvider: MenuProvider = {
       promise: Promise.resolve(null)
     };
 
-    const promise = loadDailyMenuWithSummary(hallId, date)
+    const promise = loadDailyMenu(hallId, date)
       .then((menu) => {
         cacheEntry.expiresAt = Date.now() + (menu ? CACHE_TTL_MS : FAILED_CACHE_TTL_MS);
         return menu;
@@ -1429,7 +1322,7 @@ export async function debugInspectRutgersDailyMenu(hallId: DiningHallId, date: s
 }
 
 // TODO: Nutrislice and FoodProNet request budgets are intentionally short so the app can
-// return unavailable quickly instead of hanging. Revisit timeout values if Rutgers publishes a more
+// fall back quickly instead of hanging. Revisit timeout values if Rutgers publishes a more
 // reliable, lower-latency source or if deploy telemetry shows systematic false timeouts.
 
 // TODO: Atrium does not currently appear in Rutgers' public Nutrislice school index.

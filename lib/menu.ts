@@ -1,4 +1,5 @@
-import { diningHalls } from "@/lib/dining-halls";
+import { dailyMenus, diningHalls } from "@/lib/mock-data";
+import { mockMenuProvider } from "@/lib/providers/mock-provider";
 import { rutgersMenuProvider } from "@/lib/providers/rutgers-provider";
 import { DailyMenu, DiningHall, DiningHallId, MealSection, MenuItem, MealType } from "@/lib/types";
 
@@ -10,12 +11,28 @@ export function getDiningHall(hallId: string): DiningHall | null {
   return diningHalls.find((hall) => hall.id === hallId) ?? null;
 }
 
+export function getHallMenu(hallId: DiningHallId): DailyMenu | null {
+  return dailyMenus.find((menu) => menu.hallId === hallId) ?? null;
+}
+
 export async function getHallMenuForDate(hallId: DiningHallId, date: string): Promise<DailyMenu | null> {
   try {
-    return await rutgersMenuProvider.getDailyMenu(hallId, date);
+    const liveMenu = await rutgersMenuProvider.getDailyMenu(hallId, date);
+
+    if (liveMenu) {
+      return liveMenu;
+    }
   } catch (error) {
     if (process.env.NODE_ENV !== "production") {
-      console.error(`[menu] Rutgers menu retrieval failed for ${hallId} on ${date}. Menu unavailable.`, error);
+      console.error(`[menu] Live Rutgers menu failed for ${hallId} on ${date}. Falling back to mock data.`, error);
+    }
+  }
+
+  try {
+    return await mockMenuProvider.getDailyMenu(hallId, date);
+  } catch (error) {
+    if (process.env.NODE_ENV !== "production") {
+      console.error(`[menu] Mock fallback failed for ${hallId} on ${date}.`, error);
     }
 
     return null;

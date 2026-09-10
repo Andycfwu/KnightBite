@@ -9,14 +9,13 @@ import { UserPreferencesProvider } from "@/hooks/useUserPreferences";
 
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const hasStationMap = pathname === "/hall/livingston" || pathname === "/hall/busch" || pathname === "/hall/neilson" || pathname === "/hall/atrium";
   const showTabBar = pathname === "/" || pathname === "/plate" || pathname === "/profile";
 
   return (
     <UserPreferencesProvider>
       <PlateProvider>
         <div className="min-h-screen bg-[#e5e6e8] px-0 py-0 sm:px-6 sm:py-8">
-          <div className={hasStationMap ? "mx-auto min-h-screen w-full max-w-[1180px] bg-[var(--livi-paper)] sm:min-h-[860px] sm:rounded-[28px] sm:border sm:border-white/80 sm:shadow-[0_24px_80px_rgba(23,23,23,0.07)]" : "mx-auto min-h-screen w-full max-w-[430px] overflow-hidden bg-[#f7f7f4] sm:min-h-[860px] sm:rounded-[38px] sm:border sm:border-white/80 sm:shadow-[0_28px_70px_rgba(23,23,23,0.16)]"}>
+          <div className="mx-auto min-h-screen w-full max-w-[430px] overflow-hidden bg-[#f7f7f4] sm:min-h-[860px] sm:rounded-[38px] sm:border sm:border-white/80 sm:shadow-[0_28px_70px_rgba(23,23,23,0.16)]">
             <div
               className={`px-5 pt-[calc(env(safe-area-inset-top)+1.25rem)] sm:px-7 ${
                 showTabBar

@@ -22,5 +22,5 @@ export default async function HallPage({ params }: HallPageProps) {
   const todayIso = getTodayIsoDate();
   const menu = await getHallMenuForDate(hall.id as DiningHallId, todayIso);
 
-  return <HallMenuView hall={hall} menu={menu} requestedDate={todayIso} />;
+  return <HallMenuView hall={hall} menu={menu} />;
 }

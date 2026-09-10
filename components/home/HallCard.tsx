@@ -8,7 +8,6 @@ import { cn } from "@/lib/utils";
 
 export type HallCardStatus = {
   state: "open" | "closed";
-  menuConfirmed: boolean;
   mealLabel?: string;
   detail: string;
   updatedLabel?: string;
@@ -55,7 +54,7 @@ export function HallCard({ hall, href, status }: HallCardProps) {
 
           {isOpen ? (
             <>
-              <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1">
+              <div className="mt-3 flex items-center gap-3">
                 <span className="text-[1.05rem] font-semibold text-ink">{status?.mealLabel ?? "Serving now"}</span>
                 {status?.sourceLabel ? <span className="text-sm text-ink/42">{status.sourceLabel}</span> : null}
               </div>
@@ -65,7 +64,6 @@ export function HallCard({ hall, href, status }: HallCardProps) {
           ) : (
             <div className="mt-auto pt-4">
               <p className="text-[1.15rem] leading-tight text-ink/88">{status?.detail ?? "Check today’s menu"}</p>
-              {status?.sourceLabel ? <p className="mt-3 text-sm text-ink/42">{status.sourceLabel}</p> : null}
             </div>
           )}
         </div>
