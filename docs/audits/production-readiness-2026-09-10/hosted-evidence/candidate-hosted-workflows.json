@@ -1,0 +1,169 @@
+{
+  "commit": "8f6b6230b724d4ff8df0aef90c0067bc6de019a7",
+  "deploymentId": "dpl_C8H7wuyE6saK1Uj9YzuMhwNrPGiE",
+  "window": "2026-09-10T22:56:50Z to 23:02:07Z",
+  "browser": "Authenticated Codex in-app browser; exact engine version not exposed by available UI API",
+  "analytics": {
+    "suppression": "Preview server component omits SDK",
+    "observedAnalyticsScriptElements": 0,
+    "capturedBrowserErrorsOrWarnings": [],
+    "syntheticEventsDelivered": 0,
+    "limitations": "No browser network interception/complete network trace available; source guard plus offline fail-on-any-transport tests, and hosted absence of SDK elements. Production analytics settings untouched."
+  },
+  "observations": [
+    {
+      "case": "Actual Atrium success (partial)",
+      "result": "pass",
+      "route": "/hall/atrium",
+      "requestedDate": "2026-09-10",
+      "header": "Thursday, September 10",
+      "retrievedLabel": "6:56 PM",
+      "availableMeal": "Breakfast",
+      "fullMenuArticles": 237,
+      "mapGroupCounts": [
+        31,
+        77,
+        35,
+        29,
+        35,
+        1,
+        29
+      ],
+      "nutrition": "incomplete or variable; no numeric nutrients on returned Atrium cards",
+      "sampleOrBackup": false
+    },
+    {
+      "case": "Actual Atrium unavailable during normal navigation",
+      "result": "pass",
+      "route": "/hall/atrium",
+      "header": "Thursday, September 10",
+      "status": "Menu status unavailable",
+      "message": "We couldn\u2019t load a menu for this hall for today. Try another hall or check back later.",
+      "articles": 0,
+      "retrievedLabelPresent": false,
+      "sampleOrBackup": false,
+      "modes": [
+        "map",
+        "full list"
+      ],
+      "note": "Existing real Busch plate items survived client navigation. No provider failure was injected. Exact request-to-attempt causality is not established; caching/prefetch applies."
+    },
+    {
+      "case": "Atrium unknown/variable plate",
+      "result": "pass",
+      "items": [
+        "BUFFALO CHICKEN PIZZA, 1 SLICE",
+        "BREADED CHICKEN BREAST, 4 OZ"
+      ],
+      "total": "Unknown",
+      "quantitySequence": "1 -> 2 -> 1; variable item removed; no invented zero"
+    },
+    {
+      "case": "Keyboard drawer",
+      "result": "pass",
+      "focusCycle": [
+        "Clear",
+        "Remove pizza",
+        "Decrease pizza",
+        "Increase pizza",
+        "Remove chicken",
+        "Decrease chicken",
+        "Increase chicken",
+        "Close plate"
+      ],
+      "reverseFromClose": "Increase chicken",
+      "escapeFocus": "View your plate",
+      "nativeDialogOpenObserved": true,
+      "note": "Initial containment selector mistakenly checked only role attribute; corrected read verified native DIALOG containment. Not VoiceOver evidence."
+    },
+    {
+      "case": "Plate and preference lifetime",
+      "result": "pass",
+      "navigation": "Atrium -> profile retained 1 plate item; reload changed plate to 0",
+      "preferences": "Initial preferences were session defaults. Keyboard Space on Vegan saved; reload retained checked state. Only test preferences were cleared using Clear local data."
+    },
+    {
+      "case": "Busch known/unknown arithmetic",
+      "result": "pass",
+      "menuArticles": 88,
+      "knownItem": "PLAIN BAGELS, 1 each: 323 kcal, 13g protein, 70g carbs, 1.5g fat",
+      "unknownItem": "ASSORTED BAGELS, 1 each",
+      "oneKnownPlusUnknown": "Known subtotal 323 kcal; unknown row remains Unknown",
+      "twoKnownPlusUnknown": "Known subtotal 646 kcal, 26g protein, 140g carbs, 3g fat",
+      "suppliedZeroPresentation": "CHICKEN SAUSAGE PATTY: 0g carbs; HARD BOILED EGGS: 0g carbs",
+      "note": "Presentation and arithmetic verified; no independent source-label nutrient certification. No differing portion sizes found among duplicate names in observed Busch breakfast, so that hosted case remains unavailable; offline portion regressions passed."
+    },
+    {
+      "case": "Responsive navigation",
+      "result": "pass",
+      "busch375": "Explore -> Menu -> My plate -> Escape -> Halls -> homepage",
+      "atrium320": "Map -> Menu -> My plate -> Clear -> Escape; no horizontal document overflow",
+      "documentWidths": [
+        {
+          "client": 375,
+          "scroll": 375
+        },
+        {
+          "client": 320,
+          "scroll": 320
+        }
+      ],
+      "viewportRestored": true
+    },
+    {
+      "case": "Hosted controlled date boundary",
+      "result": "pass",
+      "route": "/preview-check/unavailable",
+      "utcReference": "2026-09-11T00:30:00Z",
+      "requestedRutgersDate": "2026-09-10",
+      "display": "Thursday, September 10",
+      "items": 0,
+      "note": "Explicitly labeled controlled null-menu component rendering. Does not time-travel the real provider or certify a real midnight rollover."
+    },
+    {
+      "case": "Homepage confirmation wording",
+      "result": "pass",
+      "observed": "4 menus confirmed for today; hours independently labeled typical/unverified",
+      "note": "No all-unknown homepage was observed in this window; controlled offline deadline/mixed tests remain separate."
+    }
+  ],
+  "upstreamObservations": [
+    {
+      "hall": "atrium",
+      "attemptStarted": "2026-09-10T22:56:13.838Z",
+      "durationMs": 37763,
+      "outcome": "partial",
+      "returned": {
+        "meals": 1,
+        "stations": 11,
+        "items": 237
+      },
+      "failures": {
+        "lunchMenu": "timeout",
+        "dinnerMenu": "timeout",
+        "nutritionLabels": {
+          "attempted": 6,
+          "failed": 6,
+          "skipped": 232
+        }
+      },
+      "normalization": {
+        "processed": 238,
+        "dropped": 0,
+        "deduplicated": 1
+      },
+      "note": "Provider daily-attempt duration differs from 15-second application display deadline. Shared/background work can complete later."
+    },
+    {
+      "hall": "neilson",
+      "attemptStarted": "2026-09-10T22:56:14.291Z",
+      "durationMs": 1162,
+      "outcome": "success",
+      "returned": {
+        "meals": 3,
+        "stations": 44,
+        "items": 355
+      }
+    }
+  ]
+}

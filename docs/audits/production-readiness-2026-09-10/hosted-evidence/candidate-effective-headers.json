@@ -1,0 +1,59 @@
+{
+  "commit": "8f6b6230b724d4ff8df0aef90c0067bc6de019a7",
+  "method": "Authenticated browser application HeaderProbe same-origin GET; selected public headers transcribed from DOM; no cookies or auth copied",
+  "rows": [
+    {
+      "path": "/profile",
+      "observedAt": "2026-09-10T22:56:56.099Z",
+      "status": 200,
+      "headers": {
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'  https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://vitals.vercel-insights.com",
+        "x-frame-options": "DENY",
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "age": "0",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "x-vercel-cache": "PRERENDER",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload"
+      }
+    },
+    {
+      "path": "/_next/static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "observedAt": "2026-09-10T22:56:56.101Z",
+      "status": 200,
+      "headers": {
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'  https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://vitals.vercel-insights.com",
+        "x-frame-options": "DENY",
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "age": "0",
+        "cache-control": "public,max-age=31536000,immutable",
+        "x-vercel-cache": "MISS",
+        "strict-transport-security": null
+      }
+    },
+    {
+      "path": "/hall/atrium",
+      "observedAt": "2026-09-10T22:57:03.296Z",
+      "status": 200,
+      "headers": {
+        "content-security-policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'  https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://vitals.vercel-insights.com",
+        "x-frame-options": "DENY",
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "age": "0",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "x-vercel-cache": "MISS",
+        "strict-transport-security": "max-age=63072000; includeSubDomains; preload"
+      }
+    }
+  ],
+  "limits": [
+    "The static asset response did not expose HSTS in this observation; document responses did",
+    "HTTP 200 and headers do not establish live menu availability",
+    "Cache observations do not prove every edge location or TTL cycle"
+  ]
+}
