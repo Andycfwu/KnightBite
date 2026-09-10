@@ -1,0 +1,18 @@
+Authenticated Vercel Preview build log excerpts, read September 10, 2026, 21:42–21:44 UTC. Excerpts are selected observations, not a complete downloaded log.
+Deployment: dpl_DF9WnSqFv7b2uYcV2hnyo5rSpHsk
+Cloning github.com/Andycfwu/KnightBite (Branch: codex/release-readiness-2026-09-10, Commit: bb7007d)
+Restored build cache from previous deployment (BT9hARabzozdRpqMutPju4P2xF5F)
+Running "vercel build"
+Vercel CLI 59.11.7
+Installing dependencies...
+npm warn EBADENGINE Unsupported engine {
+  package: knightbite@0.1.0
+  required: { node: >=24.21.0 <25 }
+  current: { node: v24.19.0, npm: 11.17.0 }
+}
+npm warn allow-scripts: esbuild@0.28.2 (postinstall: node install.js) not yet covered by allowScripts
+Detected Next.js version: 15.5.25
+Running "npm run build"
+Next.js 15.5.25
+Warning: The Next.js plugin was not detected in your ESLint configuration.
+UI result: Ready; Preview; duration 48s; completed September 10, 2026, 5:32:24 PM EDT.

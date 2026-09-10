@@ -1,0 +1,41 @@
+{
+  "observedAt": "2026-09-10T22:13:51.682368+00:00",
+  "method": "Authenticated dashboard read; no setting mutation",
+  "project": "knight-bite",
+  "team": "andycfwus-projects",
+  "plan": "Hobby",
+  "nodeMajor": "24.x",
+  "availableNodeMajors": [
+    "24.x",
+    "22.x",
+    "20.x"
+  ],
+  "requiredDeploymentCheck": {
+    "name": "KnightBite release verification",
+    "integration": "GitHub",
+    "environment": "Production",
+    "behavior": "Blocking"
+  },
+  "production": {
+    "domain": "knightbitenb.vercel.app",
+    "deploymentId": "dpl_BT9hARabzozdRpqMutPju4P2xF5F",
+    "commit": "70166c4fd04bb0d5ca25b792283924eff36c1f31",
+    "status": "Ready"
+  },
+  "teamTwoFactorEnforcement": true,
+  "requireVerifiedCommits": false,
+  "ipVisibility": {
+    "dashboard": true,
+    "drains": true
+  },
+  "sources": [
+    "https://vercel.com/andycfwus-projects/knight-bite",
+    "https://vercel.com/andycfwus-projects/knight-bite/settings/build-and-deployment",
+    "https://vercel.com/andycfwus-projects/~/settings/security"
+  ],
+  "limits": [
+    "Build patch is distinct from function patch",
+    "Production check lifecycle has not been exercised",
+    "New Dependabot security PR Previews were observed; they were not promoted or modified"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "observedBeforeProtectionAt": "2026-09-10T21:35:44.072332+00:00",
+  "pushRun": {
+    "conclusion": "success",
+    "event": "push",
+    "head_sha": "bb7007d13221c8cf34494495a642053b03eaf037",
+    "html_url": "https://github.com/Andycfwu/KnightBite/actions/runs/34532667740",
+    "id": 34532667740,
+    "run_started_at": "2026-09-10T21:31:38Z",
+    "status": "completed",
+    "updated_at": "2026-09-10T21:34:04Z"
+  },
+  "check": {
+    "app": {
+      "id": 15368,
+      "slug": "github-actions"
+    },
+    "conclusion": "success",
+    "head_sha": "bb7007d13221c8cf34494495a642053b03eaf037",
+    "html_url": "https://github.com/Andycfwu/KnightBite/actions/runs/34532667740/job/103056890029",
+    "id": 103056890029,
+    "name": "KnightBite release verification",
+    "status": "completed"
+  }
+}

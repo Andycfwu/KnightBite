@@ -1,0 +1,11 @@
+{
+  "observedAt": "2026-09-10T22:22:27.914331+00:00",
+  "url": "https://knight-bite-akihgkvtt-andycfwus-projects.vercel.app/profile",
+  "method": "HEAD, no redirects, no cookies or credentials supplied or stored",
+  "status": 302,
+  "redirectOrigin": "https://vercel.com",
+  "redirectPath": "/sso-api",
+  "applicationHeadersVerified": false,
+  "analyticsEventsSent": 0,
+  "note": "Vercel SSO redirect; response is not the application or its effective headers. All cookies and redirect query data discarded."
+}

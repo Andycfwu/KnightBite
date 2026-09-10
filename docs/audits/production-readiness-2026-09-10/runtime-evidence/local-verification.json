@@ -1,0 +1,51 @@
+{
+  "observedAt": "2026-09-10T22:16:46.573362+00:00",
+  "applicationCandidate": "f7b70d32bbace6d85602eef21a2e81a590c0c91e",
+  "sourceDigest": "b043360c2c677806cf2575ca551a2149fe330d3174a5df5b4803d1ed79cd079f",
+  "commands": [
+    {
+      "runtime": "24.19.0",
+      "command": "npm run check",
+      "exitCode": 0,
+      "unitTests": 245,
+      "browserTests": 22,
+      "typecheck": "pass",
+      "lint": "pass",
+      "isolatedProductionBuild": "pass"
+    },
+    {
+      "runtime": "24.21.0",
+      "command": "npm run check",
+      "exitCode": 0,
+      "unitTests": 245,
+      "browserTests": 22,
+      "typecheck": "pass",
+      "lint": "pass",
+      "isolatedProductionBuild": "pass"
+    }
+  ],
+  "otherChecks": {
+    "npmCi": "pass",
+    "npmAudit": "0 vulnerabilities",
+    "actionlint": "pass",
+    "gitDiffCheck": "pass",
+    "capturedPlatformScript": {
+      "tests": 4,
+      "passed": 4,
+      "deliveredAnalyticsEvents": 0,
+      "sha256": "0bd2ad276f13ba1712f7444a40f1313df6399b920a64ede78922deeddc5d3408"
+    }
+  },
+  "applicationDirectoriesUnchangedFrom": "bb7007d13221c8cf34494495a642053b03eaf037",
+  "initialHarnessCorrections": [
+    "Avoid merging two webServer entries on one port",
+    "Use observed mobile navigation and scope text to accessible main during React streaming",
+    "Preserve Date.UTC and Date.parse as own statics for the Next request Date wrapper"
+  ],
+  "limits": [
+    "No live provider requests in tests",
+    "Captured platform script is earlier September 10 evidence, not a new remote Preview script capture",
+    "Browser tests are local isolated artifacts; not authenticated remote Preview workflow evidence",
+    "WebKit is not manual Safari/VoiceOver"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "approvedAt": "User authorization in current conversation, September 10, 2026",
+  "recordedAt": "2026-09-10T21:31:06.100327+00:00",
+  "approvedCommit": "bb7007d13221c8cf34494495a642053b03eaf037",
+  "branch": "codex/release-readiness-2026-09-10",
+  "actions": [
+    "Publish exact approved commit",
+    "Create draft PR",
+    "Observe actual successful candidate check before requiring it",
+    "Apply temporary zero-approval main protection with all other proposed controls",
+    "Configure named Vercel GitHub Deployment Check",
+    "Enable Dependabot alerts/security updates",
+    "Recheck all members have 2FA and enforce team 2FA"
+  ],
+  "acceptedSideEffect": "Automatic Vercel Preview deployment from publication",
+  "prohibited": [
+    "Merge",
+    "Production deployment",
+    "Promote or Force Promote",
+    "Read/request/expose authentication secrets"
+  ],
+  "versionUpdates": "Weekly Dependabot config remains inactive until separately approved merge to default branch"
+}
