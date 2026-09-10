@@ -1,0 +1,29 @@
+{
+  "observedAt": "2026-09-10T22:55:14.117398+00:00",
+  "method": "Authenticated Vercel UI read-only",
+  "nodeMajor": "24.x",
+  "availableMajors": [
+    "24.x",
+    "22.x",
+    "20.x"
+  ],
+  "requiredDeploymentCheck": {
+    "name": "KnightBite release verification",
+    "provider": "GitHub",
+    "environment": "Production",
+    "behavior": "Blocking"
+  },
+  "teamTwoFactorEnforcement": true,
+  "ipVisibility": {
+    "dashboard": true,
+    "drains": true
+  },
+  "deploymentRetentionDays": {
+    "production": 30,
+    "preproduction": 30,
+    "error": 30,
+    "cancelled": 30
+  },
+  "productionGateLifecycle": "unexercised",
+  "settingsChanged": false
+}

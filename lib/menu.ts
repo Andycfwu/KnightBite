@@ -1,5 +1,6 @@
 import { diningHalls } from "@/lib/dining-halls";
 import { rutgersMenuProvider } from "@/lib/providers/rutgers-provider";
+import { reportPreviewMenuRuntime } from "@/lib/preview-runtime";
 import { DailyMenu, DiningHall, DiningHallId } from "@/lib/types";
 
 export function getDiningHalls(): DiningHall[] {
@@ -11,6 +12,7 @@ export function getDiningHall(hallId: string): DiningHall | null {
 }
 
 export async function getHallMenuForDate(hallId: DiningHallId, date: string): Promise<DailyMenu | null> {
+  reportPreviewMenuRuntime();
   let timeout: ReturnType<typeof setTimeout> | undefined;
   try {
     // Bound the caller's wait even if an upstream operation stops making progress.

@@ -11,8 +11,9 @@
     "typecheck": "next typegen && tsc --noEmit --incremental false",
     "test:browser": "playwright test && playwright test --config playwright.unavailable.config.ts",
     "build:isolated": "node scripts/isolated-build.mjs",
-    "check": "npm test && npm run typecheck && npm run lint && npm run build:isolated && npm run test:browser",
-    "prebuild": "node scripts/verify-runtime.mts"
+    "check": "npm test && npm run typecheck && npm run lint && npm run build:isolated && npm run test:browser && npm run check:preview",
+    "prebuild": "node scripts/verify-runtime.mts",
+    "check:preview": "node scripts/preview-verification.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

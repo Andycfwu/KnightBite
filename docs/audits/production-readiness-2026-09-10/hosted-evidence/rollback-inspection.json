@@ -1,0 +1,16 @@
+{
+  "observedAt": "2026-09-10T22:52:20.657075+00:00",
+  "method": "Authenticated Vercel project Overview > Rollback selection; Cancel clicked, Continue never clicked",
+  "project": "knight-bite",
+  "plan": "Hobby",
+  "currentDeployment": "dpl_BT9hARabzozdRpqMutPju4P2xF5F",
+  "currentCommit": "70166c4fd04bb0d5ca25b792283924eff36c1f31",
+  "onlyOfferedPreviousDeployment": "dpl_Cw8UgwpjjaqwStBK9FTqus6tn33D",
+  "onlyOfferedPreviousCommit": "906b5fd20433acb16b848a3eaf536cba9795a47b",
+  "onlyOfferedPreviousUrl": "https://knight-bite-dqu0tge2u-andycfwus-projects.vercel.app",
+  "previousResolvedNext": "15.5.15",
+  "previousResolvedSharp": "0.34.5",
+  "previousFunctionPatch": "not independently established; target rejected as pre-remediation regardless",
+  "eligiblePatchedInstantRollbackTarget": null,
+  "productionChanged": false
+}

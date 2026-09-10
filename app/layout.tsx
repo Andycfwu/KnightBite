@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Analytics } from "@vercel/analytics/next";
+import { DeploymentAnalytics } from "@/components/layout/DeploymentAnalytics";
 
 import { AppShell } from "@/components/layout/AppShell";
 import "./globals.css";
@@ -18,7 +18,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="en">
       <body>
         <AppShell>{children}</AppShell>
-        {process.env.NEXT_PUBLIC_ANALYTICS_DISABLED !== "1" ? <Analytics /> : null}
+        <DeploymentAnalytics />
       </body>
     </html>
   );

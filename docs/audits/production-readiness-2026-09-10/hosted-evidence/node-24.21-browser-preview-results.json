@@ -1,0 +1,247 @@
+{
+  "config": {
+    "argv": [
+      "/private/tmp/node-v24.21.0-darwin-arm64/bin/node",
+      "/Users/andywu/Desktop/Codex/Nutrition-release-readiness/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "playwright.preview.config.ts"
+    ],
+    "configFile": "/Users/andywu/Desktop/Codex/Nutrition-release-readiness/playwright.preview.config.ts",
+    "rootDir": "/Users/andywu/Desktop/Codex/Nutrition-release-readiness/tests/browser-preview",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/andywu/Desktop/Codex/Nutrition-release-readiness/test-results/playwright-preview",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/andywu/Desktop/Codex/Nutrition-release-readiness/tests/browser-preview",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/andywu/Desktop/Codex/Nutrition-release-readiness/test-results/playwright-preview",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/andywu/Desktop/Codex/Nutrition-release-readiness/tests/browser-preview",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/browser-preview-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "node scripts/synthetic-server.mjs",
+      "url": "http://127.0.0.1:3217/preview-check",
+      "reuseExistingServer": false,
+      "timeout": 30000,
+      "env": {
+        "VERCEL_ENV": "preview"
+      }
+    }
+  },
+  "suites": [
+    {
+      "title": "verification.spec.ts",
+      "file": "verification.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Preview omits analytics on dynamic and static routes and reports runtime/effective headers",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 692,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-10T22:51:52.525Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5dbceb02ef26bd154034-da51e1a5805e09b5d92f",
+          "file": "verification.spec.ts",
+          "line": 14,
+          "column": 5
+        },
+        {
+          "title": "hosted-check route renders an explicitly controlled unavailable Rutgers date without food",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 330,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-10T22:51:53.783Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5dbceb02ef26bd154034-ecc5f00f0b009f6e01d2",
+          "file": "verification.spec.ts",
+          "line": 37,
+          "column": 5
+        },
+        {
+          "title": "Preview omits analytics on dynamic and static routes and reports runtime/effective headers",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4333,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-10T22:51:54.348Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5dbceb02ef26bd154034-e671e795178f8919b52a",
+          "file": "verification.spec.ts",
+          "line": 14,
+          "column": 5
+        },
+        {
+          "title": "hosted-check route renders an explicitly controlled unavailable Rutgers date without food",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 683,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-10T22:52:01.840Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5dbceb02ef26bd154034-1c90f640ac35f0ceb062",
+          "file": "verification.spec.ts",
+          "line": 37,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-10T22:51:51.793Z",
+    "duration": 10981.565999999999,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

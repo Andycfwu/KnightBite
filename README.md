@@ -62,8 +62,9 @@ Use the Node 24 LTS version in `.nvmrc` (24.21.0 for this pass), then `npm ci`. 
 - `npm run lint`: noninteractive ESLint; warnings fail the check.
 - `npm run build:isolated`: copy current source to a temporary directory, perform a clean locked install, and run `npm run build` plus types there. No `.env` files or development `.next` are copied. Outbound fetch/HTTP is blocked during the build and Next telemetry is disabled. The artifact includes the normal analytics-enabled bundle. A build does not prove live Rutgers availability.
 - `npx playwright install chromium webkit`, then `npm run test:browser`: serve that isolated production artifact on loopback port 3217 with a test-only synthetic provider transport. Browser traffic is restricted to loopback; analytics scripts and collection requests are intercepted locally, with no test events delivered to Vercel. The analytics regression normally uses an explicitly synthetic transport probe; `KNIGHTBITE_ANALYTICS_SCRIPT_FIXTURE=/absolute/path/to/captured-script.js` replays an approved public script captured separately, without fetching it during tests. No application demo route or mock fallback is introduced. The test server stops after the run. Results go to ignored `test-results/`; temporary artifacts can be removed after review.
-- `npm run check`: tests, types, lint, isolated build, and browser workflows. Dependency installation/browser downloads need package-network access; application regression tests never need live providers.
-- `npm audit --audit-level=moderate` and `git diff --check` complete release checks. The local GitHub workflow is defined in `.github/workflows/release-checks.yml`; making it a required branch/deployment check is an external repository setting, not already enforced.
+- `npm run check:preview`: a separate isolated Preview build and offline browser checks for analytics suppression, request-time runtime/header diagnostics, production route guards and the explicitly controlled unavailable/date view.
+- `npm run check`: tests, types, lint, isolated production/Preview builds, and browser workflows. Dependency installation/browser downloads need package-network access; application regression tests never need live providers.
+- `npm audit --audit-level=moderate` and `git diff --check` complete release checks. The local GitHub workflow is defined in `.github/workflows/release-checks.yml`; branch/deployment enforcement is an external setting recorded in the current readiness report and must be re-read before release.
 
 See [release procedure](docs/RELEASE_CHECKLIST.md), [dependency/asset notices](docs/DEPENDENCY_NOTICES.md), and the [finding-by-finding remediation status](docs/audits/production-readiness-2026-09-10/REMEDIATION_STATUS.md). Browser engines are exercised with fixtures; actual Safari/VoiceOver, production settings and approved dietary semantics still need owner review.
 
@@ -195,7 +196,7 @@ Limits: these records describe ingestion attempts, not every page view, distinct
 
 ## Preview QA Checklist
 
-Use this checklist before sharing a preview link:
+Use this checklist before sharing a preview link. Follow [protected hosted verification](docs/PREVIEW_VERIFICATION.md) and leave [human signoffs](docs/RELEASE_HUMAN_SIGNOFF.md) unsigned until performed:
 
 - Confirm `npm run check`, `npm audit --audit-level=moderate` and `git diff --check` pass using the pinned runtime.
 - In production mode, exercise successful, partial, and unavailable loads with stubbed upstream responses. Verify one `knightbite.menu_ingestion` summary per new daily load, categorized failures and safe counts, and no extra summaries for cache hits/shared callers. Check nutrition-label failures under enrichment, independently of menu-fetch failures.
