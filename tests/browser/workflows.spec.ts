@@ -71,7 +71,7 @@ test('maps, unavailable status, security headers and small-screen layout',async(
   await expect(page.getByRole('heading',{name:'The Atrium',exact:true})).toBeVisible();
   await page.getByRole('button',{name:'Lunch',exact:true}).click();
   await page.getByRole('button',{name:'Full menu',exact:true}).click();
-  await page.getByRole('searchbox').fill('BABY SPINACH');await expect(page.getByRole('heading',{name:'BABY SPINACH',exact:true})).toBeVisible();
+  await page.getByRole('searchbox').fill('CHICKEN NOODLE SOUP');await expect(page.getByRole('heading',{name:'CHICKEN NOODLE SOUP',exact:true})).toBeVisible();
   await page.goto('/hall/neilson');await expect(page.getByRole('heading',{name:'Menu unavailable right now.',exact:true})).toBeVisible();await expect(page.getByRole('button',{name:/^Add /})).toHaveCount(0);
   await page.setViewportSize({width:320,height:740});await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/profile');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);

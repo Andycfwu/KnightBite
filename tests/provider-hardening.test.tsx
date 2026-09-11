@@ -1,13 +1,10 @@
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
 import {beforeEach,test,type TestContext} from 'node:test';
 import {getHallMenuForDate} from '@/lib/menu';
 import {addPlateItem} from '@/lib/plate';
 import {calculatePlateTotals} from '@/lib/nutrition';
 import {WEEK_RESPONSE_BYTES} from '@/lib/providers/ingestion-limits';
 const date='2026-09-08';let number=0;
-const fixture=(name:string)=>readFileSync(`tests/fixtures/foodpronet/${name}.html`,'utf8');
-const page=(meal:string)=>fixture('observed-lunch').replace(/(<div class="tab active" aria-label=")Lunch(">\s*)Lunch/,`$1${meal}$2${meal}`).replace('mealName=Lunch',`mealName=${meal}`);
 beforeEach(context=>{
   const t=context as TestContext;
   t.mock.timers.enable({apis:['Date','setTimeout'],now:Date.UTC(2026,8,8)+ ++number*13*3600000});
@@ -15,25 +12,6 @@ beforeEach(context=>{
   t.after(()=>{if(env===undefined)Reflect.deleteProperty(process.env,"NODE_ENV");else Object.assign(process.env,{NODE_ENV:env});});
   for(const method of ['info','warn','error'] as const)t.mock.method(console,method,()=>{});
   t.mock.method(globalThis,'fetch',async()=>{throw new Error('No live requests allowed');});
-});
-for(const link of ['http://127.0.0.1/label.aspx','https://evil.example/label.aspx','//evil.example/label.aspx','../label.aspx','https://user@menuportal23.dining.rutgers.edu/FoodPronet/label.aspx'])test(`unsafe upstream link never reaches fetch: ${link}`,async(t)=>{
-  const calls:string[]=[];
-  t.mock.method(globalThis,'fetch',async(input:RequestInfo|URL,init?:RequestInit)=>{
-    const url=new URL(String(input));calls.push(url.href);
-    assert.equal(url.origin,'https://menuportal23.dining.rutgers.edu');
-    assert.equal(url.pathname,'/FoodPronet/pickmenu.aspx');assert.equal(init?.redirect,'manual');
-    return new Response(page(url.searchParams.get('activeMeal')!).replace(/href='label.aspx[^']*'/g,`href='${link}?locationNum=13&dtdate=9/8/2026&RecNumAndPort=1*1'`));
-  });
-  await getHallMenuForDate('atrium',date);assert.equal(calls.length,3);
-});
-test('redirects are rejected without making a request to the Location destination',async(t)=>{
-  let labels=0;
-  t.mock.method(globalThis,'fetch',async(input:RequestInfo|URL,init?:RequestInit)=>{
-    const url=new URL(String(input));assert.equal(url.origin,'https://menuportal23.dining.rutgers.edu');
-    if(url.pathname.endsWith('/pickmenu.aspx')) return new Response(page(url.searchParams.get('activeMeal')!));
-    labels++;assert.equal(init?.redirect,'manual');return new Response(null,{status:302,headers:{Location:'http://127.0.0.1/private'}});
-  });
-  await getHallMenuForDate('atrium',date);assert.ok(labels>0);
 });
 function entry(size:number,calories:unknown,icons:unknown[]=[]){return {food:{id:1,name:'Rice',serving_size_info:{serving_size_amount:size,serving_size_unit:'cup'},rounded_nutrition_info:{calories},icons:{food_icons:icons}}};}
 test('real loader preserves calorie-only values and distinct Nutrislice portions',async(t)=>{
@@ -56,20 +34,6 @@ test('oversized menus reject while independent hall loads remain usable',async(t
   });
   const [oversized,normal]=await Promise.all([getHallMenuForDate('busch',date),getHallMenuForDate('neilson',date)]);
   assert.equal(oversized,null);assert.ok(normal);
-});
-
-test('a conflicting returned label identity cannot populate the requested food',async(t)=>{
-  t.mock.method(globalThis,'fetch',async(input:RequestInfo|URL)=>{
-    const url=new URL(String(input));
-    if(url.pathname.endsWith('/pickmenu.aspx')) return new Response(page(url.searchParams.get('activeMeal')!));
-    const dressing=url.searchParams.get('RecNumAndPort')==='150157*1';
-    return new Response((dressing?'<input name="RecNumAndPort" value="999*1">':'')+fixture(dressing?'observed-dressing-label':'observed-spinach-label'));
-  });
-  const menu=await getHallMenuForDate('atrium',date);assert.ok(menu);
-  const items=menu.meals[0].stations.flatMap(station=>station.items);
-  assert.equal(items.length,2);
-  assert.equal(items[0].nutrition.calories,null);
-  assert.equal(items[1].nutrition.calories,26);
 });
 test('a menu of supplied all-zero foods remains a real menu',async(t)=>{
   const zero={calories:0,g_protein:0,g_carbs:0,g_fat:0,mg_sodium:0,g_sugar:0};

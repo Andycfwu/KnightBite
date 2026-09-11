@@ -107,3 +107,18 @@ test('Livingston stale Breakfast hint resolves at 6pm and all three distinct mea
   }
   expect(errors).toEqual([]);
 });
+
+test('Atrium Nutrislice 6pm selection and manual meal contents survive prop refresh', async ({page})=>{
+  await page.goto('/preview-check/meals?hall=atrium');
+  await expect(page.getByRole('button',{name:'Dinner',exact:true})).toHaveAttribute('aria-pressed','true');
+  await page.getByRole('button',{name:'List view',exact:true}).click();
+  for(const [meal,dish,count] of [['Breakfast','COUNTRY STYLE GRITS',42],['Lunch','CHICKEN NOODLE SOUP',167],['Dinner','CHICKEN NOODLE SOUP',167]] as const){
+    await page.getByRole('button',{name:meal,exact:true}).click();
+    await page.getByRole('button',{name:'Rerender same menu',exact:true}).click();
+    await expect(page.getByRole('button',{name:meal,exact:true})).toHaveAttribute('aria-pressed','true');
+    await expect(page.locator('.livi-panelHeading:visible')).toContainText(`${meal} MENU`);
+    await expect(page.getByRole('heading',{name:dish,exact:true})).toBeVisible();
+    await expect(page.getByRole('region',{name:'Menu items',exact:true}).locator('.livi-foodRow')).toHaveCount(count);
+  }
+  expect(await page.locator('script[src*="/_vercel/insights"]').count()).toBe(0);
+});

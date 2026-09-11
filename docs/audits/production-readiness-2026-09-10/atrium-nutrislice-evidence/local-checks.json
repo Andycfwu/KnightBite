@@ -1,0 +1,47 @@
+{
+  "completedAt": "2026-09-11T01:37:24.172784+00:00",
+  "results": {
+    "24.21": {
+      "command": "npm run check",
+      "exitCode": 0,
+      "unitTests": 175,
+      "productionBrowserTests": 32,
+      "unavailableBrowserTests": 2,
+      "previewBrowserTests": 12,
+      "typecheck": "passed",
+      "lint": "passed",
+      "isolatedProductionAndPreviewBuilds": "passed",
+      "buildIds": [
+        "qjxYS7yyH_pi8Ihp6ozAP",
+        "J-odUHdzQfLimuEPjro2Y"
+      ]
+    },
+    "24.19": {
+      "command": "npm run check",
+      "exitCode": 0,
+      "unitTests": 175,
+      "productionBrowserTests": 32,
+      "unavailableBrowserTests": 2,
+      "previewBrowserTests": 12,
+      "typecheck": "passed",
+      "lint": "passed",
+      "isolatedProductionAndPreviewBuilds": "passed",
+      "buildIds": [
+        "aQ_iEBtJeAwpRKRLFmhZ2",
+        "8C-IOjUfXvnEtWb_hGu8z"
+      ]
+    }
+  },
+  "audit": "npm audit --audit-level=moderate: zero vulnerabilities",
+  "whitespace": "git diff --check: passed",
+  "network": "All regression tests use synthetic/sanitized transport; external provider/analytics traffic blocked",
+  "developmentCorrections": [
+    "Browser repeat-add assertion updated for accessible name announcing the existing plate count",
+    "Test cache clock spacing increased so full-week tests cannot leave future cached data for following scenarios",
+    "Real-source portion discrepancy drove matching-size selection; explicit entry serving is used consistently for label and nutrition"
+  ],
+  "limitations": [
+    "Builds do not establish live availability",
+    "Final exact-head Linux CI and hosted Preview still required after publication"
+  ]
+}

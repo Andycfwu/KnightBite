@@ -17,7 +17,7 @@ function render(value: DailyMenu | null) {
   return renderToStaticMarkup(<PlateProvider><HallMenuView hall={hall} menu={value} requestedDate="2026-09-09" /></PlateProvider>);
 }
 
-test("Atrium maps observed FoodProNet sections without dropping or duplicating source objects", () => {
+test("Atrium maps legacy exact section aliases without dropping or duplicating source objects", () => {
   const names = ["SALAD BAR", "SOUPS", "PI PIZZA", "PI PIZZA TOPPINGS", "MEZZE PROTEINS", "MEZZE BASES", "MEZZE TOPPINGS AND SIDES", "SCARLET GINGER", "SCARLET GINGER NOODLE BOWL", "KINGS HAWAIIAN", "KINGS HAWAIIAN SIDES", "KINGS HAWAIIAN TOPPINGS", "THREE CHILIES", "THREE CHILIES TOPPINGS", "GRAB AND GO", "FUTURE STATION"];
   const input = names.map(station);
   const original = structuredClone(input);

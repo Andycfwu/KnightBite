@@ -4,7 +4,6 @@ export const MENU_RESPONSE_BYTES = 2 * 1024 * 1024;
 // Nutrislice returns a whole week with repeated food metadata, not a single meal.
 export const WEEK_RESPONSE_BYTES = 8 * 1024 * 1024;
 export const WEEK_JSON_NODES = 500_000;
-export const LABEL_RESPONSE_BYTES = 256 * 1024;
 export const MAX_MEAL_ITEMS = 1500;
 export const MAX_MENU_ENTRIES = 1800; // Includes station headings.
 const MAX_NODES = 60_000;

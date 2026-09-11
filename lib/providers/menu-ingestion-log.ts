@@ -15,14 +15,6 @@ export class IngestionFailure extends Error {
   }
 }
 
-const CONTEXT_REASONS = new Set([
-  "missing or ambiguous menu form", "missing or malformed menu form context",
-  "missing or ambiguous date selector", "missing or ambiguous selected date", "malformed selected date",
-  "mismatched or conflicting menu date", "missing or ambiguous active meal",
-  "mismatched or conflicting menu meal", "missing, ambiguous, or mismatched Atrium menu footer",
-  "missing or conflicting menu location", "missing or conflicting menu location heading",
-  "conflicting menu location name", "conflicting selected-date meal"
-]);
 const MEALS: MealType[] = ["breakfast", "lunch", "dinner"];
 const MAX_FAILURE_GROUPS = 16;
 const emptyFailures = (): Failures => ({ failures: [], omittedFailureCount: 0 });
@@ -32,6 +24,8 @@ export type MealAttempt = Failures & {
   parsed: { stations: number; items: number } | null;
   normalizationStarted: boolean;
   normalizationCompleted: boolean;
+  // Retained zero-valued fields for compatibility with existing log consumers.
+  // Nutrislice supplies nutrition inline; no label enrichment requests are made.
   enrichment: Failures & { attemptedItems: number; failedItems: number; skippedItems: number };
 };
 
@@ -39,14 +33,14 @@ export type IngestionAttempt = Failures & {
   hallId: DiningHallId;
   requestedDate: string;
   startedAtMs: number;
-  schoolResolution: "not_applicable" | "not_started" | "discovered" | "cached" | "static_fallback" | "unavailable";
+  schoolResolution: "not_started" | "discovered" | "cached" | "static_fallback" | "unavailable";
   meals: Record<MealType, MealAttempt>;
 };
 
 export function createIngestionAttempt(hallId: DiningHallId, requestedDate: string): IngestionAttempt {
   return {
     ...emptyFailures(), hallId, requestedDate, startedAtMs: Date.now(),
-    schoolResolution: hallId === "atrium" ? "not_applicable" : "not_started",
+    schoolResolution: "not_started",
     meals: Object.fromEntries(MEALS.map((meal) => [meal, {
       ...emptyFailures(), outcome: "not_started", parsed: null,
       normalizationStarted: false, normalizationCompleted: false,
@@ -59,12 +53,9 @@ export function addFailure(
   target: Failures,
   category: FailureCategory,
   endpoint: Endpoint,
-  statusCode: number | null = null,
-  contextReason?: string
+  statusCode: number | null = null
 ) {
-  const reason = category === "context_rejected"
-    ? contextReason && CONTEXT_REASONS.has(contextReason) ? contextReason : "unrecognized_context_reason"
-    : null;
+  const reason = null;
   const status = Number.isInteger(statusCode) && statusCode! >= 100 && statusCode! <= 599 ? statusCode : null;
   const previous = target.failures.find((entry) => entry.category === category && entry.endpoint === endpoint && entry.statusCode === status && entry.reason === reason);
   if (previous) previous.count += 1;
@@ -125,7 +116,7 @@ export function finishIngestionAttempt(
     const { parserWarnings, ...normalization } = counts;
     const summary = {
       event: "knightbite.menu_ingestion",
-      source: attempt.hallId === "atrium" ? "foodpronet" : "nutrislice",
+      source: "nutrislice",
       hallId: ["busch", "livingston", "neilson", "atrium"].includes(attempt.hallId) ? attempt.hallId : "unknown",
       requestedDate: /^\d{4}-\d{2}-\d{2}$/.test(attempt.requestedDate) ? attempt.requestedDate : null,
       startedAt: new Date(attempt.startedAtMs).toISOString(),

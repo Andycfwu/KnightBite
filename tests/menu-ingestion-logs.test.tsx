@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
 import { beforeEach, test, type TestContext } from "node:test";
 
 import { getHallMenuForDate } from "@/lib/menu";
@@ -11,8 +10,6 @@ const date = "2026-09-08";
 const meals: MealType[] = ["breakfast", "lunch", "dinner"];
 const school = { id: 62286, name: "Busch Dining Hall", slug: "busch-dining-hall" };
 const secret = "SECRET_CANARY cookie=session-token https://private.example/menu?credential=secret ".repeat(100);
-const fixture = (name: string) => readFileSync(`tests/fixtures/foodpronet/${name}.html`, "utf8");
-const lunch = fixture("observed-lunch");
 const flush = () => new Promise<void>((resolve) => setImmediate(resolve));
 
 type Summary = {
@@ -77,14 +74,8 @@ function food(id = 1, calories = 120) {
 function week(menuDate = date, items: unknown[] = [food(1), food(2)]) {
   return { days: [{ date: menuDate, menu_items: [{ is_station_header: true, text: "Fixture Station", station_id: "fixture" }, ...items] }] };
 }
-function pageForMeal(meal: MealType) {
-  const label = meal[0].toUpperCase() + meal.slice(1);
-  return lunch.replace(/(<div class="tab active" aria-label=")Lunch(">\s*)Lunch/, `$1${label}$2${label}`)
-    .replace("mealName=Lunch", `mealName=${label}`);
-}
-
 type Reply = Response | Promise<Response>;
-function stubNutrislice(t: TestContext, reply: (meal: MealType, init: RequestInit, url: URL) => Reply = () => Response.json(week()), schools: () => Reply = () => Response.json([school])) {
+function stubNutrislice(t: TestContext, reply: (meal: MealType, init: RequestInit, url: URL) => Reply = () => Response.json(week()), schools: () => Reply = () => Response.json([school, {id:71385,name:"The Atrium",slug:"the-atrium",active_menu_types:meals.map((name,i)=>({name,id:[32934,33316,33318][i]}))}])) {
   const calls: string[] = [];
   const unexpected: string[] = [];
   t.mock.method(globalThis, "fetch", async (input: RequestInfo | URL, init?: RequestInit) => {
@@ -92,24 +83,8 @@ function stubNutrislice(t: TestContext, reply: (meal: MealType, init: RequestIni
     calls.push(url.pathname);
     if (url.origin === "https://rutgers.api.nutrislice.com") {
       if (url.pathname === "/menu/api/schools/") return schools();
-      const match = url.pathname.match(/^\/menu\/api\/weeks\/school\/62286\/menu-type\/(32934|33316|33318)\/\d{4}\/\d{2}\/\d{2}\/$/);
+      const match = url.pathname.match(/^\/menu\/api\/weeks\/school\/(?:62286|71385)\/menu-type\/(32934|33316|33318)\/\d{4}\/\d{2}\/\d{2}\/$/);
       if (match) return reply(({ "32934": "breakfast", "33316": "lunch", "33318": "dinner" } as const)[match[1] as "32934" | "33316" | "33318"], init!, url);
-    }
-    unexpected.push(url.href);
-    throw new Error(secret);
-  });
-  t.after(() => assert.deepEqual(unexpected, []));
-  return calls;
-}
-function stubFoodProNet(t: TestContext, reply: (meal: MealType, init: RequestInit) => Reply = (meal) => new Response(pageForMeal(meal)), label: (url: URL, init: RequestInit) => Reply = (url) => new Response(fixture(url.searchParams.get("RecNumAndPort") === "150157*1" ? "observed-dressing-label" : "observed-spinach-label"))) {
-  const calls: string[] = [];
-  const unexpected: string[] = [];
-  t.mock.method(globalThis, "fetch", async (input: RequestInfo | URL, init?: RequestInit) => {
-    const url = new URL(String(input));
-    calls.push(url.pathname);
-    if (url.origin === "https://menuportal23.dining.rutgers.edu") {
-      if (url.pathname === "/FoodPronet/pickmenu.aspx") return reply(url.searchParams.get("activeMeal")!.toLowerCase() as MealType, init!);
-      if (url.pathname === "/FoodPronet/label.aspx") return label(url, init!);
     }
     unexpected.push(url.href);
     throw new Error(secret);
@@ -166,10 +141,9 @@ for (const hall of ["busch", "atrium"] as const) {
     const reply = (meal: MealType) => {
       if (meal === "breakfast") return new Response(secret, { status: 503 });
       if (meal === "lunch") throw new Error(secret);
-      return hall === "atrium" ? new Response(pageForMeal(meal)) : Response.json(week());
+      return Response.json(week());
     };
-    if (hall === "atrium") stubFoodProNet(t, reply);
-    else stubNutrislice(t, reply);
+    stubNutrislice(t, reply);
     const menu = await getHallMenuForDate(hall, date);
     assert.ok(menu);
     assert.deepEqual(menu.meals.map((meal) => meal.type), ["dinner"]);
@@ -183,14 +157,13 @@ for (const hall of ["busch", "atrium"] as const) {
   });
 
   test(`${hall} logs upstream timeout only after its existing deadline, not after 1.1 seconds`, async (t) => {
-    if (hall === "atrium") stubFoodProNet(t, (_meal, init) => abortable(init));
-    else stubNutrislice(t, (_meal, init) => abortable(init));
+    stubNutrislice(t, (_meal, init) => abortable(init));
     const pending = getHallMenuForDate(hall, date);
     await flush();
     t.mock.timers.tick(1100);
     await flush();
     assert.equal(logs.length, 0);
-    const timeout = hall === "atrium" ? 5000 : 4500;
+    const timeout = 4500;
     t.mock.timers.tick(timeout - 1100);
     assert.equal(await pending, null);
     const log = await summary();
@@ -260,57 +233,6 @@ for (const [name, reply, category] of [
   });
 }
 
-test("Atrium validator rejection remains separate from request failure and retains other meals", async (t) => {
-  stubFoodProNet(t, (meal) => new Response(meal === "breakfast" ? pageForMeal(meal).replace("  selected", "") : pageForMeal(meal)));
-  const menu = await getHallMenuForDate("atrium", date);
-  assert.deepEqual(menu?.meals.map((meal) => meal.type), ["lunch", "dinner"]);
-  const log = await summary();
-  assert.equal(log.source, "foodpronet");
-  assert.equal(log.schoolResolution, "not_applicable");
-  assert.equal(log.outcome, "partial");
-  assert.equal(log.meals.breakfast.outcome, "rejected");
-  assert.equal(log.meals.breakfast.enrichment.attemptedItems, 0);
-  assert.deepEqual(log.meals.breakfast.failures, [{ category: "context_rejected", endpoint: "menu", statusCode: null, reason: "missing or ambiguous selected date", count: 1 }]);
-  assert.equal(log.diagnostics.parserWarnings, 1);
-});
-
-test("Atrium enrichment failures are aggregated per affected item without losing menu items", async (t) => {
-  const calls = stubFoodProNet(t, (meal) => new Response(pageForMeal(meal).replace("</fieldset>", "</fieldset>" + pageForMeal(meal).match(/<fieldset>[\s\S]*?<\/fieldset>/)![0])),
-    (url) => url.searchParams.get("RecNumAndPort") === "150157*1" ? new Response(secret, { status: 503 }) : new Response(fixture("observed-spinach-label")));
-  const menu = await getHallMenuForDate("atrium", date);
-  assert.ok(menu);
-  assert.equal(menu.meals.length, 3);
-  assert.ok(menu.meals.every((meal) => meal.stations[0].items.length === 2));
-  assert.ok(menu.meals.every((meal) => meal.stations[0].items[0].nutrition.calories === null));
-  const log = await summary();
-  assert.equal(log.outcome, "partial");
-  assert.equal(log.diagnostics.parserWarnings, 0, "Enrichment failures are not double-counted as parser warnings in logs");
-  assert.equal(log.diagnostics.normalization?.deduplicatedItems, 3);
-  for (const meal of meals) {
-    assert.equal(log.meals[meal].outcome, "parsed");
-    assert.deepEqual(log.meals[meal].failures, []);
-    assert.equal(log.meals[meal].enrichment.attemptedItems, 3);
-    assert.equal(log.meals[meal].enrichment.failedItems, 2);
-    assert.deepEqual(log.meals[meal].enrichment.failures, [{ category: "http_error", endpoint: "nutrition_label", statusCode: 503, reason: null, count: 2 }]);
-  }
-  assert.equal(calls.filter((path) => path.endsWith("label.aspx")).length, 2, "Shared labels retain existing request deduplication");
-});
-
-test("nutrition-label timeout keeps its endpoint and existing 2.5-second budget", async (t) => {
-  stubFoodProNet(t, undefined, (url, init) => url.searchParams.get("RecNumAndPort") === "150157*1" ? abortable(init) : new Response(fixture("observed-spinach-label")));
-  const pending = getHallMenuForDate("atrium", date);
-  await flush();
-  t.mock.timers.tick(2500);
-  assert.ok(await pending);
-  const log = await summary();
-  assert.equal(log.outcome, "partial");
-  for (const meal of meals) {
-    assert.equal(log.meals[meal].enrichment.failures[0].category, "timeout");
-    assert.equal(log.meals[meal].enrichment.failures[0].endpoint, "nutrition_label");
-    assert.deepEqual(log.meals[meal].failures, []);
-  }
-});
-
 for (const hall of ["busch", "atrium"] as const) {
   test(`${hall} settles when fetch never responds and ignores abort`, async (t) => {
     const signals: AbortSignal[] = [];
@@ -318,11 +240,10 @@ for (const hall of ["busch", "atrium"] as const) {
       signals.push(init.signal!);
       return new Promise<Response>(() => {});
     };
-    if (hall === "atrium") stubFoodProNet(t, reply);
-    else stubNutrislice(t, reply);
+    stubNutrislice(t, reply);
     const pending = getHallMenuForDate(hall, date);
     await flush();
-    t.mock.timers.tick(hall === "atrium" ? 5000 : 4500);
+    t.mock.timers.tick(4500);
     assert.equal(await pending, null);
     assert.ok(signals.length === 3 && signals.every((signal) => signal.aborted));
     const log = summary();
@@ -330,7 +251,7 @@ for (const hall of ["busch", "atrium"] as const) {
   });
 }
 
-for (const source of ["nutrislice", "foodpronet", "nutrition_label"] as const) {
+for (const source of ["nutrislice"] as const) {
   for (const later of ["resolve", "reject"] as const) {
     test(`${source} body consumption shares the request deadline and handles a late ${later}`, async (t) => {
       const headers = deferred<void>();
@@ -346,13 +267,10 @@ for (const source of ["nutrislice", "foodpronet", "nutrition_label"] as const) {
           }
         }));
       };
-      if (source === "nutrislice") stubNutrislice(t, reply);
-      else if (source === "foodpronet") stubFoodProNet(t, reply);
-      else stubFoodProNet(t, undefined, reply);
-
-      const pending = getHallMenuForDate(source === "nutrislice" ? "busch" : "atrium", date);
+      stubNutrislice(t, reply);
+      const pending = getHallMenuForDate("busch", date);
       await flush();
-      const timeout = source === "nutrislice" ? 4500 : source === "foodpronet" ? 5000 : 2500;
+      const timeout = 4500;
       t.mock.timers.tick(500);
       headers.resolve();
       await flush();
@@ -362,9 +280,9 @@ for (const source of ["nutrislice", "foodpronet", "nutrition_label"] as const) {
       assert.equal(log.durationMs, timeout, "Receiving headers must not restart or clear the deadline");
       assert.ok(signals.every((signal) => signal.aborted));
       for (const meal of meals) {
-        const failures = source === "nutrition_label" ? log.meals[meal].enrichment.failures : log.meals[meal].failures;
+        const failures = log.meals[meal].failures;
         assert.equal(failures[0].category, "timeout");
-        assert.equal(failures[0].endpoint, source === "nutrition_label" ? "nutrition_label" : "menu");
+        assert.equal(failures[0].endpoint, "menu");
       }
       const emitted = logs[0].raw;
       if (later === "resolve") body.resolve("");
@@ -376,51 +294,10 @@ for (const source of ["nutrislice", "foodpronet", "nutrition_label"] as const) {
   }
 }
 
-test("Atrium bounds successive slow label batches while retaining retrieved food", async (t) => {
-  const items = Array.from({ length: 40 }, (_, index) => `<fieldset><label style="font-weight:200">Fixture ${index}</label><a href='label.aspx?locationNum=13&dtdate=9/8/2026&RecNumAndPort=${index}*1'>Nutrition</a></fieldset>`).join("");
-  const calls = stubFoodProNet(t,
-    (meal) => new Response(pageForMeal(meal).replace(/<fieldset>[\s\S]*?<\/fieldset>/g, "").replace("</form>", items + "</form>")),
-    (url) => Number(url.searchParams.get("RecNumAndPort")?.split("*")[0]) < 2
-      ? new Response(fixture("observed-spinach-label"))
-      : new Promise<Response>(() => {}));
-  const pending = getHallMenuForDate("atrium", date);
-  await flush();
-  // Control each batch explicitly; no live waits and no dependence on fast upstream responses.
-  for (let batch = 0; batch < 3; batch += 1) {
-    t.mock.timers.tick(2500);
-    await flush();
-  }
-  const menu = await pending;
-  assert.ok(menu);
-  assert.ok(menu.meals.every((meal) => meal.stations[0].items.length === 40));
-  assert.equal(menu.meals[0].stations[0].items[0].nutrition.calories, 26);
-  assert.equal(menu.meals[0].stations[0].items.at(-1)?.nutrition.calories, null);
-  const log = summary();
-  assert.equal(log.outcome, "partial");
-  assert.equal(log.durationMs, 7500);
-  assert.equal(log.returned.items, 120);
-  assert.equal(log.diagnostics.parserWarnings, 0);
-  for (const meal of meals) {
-    const enrichment = log.meals[meal].enrichment;
-    assert.ok(enrichment.skippedItems > 0);
-    assert.equal(enrichment.attemptedItems + enrichment.skippedItems, 40);
-    assert.equal(enrichment.failedItems + 2, enrichment.attemptedItems);
-    assert.equal(enrichment.failures[0].count, enrichment.failedItems, "Skipped labels are not logged as failed requests");
-    assert.equal(log.meals[meal].outcome, "parsed");
-    assert.equal(log.meals[meal].normalizationCompleted, true);
-  }
-  const requestsAtReturn = calls.length;
-  t.mock.timers.tick(30_000);
-  await flush();
-  assert.equal(calls.length, requestsAtReturn, "No background queue continues fetching skipped labels");
-  assert.equal(logs.length, 1);
-});
-
 for (const hall of ["busch", "atrium"] as const) {
   for (const empty of [true, false]) {
     test(`${hall} distinguishes ${empty ? "empty parsing" : "parsed data rejected by usability"}`, async (t) => {
-      if (hall === "busch") stubNutrislice(t, () => Response.json(week(date, empty ? [] : [{ food: { ...food(1).food, rounded_nutrition_info: null } }, { food: { ...food(2).food, rounded_nutrition_info: null } }])));
-      else stubFoodProNet(t, (meal) => new Response(empty ? pageForMeal(meal).replace(/<fieldset>[\s\S]*?<\/fieldset>/g, "") : pageForMeal(meal).replace(/<a href='label\.aspx[\s\S]*?<\/a>/g, "")));
+      stubNutrislice(t, () => Response.json(week(date, empty ? [] : [{ food: { ...food(1).food, rounded_nutrition_info: null } }, { food: { ...food(2).food, rounded_nutrition_info: null } }])));
       assert.equal(await getHallMenuForDate(hall, date), null);
       const log = await summary();
       assert.equal(log.outcome, "unavailable");
@@ -522,64 +399,6 @@ for (const later of ["never settles", "resolves", "rejects"] as const) {
   });
 }
 
-test("early Atrium error snapshots unfinished normalization before sibling resolution and rejection", async (t) => {
-  const labelsReady = deferred<void>();
-  const dinnerBody = deferred<string>();
-  const unhandled: unknown[] = [];
-  const onUnhandled = (reason: unknown) => { unhandled.push(reason); };
-  process.on("unhandledRejection", onUnhandled);
-  t.after(() => process.off("unhandledRejection", onUnhandled));
-  let labelReads = 0;
-  let lateParserCalls = 0;
-  // Inject exceptions outside the per-meal fetch catch, so whole meal promises reject.
-  const replace = String.prototype.replace;
-  t.mock.method(String.prototype, "replace", function(this: string, ...args: Parameters<typeof replace>) {
-    if (String(this).startsWith("<!--INJECT_BREAKFAST-->")) throw new Error(secret);
-    if (String(this).startsWith("<!--INJECT_DINNER-->")) { lateParserCalls++; throw new Error(secret); }
-    return Reflect.apply(replace, this, args);
-  });
-  stubFoodProNet(t, (meal) => {
-    if (meal === "breakfast") return new Response("<!--INJECT_BREAKFAST-->" + pageForMeal(meal));
-    if (meal === "dinner") return new Response(new ReadableStream<Uint8Array>({ start(controller) {
-      void dinnerBody.promise.then(value => { controller.enqueue(new TextEncoder().encode(value)); controller.close(); });
-    } }));
-    return new Response(pageForMeal(meal));
-  }, async (url) => {
-    await labelsReady.promise;
-    labelReads++;
-    return new Response(fixture(url.searchParams.get("RecNumAndPort") === "150157*1" ? "observed-dressing-label" : "observed-spinach-label"));
-  });
-
-  assert.equal(await getHallMenuForDate("atrium", date), null);
-  const log = summary("error");
-  const emitted = logs[0].raw;
-  assert.equal(log.outcome, "error");
-  assert.equal(log.durationMs, 0);
-  assert.deepEqual(log.returned, { meals: 0, stations: 0, items: 0 });
-  assert.equal(log.meals.breakfast.failures[0].category, "internal_error");
-  assert.equal(log.meals.lunch.outcome, "pending");
-  assert.equal(log.meals.lunch.parsed, null);
-  assert.equal(log.meals.lunch.normalizationStarted, true);
-  assert.equal(log.meals.lunch.normalizationCompleted, false);
-  assert.equal(log.meals.lunch.enrichment.attemptedItems, 2);
-  assert.equal(log.meals.dinner.outcome, "pending");
-  assert.equal(log.meals.dinner.parsed, null);
-  assert.equal(log.meals.dinner.normalizationCompleted, false);
-  assert.equal(log.diagnostics.normalization?.processedItemsBeforeDedup, 0);
-  assert.equal(log.diagnostics.normalizationComplete, false);
-
-  t.mock.timers.tick(100);
-  labelsReady.resolve();
-  dinnerBody.resolve("<!--INJECT_DINNER-->" + pageForMeal("dinner"));
-  await flush();
-  assert.equal(labelReads, 2, "The pending lunch continued through enrichment");
-  assert.equal(lateParserCalls, 1, "The pending dinner reached its rejecting parser path");
-  assert.deepEqual(unhandled, [], "Promise.all still observes later meal rejections");
-  assert.equal(logs.length, 1);
-  assert.equal(logs[0].raw, emitted);
-  assert.deepEqual(summary("error"), log);
-});
-
 test("finishIngestionAttempt builds, serializes, and emits before returning", (t) => {
   const attempt = createIngestionAttempt("atrium", date);
   attempt.meals.breakfast.outcome = "failed";
@@ -605,39 +424,6 @@ test("finishIngestionAttempt builds, serializes, and emits before returning", (t
   attempt.meals.lunch.normalizationCompleted = true;
   diagnostics.processedItemsBeforeDedup = 2;
   assert.deepEqual(summary("error"), log, "Logging passes a serialized snapshot, not mutable diagnostic state");
-});
-
-test("Atrium portion variants retain their contents with distinct row and plate identities", async (t) => {
-  const portion = (size: number, name = "Fixture topping") => `<fieldset><label style="font-weight:200">${name}</label><div class="col-2"><label name="Serving Portion" style="font-weight:200">${size} OZ</label></div></fieldset>`;
-  const extras = portion(1) + portion(2) + portion(2) + portion(3, "Fixture topping variant 2");
-  stubFoodProNet(t, (meal) => new Response(pageForMeal(meal).replace("</form>", extras + "</form>")));
-  const menu = await getHallMenuForDate("atrium", date);
-  assert.ok(menu);
-  for (const meal of menu.meals) {
-    const items = meal.stations.flatMap((station) => station.items);
-    const variants = items.filter((item) => item.name === "Fixture topping");
-    assert.equal(items.length, 5, "Only the exact duplicate is removed");
-    assert.deepEqual(variants.map((item) => item.servingSize), ["1 OZ", "2 OZ"]);
-    assert.deepEqual(variants[0].nutrition, variants[1].nutrition);
-    assert.equal(new Set(items.map((item) => item.id)).size, items.length);
-    assert.match(variants[0].id, new RegExp(`^atrium-${meal.type}-salad-bar-fixture-topping~`));
-    assert.equal(items.find((item) => item.name === "Fixture topping variant 2")!.id,
-      `atrium-${meal.type}-salad-bar-fixture-topping-variant-2`, "Existing names keep their IDs");
-  }
-  summary("info");
-});
-
-test("many distinct enrichment errors remain bounded and report omitted occurrences", async (t) => {
-  const manyItems = Array.from({ length: 25 }, (_, index) => `<fieldset><label style="font-weight:200">Fixture ${index}</label><a href='label.aspx?locationNum=13&dtdate=9/8/2026&RecNumAndPort=${index}*1'>Nutrition</a></fieldset>`).join("");
-  stubFoodProNet(t, (meal) => new Response(pageForMeal(meal).replace(/<fieldset>[\s\S]*?<\/fieldset>/g, "").replace("</form>", manyItems + "</form>")),
-    (url) => new Response(secret, { status: 400 + Number(url.searchParams.get("RecNumAndPort")?.split("*")[0]) }));
-  assert.equal(await getHallMenuForDate("atrium", date), null);
-  const log = await summary();
-  for (const meal of meals) {
-    assert.equal(log.meals[meal].enrichment.failedItems, 25);
-    assert.equal(log.meals[meal].enrichment.failures.length, 16);
-    assert.equal(log.meals[meal].enrichment.omittedFailureCount, 9);
-  }
 });
 
 test("a console sink failure cannot change the returned real menu", async (t) => {

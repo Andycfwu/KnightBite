@@ -1,0 +1,399 @@
+{
+  "observedAt": "2026-09-11T01:30:43.488Z",
+  "type": "Offline sanitized fixture normalization, no network",
+  "meals": [
+    {
+      "meal": "breakfast",
+      "foods": 42,
+      "completeSixNutrients": 35,
+      "incomplete": [
+        {
+          "name": "WHOLE STRAWBERRIES",
+          "servingSize": "1 oz",
+          "nutrition": {
+            "calories": null,
+            "protein": null,
+            "carbs": null,
+            "fat": null,
+            "sodium": null,
+            "sugar": null
+          }
+        },
+        {
+          "name": "BLUEBERRIES",
+          "servingSize": "2 oz",
+          "nutrition": {
+            "calories": null,
+            "protein": null,
+            "carbs": null,
+            "fat": null,
+            "sodium": null,
+            "sugar": null
+          }
+        },
+        {
+          "name": "DRIED APRICOT",
+          "servingSize": "1 oz",
+          "nutrition": {
+            "calories": 91,
+            "protein": 1,
+            "carbs": 24,
+            "fat": 0.2,
+            "sodium": 4,
+            "sugar": null
+          }
+        },
+        {
+          "name": "SCRAMBLED EGGS",
+          "servingSize": "4 oz",
+          "nutrition": {
+            "calories": 168,
+            "protein": 14,
+            "carbs": 1,
+            "fat": 12,
+            "sodium": 151,
+            "sugar": null
+          }
+        },
+        {
+          "name": "HALAL TURKEY SAUSAGE LINKS",
+          "servingSize": "1 each",
+          "nutrition": {
+            "calories": null,
+            "protein": null,
+            "carbs": null,
+            "fat": null,
+            "sodium": null,
+            "sugar": null
+          }
+        },
+        {
+          "name": "BAKED CHORIZO SAUSAGE",
+          "servingSize": "2 oz",
+          "nutrition": {
+            "calories": null,
+            "protein": null,
+            "carbs": null,
+            "fat": null,
+            "sodium": null,
+            "sugar": null
+          }
+        },
+        {
+          "name": "VEGAN CHEESE SLICES",
+          "servingSize": "1 slice",
+          "nutrition": {
+            "calories": 57,
+            "protein": 0,
+            "carbs": 4,
+            "fat": 4.3,
+            "sodium": 170,
+            "sugar": null
+          }
+        }
+      ]
+    },
+    {
+      "meal": "lunch",
+      "foods": 167,
+      "completeSixNutrients": 155,
+      "incomplete": [
+        {
+          "name": "EXTRA VIRGIN OLIVE OIL",
+          "servingSize": "1 ozl",
+          "nutrition": {
+            "calories": null,
+            "protein": null,
+            "carbs": null,
+            "fat": null,
+            "sodium": null,
+            "sugar": null
+          }
+        },
+        {
+          "name": "RANCH DRESSING PACKET",
+          "servingSize": "1 each",
+          "nutrition": {
+            "calories": 204,
+            "protein": 0,
+            "carbs": 2,
+            "fat": 22,
+            "sodium": 496,
+            "sugar": null
+          }
+        },
+        {
+          "name": "CHEESE PIZZA",
+          "servingSize": "1 slice",
+          "nutrition": {
+            "calories": null,
+            "protein": null,
+            "carbs": null,
+            "fat": null,
+            "sodium": null,
+            "sugar": null
+          }
+        },
+        {
+          "name": "VEGAN CHEESE SLICES",
+          "servingSize": "1 slice",
+          "nutrition": {
+            "calories": 57,
+            "protein": 0,
+            "carbs": 4,
+            "fat": 4.3,
+            "sodium": 170,
+            "sugar": null
+          }
+        },
+        {
+          "name": "PICKLE SPEARS",
+          "servingSize": "1 each",
+          "nutrition": {
+            "calories": 6,
+            "protein": 0,
+            "carbs": 1,
+            "fat": 0.1,
+            "sodium": 410,
+            "sugar": null
+          }
+        },
+        {
+          "name": "QUESO FRESCO",
+          "servingSize": "2 oz",
+          "nutrition": {
+            "calories": 82,
+            "protein": 7,
+            "carbs": 3,
+            "fat": 4.7,
+            "sodium": 74,
+            "sugar": null
+          }
+        },
+        {
+          "name": "SLICED JALAPENOS PEPPERS",
+          "servingSize": "2 oz",
+          "nutrition": {
+            "calories": 22,
+            "protein": 1,
+            "carbs": 1,
+            "fat": 0.3,
+            "sodium": 796,
+            "sugar": null
+          }
+        },
+        {
+          "name": "VEGETABLE BROTH",
+          "servingSize": "6 oz",
+          "nutrition": {
+            "calories": null,
+            "protein": null,
+            "carbs": null,
+            "fat": null,
+            "sodium": null,
+            "sugar": null
+          }
+        },
+        {
+          "name": "CHOPPED GINGER",
+          "servingSize": "1 oz",
+          "nutrition": {
+            "calories": null,
+            "protein": null,
+            "carbs": null,
+            "fat": null,
+            "sodium": null,
+            "sugar": null
+          }
+        },
+        {
+          "name": "TRI COLOR TORTILLA CHIP W/ TAJIN",
+          "servingSize": "16 oz",
+          "nutrition": {
+            "calories": 2220,
+            "protein": 32,
+            "carbs": null,
+            "fat": 103,
+            "sodium": 1496,
+            "sugar": 4
+          }
+        },
+        {
+          "name": "MACARONI AND CHEESE W. CHICKEN TENDERS",
+          "servingSize": "20 serving",
+          "nutrition": {
+            "calories": null,
+            "protein": null,
+            "carbs": null,
+            "fat": null,
+            "sodium": 9579,
+            "sugar": 43
+          }
+        },
+        {
+          "name": "BAKED MACARONI AND CHEESE",
+          "servingSize": "14 serving",
+          "nutrition": {
+            "calories": null,
+            "protein": 107,
+            "carbs": null,
+            "fat": 133,
+            "sodium": 3753,
+            "sugar": 27
+          }
+        }
+      ]
+    },
+    {
+      "meal": "dinner",
+      "foods": 167,
+      "completeSixNutrients": 155,
+      "incomplete": [
+        {
+          "name": "EXTRA VIRGIN OLIVE OIL",
+          "servingSize": "1 ozl",
+          "nutrition": {
+            "calories": null,
+            "protein": null,
+            "carbs": null,
+            "fat": null,
+            "sodium": null,
+            "sugar": null
+          }
+        },
+        {
+          "name": "RANCH DRESSING PACKET",
+          "servingSize": "1 each",
+          "nutrition": {
+            "calories": 204,
+            "protein": 0,
+            "carbs": 2,
+            "fat": 22,
+            "sodium": 496,
+            "sugar": null
+          }
+        },
+        {
+          "name": "CHEESE PIZZA",
+          "servingSize": "1 slice",
+          "nutrition": {
+            "calories": null,
+            "protein": null,
+            "carbs": null,
+            "fat": null,
+            "sodium": null,
+            "sugar": null
+          }
+        },
+        {
+          "name": "VEGAN CHEESE SLICES",
+          "servingSize": "1 slice",
+          "nutrition": {
+            "calories": 57,
+            "protein": 0,
+            "carbs": 4,
+            "fat": 4.3,
+            "sodium": 170,
+            "sugar": null
+          }
+        },
+        {
+          "name": "PICKLE SPEARS",
+          "servingSize": "1 each",
+          "nutrition": {
+            "calories": 6,
+            "protein": 0,
+            "carbs": 1,
+            "fat": 0.1,
+            "sodium": 410,
+            "sugar": null
+          }
+        },
+        {
+          "name": "QUESO FRESCO",
+          "servingSize": "2 oz",
+          "nutrition": {
+            "calories": 82,
+            "protein": 7,
+            "carbs": 3,
+            "fat": 4.7,
+            "sodium": 74,
+            "sugar": null
+          }
+        },
+        {
+          "name": "SLICED JALAPENOS PEPPERS",
+          "servingSize": "2 oz",
+          "nutrition": {
+            "calories": 22,
+            "protein": 1,
+            "carbs": 1,
+            "fat": 0.3,
+            "sodium": 796,
+            "sugar": null
+          }
+        },
+        {
+          "name": "VEGETABLE BROTH",
+          "servingSize": "6 oz",
+          "nutrition": {
+            "calories": null,
+            "protein": null,
+            "carbs": null,
+            "fat": null,
+            "sodium": null,
+            "sugar": null
+          }
+        },
+        {
+          "name": "CHOPPED GINGER",
+          "servingSize": "1 oz",
+          "nutrition": {
+            "calories": null,
+            "protein": null,
+            "carbs": null,
+            "fat": null,
+            "sodium": null,
+            "sugar": null
+          }
+        },
+        {
+          "name": "TRI COLOR TORTILLA CHIP W/ TAJIN",
+          "servingSize": "16 oz",
+          "nutrition": {
+            "calories": 2220,
+            "protein": 32,
+            "carbs": null,
+            "fat": 103,
+            "sodium": 1496,
+            "sugar": 4
+          }
+        },
+        {
+          "name": "MACARONI AND CHEESE W. CHICKEN TENDERS",
+          "servingSize": "20 serving",
+          "nutrition": {
+            "calories": null,
+            "protein": null,
+            "carbs": null,
+            "fat": null,
+            "sodium": 9579,
+            "sugar": 43
+          }
+        },
+        {
+          "name": "BAKED MACARONI AND CHEESE",
+          "servingSize": "14 serving",
+          "nutrition": {
+            "calories": null,
+            "protein": 107,
+            "carbs": null,
+            "fat": 133,
+            "sodium": 3753,
+            "sugar": 27
+          }
+        }
+      ]
+    }
+  ]
+}

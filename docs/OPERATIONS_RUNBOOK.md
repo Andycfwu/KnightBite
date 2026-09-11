@@ -27,7 +27,7 @@ Use the existing hosting platform only if its available plan supports the requir
 | --- | --- |
 | Navigation/runtime outage | Any repeatable blank/error page, or at least five failed function requests and a 5xx rate of at least 20% over five minutes: notify the service owner and start triage. Native error-anomaly alerts, if later enabled, supplement this; they are not exact threshold or menu-health alerts. |
 | Real-menu ingestion outage | For each hall/requested Rutgers date, three distinct completed attempts in five minutes with `outcome` `unavailable` or `error`, with no intervening returned menu: notify the operator. Escalate as all-hall impact only when there is affirmative evidence for all four halls. |
-| Partial/source-quality degradation | Three distinct `partial` attempts in fifteen minutes, especially label enrichment failures or rising unknown nutrition: investigate without claiming the entire menu is absent. |
+| Partial/source-quality degradation | Three distinct `partial` attempts in fifteen minutes, especially missing meals or rising unknown nutrition: investigate without claiming the entire menu is absent. |
 | Rejected destination or resource budget | Any `destination_rejected`, `response_too_large` or `resource_limit`: examine sanitized counts/context before changing a validator or limit. Never follow the rejected URL. |
 | No observations | No logs/traffic is an evidence gap, not a success or outage. A periodic synthetic check would be a separately scoped operational decision, not something this pass installed. |
 
@@ -40,7 +40,7 @@ Example human escalation, to be sent only by the assigned operator: “KnightBit
 1. Record UTC time and the separately calculated Rutgers calendar date, affected route/hall, deployment ID/SHA, and browser symptom. Check the production alias in Vercel before attributing a report to a local fix.
 2. Inspect the production logs and build identity. Search the event name, then inspect hall/date, outcomes, per-meal states and failure groups. Missing summaries may mean the old release, cache hits, no traffic or a logging failure; they do not prove healthy ingestion.
 3. `durationMs` ends when the daily loader exits. An early error may show siblings still `pending`, with null measurements and incomplete normalization. Later sibling completion does not rewrite that record or emit a second summary.
-4. Separate network/HTTP/deadline failures from malformed structure, wrong requested date/context, rejected destinations and enrichment failures. Preserve `DailyMenu | null` and the explicit unavailable state. Do not label failures “closed,” invent an update time, or use sample food.
+4. Separate network/HTTP/deadline failures from malformed structure, wrong requested date/context, rejected destinations and incomplete inline nutrition. Preserve `DailyMenu | null` and the explicit unavailable state. Do not label failures “closed,” invent an update time, or use sample food.
 5. Compare with the last reviewed source change. Reproduce using sanitized fixtures locally. If a representative accepted week exceeds a bound, preserve the whole requested-day menu while measuring a revised budget; never silently slice it. Do not run load tests or malicious URL probes against Rutgers or production.
 6. If a normal live smoke is separately authorized, make only the minimal ordinary route requests, accounting for the existing cache TTLs. Do not refresh continuously or bypass caches merely to generate logs. Keep analytics test payloads intercepted.
 

@@ -1,3 +1,43 @@
+# Atrium Nutrislice migration — production remains paused
+
+Prepared September 10, 2026 New York, from the freshly verified Draft PR #1 head **`521a0883c1b24c3cd4e814f695a833261bac97b1`** in isolated worktree `Nutrition-atrium-nutrislice`, branch **`codex/atrium-nutrislice`**. This migration supersedes earlier FoodProNet-based candidates and their Atrium evidence. Original unrelated source/UI work is preserved. No merge, Production deployment or protection change is authorized or performed.
+
+## Authoritative source and behavior
+
+The actual [Rutgers school index](https://rutgers.api.nutrislice.com/menu/api/schools/) lists **71385 / The Atrium / `the-atrium` / 126 College Avenue / America/New_York**. Its advertised meal types are Breakfast 32934, Lunch 33316, Dinner 33318 and Late Knight 33385. The former source comment claiming Atrium is absent is obsolete. [API evidence](atrium-nutrislice-evidence/source-api.json), [published-interface comparison](atrium-nutrislice-evidence/source-interface.json), [fixture methodology](../../../tests/fixtures/nutrislice/atrium/README.md).
+
+- Atrium now resolves the index identity and advertised meal types, then runs the existing shared Nutrislice weekly fetch, exact requested-day match, normalization, daily usability, bounded cache and synchronous ingestion-summary path. No guessed static Atrium school, another hall/date/meal, FoodProNet or mock fallback. Failed meals remain absent; successful meals keep their actual label; all-unusable results render the existing unavailable state.
+- The existing 4.5-second Nutrislice body-inclusive deadline applies to Atrium; shared 15-second hall and 1.1-second homepage display bounds are unchanged. Weekly byte/structure/item limits, other-hall loading behavior and cache TTLs remain unchanged. FoodProNet HTML parsing, context/label helpers, label/page caches, unused byte constant and implementation fixtures/tests are removed. No dedicated package dependency existed, so dependencies/runtime policy/lockfile are unchanged. Historical audit evidence is retained as historical.
+- **Small necessary nutrition correction:** actual published OATMEAL at 6 oz has 80 kcal, 3g protein, 0g sugar, while its top-level API aggregate says 4g/1g. Atrium selects the unambiguous matching `food_sizes` nutrition for its explicit entry/default serving, then applies the unchanged normalization rules. Missing/ambiguous portion data/fields stay unknown; no aggregate/alternate-portion fill. The displayed portion and chosen nutrition agree. Other halls' field selection stays unchanged. No alternate-size chooser is added.
+- Existing food identities derive from Nutrislice food/station/meal IDs, with the existing stable collision suffix for distinct portion records. Map groups retain the original normalized food objects once. Branded Nutrislice subcategories join their established zones; **HOT CEREAL, SPECIALTY SANDWICHES, SUSHI & POKE BOWLS, GRAB & GO WARMER** remain in More stations because physical placement was not verified. They remain searchable and visible in List view. Artwork, positions, meal-selection hook, plate behavior and unrelated UI are unchanged.
+- Log source is `nutrislice` for all halls, including Atrium. Discovery failures remain visible. Obsolete HTML context-reason machinery is removed; zero-valued enrichment fields and reserved legacy category/endpoint values remain for log-consumer compatibility. Synchronous summary snapshots, safe logging catch and late sibling rejection handling are preserved.
+
+## Actual coverage and limits
+
+September 10 source responses list **42 Breakfast / 167 Lunch / 167 Dinner foods** across **7/26/26 sections**. The published Lunch and Dinner lists really are identical on this date: switching meal context must not fabricate different dishes. Breakfast vs Lunch/Dinner provides a real distinct-content comparison; three distinct meal handlers are additionally verified with the existing explicitly synthetic Livingston fixtures.
+
+Top-level six-nutrient coverage is 39/42 and 161/167; after conservative portion alignment, **35/42 Breakfast and 155/167 Lunch/Dinner** have all six tracked nutrients. Every food is retained. [Normalized fixture coverage](atrium-nutrislice-evidence/normalized-coverage.json) identifies the incomplete records. Representative official-interface comparisons matched Country Style Grits (6 oz, 140 kcal) and Chicken Noodle Soup (6 ozl, 85 kcal), and exposed/corrected the oatmeal aggregate discrepancy. This is not independent dietary/allergen validation or continuing availability evidence.
+
+The separately published **18-food Late Knight menu**, additional micronutrients and interactive alternate-size options are outside the existing three-meal interface and are not relabeled as Dinner. Existing typical hall schedules are reused, not replaced with unverified per-station closure rules. Full sanitized Breakfast/Lunch/Dinner weeks (September 6–12) exercise unchanged bounds and conserve every accepted requested-day food; further seasonal/peak and other-hall payload coverage remains incomplete. Correctly dated stored-real-menu recovery remains out of scope.
+
+## Verification and release integration
+
+**Local `npm run check` passed on Node 24.21.0 and 24.19.0**, each with 175 unit tests and 46 browser checks (32 Production, 2 unavailable, 12 Preview), TypeScript, noninteractive lint and isolated Production/Preview builds. `npm audit --audit-level=moderate` reports zero vulnerabilities; `git diff --check` passes. Obsolete FoodProNet-only cases were removed; shared safety regressions remain, with new Atrium source/portion/conservation coverage. [Local check evidence](atrium-nutrislice-evidence/local-checks.json). Exact published SHA, Linux required checks, matching Preview runtime and hosted interactions remain pending publication; the final working report and PR description will add those observations without a commit solely to insert its own SHA. Offline fixtures never contact providers or send analytics events. The hosted Preview uses the existing Preview-only analytics suppression; Production analytics remains enabled and plates remain temporary.
+
+The current Production dashboard was read back during this pass: **`70166c4fd04bb0d5ca25b792283924eff36c1f31` / `dpl_BT9hARabzozdRpqMutPju4P2xF5F`**, `knightbitenb.vercel.app`, Ready. GitHub strict required **KnightBite release verification**, app 15368, admin enforcement, zero required approvals, and no force/deletion remain intact. [Protection read-back](atrium-nutrislice-evidence/protection-readback.json). Actual Production gate pending/success/alias lifecycle remains unexercised and must be observed only during a separately approved release.
+
+## Recovery and remaining approval
+
+**No suitable patched Production Instant Rollback target is established.** Vulnerable Production 70166c4/906b5fd remain unsuitable. Patched candidate 521a088 and earlier Preview references restore FoodProNet and therefore do not preserve this migration's authoritative-source policy. They are historical investigation references, not an authorized recovery action. Never promote a Preview artifact: it suppresses analytics and includes guarded verification behavior.
+
+Recommended recovery remains **reviewed forward recovery from the released Nutrislice candidate**, preserving the source, unknown nutrients, unavailable states and protections. Reproduce the defect with sanitized fixtures, prepare an isolated corrective PR, run both complete runtime gates, verify the exact matching Preview, and obtain approval for the exact corrective SHA before any Production change. There is no instant restoration or promised recovery-time bound; explicit owner acceptance remains pending.
+
+Human Safari/VoiceOver/zoom/contrast coverage, privacy retention/region/access/notice and service ownership, dietary/source/artwork scope, attended monitoring/incident ownership and forward-recovery acceptance remain unsigned. Earlier approvals do not authorize this new candidate. The next Production approval must name the final migration commit; merging main may trigger an automatic Production build and alias assignment through the existing gates. No merge, promotion or Production deployment occurs in this pass.
+
+---
+
+## Historical readiness evidence — migration above takes precedence
+
 # Meal-selection defect investigation — production approval paused
 
 Prepared September 10, 2026 (New York), from verified Draft PR #1 head `9330248068264b611113163e273bb916afee1adb`. Fixes are isolated in `Nutrition-meal-selector-debug`, branch `codex/release-meal-selector-debug`. Production remains on `70166c4`; no merge, promotion, production deployment or protection change is authorized by this pass.
