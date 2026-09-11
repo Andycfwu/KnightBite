@@ -15,13 +15,13 @@ test at tests/partial-meal-loading.test.tsx:2:2325
 ✖ partial timeout recovers only missing meals after cooldown, without waiting fifteen minutes (24.962916ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
   + actual - expected
-  
+
     [
       'breakfast',
   -   'lunch',
   -   'dinner'
     ]
-  
+
       at TestContext.<anonymous> (/Users/andywu/Desktop/Codex/Nutrition-partial-meal-loading/tests/partial-meal-loading.test.tsx:37:10)
       at async Test.run (node:internal/test_runner/test:1409:7)
       at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
@@ -37,10 +37,10 @@ test at tests/partial-meal-loading.test.tsx:2:3126
 ✖ evening entry keeps scheduled Dinner selected when only Breakfast was retrieved (35.396416ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
   + actual - expected
-  
+
   + 'breakfast'
   - 'dinner'
-  
+
       at TestContext.<anonymous> (/Users/andywu/Desktop/Codex/Nutrition-partial-meal-loading/tests/partial-meal-loading.test.tsx:44:10)
       at async Test.run (node:internal/test_runner/test:1409:7)
       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
