@@ -59,6 +59,7 @@ test('6pm entry selects Dinner; manual meal survives search, filters and plate i
   await page.getByRole('searchbox').fill('');
   await page.getByRole('button', { name: 'Add Synthetic rice', exact: true }).first().click();
   await page.getByRole('button', { name: 'View your plate', exact: true }).click();
+  await expect(page.getByRole('dialog', { name: 'My Plate', exact: true }).getByRole('button', { name: 'Close plate', exact: true })).toBeFocused();
   await page.keyboard.press('Escape');
   await expect(meals.getByRole('button', { name: 'Breakfast', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('.livi-panelHeading:visible')).toContainText('Breakfast MENU');

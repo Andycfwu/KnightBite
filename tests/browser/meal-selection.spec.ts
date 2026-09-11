@@ -41,6 +41,7 @@ for (const mobile of [false, true]) test(`6pm homepage entry and all meal conten
   await assertMeal(page, 'Livingston', 'Lunch');
   await page.getByRole('button', { name: 'Add Synthetic Livingston lunch soup', exact: true }).click();
   await page.getByRole('button', { name: mobile ? 'Open plate' : 'View your plate', exact: true }).click();
+  await expect(page.getByRole('dialog', { name: 'My Plate', exact: true }).getByRole('button', { name: 'Close plate', exact: true })).toBeFocused();
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog', { name: 'My Plate', exact: true })).not.toBeVisible();
   await page.getByRole('searchbox').fill('');

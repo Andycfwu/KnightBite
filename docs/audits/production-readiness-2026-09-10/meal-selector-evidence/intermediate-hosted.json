@@ -1,0 +1,28 @@
+{
+  "commit": "df489a0710fdf1ef22d0b993a65d9439c8b7a05e",
+  "preview": "https://knight-bite-lr55x52sk-andycfwus-projects.vercel.app",
+  "function": {
+    "observedAt": "2026-09-11T00:49:04.197Z",
+    "node": "24.19.0",
+    "openssl": "3.5.7",
+    "undici": "7.29.0",
+    "region": "iad1"
+  },
+  "observations": {
+    "controlledLivingston": "Breakfast only returned initially; no Dinner claim. A partial upstream result, not three-meal success.",
+    "normalLivingston": "Homepage entry Dinner; all three buttons and distinct full-menu foods verified: Breakfast69, Lunch171, Dinner172. Lunch persisted through keyboard/search/plate; Escape restored opener focus.",
+    "plate": "GOCHUJANG CHICKEN THIGHS,5oz,247kcal,24gprotein; one temporary item retained across client navigation to Atrium.",
+    "normalAtrium": "Success; selected Dinner,Pi Pizza38 items; Thursday September10; real retrieval label.",
+    "controlledUnavailable": "Thursday September10 despite UTC September11; unavailable, zerofoods, no sample/backup/timestamp.",
+    "headers": "Profile HTTPS document headers and static immutable cache match retained policy. Static HSTS absent as previously documented.",
+    "analytics": "Preview omits SDK; no hosted synthetic events delivered."
+  },
+  "correctedLocal": {
+    "url": "http://127.0.0.1:3010",
+    "cwd": "/Users/andywu/Desktop/Codex/Nutrition-meal-selector-debug",
+    "node": "24.21.0",
+    "analyticsDisabled": true,
+    "normalHomepageEntry": "Livingston Dinner",
+    "mealContents": "Breakfast69 with bagels; Lunch171 with gochujang chicken; Dinner172 with roast pork; all tab/food changes observed; no client errors"
+  }
+}
