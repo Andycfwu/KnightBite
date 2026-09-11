@@ -1,4 +1,4 @@
-import type { DiningHallId, Station } from "@/lib/types";
+import type { DiningHallId, MealSection, Station } from "@/lib/types";
 
 export type StationZone = {
   id: string;
@@ -51,4 +51,12 @@ export function groupMapStations<Id extends string>(stations: Station[], zones: 
     group.itemCount += station.items.length;
   }
   return groups;
+}
+
+// Providers expose listed items, not confirmed per-station opening/closure data.
+// Search and dietary filters must not feed this status: use unfiltered counts.
+export function getStationMenuStatus(meal: MealSection | undefined, itemCount: number) {
+  if (!meal) return { state: "unavailable", label: "Menu status unavailable" } as const;
+  if (itemCount === 0) return { state: "empty", label: `No items listed for ${meal.type}` } as const;
+  return { state: "listed", label: `${itemCount} item${itemCount === 1 ? "" : "s"} listed for ${meal.type}` } as const;
 }

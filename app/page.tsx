@@ -1,4 +1,5 @@
 import { HallCardStatus } from "@/components/home/HallCard";
+import { SERVICE_WINDOWS } from "@/lib/meal-schedule";
 import { HomeScreen } from "@/components/home/HomeScreen";
 import { getHallMenuForDate } from "@/lib/menu";
 import { diningHalls } from "@/lib/dining-halls";
@@ -12,19 +13,6 @@ import {
 
 export const dynamic = "force-dynamic";
 
-const SERVICE_WINDOWS: Record<
-  DiningHallId,
-  {
-    breakfast?: [number, number];
-    lunch?: [number, number];
-    dinner?: [number, number];
-  }
-> = {
-  livingston: { breakfast: [7, 10.5], lunch: [11, 15], dinner: [16.5, 21] },
-  busch: { breakfast: [7, 10.5], lunch: [11, 15], dinner: [16.5, 21] },
-  neilson: { breakfast: [7.5, 10], lunch: [11.5, 14.5], dinner: [16.5, 20] },
-  atrium: { breakfast: [8, 10.5], lunch: [11, 15], dinner: [16.5, 21] }
-};
 
 function buildHallStatus(hallId: DiningHallId, menu: DailyMenu | null): HallCardStatus {
   const hour = getRutgersCurrentDecimalHour();

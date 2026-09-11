@@ -64,7 +64,7 @@ test("Livingston unavailable state keeps the guide but no food claims, add contr
   assert.match(html, /Menu unavailable right now/);
   assert.match(html, /Approximate station layout/);
   assert.equal((html.match(/aria-label="Explore /g) ?? []).length, 7);
-  assert.doesNotMatch(html, /aria-label="Add |test dish|Retrieved|Listed on today|Sample menu|Backup menu/);
+  assert.doesNotMatch(html, /aria-label="Add |test dish|Retrieved|Listed on Rutgers|Sample menu|Backup menu/);
 });
 
 test("Livingston uses real menu content, provides list/search alternatives and retains plate entry", () => {
@@ -75,12 +75,12 @@ test("Livingston uses real menu content, provides list/search alternatives and r
   assert.match(html, /Search all Livingston menu items/);
   assert.match(html, /List view/);
   assert.match(html, /More stations/);
-  assert.match(html, /Listed on today’s menu/);
+  assert.match(html, /Listed on Rutgers menu/);
   assert.match(html, /Retrieved/);
 });
 
 test("Deliberately supplied samples cannot receive a live source label or retrieval time", () => {
   const html = render({ ...menu, isLiveData: false });
   assert.match(html, /Sample menu/);
-  assert.doesNotMatch(html, /Listed on today|Retrieved|Backup menu/);
+  assert.doesNotMatch(html, /Listed on Rutgers|Retrieved|Backup menu/);
 });

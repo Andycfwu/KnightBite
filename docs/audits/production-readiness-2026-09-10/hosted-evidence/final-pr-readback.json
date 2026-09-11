@@ -1,0 +1,53 @@
+{
+  "observedAt": "2026-09-10T23:14:18.996444+00:00",
+  "data": {
+    "baseRefName": "main",
+    "headRefName": "codex/release-readiness-2026-09-10",
+    "headRefOid": "643412f5c878aebd0514b1464e2e43b496f3e509",
+    "isDraft": true,
+    "mergeStateStatus": "CLEAN",
+    "number": 1,
+    "state": "OPEN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-10T23:13:07Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Andycfwu/KnightBite/actions/runs/34540626078/job/103082231080",
+        "name": "KnightBite release verification",
+        "startedAt": "2026-09-10T23:06:26Z",
+        "status": "COMPLETED",
+        "workflowName": "Release checks"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-10T23:11:44Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Andycfwu/KnightBite/actions/runs/34540619490/job/103082211165",
+        "name": "KnightBite release verification",
+        "startedAt": "2026-09-10T23:06:21Z",
+        "status": "COMPLETED",
+        "workflowName": "Release checks"
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "Vercel",
+        "startedAt": "2026-09-10T23:07:07Z",
+        "state": "SUCCESS",
+        "targetUrl": "https://vercel.com/andycfwus-projects/knight-bite/51XaMy2d5NbaCB376uiB1kQxQpi7"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-10T23:07:08Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://vercel.com/github",
+        "name": "Vercel Preview Comments",
+        "startedAt": "2026-09-10T23:07:08Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      }
+    ],
+    "title": "Prepare dining UI and production-readiness remediation",
+    "url": "https://github.com/Andycfwu/KnightBite/pull/1"
+  }
+}

@@ -77,7 +77,7 @@ test("Busch unavailable state preserves the guide, disables search, and invents 
   assert.equal((html.match(/aria-label="Explore /g) ?? []).length, 18);
   assert.match(html, /Entrance/);
   assert.doesNotMatch(html, /Explore Coffee|Explore Bread|Explore Toast/);
-  assert.doesNotMatch(html, /aria-label="Add |test dish|Retrieved|Listed on today|Sample menu|Backup menu/);
+  assert.doesNotMatch(html, /aria-label="Add |test dish|Retrieved|Listed on Rutgers|Sample menu|Backup menu/);
 });
 
 test("Busch real menu renders station food, accessible controls and the existing plate entry", () => {
@@ -91,7 +91,7 @@ test("Busch real menu renders station food, accessible controls and the existing
   assert.match(html, /Search all Busch menu items/);
   assert.match(html, /List view/);
   assert.match(html, /More stations/);
-  assert.match(html, /Listed on today’s menu/);
+  assert.match(html, /Listed on Rutgers menu/);
   assert.match(html, /Retrieved/);
   // Other halls are offered in the switcher; the active guide must still be Busch's.
   assert.match(html, /<h1>Busch Dining Hall<\/h1>/);
@@ -117,5 +117,5 @@ test("Busch fruit stands share one menu group and removed counters do not hide u
 test("Busch explicitly supplied samples have no live label or retrieval claim", () => {
   const html = render({ ...menu, isLiveData: false });
   assert.match(html, /Sample menu/);
-  assert.doesNotMatch(html, /Listed on today|Retrieved|Backup menu/);
+  assert.doesNotMatch(html, /Listed on Rutgers|Retrieved|Backup menu/);
 });

@@ -22,27 +22,28 @@ import { usePlate } from "@/hooks/usePlate";
 import { MEAL_LABELS } from "@/lib/constants";
 import { getAvailableMealTypes } from "@/lib/menu-helpers";
 import { hasCompleteNutrition, formatTotal } from "@/lib/nutrition";
-import { DailyMenu, DiningHall } from "@/lib/types";
+import { DailyMenu, DiningHall, MealType } from "@/lib/types";
 import { formatDateLabel, formatUpdatedTime } from "@/lib/utils";
 
 type HallMenuViewProps = {
   hall: DiningHall;
   menu: DailyMenu | null;
   requestedDate: string;
+  initialMeal?: MealType;
 };
 
-export function HallMenuView({ hall, menu, requestedDate }: HallMenuViewProps) {
+export function HallMenuView({ hall, menu, requestedDate, initialMeal }: HallMenuViewProps) {
   if (hall.id === "livingston") {
-    return <LivingstonMenuView menu={menu} requestedDate={requestedDate} />;
+    return <LivingstonMenuView menu={menu} requestedDate={requestedDate} initialMeal={initialMeal} />;
   }
   if (hall.id === "busch") {
-    return <HallStationExplorer key={hall.id} menu={menu} requestedDate={requestedDate} map={BUSCH_MAP} />;
+    return <HallStationExplorer key={hall.id} menu={menu} requestedDate={requestedDate} initialMeal={initialMeal} map={BUSCH_MAP} />;
   }
   if (hall.id === "neilson") {
-    return <HallStationExplorer key={hall.id} menu={menu} requestedDate={requestedDate} map={NEILSON_MAP} />;
+    return <HallStationExplorer key={hall.id} menu={menu} requestedDate={requestedDate} initialMeal={initialMeal} map={NEILSON_MAP} />;
   }
   if (hall.id === "atrium") {
-    return <HallStationExplorer key={hall.id} menu={menu} requestedDate={requestedDate} map={ATRIUM_MAP} />;
+    return <HallStationExplorer key={hall.id} menu={menu} requestedDate={requestedDate} initialMeal={initialMeal} map={ATRIUM_MAP} />;
   }
   if (!menu) {
     return (
@@ -56,17 +57,17 @@ export function HallMenuView({ hall, menu, requestedDate }: HallMenuViewProps) {
     );
   }
 
-  return <HallMenuContent hall={hall} menu={menu} />;
+  return <HallMenuContent hall={hall} menu={menu} initialMeal={initialMeal} />;
 }
 
-function HallMenuContent({ hall, menu }: { hall: DiningHall; menu: DailyMenu }) {
+function HallMenuContent({ hall, menu, initialMeal }: { hall: DiningHall; menu: DailyMenu; initialMeal?: MealType }) {
   const plate = usePlate();
   const [plateOpen, setPlateOpen] = useState(false);
   const [activeStationId, setActiveStationId] = useState<string | null>(null);
   const [platePulse, setPlatePulse] = useState(false);
   const previousTotalItemsRef = useRef(plate.totalItems);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
-  const { filteredMeal, query, resultCount, selectedMeal, setQuery, setSelectedMeal } = useMenuFilter(menu);
+  const { filteredMeal, query, resultCount, selectedMeal, setQuery, setSelectedMeal } = useMenuFilter(menu, initialMeal);
   const stations = useMemo(() => filteredMeal?.stations ?? [], [filteredMeal]);
 
   const stationNavItems = useMemo(

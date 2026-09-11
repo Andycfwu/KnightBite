@@ -1,0 +1,101 @@
+{
+  "observedAt": "2026-09-10T23:10:41.359366+00:00",
+  "commit": "643412f5c878aebd0514b1464e2e43b496f3e509",
+  "tree": "36117c9f64dc3d7a498e93003e19c31dfb3971bf",
+  "deploymentId": "dpl_51XaMy2d5NbaCB376uiB1kQxQpi7",
+  "url": "https://knight-bite-r0fu86efb-andycfwus-projects.vercel.app",
+  "status": "Ready",
+  "readyAt": "2026-09-10T23:07:07.097Z",
+  "buildRuntime": {
+    "observedAt": "2026-09-10T23:06:24.183Z",
+    "environment": "preview",
+    "commit": "643412f5c878aebd0514b1464e2e43b496f3e509",
+    "node": "24.19.0",
+    "openssl": "3.5.7",
+    "undici": "7.29.0",
+    "llhttp": "9.4.3",
+    "platform": "linux",
+    "arch": "x64",
+    "next": "15.5.25",
+    "sharp": "0.35.4",
+    "note": "Build record has no function-region assertion; region comes from runtime evidence below"
+  },
+  "diagnosticFunctionRuntime": {
+    "observedAt": "2026-09-10T23:08:00.637Z",
+    "environment": "preview",
+    "commit": "643412f5c878aebd0514b1464e2e43b496f3e509",
+    "region": "iad1",
+    "node": "24.19.0",
+    "openssl": "3.5.7",
+    "undici": "7.29.0",
+    "llhttp": "9.4.3",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "menuLoaderFunctionRuntimes": [
+    {
+      "observedAt": "2026-09-10T23:07:41.214Z",
+      "environment": "preview",
+      "commit": "643412f5c878aebd0514b1464e2e43b496f3e509",
+      "region": "iad1",
+      "node": "24.19.0",
+      "openssl": "3.5.7",
+      "undici": "7.29.0",
+      "llhttp": "9.4.3",
+      "platform": "linux",
+      "arch": "x64"
+    },
+    {
+      "observedAt": "2026-09-10T23:07:40.422Z",
+      "environment": "preview",
+      "commit": "643412f5c878aebd0514b1464e2e43b496f3e509",
+      "region": "iad1",
+      "node": "24.19.0",
+      "openssl": "3.5.7",
+      "undici": "7.29.0",
+      "llhttp": "9.4.3",
+      "platform": "linux",
+      "arch": "x64"
+    }
+  ],
+  "sourceIdenticalToHostedC1ExceptDocumentation": true,
+  "customDomainAssignment": "Skipped",
+  "hostedFinalChecks": {
+    "atrium": "Normal route settled unavailable: requested Thursday September 10, no items/retrieval timestamp/backup/sample label. Empty dialog opens, Tab wraps, Escape closes.",
+    "homepage": "3 menus confirmed for today; unknown Atrium not a definitive zero-menu claim",
+    "dateBoundary": "Controlled hosted UTC September 11 00:30 -> Rutgers September 10 unavailable view passed again",
+    "busch": "88 real breakfast items. Plain bagel 323 kcal + unknown assorted bagel, doubled known quantity -> known subtotal 646 kcal, 26g protein, 140g carbs, 3g fat, unknown row unchanged.",
+    "mobile": "375x812 Menu -> plate; Enter increment, Escape returns focus to My plate3; document width/scroll width375.",
+    "plateLifetime": "Reload reset My plate to empty; previous detailed C1 client-navigation and preference checks remain source-applicable.",
+    "analytics": "No SDK script elements; no test events sent; no production analytics setting changed",
+    "browserErrorsWarnings": [],
+    "viewportRestored": true
+  },
+  "upstream": {
+    "atriumAllMealTimeoutAttempts": [
+      {
+        "startedAt": "2026-09-10T23:07:40.446Z",
+        "durationMs": 65476
+      },
+      {
+        "startedAt": "2026-09-10T23:07:41.239Z",
+        "durationMs": 7878
+      }
+    ],
+    "atriumReturnedItems": 0,
+    "neilson": {
+      "outcome": "success",
+      "startedAt": "2026-09-10T23:07:40.445Z",
+      "durationMs": 2218,
+      "meals": 3,
+      "stations": 44,
+      "items": 355
+    }
+  },
+  "limitations": [
+    "Atrium success/partial was observed on C1 with identical application source, not on this final deployment in this window",
+    "65.476-second daily-attempt wall duration is not the unchanged 15-second caller display wait; platform/background timing cause not established",
+    "No complete hosted network trace or actual VoiceOver signoff",
+    "No production gate lifecycle or patched production rollback eligibility established"
+  ]
+}

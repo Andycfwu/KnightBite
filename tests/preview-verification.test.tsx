@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { Analytics } from '@vercel/analytics/next';
 import { DeploymentAnalytics } from '@/components/layout/DeploymentAnalytics';
+import MealSelectionCheck from '@/app/preview-check/meals/page';
 import PreviewCheckPage from '@/app/preview-check/page';
 import PreviewUnavailablePage from '@/app/preview-check/unavailable/page';
 import { getPreviewRuntimeEvidence, reportPreviewMenuRuntime } from '@/lib/preview-runtime';
@@ -23,13 +24,14 @@ test('only Preview suppresses analytics; production and normal local behavior re
   } finally { process.env = before; }
 });
 
-test('verification pages and runtime records are unavailable outside Preview', () => {
+test('verification pages and runtime records are unavailable outside Preview', async () => {
   const before = process.env.VERCEL_ENV;
   try {
     for (const environment of ['production', 'development', undefined]) {
       if (environment) process.env.VERCEL_ENV = environment;
       else delete process.env.VERCEL_ENV;
       assert.equal(getPreviewRuntimeEvidence(), null);
+      await assert.rejects(MealSelectionCheck(), /NEXT_HTTP_ERROR_FALLBACK;404/);
       for (const page of [PreviewCheckPage, PreviewUnavailablePage]) {
         assert.throws(page, /NEXT_HTTP_ERROR_FALLBACK;404/);
       }

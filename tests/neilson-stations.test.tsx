@@ -62,7 +62,7 @@ test("Neilson unavailable state keeps its guide without inventing foods or retri
   assert.match(html, /type="search"[^>]*disabled=""/);
   assert.equal((html.match(/aria-label="Explore /g) ?? []).length, 9);
   assert.match(html, /Dietary support/);
-  assert.doesNotMatch(html, /aria-label="Explore Dietary|aria-label="Add |Retrieved|Listed on today|Sample menu/);
+  assert.doesNotMatch(html, /aria-label="Explore Dietary|aria-label="Add |Retrieved|Listed on Rutgers|Sample menu/);
 });
 
 test("Neilson uses the shared menu and plate controls with real data and honest sample labeling", () => {
@@ -77,5 +77,5 @@ test("Neilson uses the shared menu and plate controls with real data and honest 
   assert.match(html, /Retrieved/);
   const sample = render({ ...menu, isLiveData: false });
   assert.match(sample, /Sample menu/);
-  assert.doesNotMatch(sample, /Listed on today|Retrieved|Backup menu/);
+  assert.doesNotMatch(sample, /Listed on Rutgers|Retrieved|Backup menu/);
 });

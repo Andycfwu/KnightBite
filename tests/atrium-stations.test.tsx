@@ -74,7 +74,7 @@ test("Atrium null menus keep the drawing, date and controls without inventing fo
   assert.match(html, /type="search"[^>]*disabled=""/);
   assert.equal((html.match(/aria-label="Explore /g) ?? []).length, 8);
   assert.match(html, /Entrance/);
-  assert.doesNotMatch(html, /aria-label="Add |test dish|Retrieved|Listed on today|Sample menu/);
+  assert.doesNotMatch(html, /aria-label="Add |test dish|Retrieved|Listed on Rutgers|Sample menu/);
 });
 
 test("Atrium real and sample rendering reuse menu, search and plate behavior", () => {
@@ -90,5 +90,5 @@ test("Atrium real and sample rendering reuse menu, search and plate behavior", (
   assert.match(html, /Retrieved/);
   const sample = render({ ...menu, isLiveData: false });
   assert.match(sample, /Sample menu/);
-  assert.doesNotMatch(sample, /Listed on today|Retrieved|Backup menu/);
+  assert.doesNotMatch(sample, /Listed on Rutgers|Retrieved|Backup menu/);
 });

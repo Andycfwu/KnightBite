@@ -10,18 +10,19 @@ import { KnightBiteBrand } from "@/components/layout/KnightBiteBrand";
 import { PlateIcon } from "@/components/ui/PlateIcon";
 import { DiningIcon } from "@/components/ui/DiningIcon";
 import { NutritionDisclaimer } from "@/components/ui/NutritionDisclaimer";
+import { useMealSelection } from "@/hooks/useMealSelection";
 import { usePlate } from "@/hooks/usePlate";
 import { diningHalls } from "@/lib/dining-halls";
-import { groupMapStations, type StationMap } from "@/lib/station-map";
+import { groupMapStations, getStationMenuStatus, type StationMap } from "@/lib/station-map";
 import { filterMenuStations, matchesMenuFilter, MENU_FILTERS, type MenuFilter } from "@/lib/menu-filters";
 import { MEAL_LABELS } from "@/lib/constants";
 import { hasMeaningfulNutrition, hasCompleteNutrition, formatNutrient, formatTotal } from "@/lib/nutrition";
 import { formatDateLabel, formatUpdatedTime } from "@/lib/utils";
 import type { DailyMenu, MenuItem, MealType, Station } from "@/lib/types";
 
-export function HallStationExplorer({ menu, requestedDate, map }: { menu: DailyMenu | null; requestedDate: string; map: StationMap }) {
+export function HallStationExplorer({ menu, requestedDate, map, initialMeal }: { menu: DailyMenu | null; requestedDate: string; map: StationMap; initialMeal?: MealType }) {
   const plate = usePlate();
-  const [selectedMeal, setSelectedMeal] = useState<MealType>(menu?.meals[0]?.type ?? "lunch");
+  const { selectedMeal, setSelectedMeal } = useMealSelection(menu, initialMeal);
   const [selectedZone, setSelectedZone] = useState(map.defaultZone);
   const [view, setView] = useState<"map" | "list">("map");
   const [mapExpanded, setMapExpanded] = useState(false);
@@ -36,8 +37,9 @@ export function HallStationExplorer({ menu, requestedDate, map }: { menu: DailyM
   const foodListRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const hallPickerRef = useRef<HTMLDetailsElement>(null);
-  const meal = menu?.meals.find((entry) => entry.type === selectedMeal) ?? menu?.meals[0];
+  const meal = menu?.meals.find((entry) => entry.type === selectedMeal);
   const groups = groupMapStations(meal?.stations ?? [], map.zones);
+  const statusByZone = Object.fromEntries(groups.map((group) => [group.id, getStationMenuStatus(meal, group.itemCount)]));
   const activeGroup = groups.find((group) => group.id === selectedZone) ?? groups[0];
   const activeZone = map.zones.find((zone) => zone.id === selectedZone);
   const search = query.trim();
@@ -154,7 +156,7 @@ export function HallStationExplorer({ menu, requestedDate, map }: { menu: DailyM
         <header className="livi-header">
           <div className="livi-hallHeading"><p className="livi-eyebrow">{map.campus}</p><h1>{hallName}</h1>
             <div className="livi-source"><span className={menu?.isLiveData ? "livi-liveDot" : "livi-unknownDot"} />
-              <span>{menu ? menu.isLiveData ? "Listed on today’s menu" : "Sample menu" : "Menu status unavailable"}</span>
+              <span>{menu ? menu.isLiveData ? "Listed on Rutgers menu" : "Sample menu" : "Menu status unavailable"}</span>
               {menu?.isLiveData && menu.lastUpdatedAt ? <span className="livi-updated">Retrieved {formatUpdatedTime(menu.lastUpdatedAt)}</span> : null}
             </div>
           </div>
@@ -188,10 +190,11 @@ export function HallStationExplorer({ menu, requestedDate, map }: { menu: DailyM
                   <Image src={map.image.src} alt={map.image.alt} width={map.image.width} height={map.image.height} priority
                     sizes={map.minCanvasWidth ? `(min-width: 1100px) ${map.maxCanvasWidth ?? 800}px, ${map.minCanvasWidth}px` : "(min-width: 860px) 750px, 100vw"} className="livi-artwork" />
                   {map.zones.flatMap((zone) => [{ x: zone.x, y: zone.y, label: "" }, ...(zone.additionalSpots ?? [])].map((spot, index) =>
-                    <button key={`${zone.id}-${index}`} type="button" className="livi-mapPin" data-label-side={zone.labelSide}
+                    <button key={`${zone.id}-${index}`} type="button" className="livi-mapPin" data-menu-state={statusByZone[zone.id].state}
+                      aria-describedby={`${map.hallId}-${zone.id}-status`} data-label-side={zone.labelSide}
                       style={{ left: `${spot.x}%`, top: `${spot.y}%` }} aria-label={`Explore ${zone.name}${spot.label ? `, ${spot.label}` : ""}`}
                       aria-pressed={selectedZone === zone.id && !search} aria-controls={`${map.hallId}-food-panel`} onClick={() => selectZone(zone.id)}>
-                      <span className="livi-pinNumber">{zone.number}</span><span className="livi-pinLabel">{zone.shortName}</span>
+                      <span className="livi-pinNumber">{zone.number}{statusByZone[zone.id].state !== "listed" ? <small className="livi-pinStatus" aria-hidden="true">{statusByZone[zone.id].state === "empty" ? "—" : "?"}</small> : null}</span><span className="livi-pinLabel">{zone.shortName}</span>
                     </button>))}
                   {map.entrance ? <span className="livi-mapEntrance" style={{ left: `${map.entrance.x}%`, top: `${map.entrance.y}%` }}><span aria-hidden="true">↑</span> Entrance</span> : null}
                   {map.entrances?.map((entry, index) => <span key={`entrance-${index}`} className="livi-mapEntrance" style={{ left: `${entry.x}%`, top: `${entry.y}%` }}><span aria-hidden="true">{entry.direction === "right" ? "→" : "↑"}</span> Entrance</span>)}
@@ -209,10 +212,10 @@ export function HallStationExplorer({ menu, requestedDate, map }: { menu: DailyM
                 <a href="https://food.rutgers.edu/places-eat/dining-hall-tour" target="_blank" rel="noreferrer">Rutgers station guide <span aria-hidden="true">↗</span></a>
               </div>
               <div ref={legendRef} className="livi-legend" aria-label="Choose a serving area">
-                {displayedGroups.map((group) => <button key={group.id} type="button" aria-pressed={selectedZone === group.id && !search}
+                {displayedGroups.map((group) => <button key={group.id} type="button" data-menu-state={statusByZone[group.id].state} aria-pressed={selectedZone === group.id && !search}
                   aria-controls={`${map.hallId}-food-panel`} onClick={() => selectZone(group.id)}>
                   <span className="livi-legendNumber">{map.zones.find((zone) => zone.id === group.id)?.number ?? "+"}</span>
-                  <span className="livi-legendName">{group.name}</span><span className="livi-count">{menu ? `${group.itemCount} items` : "—"}</span>
+                  <span className="livi-legendText"><span className="livi-legendName">{group.name}</span><span id={`${map.hallId}-${group.id}-status`} className="livi-stationStatus">{statusByZone[group.id].label}</span></span>
                 </button>)}
               </div>
             </div>
@@ -225,7 +228,7 @@ export function HallStationExplorer({ menu, requestedDate, map }: { menu: DailyM
               <div className="livi-panelHeader">
                 <div className="livi-panelHeading"><div><p className="livi-eyebrow">{meal ? `${MEAL_LABELS[meal.type]} MENU` : "TODAY’S MENU"}{view === "map" && !search && activeZone ? ` · STATION ${activeZone.number}` : ""}</p>
                   <h2 id={`${map.hallId}-panel-title`}>{panelTitle}</h2>
-                  <p aria-live="polite">{menu ? `${itemCount} item${itemCount === 1 ? "" : "s"} listed${search ? " across all stations" : ""}` : "Menus could not be confirmed"}</p></div>
+                  <p aria-live="polite">{meal ? `${itemCount} item${itemCount === 1 ? "" : "s"} listed${search ? " across all stations" : ""}` : "Menus could not be confirmed"}</p></div>
                   <span className="livi-panelSymbol">{view === "map" && !search && activeZone ? activeZone.number : <DiningIcon name={search ? "search" : "list"} />}</span>
                 </div>
                 <label className="livi-search"><DiningIcon name="search" /><span className="sr-only">Search all {map.name} menu items</span>
@@ -239,9 +242,9 @@ export function HallStationExplorer({ menu, requestedDate, map }: { menu: DailyM
               {selectedZone === "other" && !search && view === "map" ? <p className="livi-otherNote">These menu sections don’t have a confirmed spot on our illustration yet.</p> : null}
               {activeGroup.note && !search && view === "map" ? <p className="livi-otherNote">{activeGroup.note}</p> : null}
               <div ref={foodListRef} className="livi-foodList" tabIndex={itemCount ? 0 : undefined} aria-label={itemCount ? "Menu items" : undefined} role={itemCount ? "region" : undefined}>
-                {!menu ? <div className="livi-empty"><DiningIcon name="list" /><h3>Menu unavailable right now.</h3>
+                {!meal ? <div className="livi-empty"><DiningIcon name="list" /><h3>Menu unavailable right now.</h3>
                   <p>We couldn’t load a menu for this hall for today. Try another hall or check back later.</p><Link href="/">Explore other halls →</Link></div>
-                  : !itemCount ? <div className="livi-empty"><DiningIcon name="search" /><h3>{search || filter !== "all" ? "No matching items" : "No items listed here"}</h3>
+                  : !itemCount ? <div className="livi-empty"><DiningIcon name="search" /><h3>{search || filter !== "all" ? "No matching items" : `No items listed for ${meal.type}`}</h3>
                     <p>{search || filter !== "all" ? "Try another search or clear your filter to see more of the menu." : "This doesn’t mean the station is closed. Try another station or explore the full menu."}</p>
                     <button type="button" onClick={() => { setQuery(""); setFilter("all"); setView("list"); }}>See all menu items →</button></div>
                     : visibleStations.map((station) => <FoodSection key={station.id} station={station} onAdd={addItem} quantities={plate.plate.items} />)}

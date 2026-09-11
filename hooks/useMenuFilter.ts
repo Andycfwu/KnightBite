@@ -2,17 +2,16 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import { getDefaultMealType } from "@/lib/menu-helpers";
+import { useMealSelection } from "@/hooks/useMealSelection";
 import { DailyMenu, MealSection, MealType } from "@/lib/types";
 
-export function useMenuFilter(menu: DailyMenu) {
-  const [selectedMeal, setSelectedMeal] = useState<MealType>(getDefaultMealType(menu));
+export function useMenuFilter(menu: DailyMenu, initialMeal?: MealType) {
+  const { selectedMeal, setSelectedMeal } = useMealSelection(menu, initialMeal);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    setSelectedMeal(getDefaultMealType(menu));
     setQuery("");
-  }, [menu]);
+  }, [menu.hallId, menu.date]);
 
   const filteredMeal = useMemo<MealSection | null>(() => {
     const meal = menu.meals.find((entry) => entry.type === selectedMeal);

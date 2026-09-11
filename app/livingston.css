@@ -324,3 +324,15 @@
   .livi-loadingPicker { width: 34px; height: 34px; border-radius: 50%; }
   .livi-loadingMeals { width: 100%; }
 }
+
+/* Empty source sections stay operable; color is supplemented by text and a mark. */
+.livi-legendText { display: flex; flex-direction: column; gap: 3px; }
+.livi-stationStatus { font-size: 10px; line-height: 1.4; }
+.livi-pinNumber { position: relative; }
+.livi-pinStatus { position: absolute; right: -6px; top: -6px; display: grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; background: #fff; color: #484848; border: 1px solid #777; font-size: 11px; }
+.livi-mapPin[data-menu-state="empty"] .livi-pinNumber,
+.livi-mapPin[data-menu-state="empty"] .livi-pinLabel { background: #e8e7e4; color: #50504d; }
+.livi-mapPin[data-menu-state="empty"][aria-pressed="true"] .livi-pinNumber { box-shadow: 0 0 0 3px #777, 0 3px 10px #26282520; }
+.livi-legend button[data-menu-state="empty"] { background: #eeedea; color: #50504d; }
+.livi-legend button[data-menu-state="empty"][aria-pressed="true"] { background: #e0dfdc; outline: 2px solid #777; outline-offset: -2px; }
+.livi-legend button[data-menu-state="empty"] .livi-legendNumber { color: #50504d; background: #deddd9; }

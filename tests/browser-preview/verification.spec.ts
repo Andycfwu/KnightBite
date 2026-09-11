@@ -43,3 +43,47 @@ test('hosted-check route renders an explicitly controlled unavailable Rutgers da
   await expect(page.getByRole('button', { name: /^Add / })).toHaveCount(0);
   await expect(page.locator('body')).not.toContainText(/Backup menu|Sample menu|Retrieved|Updated recently/);
 });
+
+test('6pm entry selects Dinner; manual meal survives search, filters and plate interaction', async ({ page }) => {
+  await page.goto('/preview-check/meals');
+  await expect(page.getByRole('complementary', { name: 'Controlled Preview scenario' })).toContainText('Controlled 6pm America/New_York');
+  const meals = page.getByRole('group', { name: 'Choose a meal' });
+  await expect(meals.getByRole('button', { name: 'Dinner', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await meals.getByRole('button', { name: 'Breakfast', exact: true }).click();
+  await page.getByRole('button', { name: 'List view', exact: true }).click();
+  await expect(page.locator('.livi-panelHeading:visible')).toContainText('Breakfast MENU');
+  await page.clock.setFixedTime(new Date('2026-09-11T02:00:00Z'));
+  await page.getByRole('searchbox').fill('no-such-food');
+  await expect(page.getByRole('heading', { name: 'No matching items', exact: true })).toBeVisible();
+  await expect(meals.getByRole('button', { name: 'Breakfast', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('searchbox').fill('');
+  await page.getByRole('button', { name: 'Add Synthetic rice', exact: true }).first().click();
+  await page.getByRole('button', { name: 'View your plate', exact: true }).click();
+  await page.keyboard.press('Escape');
+  await expect(meals.getByRole('button', { name: 'Breakfast', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.livi-panelHeading:visible')).toContainText('Breakfast MENU');
+});
+
+test('station statuses use unfiltered meal evidence and empty controls explain on keyboard and touch', async ({ page }) => {
+  await page.goto('/preview-check/meals');
+  const listed = page.locator('.livi-legend button[data-menu-state="listed"]');
+  const listedCount = await listed.count();
+  expect(listedCount).toBeGreaterThan(0);
+  await page.getByRole('searchbox').fill('no-such-food');
+  await expect(listed).toHaveCount(listedCount);
+  const empty = page.locator('.livi-legend button[data-menu-state="empty"]').first();
+  await expect(empty).toContainText('No items listed for dinner');
+  await empty.focus();
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('heading', { name: 'No items listed for dinner', exact: true })).toBeVisible();
+  await expect(page.locator('#busch-food-panel:visible')).toBeFocused();
+  await expect(empty).toBeEnabled();
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.getByRole('button', { name: 'Breakfast', exact: true }).click();
+  await empty.click();
+  await expect(page.getByRole('heading', { name: 'No items listed for breakfast', exact: true })).toBeVisible();
+  await expect(empty).toContainText('No items listed for breakfast');
+  await page.goto('/hall/neilson');
+  await expect(page.locator('.livi-legend button[data-menu-state="empty"]')).toHaveCount(0);
+  await expect(page.locator('.livi-legend button[data-menu-state="unavailable"]').first()).toContainText('Menu status unavailable');
+});

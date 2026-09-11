@@ -16,6 +16,7 @@ export default function PreviewCheckPage() {
     <HeaderProbe />
     <p><Link href="/hall/atrium">Open the actual Atrium menu</Link></p>
     <p><Link href="/preview-check/unavailable">Open the controlled unavailable/date-boundary check</Link></p>
+    <p><Link href="/preview-check/meals">Open the controlled 6pm meal-selection check with real Rutgers menus</Link></p>
     <p>This verification surface returns 404 outside Vercel Preview. Do not promote its Preview-built artifact as a production build: build the approved source in Production to retain production analytics.</p>
   </main>;
 }

@@ -6,7 +6,7 @@ test('normal production build does not expose Preview verification pages', async
     if (url.origin !== baseURL || url.pathname.startsWith('/_vercel/')) return route.abort();
     return route.continue();
   });
-  for (const path of ['/preview-check', '/preview-check/unavailable']) {
+  for (const path of ['/preview-check', '/preview-check/unavailable', '/preview-check/meals']) {
     const response = await page.goto(path);
     expect(response?.status()).toBe(404);
     await expect(page.locator('body')).not.toContainText(/Function runtime evidence|Controlled Preview check|Preview release verification/);
