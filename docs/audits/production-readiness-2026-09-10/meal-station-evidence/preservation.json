@@ -1,0 +1,12 @@
+{
+  "verifiedAt": "2026-09-11T00:16:19.579743+00:00",
+  "originalBaselineFiles": 314,
+  "changedBaselineFiles": [
+    "docs/audits/production-readiness-2026-09-10/NEXT_RELEASE_READINESS_STATUS.md"
+  ],
+  "originalSourceUiAndIndexUnchanged": true,
+  "isolatedWorktreeClean": true,
+  "publishedCandidate": "9330248068264b611113163e273bb916afee1adb",
+  "draftPrBodyVerified": true,
+  "noProductionOrSettingMutation": true
+}

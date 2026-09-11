@@ -1,0 +1,71 @@
+{
+  "observedAt": "2026-09-11T00:22:00Z/2026-09-11T00:38:00Z",
+  "candidate": "9330248068264b611113163e273bb916afee1adb",
+  "preview": "https://knight-bite-5b5a0j7w1-andycfwus-projects.vercel.app",
+  "function": {
+    "observedAt": "2026-09-11T00:31:26.186Z",
+    "commit": "9330248068264b611113163e273bb916afee1adb",
+    "node": "24.19.0",
+    "openssl": "3.5.7",
+    "undici": "7.29.0",
+    "region": "iad1"
+  },
+  "livingston": {
+    "route": "/hall/livingston",
+    "initial": "dinner",
+    "defaultStation": "Salad, deli & fruit",
+    "defaultStationLunchItems": 52,
+    "defaultStationDinnerItems": 52,
+    "entireDefaultStationTextIdentical": true,
+    "allItems": {
+      "breakfast": 69,
+      "lunch": 171,
+      "dinner": 172
+    },
+    "lunchOnlyExamples": [
+      "GOCHUJANG CHICKEN THIGHS",
+      "ENGLISH STYLE COD"
+    ],
+    "dinnerOnlyExamples": [
+      "ROASTED PORK LOIN WITH APPLE CIDER SAUCE",
+      "BEAN BOURGUIGNON"
+    ],
+    "breakfastExample": "ASSORTED BAGELS",
+    "desktop": "Pointer changes selected meal, heading and distinct full-menu food",
+    "mobile": "375px document width and screenshot verified; Menu navigation, Lunch pointer and Dinner Enter show distinct dishes",
+    "clientWarningsOrErrors": [],
+    "interpretation": "A broken Lunch/Dinner handler was not reproduced. Retaining the identical default station explains unchanged station food in the observed interaction, but is not established as the cause of every user-reported occurrence."
+  },
+  "localhost": {
+    "ports": [
+      3000,
+      3001
+    ],
+    "directory": "/Users/andywu/Desktop/Codex/Nutrition",
+    "head": "1fbe14b7805c95d69bffda11913b4739f8ce8db5",
+    "branch": "codex/dining-hall-overhaul",
+    "node": "24.14.1",
+    "serverPids": [
+      41751,
+      58257
+    ],
+    "observedRoute": "http://localhost:3000/hall/busch",
+    "initial": "breakfast",
+    "available": [
+      "breakfast",
+      "lunch"
+    ],
+    "manualLunch": "Lunch selected; panel changed from Breakfast salad bar 0 to Lunch salad bar 42 items",
+    "dinner": "Not returned; server log reported timeout. No claim of no dinner service.",
+    "sourceFinding": "Old explorer initializes menu.meals[0]; this checkout does not contain PR meal-selection changes."
+  },
+  "controlledRegression": {
+    "transport": "Offline synthetic only",
+    "serverNow": "2026-09-10T12:00:00Z",
+    "clientNow": "2026-09-10T22:00:00Z",
+    "navigation": "Actual homepage link to /hall/livingston",
+    "before": "933 application retained Breakfast despite returned Dinner; failing browser assertion and page attached",
+    "note": "Controlled stale server hint reproduction, not proof that live user failure was caused by prefetch."
+  },
+  "analytics": "Hosted Preview omits insights SDK in source. No hosted synthetic events sent. Old localhost used development SDK; no zero-telemetry claim is made for that older app. Automated verification blocks external and analytics transport."
+}

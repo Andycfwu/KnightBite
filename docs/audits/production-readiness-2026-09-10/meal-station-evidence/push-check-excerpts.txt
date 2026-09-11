@@ -1,0 +1,59 @@
+KnightBite release verification	Record checked commit and tree	﻿2026-09-11T00:07:01.6010158Z ##[group]Run git rev-parse HEAD
+KnightBite release verification	Record checked commit and tree	2026-09-11T00:07:01.6010501Z [36;1mgit rev-parse HEAD[0m
+KnightBite release verification	Record checked commit and tree	2026-09-11T00:07:01.6010906Z [36;1mgit rev-parse HEAD^{tree}[0m
+KnightBite release verification	Record checked commit and tree	2026-09-11T00:07:01.6011234Z [36;1mtest "$(git rev-parse HEAD)" = "$GITHUB_SHA"[0m
+KnightBite release verification	Record checked commit and tree	2026-09-11T00:07:01.6037767Z shell: /usr/bin/bash -e {0}
+KnightBite release verification	Record checked commit and tree	2026-09-11T00:07:01.6038349Z ##[endgroup]
+KnightBite release verification	Record checked commit and tree	2026-09-11T00:07:01.6110979Z 9330248068264b611113163e273bb916afee1adb
+KnightBite release verification	Record checked commit and tree	2026-09-11T00:07:01.6118184Z 49065be01e3b5df26e519b89b2c304f0014ff495
+KnightBite release verification	Run npm ci	2026-09-11T00:07:06.4030108Z found 0 vulnerabilities
+KnightBite release verification	Run npm run check	2026-09-11T00:07:57.9256198Z ℹ tests 271
+KnightBite release verification	Run npm run check	2026-09-11T00:07:57.9256698Z ℹ pass 271
+KnightBite release verification	Run npm run check	2026-09-11T00:07:57.9256862Z ℹ fail 0
+KnightBite release verification	Run npm run check	2026-09-11T00:08:15.4165665Z  ✓ Compiled successfully in 5.0s
+KnightBite release verification	Run npm run check	2026-09-11T00:08:26.1855952Z Isolated production build passed: ZfV4V7K-KL2OkMfmIXCaY
+KnightBite release verification	Run npm run check	2026-09-11T00:08:56.2043156Z   22 passed (29.6s)
+KnightBite release verification	Run npm run check	2026-09-11T00:09:00.8543863Z   2 passed (4.3s)
+KnightBite release verification	Run npm run check	2026-09-11T00:09:13.6236158Z  ✓ Compiled successfully in 5.0s
+KnightBite release verification	Run npm run check	2026-09-11T00:09:24.6619052Z Isolated production build passed: 87sn712PG1nVP-D1ZcAfA
+KnightBite release verification	Run npm run check	2026-09-11T00:09:33.6046092Z   8 passed (8.4s)
+KnightBite release verification	Run npm audit --audit-level=moderate	2026-09-11T00:09:34.0688466Z found 0 vulnerabilities
+KnightBite release verification	Use the reviewed Vercel runtime floor	﻿2026-09-11T00:09:34.1336888Z ##[group]Run actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:34.1337181Z with:
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:34.1337333Z   node-version: 24.19.0
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:34.1337500Z   cache: npm
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:34.1337653Z   check-latest: false
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:34.1339432Z   token: ***
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:34.1339733Z   package-manager-cache: true
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:34.1339918Z ##[endgroup]
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:34.2249951Z Attempting to download 24.19.0...
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:34.9285567Z Acquiring 24.19.0 - x64 from https://github.com/actions/node-versions/releases/download/24.19.0-30872449280/node-24.19.0-linux-x64.tar.gz
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:35.4532757Z Extracting ...
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:35.4626501Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/0dedc606-30a0-4e28-85fa-84fca899b5de -f /home/runner/work/_temp/3fc3cab4-4cdf-42ef-a744-eb25359f8ccf
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:36.4506903Z Adding to the cache ...
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:40.5003070Z ##[group]Environment details
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:40.6634913Z node: v24.19.0
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:40.6635230Z npm: 11.17.0
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:40.6635431Z yarn: 1.22.22
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:40.6635865Z ##[endgroup]
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:40.6649777Z [command]/opt/hostedtoolcache/node/24.19.0/x64/bin/npm config get cache
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:40.7311147Z /home/runner/.npm
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:40.8790778Z Cache hit for: node-cache-Linux-x64-npm-6fd548cdfa7e8902906e1513ab42702327d99366c37744b6944ccee8cfd7b440
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:41.9766108Z Received 112301193 of 112301193 (100.0%), 112.4 MBs/sec
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:41.9766501Z Cache Size: ~107 MB (112301193 B)
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:41.9817820Z [command]/usr/bin/tar -xf /home/runner/work/_temp/88d771a9-992f-4de4-bc4f-7bd92f4fb631/cache.tzst -P -C /home/runner/work/KnightBite/KnightBite --use-compress-program unzstd
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:42.0930949Z Cache restored successfully
+KnightBite release verification	Use the reviewed Vercel runtime floor	2026-09-11T00:09:42.0970999Z Cache restored from key: node-cache-Linux-x64-npm-6fd548cdfa7e8902906e1513ab42702327d99366c37744b6944ccee8cfd7b440
+KnightBite release verification	Run npm ci	2026-09-11T00:09:47.5746848Z found 0 vulnerabilities
+KnightBite release verification	Run npm run check	2026-09-11T00:09:52.0546359Z ℹ tests 271
+KnightBite release verification	Run npm run check	2026-09-11T00:09:52.0548026Z ℹ pass 271
+KnightBite release verification	Run npm run check	2026-09-11T00:09:52.0548549Z ℹ fail 0
+KnightBite release verification	Run npm run check	2026-09-11T00:10:09.4353543Z  ✓ Compiled successfully in 5.2s
+KnightBite release verification	Run npm run check	2026-09-11T00:10:20.5309421Z Isolated production build passed: yLYSe7gHdu-Q41htYA00_
+KnightBite release verification	Run npm run check	2026-09-11T00:10:44.0851906Z   22 passed (23.2s)
+KnightBite release verification	Run npm run check	2026-09-11T00:10:48.3291068Z   2 passed (3.9s)
+KnightBite release verification	Run npm run check	2026-09-11T00:11:01.0433062Z  ✓ Compiled successfully in 4.9s
+KnightBite release verification	Run npm run check	2026-09-11T00:11:12.2249297Z Isolated production build passed: m_Si1jCtH71XSt-uIRTBC
+KnightBite release verification	Run npm run check	2026-09-11T00:11:20.7180500Z   8 passed (8.0s)
+KnightBite release verification	Post Use the reviewed Vercel runtime floor	﻿2026-09-11T00:11:20.8241572Z Post job cleanup.
+KnightBite release verification	Post Use the reviewed Vercel runtime floor	2026-09-11T00:11:20.9053422Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-6fd548cdfa7e8902906e1513ab42702327d99366c37744b6944ccee8cfd7b440, not saving cache.

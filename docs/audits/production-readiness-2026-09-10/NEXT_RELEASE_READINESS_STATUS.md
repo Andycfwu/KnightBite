@@ -1,3 +1,67 @@
+# Meal-selection defect investigation — production approval paused
+
+Prepared September 10, 2026 (New York), from verified Draft PR #1 head `9330248068264b611113163e273bb916afee1adb`. Fixes are isolated in `Nutrition-meal-selector-debug`, branch `codex/release-meal-selector-debug`. Production remains on `70166c4`; no merge, promotion, production deployment or protection change is authorized by this pass.
+
+## Findings and correction of earlier claims
+
+The user reports are treated as unresolved defects until investigated. [Observed reproduction evidence](meal-selector-evidence/reproduction.json) distinguishes the cases:
+
+- **Local initial Breakfast reproduced.** Ports 3000 and 3001 run the original dirty `codex/dining-hall-overhaul` checkout at `1fbe14b`, using Node 24.14.1. That source still initializes the first returned meal and is not PR #1's release candidate. Busch initially showed Breakfast; clicking Lunch changed both its tab and its station content from zero to 42 salad items. Dinner retrieval timed out and was absent. Original source/processes are preserved; the corrected isolated app must be used for release testing.
+- **Live Livingston broken selector not reproduced in the observed session.** Exact 933 Preview was verified again through its actual function source SHA. Normal Livingston pointer interaction changed Breakfast/Lunch/Dinner headings and all-menu contents (69/171/172 items). Lunch included gochujang chicken and English-style cod; Dinner instead included roast pork and bean bourguignon. The retained default salad/deli group contained exactly the same 52 item records for Lunch and Dinner. That can make the station appear unchanged, but is not proof of the cause of every reported occurrence. Desktop and actual 375px mobile pointer/keyboard checks changed distinct full-menu dishes; no client errors were captured. No foods or station selection were changed to create an artificial difference.
+- **A separate stale-entry defect reproduced against 933.** The isolated browser test supplied an 8am server response and entered through the homepage at a controlled New York 6pm. Breakfast remained selected despite available Dinner. [Failing regression](meal-selector-evidence/before-regression.log), [browser failure context](meal-selector-evidence/before-test-context.md). This is a controlled delayed-server-hint reproduction, not a claim that live prefetch timing has been established as the user's cause.
+- **Earlier verification was too broad.** The previous “no identified release-blocking defect remains” recommendation is withdrawn pending this pass. The older checks proved Busch's supplied 6pm initial hint and one manual Breakfast choice, not Livingston's three distinct meal contents or the actual localhost checkout. Synthetic breakfast/lunch/dinner previously had identical foods. The historical passing numbers below remain accurate test results, but do not establish those omitted behaviors or resolve the user's report by themselves.
+
+## Focused correction and verification scope
+
+`useMealSelection` retains the server hint for matching hydration, then resolves the existing hall-specific New York schedule once at client entry. A user choice marks that entry resolved, including a click replayed during hydration. Search/filter/plate actions and same-hall/date prop refresh cannot restore the initial hint. New hall/date contexts recompute; unavailable/missing/non-today meals retain existing honest policies. The device clock supplies the current instant; no running clock forces a later meal during interaction.
+
+Synthetic regression meals now have distinct hall/meal-specific entrées while retaining the nutrition/portion fixtures. Browser assertions inspect food presence/absence as well as selected controls, homepage entry, direct entry, hall navigation, desktop/mobile and keyboard interaction. The protected Preview scenario accepts a supported hall, provides a fixed 6pm client-entry clock with a deliberately stale Breakfast hint, and exposes a same-menu rerender control. It uses only returned Rutgers data, never mock fallback. Production guards and Preview-only analytics suppression remain required. [Behavior details](../../MEAL_SELECTION_AND_STATIONS.md).
+
+**Local verification passed on both Node 24.21.0 and 24.19.0:** `npm run check`, including 271 unit tests, 40 browser checks (28 Production, 2 unavailable, 10 Preview), types, noninteractive lint and isolated Production/Preview builds on each runtime. `npm audit --audit-level=moderate` reports zero vulnerabilities; `git diff --check` passes. [Local results](meal-selector-evidence/local-checks.json). The final complete runs followed corrections to test selectors for mobile controls and the plate-close transition. Exact-commit Linux release gates, matching final Preview, final source SHA, and hosted results will be recorded after publication in this working report and PR description; they remain pending at this preparation checkpoint. No dependency, cache, deadline, parser, normalization, nutrition, station-map, plate persistence, production analytics, or release-protection change is included.
+
+## Remaining scope and release limitations
+
+Production approval remains paused; the final corrected SHA needs separate approval. The previous explicit human accessibility/privacy/dietary/artwork/operations decisions and forward-recovery acceptance remain unsigned. There is still no suitable patched Production Instant Rollback target; old `70166c4` and `906b5fd` are unsuitable security recovery targets. Preview artifacts must not be promoted into Production. During a separately approved release, observe exact main commit/check/deployment and alias timing; the production-gate lifecycle has not been exercised. Correctly dated stored-real-menu recovery and unrelated UI polish remain out of scope.
+
+---
+
+## Historical reports — recommendations above take precedence
+
+# Final meal/station candidate — September 10, 2026, 8:14 PM New York
+
+**Draft PR #1 now contains the requested fixes at `9330248068264b611113163e273bb916afee1adb`, tree `49065be01e3b5df26e519b89b2c304f0014ff495`. Both required GitHub checks and the matching Preview passed. No identified release-blocking defect remains in this focused change. Production stays unchanged and unapproved on 70166c4.** This candidate replaces the previous 643412f approval target. [Final PR read-back](meal-station-evidence/final-pr.json).
+
+## Exact checks and matching Preview
+
+- Exact-head push [34545079649](https://github.com/Andycfwu/KnightBite/actions/runs/34545079649) passed at **00:11:23 UTC September 11**. PR integration [34545084257](https://github.com/Andycfwu/KnightBite/actions/runs/34545084257) passed at **00:12:44 UTC**, actual integration checkout `99bcfb968842be3ef8a6f10d03ab3df13e57d06b`, with the identical tree above. **Each job passed 271 unit and 32 browser checks, types, lint, isolated Production and Preview builds on BOTH Node 24.21.0 and 24.19.0**, plus audit/whitespace checks. [Push proof](meal-station-evidence/push-check-excerpts.txt), [integration proof](meal-station-evidence/pr-check-excerpts.txt).
+- Matching [immutable Preview](https://knight-bite-5b5a0j7w1-andycfwus-projects.vercel.app), deployment **`dpl_E9A7FdJ6Et54nZP2xv3HFdpKjXwi`**, Ready at **00:07:26 UTC**, exact new candidate. Actual diagnostic function at **00:11:16.119 UTC** reported that SHA, Node 24.19.0 / OpenSSL 3.5.7 / Undici 7.29.0 / llhttp 9.4.3, iad1/Linux x64. This is a new function observation, not a claim of every instance or inferred from its build. Dependency and reviewed runtime policy are unchanged.
+- [Local check evidence](meal-station-evidence/local-checks.json) records the complete successful Node 24.19 gate and the Node 24.21 stage/retest history. Two new Chromium assertions initially matched a hidden streamed panel as well as the visible panel; visible-element selectors corrected that test issue, and the full eight-test Preview suite passed on both browsers. Final exact-commit Linux jobs then independently passed all stages on both runtimes. Automated tests use synthetic/sanitized transports and block external/analytics requests.
+
+## What actually passed on the hosted candidate
+
+Authenticated Preview observations at **00:08–00:12 UTC September 11** (September 10 in New York), recorded in [hosted evidence](meal-station-evidence/hosted-preview.json):
+
+- Controlled `/preview-check/meals` used **2026-09-10T22:00:00Z = 6pm New York** over the real requested-day Busch response. **Dinner selected**, 194 listed items across all mapped/unmapped groups; 11 groups listed and six empty. This is a controlled initial-selection clock, not an actual 6pm provider capture or sample-food fixture.
+- Empty Dinner Ice cream activated with Enter and showed “No items listed for dinner,” explicitly without establishing closure. Panel received keyboard focus; the control remained usable.
+- Manual **Breakfast** selection showed **18 real cook-to-order items**, including egg whites, scrambled eggs and vegan egg. A no-match search retained Breakfast and the four source-listed station groups. Selecting a station cleared the search. Egg whites 4 oz added to the plate and doubled from 53 to 106 kcal, 11 to 22g protein; Breakfast stayed selected and Escape restored opener focus.
+- At **375×812**, an empty station pointer activation opened the breakfast-specific explanation. Muted pins, visible dash markers, selected neutral legend outline and accessible text were visually inspected. Document width and scroll width were both 375. Explore returned to the map and Halls returned to selection. The real Busch card said Dinner; entering its **normal `/hall/busch` route also selected Dinner**, retaining the temporary plate across client navigation.
+- Normal **Atrium was unavailable** in this window: requested Thursday, September 10, all seven station states unavailable, zero food cards, no backup/sample/invented retrieval label. Its transport cause was not re-diagnosed; this is an observed unavailable result, not a closure claim. Full navigation reset the temporary plate.
+- No insights SDK script elements or captured browser warnings/errors. Hosted analytics is suppressed by the existing Preview-only component, not by an invented browser interception capability. Production analytics/settings remain unchanged. Viewport override was reset after checking.
+
+No reliable exhaustive station closure schedule was established, so **no Closed rule was invented**. Empty listings and unavailable retrieval remain distinct; listing a food is not a promise of service at this moment. All accepted items remain accessible, including More stations. The shared original typical hall schedule, New York dates, non-today fallback, missing-meal fallback and manual-selection policy are documented in [behavior and source evidence](../../MEAL_SELECTION_AND_STATIONS.md).
+
+## Release integration, preservation and remaining decisions
+
+The isolated fix branch was created from PR #1's verified head and fast-forwarded **only** `codex/release-readiness-2026-09-10`; PR #1 remains **draft**, now CLEAN with successful checks. No main merge, force push, promotion, production deployment or shared-setting mutation occurred. Main protection read-back is unchanged from the prior activation evidence: strict named app-15368 check, admins enforced, accepted zero approvals, linear history/conversation resolution, no force/deletion. [Protection read-back](meal-station-evidence/protection-readback.json). Dashboard and GitHub still identify **70166c4 / `dpl_BT9hARabzozdRpqMutPju4P2xF5F`** as production. Original unrelated source/UI/index are preserved; source changes reside only in the isolated worktree.
+
+The candidate's committed report records preparation and retained evidence. This local report and the PR description add the final SHA/hosted/CI results produced after publication, without changing the candidate solely to insert its own SHA. No further source edit is pending in the isolated worktree. Current source/Preview supersede all older candidate labels below.
+
+**Next action: review this new exact candidate for separate production approval.** The prior concrete accessibility/privacy/dietary/artwork/operations decisions and explicit forward-recovery acceptance remain pending; do not infer signoffs. No eligible patched Production Instant Rollback target was created. Earlier patched Previews are source references, not directly promotable Production artifacts. During an approved release, record the new same-tree main SHA M, its actual successful main-push check, Vercel Production source M and alias assignment; actual production-gate lifecycle remains unexercised. Never bypass controls or promote this Preview-built artifact. **Stored-real-menu recovery and unrelated UI polish remain out of scope.**
+
+---
+
+## Preparation and earlier historical evidence
+
 # KnightBite PR #1 — meal selection and station listing update
 
 Prepared September 10, 2026 (New York). **The previous 643412f production approval package is superseded by the requested meal/station fix. Production remains unapproved and unchanged on 70166c4.** No main merge, production deployment or protection change is included. Work is isolated on `codex/release-meal-stations-2026-09-10`, based on the verified PR #1 head `643412f5c878aebd0514b1464e2e43b496f3e509`; only these focused changes will fast-forward the existing draft PR branch.

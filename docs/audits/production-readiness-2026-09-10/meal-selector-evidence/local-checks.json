@@ -1,0 +1,36 @@
+{
+  "completedAt": "2026-09-11T00:42:35.855606+00:00",
+  "runtimes": [
+    "24.21.0",
+    "24.19.0"
+  ],
+  "command": "npm run check",
+  "exitCodeByRuntime": {
+    "24.21.0": 0,
+    "24.19.0": 0
+  },
+  "unitTestsPerRuntime": 271,
+  "browserChecksPerRuntime": {
+    "production": 28,
+    "unavailable": 2,
+    "preview": 10
+  },
+  "included": [
+    "npm test",
+    "TypeScript",
+    "noninteractive ESLint zero warnings",
+    "isolated Production build",
+    "isolated Preview build",
+    "Chromium and WebKit workflows",
+    "Production diagnostic guards"
+  ],
+  "npmAudit": "found 0 vulnerabilities",
+  "gitDiffCheck": "pass",
+  "externalProviderRequests": 0,
+  "deliveredAnalyticsEvents": 0,
+  "latestBuildSourceDigest": "81af7463f52076468d4c08cce2157e4f62cb8fce88962696fb6c3ce0afe4e739",
+  "latestBuildId": "c7xPHF_CV8kw4IDqLvUf-",
+  "sourceFilesMatchLatestBuild": true,
+  "knownBuildWarning": "Next legacy ESLint plugin detection warning; explicit flat-config ESLint passes",
+  "regressionHistory": "Stale entry fails against 933. New mobile test initially targeted hidden desktop controls; corrected to actual mobile Menu/Open plate. Plate-close transition required waiting for dialog hidden and scoping dish assertions to Menu items. Both complete final gates passed after these test corrections."
+}

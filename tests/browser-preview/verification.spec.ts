@@ -87,3 +87,22 @@ test('station statuses use unfiltered meal evidence and empty controls explain o
   await expect(page.locator('.livi-legend button[data-menu-state="empty"]')).toHaveCount(0);
   await expect(page.locator('.livi-legend button[data-menu-state="unavailable"]').first()).toContainText('Menu status unavailable');
 });
+
+
+test('Livingston stale Breakfast hint resolves at 6pm and all three distinct meals survive prop refresh', async ({ page }) => {
+  const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
+  await page.goto('/preview-check/meals?hall=livingston');
+  await page.getByRole('button', { name: 'List view', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Synthetic Livingston dinner roast', exact: true })).toBeVisible();
+  for (const [label, dish] of [['Breakfast', 'breakfast omelet'], ['Lunch', 'lunch soup'], ['Dinner', 'dinner roast']] as const) {
+    await page.getByRole('button', { name: label, exact: true }).click();
+    await page.getByRole('button', { name: 'Rerender same menu', exact: true }).click();
+    await expect(page.getByRole('button', { name: label, exact: true })).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('.livi-panelHeading:visible')).toContainText(`${label} MENU`);
+    await expect(page.getByRole('heading', { name: `Synthetic Livingston ${dish}`, exact: true })).toBeVisible();
+    for (const other of ['breakfast omelet', 'lunch soup', 'dinner roast']) {
+      if (other !== dish) await expect(page.getByRole('heading', { name: `Synthetic Livingston ${other}`, exact: true })).toHaveCount(0);
+    }
+  }
+  expect(errors).toEqual([]);
+});

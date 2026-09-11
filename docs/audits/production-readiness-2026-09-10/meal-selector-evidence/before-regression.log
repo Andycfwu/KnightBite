@@ -1,0 +1,52 @@
+[WebServer] (node:62573) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:62574) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] {"event":"knightbite.menu_ingestion","source":"nutrislice","hallId":"neilson","requestedDate":"2026-09-10","startedAt":"2026-09-10T12:00:00.000Z","durationMs":0,"outcome":"unavailable","schoolResolution":"discovered","returned":{"meals":0,"stations":0,"items":0},"meals":{"breakfast":{"failures":[{"category":"http_error","endpoint":"menu","statusCode":503,"reason":null,"count":1}],"omittedFailureCount":0,"outcome":"failed","parsed":null,"enrichment":{"failures":[],"omittedFailureCount":0,"attemptedItems":0,"failedItems":0,"skippedItems":0},"normalizationStarted":false,"normalizationCompleted":false},"lunch":{"failures":[{"category":"http_error","endpoint":"menu","statusCode":503,"reason":null,"count":1}],"omittedFailureCount":0,"outcome":"failed","parsed":null,"enrichment":{"failures":[],"omittedFailureCount":0,"attemptedItems":0,"failedItems":0,"skippedItems":0},"normalizationStarted":false,"normalizationCompleted":false},"dinner":{"failures":[{"category":"http_error","endpoint":"menu","statusCode":503,"reason":null,"count":1}],"omittedFailureCount":0,"outcome":"failed","parsed":null,"enrichment":{"failures":[],"omittedFailureCount":0,"attemptedItems":0,"failedItems":0,"skippedItems":0},"normalizationStarted":false,"normalizationCompleted":false}},"diagnostics":{"normalization":null,"normalizationComplete":null,"parserWarnings":0},"failures":[],"omittedFailureCount":0}
+  ✘  1 [chromium] › tests/browser/meal-selection.spec.ts:26:41 › 6pm homepage entry and all meal contents (desktop) (6.7s)
+Testing stopped early after 1 maximum allowed failures.
+
+
+  1) [chromium] › tests/browser/meal-selection.spec.ts:26:41 › 6pm homepage entry and all meal contents (desktop)
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByRole('group', { name: 'Choose a meal' }).getByRole('button', { name: 'Dinner', exact: true })
+    Expected: "true"
+    Received: "false"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByRole('group', { name: 'Choose a meal' }).getByRole('button', { name: 'Dinner', exact: true }) with timeout 5000ms
+      - waiting for getByRole('group', { name: 'Choose a meal' }).getByRole('button', { name: 'Dinner', exact: true })
+        14 × locator resolved to <button type="button" aria-pressed="false">Dinner</button>
+           - unexpected value "false"
+
+
+       6 | const dishes = { Breakfast: 'breakfast omelet', Lunch: 'lunch soup', Dinner: 'dinner roast' };
+       7 | async function assertMeal(page: Page, hall: string, label: keyof typeof dishes) {
+    >  8 |   await expect(page.getByRole('group', { name: 'Choose a meal' }).getByRole('button', { name: label, exact: true })).toHaveAttribute('aria-pressed', 'true');
+         |                                                                                                                      ^
+       9 |   await expect(page.locator('.livi-panelHeading:visible')).toContainText(`${label} MENU`);
+      10 |   await expect(page.getByRole('heading', { name: `Synthetic ${hall} ${dishes[label]}`, exact: true })).toBeVisible();
+      11 |   for (const other of Object.keys(dishes) as Array<keyof typeof dishes>) {
+        at assertMeal (/Users/andywu/Desktop/Codex/Nutrition-meal-selector-debug/tests/browser/meal-selection.spec.ts:8:118)
+        at /Users/andywu/Desktop/Codex/Nutrition-meal-selector-debug/tests/browser/meal-selection.spec.ts:32:9
+
+    Error Context: test-results/playwright/meal-selection-6pm-homepag-fbdf5--all-meal-contents-desktop--chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/playwright/meal-selection-6pm-homepag-fbdf5--all-meal-contents-desktop--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/playwright/meal-selection-6pm-homepag-fbdf5--all-meal-contents-desktop--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/browser/meal-selection.spec.ts:26:41 › 6pm homepage entry and all meal contents (desktop)
+  2 did not run
+  1 error was not a part of any test, see above for details

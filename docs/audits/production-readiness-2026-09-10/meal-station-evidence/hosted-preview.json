@@ -1,0 +1,81 @@
+{
+  "recordedAt": "2026-09-11T00:14:46.000583+00:00",
+  "observationWindowUtc": "2026-09-11T00:08\u201300:12Z",
+  "commit": "9330248068264b611113163e273bb916afee1adb",
+  "tree": "49065be01e3b5df26e519b89b2c304f0014ff495",
+  "deployment": "dpl_E9A7FdJ6Et54nZP2xv3HFdpKjXwi",
+  "preview": "https://knight-bite-5b5a0j7w1-andycfwus-projects.vercel.app",
+  "ready": true,
+  "readyCheckAtUtc": "2026-09-11T00:07:26Z",
+  "browser": "Authenticated Codex in-app browser; exact engine version not exposed",
+  "controlled6pm": {
+    "route": "/preview-check/meals",
+    "clock": "2026-09-10T22:00:00.000Z",
+    "rutgersDate": "2026-09-10",
+    "initialMeal": "Dinner",
+    "data": "Real Rutgers Busch menu",
+    "listedDinnerItemSum": 194,
+    "listedGroups": 11,
+    "emptyGroups": 6,
+    "emptyKeyboard": "Ice cream activated by Enter; visible No items listed for dinner; focus busch-food-panel; remains operable"
+  },
+  "manualBreakfast": {
+    "initialClick": "Breakfast",
+    "cookToOrderItems": 18,
+    "listedGroups": 4,
+    "examples": [
+      "EGG WHITES",
+      "SCRAMBLED EGGS",
+      "VEGAN EGG"
+    ],
+    "search": "No-match query retained Breakfast and 4 listed station groups; selecting station cleared search",
+    "plate": "EGG WHITES 4 oz added; increase 1\u21922 produced 53\u2192106 kcal and 11\u219222g protein; Escape restored View your plate focus; Breakfast retained"
+  },
+  "mobile": {
+    "width": 375,
+    "height": 812,
+    "documentScrollWidth": 375,
+    "emptyActivation": "Pointer click on Entrees 1 opened No items listed for breakfast, with neutral no-closure explanation",
+    "visual": "Muted gray pins, dash badges, selected empty legend outline and meal-specific text visually inspected",
+    "navigation": "Explore returned to map; Halls returned home; Busch card said Dinner and opened normal Busch route with Dinner selected",
+    "plate": "Retained two items through client navigation; full navigation reset temporary plate"
+  },
+  "atrium": {
+    "route": "/hall/atrium",
+    "dateLabel": "Thursday, September 10",
+    "result": "Unavailable",
+    "allSevenStationStates": "unavailable",
+    "foodCards": 0,
+    "backupSampleInventedTimeLabels": false,
+    "transportCause": "Not re-diagnosed in this focused pass; unavailable UI observed, not an asserted closure"
+  },
+  "functionRuntime": {
+    "observedAt": "2026-09-11T00:11:16.119Z",
+    "route": "/preview-check",
+    "commit": "9330248068264b611113163e273bb916afee1adb",
+    "environment": "preview",
+    "node": "24.19.0",
+    "openssl": "3.5.7",
+    "undici": "7.29.0",
+    "llhttp": "9.4.3",
+    "region": "iad1",
+    "platform": "linux",
+    "arch": "x64",
+    "scope": "Actual diagnostic function invocation, not every process; independent of build evidence"
+  },
+  "analytics": "Preview source-level SDK omission; zero observed insights script elements; no synthetic events sent. Not a complete network interception trace.",
+  "capturedBrowserWarningsErrors": [],
+  "production": {
+    "alias": "knightbitenb.vercel.app",
+    "commit": "70166c4fd04bb0d5ca25b792283924eff36c1f31",
+    "deployment": "dpl_BT9hARabzozdRpqMutPju4P2xF5F",
+    "unchanged": true
+  },
+  "githubProtectionUnchanged": true,
+  "limits": [
+    "No confirmed station closure schedule added",
+    "Real midnight rollover, actual Safari/VoiceOver and full station/source hours not certified",
+    "Production gate lifecycle not exercised",
+    "Existing first-patch recovery and human decisions still pending"
+  ]
+}

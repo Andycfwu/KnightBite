@@ -6,9 +6,9 @@ const https = require('node:https');
 const root = process.env.KNIGHTBITE_FIXTURE_ROOT;
 // Dedicated failure-browser run: UTC is September 9 while Rutgers is September 8.
 // This preloader is test-only; production has no failure or date override.
-if (process.env.KNIGHTBITE_TEST_ATRIUM_UNAVAILABLE === '1') {
+if (process.env.KNIGHTBITE_TEST_ATRIUM_UNAVAILABLE === '1' || process.env.KNIGHTBITE_TEST_NOW) {
   const NativeDate = Date;
-  const now = NativeDate.parse('2026-09-09T00:30:00Z');
+  const now = NativeDate.parse(process.env.KNIGHTBITE_TEST_ATRIUM_UNAVAILABLE === '1' ? '2026-09-09T00:30:00Z' : process.env.KNIGHTBITE_TEST_NOW);
   globalThis.Date = class extends NativeDate {
     constructor(...args) { super(...(args.length ? args : [now])); }
     static now() { return now; }
@@ -31,17 +31,18 @@ globalThis.fetch=async function(input,init) {
       {id:68757,name:'Livingston Dining Commons',slug:'livingston-dining-commons'},
       {id:65291,name:'Neilson Dining Hall',slug:'neilson-dining-hall'}
     ]);
-    const match=url.pathname.match(/\/weeks\/school\/(62286|68757|65291)\/menu-type\/\d+\/(\d{4})\/(\d{2})\/(\d{2})\/$/);
+    const match=url.pathname.match(/\/weeks\/school\/(62286|68757|65291)\/menu-type\/(\d+)\/(\d{4})\/(\d{2})\/(\d{2})\/$/);
     if(!match)return block();
     // Neilson supplies the unavailable workflow without any upstream call.
     if(match[1]==='65291')return new Response('Synthetic unavailable',{status:503});
-    return Response.json({days:[{date:match.slice(2).join('-'),menu_items:[
+    return Response.json({days:[{date:match.slice(3).join('-'),menu_items:[
       {is_station_header:true,text:match[1]==='62286'?'THE MAIN COURSE':'MAIN COURSE'},
       entry(1,'Synthetic rice',1,nutrients(120),['Gluten Free']),
       entry(1,'Synthetic rice',2,nutrients(240),['Gluten Free']),
       entry(2,'Synthetic partial food',1,{calories:100}),
       entry(3,'Synthetic unknown food',1,null),
-      entry(4,'Synthetic zero food',1,nutrients(0))
+      entry(4,'Synthetic zero food',1,nutrients(0)),
+      entry(5,`Synthetic ${match[1]==='62286'?'Busch':'Livingston'} ${{32934:'breakfast omelet',33316:'lunch soup',33318:'dinner roast'}[match[2]]}`,1,nutrients(180))
     ]}]});
   }
   if(url.origin==='https://menuportal23.dining.rutgers.edu') {

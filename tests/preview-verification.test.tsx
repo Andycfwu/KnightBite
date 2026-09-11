@@ -31,7 +31,7 @@ test('verification pages and runtime records are unavailable outside Preview', a
       if (environment) process.env.VERCEL_ENV = environment;
       else delete process.env.VERCEL_ENV;
       assert.equal(getPreviewRuntimeEvidence(), null);
-      await assert.rejects(MealSelectionCheck(), /NEXT_HTTP_ERROR_FALLBACK;404/);
+      await assert.rejects(MealSelectionCheck({ searchParams: Promise.resolve({}) }), /NEXT_HTTP_ERROR_FALLBACK;404/);
       for (const page of [PreviewCheckPage, PreviewUnavailablePage]) {
         assert.throws(page, /NEXT_HTTP_ERROR_FALLBACK;404/);
       }
