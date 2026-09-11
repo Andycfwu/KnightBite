@@ -1,0 +1,116 @@
+[
+  {
+    "scriptMode": "captured-platform-script",
+    "scriptSha256": "0bd2ad276f13ba1712f7444a40f1313df6399b920a64ede78922deeddc5d3408",
+    "buildId": "wEiex6PEUmVqBSLlIfnJ_",
+    "scriptRequests": 2,
+    "interceptedRequests": [
+      {
+        "path": "/_vercel/insights/view",
+        "body": {
+          "o": "http://127.0.0.1:3217/profile",
+          "sv": "0.1.3",
+          "sdkn": "@vercel/analytics/next",
+          "sdkv": "2.0.1",
+          "ts": 1789075001198,
+          "dp": "/profile",
+          "r": ""
+        }
+      },
+      {
+        "path": "/_vercel/insights/view",
+        "body": {
+          "o": "http://127.0.0.1:3217/plate",
+          "sv": "0.1.3",
+          "sdkn": "@vercel/analytics/next",
+          "sdkv": "2.0.1",
+          "ts": 1789075001817,
+          "dp": "/plate"
+        }
+      },
+      {
+        "path": "/_vercel/insights/view",
+        "body": {
+          "o": "http://127.0.0.1:3217/hall/busch",
+          "sv": "0.1.3",
+          "sdkn": "@vercel/analytics/next",
+          "sdkv": "2.0.1",
+          "ts": 1789075002073,
+          "dp": "/hall/[hallId]",
+          "r": ""
+        }
+      },
+      {
+        "path": "/_vercel/insights/view",
+        "body": {
+          "o": "http://127.0.0.1:3217/profile",
+          "sv": "0.1.3",
+          "sdkn": "@vercel/analytics/next",
+          "sdkv": "2.0.1",
+          "ts": 1789075002202,
+          "dp": "/profile"
+        }
+      }
+    ],
+    "externalRequests": [],
+    "deliveredAnalyticsEvents": 0,
+    "browser": "chromium"
+  },
+  {
+    "scriptMode": "captured-platform-script",
+    "scriptSha256": "0bd2ad276f13ba1712f7444a40f1313df6399b920a64ede78922deeddc5d3408",
+    "buildId": "wEiex6PEUmVqBSLlIfnJ_",
+    "scriptRequests": 2,
+    "interceptedRequests": [
+      {
+        "path": "/_vercel/insights/view",
+        "body": {
+          "o": "http://127.0.0.1:3217/profile",
+          "sv": "0.1.3",
+          "sdkn": "@vercel/analytics/next",
+          "sdkv": "2.0.1",
+          "ts": 1789075006092,
+          "dp": "/profile",
+          "r": ""
+        }
+      },
+      {
+        "path": "/_vercel/insights/view",
+        "body": {
+          "o": "http://127.0.0.1:3217/plate",
+          "sv": "0.1.3",
+          "sdkn": "@vercel/analytics/next",
+          "sdkv": "2.0.1",
+          "ts": 1789075006388,
+          "dp": "/plate"
+        }
+      },
+      {
+        "path": "/_vercel/insights/view",
+        "body": {
+          "o": "http://127.0.0.1:3217/hall/busch",
+          "sv": "0.1.3",
+          "sdkn": "@vercel/analytics/next",
+          "sdkv": "2.0.1",
+          "ts": 1789075006562,
+          "dp": "/hall/[hallId]",
+          "r": ""
+        }
+      },
+      {
+        "path": "/_vercel/insights/view",
+        "body": {
+          "o": "http://127.0.0.1:3217/profile",
+          "sv": "0.1.3",
+          "sdkn": "@vercel/analytics/next",
+          "sdkv": "2.0.1",
+          "ts": 1789075006757,
+          "dp": "/profile"
+        }
+      }
+    ],
+    "externalRequests": [],
+    "deliveredAnalyticsEvents": 0,
+    "browser": "webkit"
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "observedAt": "2026-09-10T22:14:18.831830+00:00",
+  "url": "https://nodejs.org/dist/v24.19.0/node-v24.19.0-darwin-arm64.tar.gz",
+  "checksumSource": "https://nodejs.org/dist/v24.19.0/SHASUMS256.txt",
+  "sha256": "8294b7aa9b03997481c06babf1e8b270c859358f27da57a11509afe537ac381d",
+  "verifiedBeforeExecution": true
+}

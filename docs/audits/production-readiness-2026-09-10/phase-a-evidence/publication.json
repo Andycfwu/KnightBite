@@ -1,0 +1,90 @@
+{
+  "checkedAt": "2026-09-10T21:33:34.058941+00:00",
+  "pr": {
+    "auto_merge": null,
+    "base": {
+      "ref": "main",
+      "sha": "70166c4fd04bb0d5ca25b792283924eff36c1f31"
+    },
+    "draft": true,
+    "head": {
+      "ref": "codex/release-readiness-2026-09-10",
+      "sha": "bb7007d13221c8cf34494495a642053b03eaf037"
+    },
+    "html_url": "https://github.com/Andycfwu/KnightBite/pull/1",
+    "merge_commit_sha": "3b5c327ae137d8c0f94525ab87d1467098fed79e",
+    "merged": false,
+    "number": 1,
+    "state": "open"
+  },
+  "candidateRuns": [
+    {
+      "conclusion": null,
+      "created_at": "2026-09-10T21:32:14Z",
+      "event": "pull_request",
+      "head_sha": "bb7007d13221c8cf34494495a642053b03eaf037",
+      "html_url": "https://github.com/Andycfwu/KnightBite/actions/runs/34532722768",
+      "id": 34532722768,
+      "status": "in_progress"
+    },
+    {
+      "conclusion": null,
+      "created_at": "2026-09-10T21:31:38Z",
+      "event": "push",
+      "head_sha": "bb7007d13221c8cf34494495a642053b03eaf037",
+      "html_url": "https://github.com/Andycfwu/KnightBite/actions/runs/34532667740",
+      "id": 34532667740,
+      "status": "in_progress"
+    }
+  ],
+  "candidateChecks": [
+    {
+      "app": {
+        "id": 8329,
+        "slug": "vercel"
+      },
+      "conclusion": "success",
+      "head_sha": "bb7007d13221c8cf34494495a642053b03eaf037",
+      "html_url": "https://github.com/Andycfwu/KnightBite/runs/103057119934",
+      "id": 103057119934,
+      "name": "Vercel Preview Comments",
+      "status": "completed"
+    },
+    {
+      "app": {
+        "id": 15368,
+        "slug": "github-actions"
+      },
+      "conclusion": null,
+      "head_sha": "bb7007d13221c8cf34494495a642053b03eaf037",
+      "html_url": "https://github.com/Andycfwu/KnightBite/actions/runs/34532722768/job/103057068695",
+      "id": 103057068695,
+      "name": "KnightBite release verification",
+      "status": "in_progress"
+    },
+    {
+      "app": {
+        "id": 15368,
+        "slug": "github-actions"
+      },
+      "conclusion": null,
+      "head_sha": "bb7007d13221c8cf34494495a642053b03eaf037",
+      "html_url": "https://github.com/Andycfwu/KnightBite/actions/runs/34532667740/job/103056890029",
+      "id": 103056890029,
+      "name": "KnightBite release verification",
+      "status": "in_progress"
+    }
+  ],
+  "candidateStatuses": {
+    "sha": "bb7007d13221c8cf34494495a642053b03eaf037",
+    "state": "success",
+    "statuses": [
+      {
+        "context": "Vercel",
+        "state": "success",
+        "target_url": "https://vercel.com/andycfwus-projects/knight-bite/DF9WnSqFv7b2uYcV2hnyo5rSpHsk",
+        "updated_at": "2026-09-10T21:32:24Z"
+      }
+    ]
+  }
+}

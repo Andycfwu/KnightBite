@@ -1,0 +1,38 @@
+{
+  "date": "2026-09-10",
+  "runtime": "v24.21.0",
+  "buildId": "tDAVvhlFyzjLOQt5TvXoP",
+  "sourceDigest": "a3afb9a4210af3dfc55f92e11dc49c69ea9d9e97397118a82c5d4e972052c130",
+  "sourceFileCount": 129,
+  "sourceChangedSinceBuild": [],
+  "commands": {
+    "npm test": {
+      "passed": 241,
+      "failed": 0,
+      "network": "fetch/http blocked except fixture stubs"
+    },
+    "npm run typecheck": "passed: Next route type generation and TypeScript",
+    "npm run lint": "passed: zero warnings",
+    "npm run build": "passed in isolated clean npm ci source directory",
+    "npm run test:browser": {
+      "passed": 16,
+      "failed": 0,
+      "engines": [
+        "Chromium",
+        "WebKit"
+      ],
+      "externalRequests": "blocked",
+      "analytics": "disabled in test artifact only"
+    },
+    "npm run check": "passed aggregate command",
+    "npm audit --audit-level=moderate": "passed; zero known vulnerabilities",
+    "git diff --check": "passed"
+  },
+  "limitations": [
+    "Next 15 legacy lint auto-detection warning; standalone ESLint effective config confirms Next plugin rules",
+    "Actual VoiceOver and browser-system zoom not tested",
+    "Live Rutgers and analytics endpoints not contacted by these checks",
+    "Weekly upstream-size calibration still requires representative full payload evidence",
+    "No GitHub workflow run or deployment"
+  ]
+}

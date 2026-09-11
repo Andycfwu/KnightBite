@@ -1,0 +1,44 @@
+{
+  "headRefOid": "9330248068264b611113163e273bb916afee1adb",
+  "isDraft": true,
+  "mergeStateStatus": "CLEAN",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-11T00:12:44Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/Andycfwu/KnightBite/actions/runs/34545084257/job/103095852762",
+      "name": "KnightBite release verification",
+      "startedAt": "2026-09-11T00:06:52Z",
+      "status": "COMPLETED",
+      "workflowName": "Release checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-11T00:11:23Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/Andycfwu/KnightBite/actions/runs/34545079649/job/103095838920",
+      "name": "KnightBite release verification",
+      "startedAt": "2026-09-11T00:06:50Z",
+      "status": "COMPLETED",
+      "workflowName": "Release checks"
+    },
+    {
+      "__typename": "StatusContext",
+      "context": "Vercel",
+      "startedAt": "2026-09-11T00:07:26Z",
+      "state": "SUCCESS",
+      "targetUrl": "https://vercel.com/andycfwus-projects/knight-bite/E9A7FdJ6Et54nZP2xv3HFdpKjXwi"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-09-11T00:07:26Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://vercel.com/github",
+      "name": "Vercel Preview Comments",
+      "startedAt": "2026-09-11T00:07:26Z",
+      "status": "COMPLETED",
+      "workflowName": ""
+    }
+  ]
+}

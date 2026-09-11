@@ -1,4 +1,4 @@
-import { DailyMenu, DiningHall, DiningHallId, MealSection, MealType, MenuItem, Nutrition, Station } from "@/lib/types";
+import { DailyMenu, DiningHallId, MealSection, MealType, MenuItem, Nutrition, Station } from "@/lib/types";
 
 const today = new Date();
 const todayIso = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
@@ -63,13 +63,6 @@ function createMeal(
     stations: stations.map((station) => createStation(hallId, type, station.id, station.name, station.items))
   };
 }
-
-export const diningHalls: DiningHall[] = [
-  { id: "livingston", name: "Livingston Dining Commons", shortName: "Livingston" },
-  { id: "busch", name: "Busch Dining Hall", shortName: "Busch" },
-  { id: "neilson", name: "Neilson Dining Hall", shortName: "Cook/Douglass" },
-  { id: "atrium", name: "The Atrium", shortName: "College Avenue" }
-];
 
 export const dailyMenus: DailyMenu[] = [
   {

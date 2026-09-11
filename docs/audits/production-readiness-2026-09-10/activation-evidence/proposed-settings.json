@@ -1,0 +1,52 @@
+{
+  "status": "Proposed only; approval required",
+  "github": {
+    "repository": "Andycfwu/KnightBite",
+    "branch": "main",
+    "selectExactlyOneProtectionFile": [
+      "main-protection-trusted-reviewer.json",
+      "main-protection-temporary-solo.json"
+    ],
+    "dependabotAlerts": true,
+    "dependabotSecurityUpdates": true,
+    "dependencyUpdateConfiguration": ".github/dependabot.yml",
+    "autoMerge": false,
+    "workflowPermissions": "read; cannot approve PRs (preserve current)",
+    "reviewException": {
+      "appliesOnlyIfOwnerChoosesSolo": true,
+      "requiredApprovals": 0,
+      "requireLastPushApproval": false,
+      "reviewBy": "2026-10-10 or before adding another maintainer, whichever is earlier",
+      "expiryAction": "Owner reviews exception; no automatic switch to one approval that would lock out a sole maintainer."
+    }
+  },
+  "vercel": {
+    "team": "andycfwus-projects",
+    "project": "knight-bite",
+    "productionBranch": "main",
+    "requiredDeploymentCheck": {
+      "provider": "GitHub",
+      "name": "KnightBite release verification",
+      "githubApp": "github-actions",
+      "githubAppId": 15368,
+      "match": "Deployment git commit SHA must equal the successful push check head SHA. GitHub app binding is enforced in GitHub protection; Vercel UI offers named GitHub checks, not a separately verified app-ID control."
+    },
+    "autoAssignProductionDomains": true,
+    "twoFactorEnforcement": true,
+    "keep": {
+      "standardDeploymentProtection": true,
+      "nodeMajor": "24.x",
+      "analytics": true
+    },
+    "doNotEnableInThisPass": [
+      "Require Verified Commits (unsigned local history; separate signing decision)",
+      "new paid alerts/drains",
+      "new users/vendors/databases"
+    ],
+    "temporaryHoldIfRequired": {
+      "autoAssignProductionDomains": false,
+      "effect": "Keeps current production alias; subsequent production builds are not auto-promoted. GitHub Deployment Checks require auto-assignment ON, so this is a manual hold, not proof of an active deployment-check gate.",
+      "reactivation": "Separate approval; inspect all pending deployments, select approved final SHA, verify its successful check before restoring ON."
+    }
+  }
+}

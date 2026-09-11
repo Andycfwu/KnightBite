@@ -1,0 +1,39 @@
+KnightBite release verification	Record checked commit and tree	﻿2026-09-10T21:32:24.7914318Z ##[group]Run git rev-parse HEAD
+KnightBite release verification	Record checked commit and tree	2026-09-10T21:32:24.7914760Z git rev-parse HEAD
+KnightBite release verification	Record checked commit and tree	2026-09-10T21:32:24.7915040Z git rev-parse HEAD^{tree}
+KnightBite release verification	Record checked commit and tree	2026-09-10T21:32:24.7915405Z test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+KnightBite release verification	Record checked commit and tree	2026-09-10T21:32:24.7959307Z shell: /usr/bin/bash -e {0}
+KnightBite release verification	Record checked commit and tree	2026-09-10T21:32:24.7959616Z ##[endgroup]
+KnightBite release verification	Record checked commit and tree	2026-09-10T21:32:24.8071981Z 3b5c327ae137d8c0f94525ab87d1467098fed79e
+KnightBite release verification	Record checked commit and tree	2026-09-10T21:32:24.8084462Z 089785116a135e47cd69a3e037523108684f818b
+KnightBite release verification	Run npm ci	2026-09-10T21:32:34.3951021Z found 0 vulnerabilities
+KnightBite release verification	Run npx playwright install --with-deps chromium webkit	2026-09-10T21:32:41.8762429Z liblcms2-2 set to manually installed.
+KnightBite release verification	Run npx playwright install --with-deps chromium webkit	2026-09-10T21:32:42.1424257Z   libde265-0 libdecor-0-0 libdirectfb-1.7-7t64 libdv4t64 libdvdnav4
+KnightBite release verification	Run npx playwright install --with-deps chromium webkit	2026-09-10T21:32:42.6956749Z Get:31 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsvtav1enc1d1 amd64 1.7.0+dfsg-2build1 [2425 kB]
+KnightBite release verification	Run npx playwright install --with-deps chromium webkit	2026-09-10T21:32:44.2422755Z Get:131 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libegl1 amd64 1.7.0-1build1 [28.7 kB]
+KnightBite release verification	Run npx playwright install --with-deps chromium webkit	2026-09-10T21:32:48.1242241Z Selecting previously unselected package gsettings-desktop-schemas.
+KnightBite release verification	Run npx playwright install --with-deps chromium webkit	2026-09-10T21:33:08.0507242Z |■■■■■■■■                                                                        |  10% of 102.3 MiB
+KnightBite release verification	Run npm run check	2026-09-10T21:33:11.4274041Z > knightbite@0.1.0 check
+KnightBite release verification	Run npm run check	2026-09-10T21:33:11.4274802Z > npm test && npm run typecheck && npm run lint && npm run build:isolated && npm run test:browser
+KnightBite release verification	Run npm run check	2026-09-10T21:33:11.5377164Z > knightbite@0.1.0 test
+KnightBite release verification	Run npm run check	2026-09-10T21:33:12.5467417Z ✔ context helper rejects different returned location (1.612428ms)
+KnightBite release verification	Run npm run check	2026-09-10T21:33:12.8692897Z ✔ unknown/missing labels never become dietary guarantees and conflicting labels do not pass filters (0.552508ms)
+KnightBite release verification	Run npm run check	2026-09-10T21:33:15.3915690Z ✔ a conflicting returned label identity cannot populate the requested food (5.017242ms)
+KnightBite release verification	Run npm run check	2026-09-10T21:33:16.9102428Z ℹ tests 242
+KnightBite release verification	Run npm run check	2026-09-10T21:33:16.9103327Z ℹ pass 242
+KnightBite release verification	Run npm run check	2026-09-10T21:33:16.9103555Z ℹ fail 0
+KnightBite release verification	Run npm run check	2026-09-10T21:33:17.0367797Z > knightbite@0.1.0 typecheck
+KnightBite release verification	Run npm run check	2026-09-10T21:33:17.0368428Z > next typegen && tsc --noEmit --incremental false
+KnightBite release verification	Run npm run check	2026-09-10T21:33:21.5166645Z > knightbite@0.1.0 lint
+KnightBite release verification	Run npm run check	2026-09-10T21:33:21.5167284Z > eslint . --max-warnings=0
+KnightBite release verification	Run npm run check	2026-09-10T21:33:24.2631173Z > knightbite@0.1.0 build:isolated
+KnightBite release verification	Run npm run check	2026-09-10T21:33:24.2631805Z > node scripts/isolated-build.mjs
+KnightBite release verification	Run npm run check	2026-09-10T21:33:32.3686104Z > knightbite@0.1.0 build
+KnightBite release verification	Run npm run check	2026-09-10T21:33:33.1756125Z    ▲ Next.js 15.5.25
+KnightBite release verification	Run npm run check	2026-09-10T21:33:42.2686725Z  ✓ Compiled successfully in 6.7s
+KnightBite release verification	Run npm run check	2026-09-10T21:33:54.7214768Z > knightbite@0.1.0 typecheck
+KnightBite release verification	Run npm run check	2026-09-10T21:33:54.7217545Z > next typegen && tsc --noEmit --incremental false
+KnightBite release verification	Run npm run check	2026-09-10T21:33:59.2388505Z > knightbite@0.1.0 test:browser
+KnightBite release verification	Run npm run check	2026-09-10T21:34:01.1435930Z Running 20 tests using 1 worker
+KnightBite release verification	Run npm run check	2026-09-10T21:34:41.0186630Z   20 passed (41.2s)
+KnightBite release verification	Run npm audit --audit-level=moderate	2026-09-10T21:34:41.5061022Z found 0 vulnerabilities

@@ -1,0 +1,338 @@
+/* Shared dining-hall explorer. Typography inherits the app's existing system font. */
+.livi-shell { min-height: 100vh; background: #faf9f7; }
+.livi-page { --livi-paper: #faf9f7; --livi-ink: #202221; --livi-muted: #6b6d69; --livi-accent: #b11f24; --livi-border: #ecebe7; color: var(--livi-ink); }
+.livi-page button:focus-visible, .livi-page a:focus-visible, .livi-page summary:focus-visible, .livi-page [tabindex]:focus-visible, .livi-search:focus-within { outline: 2px solid var(--livi-accent); outline-offset: 4px; }
+.livi-page button:disabled { cursor: not-allowed; opacity: .4; }
+.livi-page svg { flex-shrink: 0; }
+.livi-topbar { min-height: 88px; display: flex; align-items: center; gap: 28px; padding: 16px max(28px, calc((100vw - 1400px) / 2)); border-bottom: 1px solid var(--livi-border); background: #fdfcfb; position: relative; z-index: 45; }
+.livi-brand { display: flex; align-items: center; gap: 11px; flex-shrink: 0; }
+.livi-brandMark { display: flex; align-items: baseline; justify-content: center; height: 38px; width: 38px; border-radius: 12px; background: var(--livi-accent); color: white; font-size: 25px; font-weight: 750; letter-spacing: -3px; box-shadow: 0 3px 8px #b11f2420; }
+.livi-brandMark > span { font-size: 18px; margin-left: 1px; }
+.livi-wordmark { font-size: 20px; line-height: 1.1; font-weight: 650; letter-spacing: -.7px; }
+.livi-wordmark small { display: block; font-size: 9px; color: var(--livi-accent); letter-spacing: 1.7px; font-weight: 600; margin-top: 6px; }
+.livi-hallPicker { position: relative; flex-shrink: 0; }
+.livi-hallPicker summary { display: flex; align-items: center; gap: 11px; padding: 10px 14px; border-radius: 12px; background: #f2f1ef; cursor: pointer; list-style: none; }
+.livi-hallPicker summary::-webkit-details-marker { display: none; }
+.livi-hallPicker summary > svg:first-child { color: var(--livi-accent); }
+.livi-hallPicker summary > svg:last-child { width: 15px; height: 15px; color: var(--livi-muted); margin-left: 4px; }
+.livi-hallPicker summary small { display: block; color: var(--livi-muted); font-size: 10px; margin-bottom: 1px; }
+.livi-hallPicker summary strong { display: block; font-size: 13px; font-weight: 600; }
+.livi-hallOptions { position: absolute; top: calc(100% + 9px); left: 0; width: 310px; padding: 10px; border-radius: 16px; background: white; border: 1px solid var(--livi-border); box-shadow: 0 14px 40px #20222118; }
+.livi-hallOptions > p { color: var(--livi-muted); font-size: 11px; padding: 8px 12px; }
+.livi-hallOptions a { min-height: 46px; display: flex; align-items: center; gap: 10px; padding: 10px; font-size: 13px; border-radius: 9px; }
+.livi-hallOptions a[aria-current], .livi-hallOptions a:hover { background: #fbefef; color: var(--livi-accent); }
+.livi-hallOptions a > span:last-child:not(:nth-child(2)) { margin-left: auto; }
+.livi-desktopNav { display: flex; align-items: center; gap: 5px; margin-left: auto; white-space: nowrap; }
+.livi-desktopNav button, .livi-desktopNav a { padding: 10px 14px; border-radius: 9px; font-size: 13px; font-weight: 500; }
+.livi-desktopNav button[aria-pressed="true"] { background: #eeedeb; }
+.livi-desktopNav :is(button,a):hover { background: #f2f1ef; }
+.livi-navActions { display: flex; align-items: center; gap: 14px; }
+.livi-iconButton { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; }
+.livi-iconButton:hover { background: #efeeec; }
+.livi-navPlate { display: flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 10px; background: var(--livi-accent); color: white; font-size: 13px; font-weight: 600; box-shadow: 0 3px 10px #b11f2420; }
+.livi-navPlate > span { display: grid; place-items: center; min-width: 20px; height: 20px; border-radius: 7px; padding: 0 4px; background: white; color: var(--livi-accent); font-size: 11px; }
+.livi-profileLink { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; border: 1px solid #dddcd8; }
+.livi-profileLink svg { width: 17px; height: 17px; }
+.livi-content { max-width: 1400px; margin: 0 auto; padding: 0 28px; }
+.livi-header { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 30px 0 28px; }
+.livi-eyebrow { color: var(--livi-accent); font-size: 10px; line-height: 1.5; font-weight: 650; letter-spacing: 1.2px; }
+.livi-header h1 { font-size: clamp(24px, 2.25vw, 32px); line-height: 1.2; font-weight: 650; letter-spacing: -1.2px; margin-top: 5px; }
+.livi-source { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; margin-top: 12px; color: var(--livi-muted); font-size: 11px; }
+.livi-liveDot, .livi-unknownDot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #26733d; flex-shrink: 0; }
+.livi-unknownDot { background: #96958e; }
+.livi-updated { padding-left: 9px; margin-left: 2px; border-left: 1px solid #deddd8; color: #797b76; }
+.livi-toolbar { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
+.livi-date { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--livi-muted); }
+.livi-date svg { width: 14px; height: 14px; }
+.livi-controls { display: flex; align-items: center; gap: 14px; }
+.livi-meals, .livi-viewToggle { display: flex; align-items: center; padding: 4px; border-radius: 11px; background: #f0efed; }
+.livi-meals button { min-height: 36px; padding: 7px 16px; border-radius: 8px; font-size: 12px; color: #5b5c58; }
+.livi-meals button[aria-pressed="true"] { background: white; color: var(--livi-ink); box-shadow: 0 1px 4px #2022210d; font-weight: 600; }
+.livi-unavailableMeal { padding: 8px 12px; font-size: 12px; color: var(--livi-muted); }
+.livi-viewToggle button { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 36px; padding: 7px 12px; border-radius: 8px; font-size: 12px; color: var(--livi-muted); }
+.livi-viewToggle svg { height: 16px; width: 16px; }
+.livi-viewToggle button[aria-pressed="true"] { background: white; color: var(--livi-accent); box-shadow: 0 1px 4px #2022210d; }
+.livi-workspace { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(360px, 1fr); align-items: start; gap: 26px; }
+.livi-listWorkspace { grid-template-columns: minmax(0, 1fr); max-width: 1000px; margin: 0 auto; }
+.livi-mapSection, .livi-menuColumn, .livi-foodPanel { min-width: 0; }
+.livi-mapSection, .livi-foodPanel { scroll-margin-top: 20px; }
+.livi-mapSection:focus, .livi-foodPanel:focus { outline: none; }
+.livi-mapCard, .livi-stationsCard, .livi-panelHeader { background: white; border: 1px solid var(--livi-border); border-radius: 17px; }
+.livi-mapCard { padding: 22px 20px 0; overflow: hidden; }
+.livi-mapIntro { display: flex; justify-content: space-between; gap: 10px; align-items: center; padding-bottom: 18px; }
+.livi-mapIntro > div { display: flex; align-items: center; gap: 11px; }
+.livi-mapIntro svg { color: var(--livi-accent); width: 18px; height: 18px; }
+.livi-mapIntro h2, .livi-stationsHeading h2 { font-size: 16px; font-weight: 600; letter-spacing: -.4px; }
+.livi-mapIntro p, .livi-stationsHeading p { font-size: 11px; color: var(--livi-muted); margin-top: 3px; }
+.livi-stationBadge { flex-shrink: 0; padding: 5px 9px; border-radius: 7px; font-size: 10px; background: #f5f4f2; }
+.livi-stationBadge::before { display: inline-block; content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--livi-accent); margin-right: 6px; vertical-align: 1px; }
+.livi-mapViewport { overflow-x: auto; background: #f1eee7; border-radius: 12px; scrollbar-width: thin; scrollbar-color: #d0cdc5 transparent; }
+.livi-mapCanvas { position: relative; overflow: hidden; isolation: isolate; }
+.livi-artwork { width: 100%; height: 100%; object-fit: contain; }
+.livi-mapPin { position: absolute; transform: translate(-50%, -50%); min-width: 44px; min-height: 44px; display: flex; align-items: center; flex-direction: column; justify-content: center; z-index: 1; }
+.livi-pinNumber { width: 32px; height: 32px; border: 2px solid white; display: grid; place-items: center; border-radius: 50%; color: var(--livi-ink); background: white; font-weight: 600; font-size: 11px; box-shadow: 0 2px 9px #26282525; }
+.livi-pinLabel { font-size: 11px; background: #fffffff2; color: var(--livi-ink); white-space: nowrap; border-radius: 6px; padding: 4px 9px; margin-top: 4px; box-shadow: 0 2px 8px #26282515; }
+.livi-mapPin[aria-pressed="true"] { z-index: 3; }
+.livi-mapPin[aria-pressed="true"] .livi-pinNumber, .livi-mapPin:hover .livi-pinNumber { color: white; background: var(--livi-accent); }
+.livi-mapPin[aria-pressed="true"] .livi-pinNumber { box-shadow: 0 0 0 5px #b11f2425, 0 3px 10px #26282520; }
+.livi-mapPin[aria-pressed="true"] .livi-pinLabel { color: white; background: var(--livi-accent); }
+.livi-compactPins .livi-mapPin { width: 44px; height: 44px; }
+.livi-compactPins .livi-pinLabel { display: none; position: absolute; top: 100%; margin-top: 0; pointer-events: none; }
+.livi-compactPins .livi-mapPin:is(:hover, :focus-visible, [aria-pressed="true"]) { z-index: 3; }
+.livi-compactPins .livi-mapPin:is(:hover, :focus-visible, [aria-pressed="true"]) .livi-pinLabel { display: block; }
+.livi-compactPins .livi-mapPin[data-label-side] .livi-pinLabel { top: 50%; transform: translateY(-50%); }
+.livi-compactPins .livi-mapPin[data-label-side="left"] .livi-pinLabel { right: calc(100% + 3px); }
+.livi-compactPins .livi-mapPin[data-label-side="right"] .livi-pinLabel { left: calc(100% + 3px); }
+.livi-mapEntrance { position: absolute; transform: translate(-50%, -50%); display: flex; gap: 5px; align-items: center; font-size: 10px; font-weight: 600; color: #5d6057; }
+.livi-mapEntrance > span { font-size: 21px; color: var(--livi-accent); }
+.livi-mapLandmark { position: absolute; transform: translate(-50%, -50%); max-width: 115px; padding: 5px 8px; text-align: center; border-radius: 6px; background: #fffffff2; font-size: 11px; color: var(--livi-muted); }
+.livi-mapFootnote { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 51px; font-size: 10px; color: var(--livi-muted); }
+.livi-mapFootnote button { display: flex; align-items: center; gap: 5px; min-height: 36px; }
+.livi-mapFootnote svg { width: 14px; height: 14px; }
+.livi-mapScrollHint { display: none; }
+.livi-mapFootnote .livi-expandMap { display: none; }
+.livi-stationsCard { margin-top: 20px; padding: 22px 20px 18px; }
+.livi-stationsHeading { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-bottom: 16px; margin-bottom: 10px; border-bottom: 1px solid var(--livi-border); }
+.livi-stationsHeading a { font-size: 11px; color: var(--livi-accent); }
+.livi-stationsHeading a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.livi-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 9px; }
+.livi-legend button { display: flex; align-items: center; min-height: 48px; gap: 9px; padding: 8px 10px; font-size: 12px; text-align: left; border-radius: 9px; }
+.livi-legend button[aria-pressed="true"] { background: #fceff0; color: var(--livi-accent); }
+.livi-legend button:hover { background: #f4f3f0; }
+.livi-legend button[aria-pressed="true"]:hover { background: #fae6e8; }
+.livi-legendNumber { font-size: 10px; font-variant-numeric: tabular-nums; color: var(--livi-muted); }
+.livi-legendName { font-weight: 500; }
+.livi-count { margin-left: auto; font-size: 10px; color: var(--livi-muted); white-space: nowrap; }
+.livi-legend button[aria-pressed="true"] :is(.livi-legendNumber, .livi-count) { color: var(--livi-accent); }
+.livi-guideNote { margin: 14px 4px 0; font-size: 12px; line-height: 1.6; color: var(--livi-muted); }
+.livi-menuColumn { position: sticky; top: 20px; }
+.livi-backToMap { display: none; }
+.livi-panelHeader { padding: 24px 22px 20px; }
+.livi-panelHeading { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.livi-panelHeading h2 { font-size: 29px; letter-spacing: -.9px; font-weight: 600; line-height: 1.15; margin-top: 7px; }
+.livi-panelHeading > div > p:last-child { margin-top: 8px; font-size: 11px; color: var(--livi-muted); }
+.livi-panelSymbol { flex-shrink: 0; display: grid; place-items: center; height: 37px; min-width: 37px; border-radius: 11px; background: #fbecee; color: var(--livi-accent); font-size: 14px; font-weight: 600; }
+.livi-search { display: flex; align-items: center; padding: 11px 12px; margin-top: 18px; gap: 9px; background: #f5f4f2; border-radius: 8px; }
+.livi-search svg { width: 16px; height: 16px; color: var(--livi-muted); }
+.livi-search input { background: transparent; outline: none; width: 100%; min-width: 0; font-size: 12px; color: var(--livi-ink); }
+.livi-search input::placeholder { color: #82827c; }
+.livi-filters { display: flex; align-items: center; overflow-x: auto; gap: 6px; padding: 3px 2px; margin: 11px -2px -3px; scrollbar-width: none; }
+.livi-filters button { display: flex; align-items: center; justify-content: center; gap: 5px; padding: 6px 10px; min-height: 30px; border-radius: 20px; background: #f2f1ef; font-size: 10px; white-space: nowrap; }
+.livi-filters button[aria-pressed="true"] { background: var(--livi-ink); color: white; }
+.livi-filters .livi-liveDot { width: 5px; height: 5px; }
+.livi-foodList { max-height: clamp(240px, calc(100svh - 370px), 660px); overflow-y: auto; background: white; border: 1px solid var(--livi-border); border-radius: 15px; margin-top: 16px; scrollbar-width: thin; scrollbar-color: #d5d3ce transparent; }
+.livi-listWorkspace .livi-foodList { max-height: none; }
+.livi-listWorkspace .livi-menuColumn { position: static; }
+.livi-foodSection > h3 { font-size: 10px; text-transform: uppercase; letter-spacing: .7px; font-weight: 500; padding: 13px 20px; color: #656762; background: #fcfcfb; border-bottom: 1px solid #f2f1ef; }
+.livi-foodRow { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 17px 20px; border-bottom: 1px solid #f3f2ef; }
+.livi-foodRow:last-child { border-bottom: 0; }
+.livi-foodRow > div { min-width: 0; }
+.livi-foodTitle { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; }
+.livi-foodRow h4 { font-size: 14px; font-weight: 550; line-height: 1.4; letter-spacing: -.2px; }
+.livi-foodRow p { font-size: 11px; color: var(--livi-muted); margin-top: 4px; line-height: 1.5; }
+.livi-foodTag { font-size: 9px; border-radius: 4px; padding: 3px 5px; background: #f1efec; color: #55564f; }
+.livi-plantTag { background: #e5f3de; color: #33622a; }
+.livi-nutrients { display: flex; flex-wrap: wrap; align-items: center; column-gap: 10px; row-gap: 4px; margin-top: 8px; font-size: 12px; font-weight: 550; }
+.livi-nutrients > span + span::before { content: "·"; color: #bbbdb7; margin-right: 10px; }
+.livi-nutrients small { font-size: 10px; font-weight: 400; color: var(--livi-muted); }
+.livi-protein { color: #356941; }
+.livi-foodRow > button { flex-shrink: 0; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; gap: 2px; border-radius: 50%; background: #f4f3f1; color: var(--livi-ink); font-size: 23px; font-weight: 350; }
+.livi-foodRow > button:hover, .livi-foodRow > button.livi-added { color: white; background: var(--livi-accent); }
+.livi-foodRow > button:active { transform: scale(.92); }
+.livi-quantity { font-size: 12px; font-weight: 600; }
+.livi-foodDetails { margin-top: 7px; }
+.livi-foodDetails summary { width: fit-content; cursor: pointer; font-size: 10px; color: var(--livi-muted); }
+.livi-foodDetails p { max-width: 60ch; }
+.livi-otherNote { padding: 12px 18px; font-size: 12px; line-height: 1.6; color: var(--livi-muted); background: #f3f1ed; margin-top: 14px; border-radius: 10px; }
+.livi-empty { padding: 32px 24px; }
+.livi-empty > svg { width: 28px; height: 28px; color: var(--livi-accent); }
+.livi-empty h3 { font-size: 19px; font-weight: 550; margin-top: 14px; letter-spacing: -.3px; }
+.livi-empty p { font-size: 13px; color: var(--livi-muted); line-height: 1.75; margin: 10px 0 18px; }
+.livi-empty button, .livi-empty a { font-size: 12px; font-weight: 600; color: var(--livi-accent); }
+.livi-nutritionNote { margin: 16px 20px; }
+.livi-plateDock { margin-top: 14px; padding: 14px; border: 1px solid var(--livi-border); border-radius: 15px; background: #fffffff7; box-shadow: 0 6px 18px #21251d08; display: flex; justify-content: space-between; align-items: center; gap: 10px; backdrop-filter: blur(12px); }
+.livi-plateDock[hidden] { display: none; }
+.livi-plateDock > div { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.livi-plateSymbol { width: 36px; height: 38px; display: grid; place-items: center; background: #f4f1ed; color: var(--livi-accent); border-radius: 11px; flex-shrink: 0; }
+.livi-plateDock strong { display: block; font-weight: 600; font-size: 12px; }
+.livi-plateDock small { display: block; font-size: 10px; color: var(--livi-muted); margin-top: 3px; }
+.livi-plateDock small b { color: var(--livi-accent); font-weight: 550; }
+.livi-plateDock > button { display: flex; align-items: center; gap: 9px; flex-shrink: 0; min-height: 40px; padding: 10px 13px; border-radius: 10px; color: white; background: var(--livi-accent); font-size: 12px; font-weight: 600; box-shadow: 0 3px 8px #b11f2418; }
+.livi-plateDock > button svg { width: 16px; height: 16px; }
+.livi-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--livi-muted); border-top: 1px solid var(--livi-border); margin-top: 56px; padding: 28px 0; font-size: 11px; }
+.livi-footerBrand { font-size: 15px; font-weight: 650; letter-spacing: -.5px; color: var(--livi-ink); }
+.livi-footerBrand > span { display: inline-block; font-size: 10px; font-weight: 400; color: var(--livi-muted); margin-left: 16px; letter-spacing: 0; }
+.livi-mobileNav { display: none; }
+@media (min-width: 860px) {
+  .livi-listWorkspace { padding-bottom: 90px; }
+  .livi-listWorkspace .livi-plateDock { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: min(calc(100% - 56px), 540px); z-index: 40; box-shadow: 0 6px 20px #20222115; }
+}
+@media (max-width: 1199px) and (min-width: 860px) {
+  .livi-topbar { gap: 18px; padding: 16px 24px; }
+  .livi-desktopNav { gap: 0; }
+  .livi-desktopNav :is(button,a) { padding: 10px; font-size: 12px; }
+  .livi-navActions { gap: 10px; }
+  .livi-navActions .livi-iconButton { display: none; }
+  .livi-wordmark { font-size: 18px; }
+  .livi-header { align-items: flex-start; }
+  .livi-header h1 { max-width: 350px; }
+  .livi-controls { gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+  .livi-meals button { padding: 7px 12px; }
+  .livi-workspace { gap: 20px; grid-template-columns: minmax(0, 1.2fr) minmax(340px, 1fr); }
+  .livi-listWorkspace { grid-template-columns: 1fr; }
+  .livi-legend { grid-template-columns: 1fr; }
+}
+@media (max-width: 1000px) and (min-width: 860px) {
+  .livi-wordmark, .livi-desktopNav > a { display: none; }
+}
+@media (max-width: 859px) {
+  .livi-page { padding-bottom: calc(170px + env(safe-area-inset-bottom)); }
+  .livi-topbar { min-height: 80px; padding: calc(14px + env(safe-area-inset-top)) 18px 14px; gap: 10px; justify-content: space-between; }
+  .livi-brand, .livi-desktopNav, .livi-navPlate { display: none; }
+  .livi-hallPicker { min-width: 0; flex-shrink: 1; }
+  .livi-hallPicker summary { padding: 10px 12px; gap: 7px; border-radius: 24px; min-height: 46px; }
+  .livi-hallPicker summary small { display: none; }
+  .livi-hallPicker summary strong { font-size: 14px; font-weight: 600; letter-spacing: -.4px; }
+  .livi-hallPicker summary > svg:first-child { height: 18px; width: 18px; }
+  .livi-hallPicker summary > svg:last-child { width: 13px; margin-left: 0; }
+  .livi-hallOptions { width: min(330px, calc(100vw - 36px)); }
+  .livi-navActions { gap: 8px; flex-shrink: 0; }
+  .livi-iconButton { height: 32px; width: 32px; }
+  .livi-profileLink { width: 34px; height: 34px; background: var(--livi-accent); color: white; border: 0; }
+  .livi-content { padding: 0 18px; }
+  .livi-header { display: flex; flex-direction: column; align-items: stretch; gap: 15px; padding: 20px 0; }
+  .livi-hallHeading { padding: 0 2px; }
+  .livi-header h1 { font-size: 25px; letter-spacing: -.9px; margin-top: 4px; }
+  .livi-eyebrow { font-size: 9px; letter-spacing: 1.1px; }
+  .livi-source { font-size: 10px; gap: 6px; margin-top: 9px; }
+  .livi-updated { font-size: 10px; padding-left: 7px; }
+  .livi-toolbar { align-items: stretch; gap: 12px; }
+  .livi-date { font-size: 10px; padding: 0 2px; }
+  .livi-controls { display: block; }
+  .livi-meals { padding: 4px; width: 100%; }
+  .livi-meals button { min-height: 38px; flex: 1; font-size: 12px; }
+  .livi-meals button[aria-pressed="true"] { background: var(--livi-accent); color: white; }
+  .livi-viewToggle { display: none; }
+  .livi-workspace { display: flex; flex-direction: column; gap: 23px; }
+  .livi-mapSection, .livi-menuColumn { width: 100%; }
+  .livi-mapSection { border-radius: 16px; background: white; border: 1px solid var(--livi-border); padding: 15px 12px 12px; scroll-margin-top: 16px; }
+  .livi-mapCard { padding: 0; border: 0; border-radius: 0; overflow: visible; }
+  .livi-mapIntro { padding: 2px 1px 14px; }
+  .livi-mapIntro > div { gap: 7px; }
+  .livi-mapIntro h2 { font-size: 12px; font-weight: 550; letter-spacing: .2px; }
+  .livi-mapIntro p { display: none; }
+  .livi-mapIntro svg { width: 16px; height: 16px; }
+  .livi-stationBadge { font-size: 9px; padding: 5px 7px; }
+  .livi-mapViewport { max-height: 420px; overflow-y: auto; }
+  .livi-mapViewport:not(.livi-expandedMap) .livi-mapCanvas { min-width: 0 !important; }
+  .livi-mapViewport:not(.livi-expandedMap) .livi-portraitCanvas { width: min(100%, 260px); margin-inline: auto; }
+  .livi-mapViewport:not(.livi-expandedMap) .livi-mapPin { min-width: 30px; min-height: 30px; width: 30px; height: 30px; }
+  .livi-mapViewport:not(.livi-expandedMap) .livi-pinNumber { width: 25px; height: 25px; font-size: 9px; border-width: 1.5px; }
+  .livi-mapViewport:not(.livi-expandedMap) .livi-pinLabel { font-size: 9px; padding: 3px 6px; }
+  .livi-mapViewport:not(.livi-expandedMap) .livi-mapEntrance { font-size: 8px; gap: 3px; }
+  .livi-mapViewport:not(.livi-expandedMap) .livi-mapEntrance > span { font-size: 16px; }
+  .livi-mapViewport:not(.livi-expandedMap) .livi-mapLandmark { max-width: 68px; padding: 3px; font-size: 8px; }
+  .livi-mapFootnote .livi-expandMap { display: flex; }
+  .livi-mapFootnote .livi-centerMap { display: none; }
+  .livi-mapFootnote { min-height: 42px; font-size: 9px; }
+  .livi-mapFootnote button { min-height: 36px; }
+  .livi-mapScrollHint { display: block; font-size: 9px; color: var(--livi-muted); margin: -2px 0 10px; }
+  .livi-stationsCard { margin-top: 0; padding: 0; border: 0; border-radius: 0; }
+  .livi-stationsHeading { display: none; }
+  .livi-legend { display: flex; overflow-x: auto; gap: 6px; padding: 4px 1px; scrollbar-width: none; }
+  .livi-legend button { min-height: 38px; padding: 7px 12px 7px 8px; border-radius: 22px; flex-shrink: 0; background: #f2f1ef; gap: 7px; font-size: 11px; }
+  .livi-legend button[aria-pressed="true"] { background: var(--livi-accent); color: white; }
+  .livi-legendNumber { display: grid; place-items: center; width: 23px; height: 23px; border-radius: 50%; background: #e5e4e1; color: var(--livi-ink); }
+  .livi-count { font-size: 10px; }
+  .livi-legend button[aria-pressed="true"] .livi-legendNumber { background: #ffffff25; color: white; }
+  .livi-legend button[aria-pressed="true"] .livi-count { color: #ffffffe0; }
+  .livi-legend button[aria-pressed="true"]:hover { background: #951b20; }
+  .livi-guideNote { font-size: 10px; margin: 10px 0 0; }
+  .livi-menuColumn { position: static; }
+  .livi-foodPanel { scroll-margin-top: 16px; }
+  .livi-backToMap { display: block; font-size: 10px; color: var(--livi-muted); margin-bottom: 9px; padding: 3px 0; min-height: 30px; }
+  .livi-panelHeader { padding: 0; background: transparent; border: 0; border-radius: 0; }
+  .livi-panelHeading { gap: 10px; }
+  .livi-panelHeading h2 { font-size: 25px; letter-spacing: -.6px; margin-top: 3px; }
+  .livi-panelHeading > div > p:last-child { font-size: 10px; margin-top: 5px; }
+  .livi-panelSymbol { width: 34px; height: 34px; min-width: 34px; border-radius: 10px; margin-top: 12px; }
+  .livi-search { margin-top: 13px; padding: 12px; }
+  .livi-search input { font-size: 16px; }
+  .livi-search input::placeholder { font-size: 13px; }
+  .livi-filters { margin-top: 7px; gap: 6px; padding: 4px 2px; }
+  .livi-filters button { font-size: 11px; min-height: 32px; padding: 6px 11px; }
+  .livi-foodList { max-height: none; overflow: visible; background: transparent; border: 0; margin-top: 14px; border-radius: 0; }
+  .livi-foodSection > h3 { background: transparent; border: 0; padding: 7px 1px 10px; font-size: 10px; }
+  .livi-foodSection + .livi-foodSection { margin-top: 18px; }
+  .livi-foodRow { padding: 16px 14px; border: 1px solid var(--livi-border); border-radius: 14px; background: white; margin-bottom: 8px; gap: 10px; box-shadow: 0 1px 2px #20222103; }
+  .livi-foodRow:last-child { border-bottom: 1px solid var(--livi-border); }
+  .livi-foodRow h4 { font-size: 15px; line-height: 1.35; font-weight: 550; }
+  .livi-foodRow p { font-size: 12px; margin-top: 5px; }
+  .livi-foodTag { font-size: 9px; }
+  .livi-nutrients { font-size: 12px; margin-top: 7px; column-gap: 9px; }
+  .livi-nutrients small { font-size: 11px; }
+  .livi-nutrients > span + span::before { margin-right: 9px; }
+  .livi-foodRow > button { width: 42px; height: 42px; font-size: 26px; }
+  .livi-foodDetails summary { font-size: 10px; }
+  .livi-empty { background: white; border: 1px solid var(--livi-border); border-radius: 14px; padding: 26px 20px; }
+  .livi-nutritionNote { margin: 18px 4px; }
+  .livi-plateDock { position: fixed; bottom: calc(83px + env(safe-area-inset-bottom)); left: 18px; right: 18px; z-index: 40; margin: 0 auto; max-width: 520px; padding: 11px 12px; border-radius: 28px; box-shadow: 0 6px 16px #20222116; }
+  .livi-plateDock > div { gap: 9px; }
+  .livi-plateSymbol { height: 39px; width: 39px; border-radius: 50%; background: #fbe4e5; }
+  .livi-plateDock strong { font-size: 11px; }
+  .livi-plateDock small { font-size: 10px; }
+  .livi-plateDock > button { border-radius: 22px; min-height: 37px; padding: 9px 12px; gap: 6px; font-size: 11px; }
+  .livi-mobileNav { position: fixed; z-index: 40; bottom: 0; left: 0; right: 0; display: grid; grid-template-columns: repeat(4, 1fr); background: #fdfcfbf5; backdrop-filter: blur(16px); border-top: 1px solid var(--livi-border); padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); }
+  .livi-mobileNav > :is(button,a) { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; min-height: 49px; font-size: 10px; color: var(--livi-muted); }
+  .livi-mobileNav > button[aria-pressed="true"] { color: var(--livi-accent); }
+  .livi-tabCount { position: absolute; top: -3px; left: calc(50% + 7px); font-size: 8px; line-height: 15px; min-width: 15px; padding: 0 3px; background: var(--livi-accent); color: white; border-radius: 8px; }
+  .livi-footer { margin-top: 30px; padding: 24px 2px; }
+  .livi-footer > span { display: none; }
+  .livi-footerBrand > span { font-size: 9px; }
+}
+@media (max-width: 389px) {
+  .livi-topbar { padding-inline: 12px; gap: 6px; }
+  .livi-hallPicker summary { padding: 9px; gap: 5px; }
+  .livi-hallPicker summary strong { font-size: 12px; }
+  .livi-navActions { gap: 4px; }
+  .livi-content { padding-inline: 12px; }
+  .livi-plateDock { left: 12px; right: 12px; padding: 10px; }
+  .livi-plateSymbol { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .livi-page button { transition: none; } }
+
+/* Keep the existing plate sheet centered over the full dining-hall workspace. */
+.livi-page > aside { max-width: none; }
+.livi-page > aside > div { max-width: 480px; margin-inline: auto; }
+.livi-skeleton { border-radius: 8px; background: #efeeea; }
+.livi-loadingBrand { width: 140px; height: 34px; }
+.livi-loadingPicker { width: 220px; height: 46px; }
+.livi-loadingTitle { width: min(290px, 100%); height: 36px; }
+.livi-loadingMeals { width: 250px; height: 42px; }
+.livi-loadingLabel { width: 65%; height: 16px; margin-bottom: 20px; }
+.livi-loadingMap { width: 100%; aspect-ratio: 1.5; margin-bottom: 20px; }
+.livi-loadingSearch { width: 100%; height: 38px; margin-top: 24px; }
+.livi-loadingRow { padding: 22px; border-bottom: 1px solid var(--livi-border); }
+.livi-loadingDetail { width: 45%; height: 10px; }
+@media (prefers-reduced-motion: no-preference) {
+  .livi-skeleton { animation: livi-loadingPulse 1.8s ease-in-out infinite alternate; }
+  @keyframes livi-loadingPulse { to { opacity: .5; } }
+}
+@media (max-width: 859px) {
+  .livi-loading .livi-mapCard, .livi-loading .livi-workspace > div { width: 100%; }
+  .livi-loadingBrand { width: 160px; }
+  .livi-loadingPicker { width: 34px; height: 34px; border-radius: 50%; }
+  .livi-loadingMeals { width: 100%; }
+}
+
+/* Empty source sections stay operable; color is supplemented by text and a mark. */
+.livi-legendText { display: flex; flex-direction: column; gap: 3px; }
+.livi-stationStatus { font-size: 10px; line-height: 1.4; }
+.livi-pinNumber { position: relative; }
+.livi-pinStatus { position: absolute; right: -6px; top: -6px; display: grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; background: #fff; color: #484848; border: 1px solid #777; font-size: 11px; }
+.livi-mapPin[data-menu-state="empty"] .livi-pinNumber,
+.livi-mapPin[data-menu-state="empty"] .livi-pinLabel { background: #e8e7e4; color: #50504d; }
+.livi-mapPin[data-menu-state="empty"][aria-pressed="true"] .livi-pinNumber { box-shadow: 0 0 0 3px #777, 0 3px 10px #26282520; }
+.livi-legend button[data-menu-state="empty"] { background: #eeedea; color: #50504d; }
+.livi-legend button[data-menu-state="empty"][aria-pressed="true"] { background: #e0dfdc; outline: 2px solid #777; outline-offset: -2px; }
+.livi-legend button[data-menu-state="empty"] .livi-legendNumber { color: #50504d; background: #deddd9; }

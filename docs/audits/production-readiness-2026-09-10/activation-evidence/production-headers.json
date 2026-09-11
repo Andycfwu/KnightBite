@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-09-10T21:04:23.973078+00:00",
+  "method": "HEAD",
+  "url": "https://knightbitenb.vercel.app/profile",
+  "status": 200,
+  "headers": {
+    "content-security-policy": null,
+    "x-frame-options": null,
+    "x-content-type-options": null,
+    "referrer-policy": null,
+    "permissions-policy": null,
+    "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+    "cache-control": "public, max-age=0, must-revalidate",
+    "x-vercel-cache": "HIT",
+    "content-type": "text/html; charset=utf-8"
+  },
+  "note": "No JavaScript executed, analytics event sent, hall route requested, or cache bypass."
+}

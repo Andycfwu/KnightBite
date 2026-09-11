@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-09-10T21:22:08.368294+00:00",
+  "main": {
+    "sha": "70166c4fd04bb0d5ca25b792283924eff36c1f31",
+    "protected": false
+  },
+  "remoteReleaseBranchExists": false,
+  "githubPersonalTwoFactor": {
+    "returnedValue": null,
+    "interpretation": "Unavailable through this authenticated REST response; not evidence that 2FA is disabled. Owner/account UI evidence remains open; no authentication secrets requested."
+  }
+}

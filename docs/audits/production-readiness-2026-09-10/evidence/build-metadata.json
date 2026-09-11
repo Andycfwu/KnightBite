@@ -1,0 +1,12 @@
+{
+  "cwd": "/var/folders/56/j0s2mygx0td8cz7dc12zh5xh0000gn/T/knightbite-audit-build-i02ffeb0",
+  "date": "2026-09-10T18:31:30.050184+00:00",
+  "command": [
+    "node",
+    "/Users/andywu/Desktop/Codex/Nutrition/node_modules/next/dist/bin/next",
+    "build"
+  ],
+  "network": "fetch/http/https guarded; telemetry disabled",
+  "scope": "isolated copy with installed dependencies symlinked, no installs",
+  "exitCode": 0
+}

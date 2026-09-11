@@ -4,6 +4,11 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { MealTabs } from "@/components/menu/MealTabs";
+import { LivingstonMenuView } from "@/components/menu/LivingstonMenuView";
+import { HallStationExplorer } from "@/components/menu/HallStationExplorer";
+import { BUSCH_MAP } from "@/lib/busch-stations";
+import { NEILSON_MAP } from "@/lib/neilson-stations";
+import { ATRIUM_MAP } from "@/lib/atrium-stations";
 import { MenuSearch } from "@/components/menu/MenuSearch";
 import { StationJumpBar } from "@/components/menu/StationJumpBar";
 import { StationSection } from "@/components/menu/StationSection";
@@ -15,41 +20,55 @@ import { PlateIcon } from "@/components/ui/PlateIcon";
 import { useMenuFilter } from "@/hooks/useMenuFilter";
 import { usePlate } from "@/hooks/usePlate";
 import { MEAL_LABELS } from "@/lib/constants";
-import { getAvailableMealTypes } from "@/lib/menu";
-import { hasMeaningfulNutrition } from "@/lib/nutrition";
-import { DailyMenu, DiningHall } from "@/lib/types";
+import { getAvailableMealTypes } from "@/lib/menu-helpers";
+import { hasCompleteNutrition, formatTotal } from "@/lib/nutrition";
+import { DailyMenu, DiningHall, MealType } from "@/lib/types";
 import { formatDateLabel, formatUpdatedTime } from "@/lib/utils";
 
 type HallMenuViewProps = {
   hall: DiningHall;
   menu: DailyMenu | null;
+  requestedDate: string;
+  initialMeal?: MealType;
 };
 
-export function HallMenuView({ hall, menu }: HallMenuViewProps) {
+export function HallMenuView({ hall, menu, requestedDate, initialMeal }: HallMenuViewProps) {
+  if (hall.id === "livingston") {
+    return <LivingstonMenuView menu={menu} requestedDate={requestedDate} initialMeal={initialMeal} />;
+  }
+  if (hall.id === "busch") {
+    return <HallStationExplorer key={hall.id} menu={menu} requestedDate={requestedDate} initialMeal={initialMeal} map={BUSCH_MAP} />;
+  }
+  if (hall.id === "neilson") {
+    return <HallStationExplorer key={hall.id} menu={menu} requestedDate={requestedDate} initialMeal={initialMeal} map={NEILSON_MAP} />;
+  }
+  if (hall.id === "atrium") {
+    return <HallStationExplorer key={hall.id} menu={menu} requestedDate={requestedDate} initialMeal={initialMeal} map={ATRIUM_MAP} />;
+  }
   if (!menu) {
     return (
       <main className="space-y-5">
-        <HallHeader hall={hall} dateLabel={formatDateLabel(new Date().toISOString().slice(0, 10))} />
+        <HallHeader hall={hall} dateLabel={formatDateLabel(requestedDate)} />
         <EmptyState
-          title="No menu available right now."
-          description="We couldn’t find a menu for this hall right now. Try another hall or check back a little later."
+          title="Menu unavailable right now."
+          description="We couldn’t load a menu for this hall for today. Try another hall or check back later."
         />
       </main>
     );
   }
 
-  return <HallMenuContent hall={hall} menu={menu} />;
+  return <HallMenuContent hall={hall} menu={menu} initialMeal={initialMeal} />;
 }
 
-function HallMenuContent({ hall, menu }: { hall: DiningHall; menu: DailyMenu }) {
+function HallMenuContent({ hall, menu, initialMeal }: { hall: DiningHall; menu: DailyMenu; initialMeal?: MealType }) {
   const plate = usePlate();
   const [plateOpen, setPlateOpen] = useState(false);
   const [activeStationId, setActiveStationId] = useState<string | null>(null);
   const [platePulse, setPlatePulse] = useState(false);
   const previousTotalItemsRef = useRef(plate.totalItems);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
-  const { filteredMeal, query, resultCount, selectedMeal, setQuery, setSelectedMeal } = useMenuFilter(menu);
-  const stations = filteredMeal?.stations ?? [];
+  const { filteredMeal, query, resultCount, selectedMeal, setQuery, setSelectedMeal } = useMenuFilter(menu, initialMeal);
+  const stations = useMemo(() => filteredMeal?.stations ?? [], [filteredMeal]);
 
   const stationNavItems = useMemo(
     () =>
@@ -61,7 +80,7 @@ function HallMenuContent({ hall, menu }: { hall: DiningHall; menu: DailyMenu }) 
   );
 
   const mealHasIncompleteNutrition = useMemo(
-    () => stations.some((station) => station.items.some((item) => item.isCustom || !hasMeaningfulNutrition(item.nutrition))),
+    () => stations.some((station) => station.items.some((item) => item.isCustom || !hasCompleteNutrition(item.nutrition))),
     [stations]
   );
 
@@ -193,7 +212,7 @@ function HallMenuContent({ hall, menu }: { hall: DiningHall; menu: DailyMenu }) 
       <FloatingPlateButton
         open={plateOpen}
         totalItems={plate.totalItems}
-        totalCalories={plate.totals.calories}
+        totalCalories={formatTotal(plate.totals, "calories", " kcal")}
         platePulse={platePulse}
         onOpen={() => setPlateOpen(true)}
       />
@@ -240,9 +259,9 @@ function HallHeader({
       {typeof isLiveData === "boolean" ? (
         <div className="flex items-center justify-center gap-2">
           <Badge variant={isLiveData ? "live" : "fallback"} className="px-3 py-1">
-            {isLiveData ? "Live today" : "Backup menu"}
+            {isLiveData ? "Live today" : "Sample menu"}
           </Badge>
-          {lastUpdatedAt ? <span className="text-sm text-ink/42">Updated {formatUpdatedTime(lastUpdatedAt)}</span> : null}
+          {isLiveData && lastUpdatedAt ? <span className="text-sm text-ink/42">Updated {formatUpdatedTime(lastUpdatedAt)}</span> : null}
         </div>
       ) : null}
     </section>
@@ -258,7 +277,7 @@ function FloatingPlateButton({
 }: {
   open: boolean;
   totalItems: number;
-  totalCalories: number;
+  totalCalories: string;
   platePulse: boolean;
   onOpen: () => void;
 }) {
@@ -274,7 +293,7 @@ function FloatingPlateButton({
       <ChevronUpIcon />
       <span className="flex items-center gap-2.5 text-[1rem] font-semibold tracking-[-0.03em] text-ink">
         <PlateIcon className="h-[21px] w-[24px]" />
-        <span className="text-brand">{Math.round(totalCalories)} kcal</span>
+        <span className="text-brand">{totalCalories}</span>
       </span>
       {totalItems > 0 ? (
         <span className="rounded-full bg-brand/10 px-2 py-1 text-xs font-semibold text-brand">{totalItems}</span>

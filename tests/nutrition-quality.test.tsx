@@ -1,0 +1,54 @@
+import assert from "node:assert/strict";
+import { test } from "node:test";
+import { renderToStaticMarkup } from "react-dom/server";
+import { calculatePlateTotals, formatTotal, hasCompleteNutrition, hasMeaningfulNutrition, unknownNutrition } from "@/lib/nutrition";
+import { addPlateItem, toPlateItem } from "@/lib/plate";
+import { assignUniqueItemIds } from "@/lib/menu-item-identity";
+import { MacroTotals } from "@/components/plate/MacroTotals";
+import type { MenuItem } from "@/lib/types";
+const item = (size: string, calories: number | null): MenuItem => ({ id: 'busch-lunch-rice-1', name: 'Rice', hallId: 'busch', stationId: 'rice', stationName: 'Rice', mealType: 'lunch', menuDate: '2026-09-10', servingSize: size, available: true, nutrition: { ...unknownNutrition(), calories } });
+test('known zero, missing fields and partial plate subtotals remain distinct', () => {
+  const zero = { calories: 0, protein: 0, carbs: 0, fat: 0, sodium: 0, sugar: 0 };
+  assert.ok(hasMeaningfulNutrition(zero));
+  assert.ok(hasCompleteNutrition(zero));
+  assert.equal(hasMeaningfulNutrition(unknownNutrition()), false);
+  const known = toPlateItem(item('1 cup',120));
+  const missing = toPlateItem(item('2 cups',null));
+  let totals = calculatePlateTotals([known,missing]);
+  assert.equal(totals.calories,120);
+  assert.equal(totals.protein,null);
+  assert.equal(formatTotal(totals,'calories',' kcal'),'Known subtotal: 120 kcal');
+  assert.equal(formatTotal(totals,'protein','g'),'Unknown');
+  assert.deepEqual(totals.coverage.calories,{known:1,missing:1});
+  totals = calculatePlateTotals([known]);
+  assert.equal(formatTotal(totals,'calories',' kcal'),'120 kcal');
+  assert.equal(calculatePlateTotals([{...known,isCustom:true}]).calories,null);
+});
+test('portion IDs survive reordering and separate 120/240-calorie plate entries total 360', () => {
+  const first = [item('1 cup',120),item('2 cups',240)];
+  const reverse = structuredClone(first).reverse();
+  assignUniqueItemIds(first); assignUniqueItemIds(reverse);
+  assert.notEqual(first[0].id,first[1].id);
+  assert.equal(first[0].id,reverse[1].id);
+  assert.equal(first[1].id,reverse[0].id);
+  const plate = addPlateItem(addPlateItem([], first[0]),first[1]);
+  assert.equal(plate.length,2);
+  assert.equal(calculatePlateTotals(plate).calories,360);
+});
+test('plate snapshots retain missing/custom fields and separate refreshed dates or nutrition', () => {
+  const original = item('1 cup',120);
+  let plate = addPlateItem([],original);
+  plate = addPlateItem(plate,{...original,menuDate:'2026-09-11'});
+  plate = addPlateItem(plate,{...original,nutrition:{...original.nutrition,calories:240}});
+  assert.equal(plate.length,3);
+  original.nutrition.calories = 999;
+  assert.equal(plate[0].nutrition.calories,120);
+  assert.equal(plate[0].nutrition.protein,null);
+  assert.equal(toPlateItem({...original,isCustom:true}).isCustom,true);
+});
+for (const value of [0,100,250]) test(`goal progress at ${value}% stays within its track`, () => {
+  const totals = {calories:120,protein:value,carbs:0,fat:0};
+  const html = renderToStaticMarkup(<MacroTotals totals={totals} goals={{protein:100}} />);
+  assert.match(html,new RegExp(`width:${Math.min(value,100)}%`));
+  if(value>100) assert.match(html,/150g over goal/);
+});

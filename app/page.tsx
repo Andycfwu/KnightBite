@@ -1,40 +1,25 @@
 import { HallCardStatus } from "@/components/home/HallCard";
-import { RutgersMark } from "@/components/layout/RutgersMark";
-import { HallSelector } from "@/components/home/HallSelector";
-import { APP_NAME, HALL_BLURBS } from "@/lib/constants";
+import { SERVICE_WINDOWS } from "@/lib/meal-schedule";
+import { HomeScreen } from "@/components/home/HomeScreen";
 import { getHallMenuForDate } from "@/lib/menu";
-import { diningHalls } from "@/lib/mock-data";
+import { diningHalls } from "@/lib/dining-halls";
 import { DailyMenu, DiningHallId } from "@/lib/types";
 import {
   formatRutgersServiceTime,
-  formatShortDateLabel,
   formatUpdatedTime,
-  getGreetingForHour,
   getRutgersCurrentDecimalHour,
   getTodayIsoDate
 } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
-const SERVICE_WINDOWS: Record<
-  DiningHallId,
-  {
-    breakfast?: [number, number];
-    lunch?: [number, number];
-    dinner?: [number, number];
-  }
-> = {
-  livingston: { breakfast: [7, 10.5], lunch: [11, 15], dinner: [16.5, 21] },
-  busch: { breakfast: [7, 10.5], lunch: [11, 15], dinner: [16.5, 21] },
-  neilson: { breakfast: [7.5, 10], lunch: [11.5, 14.5], dinner: [16.5, 20] },
-  atrium: { breakfast: [8, 10.5], lunch: [11, 15], dinner: [16.5, 21] }
-};
 
 function buildHallStatus(hallId: DiningHallId, menu: DailyMenu | null): HallCardStatus {
   const hour = getRutgersCurrentDecimalHour();
   const windows = SERVICE_WINDOWS[hallId];
-  const updatedLabel = menu?.lastUpdatedAt ? `Updated ${formatUpdatedTime(menu.lastUpdatedAt)}` : "Updated recently";
-  const sourceLabel = menu?.isLiveData ? "Live today" : "Backup menu";
+  const menuConfirmed = menu?.isLiveData === true;
+  const updatedLabel = menuConfirmed && menu.lastUpdatedAt ? `Updated ${formatUpdatedTime(menu.lastUpdatedAt)}` : undefined;
+  const sourceLabel = menuConfirmed ? "Live today" : "Menu status unavailable";
   const orderedMeals = (Object.entries(windows) as Array<[keyof typeof windows, [number, number] | undefined]>).filter(
     ([, range]) => Boolean(range)
   ) as Array<[keyof typeof windows, [number, number]]>;
@@ -56,9 +41,10 @@ function buildHallStatus(hallId: DiningHallId, menu: DailyMenu | null): HallCard
       state: "open",
       mealLabel: currentMealLabel,
       detail: nextMeal
-        ? `${nextMeal[0].charAt(0).toUpperCase() + nextMeal[0].slice(1)} starts at ${formatRutgersServiceTime(nextMeal[1][0])}`
-        : `Serving ${openMeal[0]} now`,
+        ? `Typical ${nextMeal[0].charAt(0).toUpperCase() + nextMeal[0].slice(1)} starts at ${formatRutgersServiceTime(nextMeal[1][0])}`
+        : `Typical ${openMeal[0]} hours`,
       updatedLabel,
+      menuConfirmed,
       sourceLabel
     };
   }
@@ -66,9 +52,10 @@ function buildHallStatus(hallId: DiningHallId, menu: DailyMenu | null): HallCard
   if (hallIsOpen && nextMeal) {
     return {
       state: "open",
-      mealLabel: "Open now",
-      detail: `${nextMeal[0].charAt(0).toUpperCase() + nextMeal[0].slice(1)} starts at ${formatRutgersServiceTime(nextMeal[1][0])}`,
+      mealLabel: "Typical hours",
+      detail: `Typical ${nextMeal[0].charAt(0).toUpperCase() + nextMeal[0].slice(1)} starts at ${formatRutgersServiceTime(nextMeal[1][0])}`,
       updatedLabel,
+      menuConfirmed,
       sourceLabel
     };
   }
@@ -76,26 +63,31 @@ function buildHallStatus(hallId: DiningHallId, menu: DailyMenu | null): HallCard
   return {
     state: "closed",
     detail: firstMeal && hour >= lastMeal[1][1]
-      ? `Opens tomorrow at ${formatRutgersServiceTime(firstMeal[1][0])}`
+      ? `Typical first service: ${formatRutgersServiceTime(firstMeal[1][0])}`
       : nextMeal
-        ? `Opens at ${formatRutgersServiceTime(nextMeal[1][0])}`
+        ? `Typical next service: ${formatRutgersServiceTime(nextMeal[1][0])}`
         : "Check today’s hours",
+    menuConfirmed,
     sourceLabel
   };
 }
 
 async function getHomeHallStatus(hallId: DiningHallId, date: string) {
+  let timeout: ReturnType<typeof setTimeout> | undefined;
+
   try {
     const menu = await Promise.race<DailyMenu | null>([
       getHallMenuForDate(hallId, date),
       new Promise<null>((resolve) => {
-        setTimeout(() => resolve(null), 1100);
+        timeout = setTimeout(() => resolve(null), 1100);
       })
     ]);
 
     return buildHallStatus(hallId, menu);
   } catch {
     return buildHallStatus(hallId, null);
+  } finally {
+    clearTimeout(timeout);
   }
 }
 
@@ -109,29 +101,5 @@ export default async function HomePage() {
   );
 
   const statusByHall = Object.fromEntries(statusEntries);
-  const liveCount = statusEntries.filter(([, status]) => status.sourceLabel === "Live today").length;
-
-  return (
-    <main className="space-y-6">
-      <section className="px-1 pt-1">
-        <div className="mb-5 flex items-center gap-3">
-          <RutgersMark />
-          <div>
-            <p className="text-base font-semibold tracking-tight text-ink">{APP_NAME}</p>
-            <p className="text-sm font-medium tracking-tight text-ink/46">Rutgers Dining, Reimagined</p>
-          </div>
-        </div>
-        <h1 className="max-w-[10ch] text-[3rem] font-semibold leading-[0.96] tracking-[-0.05em] text-ink">
-          {getGreetingForHour()} Scarlet Knight
-        </h1>
-        <p className="mt-3 text-lg text-ink/46">{formatShortDateLabel(todayIso)}</p>
-        <div className="mt-5 inline-flex items-center rounded-full bg-white px-4 py-2 text-sm text-ink/60 shadow-[0_12px_26px_rgba(23,23,23,0.06)]">
-          <span className="mr-2 inline-flex h-2.5 w-2.5 rounded-full bg-[#34c759]" />
-          {liveCount} live menu{liveCount === 1 ? "" : "s"} today
-        </div>
-      </section>
-
-      <HallSelector halls={diningHalls} blurbs={HALL_BLURBS} statusByHall={statusByHall} />
-    </main>
-  );
+  return <HomeScreen date={todayIso} statusByHall={statusByHall} />;
 }

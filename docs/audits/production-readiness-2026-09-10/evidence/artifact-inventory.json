@@ -1,0 +1,36 @@
+{
+  "lockPackages": 165,
+  "installedNext": "15.5.15",
+  "installedReact": "19.2.5",
+  "BUILD_ID": "absent",
+  "routes-manifest.json": {
+    "version": 3,
+    "headers": [],
+    "rewrites": {
+      "beforeFiles": [],
+      "afterFiles": [],
+      "fallback": []
+    },
+    "redirects": [
+      {
+        "source": "/:path+/",
+        "destination": "/:path+",
+        "permanent": true,
+        "internal": true,
+        "regex": "^(?:\\/((?:[^\\/]+?)(?:\\/(?:[^\\/]+?))*))\\/$"
+      }
+    ]
+  },
+  "images-manifest.json": "absent",
+  "server/server-reference-manifest.json": {
+    "nodeActionCount": 0,
+    "edgeActionCount": 0,
+    "generatedEncryptionKeyPresent": true
+  },
+  "server/app-paths-manifest.json": [
+    "/page",
+    "/plate/page",
+    "/profile/page",
+    "/hall/[hallId]/page"
+  ]
+}

@@ -1,0 +1,35 @@
+KnightBite release verification	Set up job	2026-09-10T21:31:41.8924258Z ##[group]Runner Image
+KnightBite release verification	Record checked commit and tree	﻿2026-09-10T21:31:49.2434089Z ##[group]Run git rev-parse HEAD
+KnightBite release verification	Record checked commit and tree	2026-09-10T21:31:49.2434500Z git rev-parse HEAD
+KnightBite release verification	Record checked commit and tree	2026-09-10T21:31:49.2434794Z git rev-parse HEAD^{tree}
+KnightBite release verification	Record checked commit and tree	2026-09-10T21:31:49.2435189Z test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+KnightBite release verification	Record checked commit and tree	2026-09-10T21:31:49.2481443Z shell: /usr/bin/bash -e {0}
+KnightBite release verification	Record checked commit and tree	2026-09-10T21:31:49.2481758Z ##[endgroup]
+KnightBite release verification	Record checked commit and tree	2026-09-10T21:31:49.2590164Z bb7007d13221c8cf34494495a642053b03eaf037
+KnightBite release verification	Record checked commit and tree	2026-09-10T21:31:49.2602949Z 089785116a135e47cd69a3e037523108684f818b
+KnightBite release verification	Run npm ci	2026-09-10T21:31:57.6585392Z found 0 vulnerabilities
+KnightBite release verification	Run npx playwright install --with-deps chromium webkit	2026-09-10T21:31:58.6724291Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [460 kB]
+KnightBite release verification	Run npx playwright install --with-deps chromium webkit	2026-09-10T21:32:06.3224013Z Get:31 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 libsvtav1enc1d1 amd64 1.7.0+dfsg-2build1 [2425 kB]
+KnightBite release verification	Run npx playwright install --with-deps chromium webkit	2026-09-10T21:32:21.7018242Z Unpacking libqrencode4:amd64 (4.1.1-1build2) ...
+KnightBite release verification	Run npm run check	2026-09-10T21:32:38.5702936Z > knightbite@0.1.0 check
+KnightBite release verification	Run npm run check	2026-09-10T21:32:38.5703585Z > npm test && npm run typecheck && npm run lint && npm run build:isolated && npm run test:browser
+KnightBite release verification	Run npm run check	2026-09-10T21:32:38.6696994Z > knightbite@0.1.0 test
+KnightBite release verification	Run npm run check	2026-09-10T21:32:39.8689752Z ✔ unknown/missing labels never become dietary guarantees and conflicting labels do not pass filters (0.479483ms)
+KnightBite release verification	Run npm run check	2026-09-10T21:32:43.6797884Z ℹ tests 242
+KnightBite release verification	Run npm run check	2026-09-10T21:32:43.6798921Z ℹ pass 242
+KnightBite release verification	Run npm run check	2026-09-10T21:32:43.6799214Z ℹ fail 0
+KnightBite release verification	Run npm run check	2026-09-10T21:32:43.8028755Z > knightbite@0.1.0 typecheck
+KnightBite release verification	Run npm run check	2026-09-10T21:32:43.8029406Z > next typegen && tsc --noEmit --incremental false
+KnightBite release verification	Run npm run check	2026-09-10T21:32:47.8339839Z > knightbite@0.1.0 lint
+KnightBite release verification	Run npm run check	2026-09-10T21:32:47.8340239Z > eslint . --max-warnings=0
+KnightBite release verification	Run npm run check	2026-09-10T21:32:50.3219848Z > knightbite@0.1.0 build:isolated
+KnightBite release verification	Run npm run check	2026-09-10T21:32:50.3220301Z > node scripts/isolated-build.mjs
+KnightBite release verification	Run npm run check	2026-09-10T21:32:56.9935814Z > knightbite@0.1.0 build
+KnightBite release verification	Run npm run check	2026-09-10T21:32:57.7569990Z    ▲ Next.js 15.5.25
+KnightBite release verification	Run npm run check	2026-09-10T21:33:06.1014009Z  ✓ Compiled successfully in 6.1s
+KnightBite release verification	Run npm run check	2026-09-10T21:33:17.1632745Z > knightbite@0.1.0 typecheck
+KnightBite release verification	Run npm run check	2026-09-10T21:33:17.1633235Z > next typegen && tsc --noEmit --incremental false
+KnightBite release verification	Run npm run check	2026-09-10T21:33:21.2479547Z > knightbite@0.1.0 test:browser
+KnightBite release verification	Run npm run check	2026-09-10T21:33:22.7661015Z Running 20 tests using 1 worker
+KnightBite release verification	Run npm run check	2026-09-10T21:33:59.6011322Z   20 passed (37.8s)
+KnightBite release verification	Run npm audit --audit-level=moderate	2026-09-10T21:34:00.0955417Z found 0 vulnerabilities

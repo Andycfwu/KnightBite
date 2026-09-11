@@ -1,0 +1,368 @@
+{
+  "observedAt": "2026-09-11T01:15:47.296485+00:00",
+  "index": "https://rutgers.api.nutrislice.com/menu/api/schools/",
+  "school": {
+    "id": 71385,
+    "name": "The Atrium",
+    "slug": "the-atrium",
+    "address": "126 College Avenue, New Brunswick",
+    "timezone": "America/New_York",
+    "active_menu_types": [
+      {
+        "id": 32934,
+        "name": "Breakfast (Weekdays)",
+        "slug": "breakfast",
+        "urls": {
+          "digest_menu_by_date_api_url_template": "/menu/api/digest/school/the-atrium/menu-type/breakfast/date/{year}/{month}/{day}",
+          "digest_menu_by_week_api_url_template": "/menu/api/weeks/digest/school/the-atrium/menu-type/breakfast/date/{year}/{month}/{day}",
+          "full_menu_by_date_api_url_template": "/menu/api/weeks/school/71385/menu-type/32934/{year}/{month}/{day}"
+        },
+        "format_is_locked": true,
+        "menu_format": "day"
+      },
+      {
+        "id": 33316,
+        "name": "Lunch (Brunch on Weekends)",
+        "slug": "lunch-test",
+        "urls": {
+          "digest_menu_by_date_api_url_template": "/menu/api/digest/school/the-atrium/menu-type/lunch-test/date/{year}/{month}/{day}",
+          "digest_menu_by_week_api_url_template": "/menu/api/weeks/digest/school/the-atrium/menu-type/lunch-test/date/{year}/{month}/{day}",
+          "full_menu_by_date_api_url_template": "/menu/api/weeks/school/71385/menu-type/33316/{year}/{month}/{day}"
+        },
+        "format_is_locked": true,
+        "menu_format": "day"
+      },
+      {
+        "id": 33318,
+        "name": "Dinner",
+        "slug": "dinner",
+        "urls": {
+          "digest_menu_by_date_api_url_template": "/menu/api/digest/school/the-atrium/menu-type/dinner/date/{year}/{month}/{day}",
+          "digest_menu_by_week_api_url_template": "/menu/api/weeks/digest/school/the-atrium/menu-type/dinner/date/{year}/{month}/{day}",
+          "full_menu_by_date_api_url_template": "/menu/api/weeks/school/71385/menu-type/33318/{year}/{month}/{day}"
+        },
+        "format_is_locked": true,
+        "menu_format": "day"
+      },
+      {
+        "id": 33385,
+        "name": "Late Knight - Takeout",
+        "slug": "knight-room-takeout",
+        "urls": {
+          "digest_menu_by_date_api_url_template": "/menu/api/digest/school/the-atrium/menu-type/knight-room-takeout/date/{year}/{month}/{day}",
+          "digest_menu_by_week_api_url_template": "/menu/api/weeks/digest/school/the-atrium/menu-type/knight-room-takeout/date/{year}/{month}/{day}",
+          "full_menu_by_date_api_url_template": "/menu/api/weeks/school/71385/menu-type/33385/{year}/{month}/{day}"
+        },
+        "format_is_locked": true,
+        "menu_format": "day"
+      }
+    ]
+  },
+  "meals": {
+    "breakfast": {
+      "url": "https://rutgers.api.nutrislice.com/menu/api/weeks/school/71385/menu-type/32934/2026/09/10/",
+      "bytes": 1581397,
+      "sha256": "c3263053e2067bf542cae5e03548a507536a3797930ca6e91e33193a066470d1",
+      "requestedDate": "2026-09-10",
+      "foodCount": 42,
+      "completeSixNutrients": 39,
+      "partialFoods": [
+        {
+          "id": 2239692,
+          "name": "DRIED APRICOT",
+          "nutrition": {
+            "calories": 91.0,
+            "g_protein": 1.0,
+            "g_carbs": 24.0,
+            "g_fat": 0.2,
+            "mg_sodium": 4.0,
+            "g_sugar": null
+          }
+        },
+        {
+          "id": 1926727,
+          "name": "SCRAMBLED EGGS",
+          "nutrition": {
+            "calories": 168.0,
+            "g_protein": 14.0,
+            "g_carbs": 1.0,
+            "g_fat": 12.0,
+            "mg_sodium": 151.0,
+            "g_sugar": null
+          }
+        },
+        {
+          "id": 2239744,
+          "name": "VEGAN CHEESE SLICES",
+          "nutrition": {
+            "calories": 57.0,
+            "g_protein": 0.0,
+            "g_carbs": 4.0,
+            "g_fat": 4.3,
+            "mg_sodium": 170.0,
+            "g_sugar": null
+          }
+        }
+      ],
+      "sections": [
+        "HOT CEREAL",
+        "YOGURT BAR",
+        "MEZZE BREAKFAST ENTREES",
+        "MEZZE BREAKFAST PROTEINS",
+        "MEZZE BREAKFAST SIDES",
+        "MEZZE BREAKFAST BAKERY",
+        "MEZZE BREAKFAST TOPPINGS"
+      ],
+      "weeklyFoodCounts": [
+        41,
+        43,
+        42,
+        43,
+        42,
+        42,
+        42
+      ],
+      "fixtureBytes": 1581355
+    },
+    "lunch": {
+      "url": "https://rutgers.api.nutrislice.com/menu/api/weeks/school/71385/menu-type/33316/2026/09/10/",
+      "bytes": 6203507,
+      "sha256": "ea3f1423f26ccc73d067082fca92308e5585f41cbbd25d205c813512ba806bac",
+      "requestedDate": "2026-09-10",
+      "foodCount": 167,
+      "completeSixNutrients": 161,
+      "partialFoods": [
+        {
+          "id": 2047212,
+          "name": "EXTRA VIRGIN OLIVE OIL",
+          "nutrition": {
+            "calories": 221.0,
+            "g_protein": 0.0,
+            "g_carbs": 0.0,
+            "g_fat": 26.0,
+            "mg_sodium": 0.0,
+            "g_sugar": null
+          }
+        },
+        {
+          "id": 1926827,
+          "name": "RANCH DRESSING PACKET",
+          "nutrition": {
+            "calories": 204.0,
+            "g_protein": 0.0,
+            "g_carbs": 2.0,
+            "g_fat": 22.0,
+            "mg_sodium": 496.0,
+            "g_sugar": null
+          }
+        },
+        {
+          "id": 2239744,
+          "name": "VEGAN CHEESE SLICES",
+          "nutrition": {
+            "calories": 57.0,
+            "g_protein": 0.0,
+            "g_carbs": 4.0,
+            "g_fat": 4.3,
+            "mg_sodium": 170.0,
+            "g_sugar": null
+          }
+        },
+        {
+          "id": 2239800,
+          "name": "PICKLE SPEARS",
+          "nutrition": {
+            "calories": 6.0,
+            "g_protein": 0.0,
+            "g_carbs": 1.0,
+            "g_fat": 0.1,
+            "mg_sodium": 410.0,
+            "g_sugar": null
+          }
+        },
+        {
+          "id": 2218118,
+          "name": "QUESO FRESCO",
+          "nutrition": {
+            "calories": 82.0,
+            "g_protein": 7.0,
+            "g_carbs": 3.0,
+            "g_fat": 4.7,
+            "mg_sodium": 74.0,
+            "g_sugar": null
+          }
+        },
+        {
+          "id": 1926746,
+          "name": "SLICED JALAPENOS PEPPERS",
+          "nutrition": {
+            "calories": 22.0,
+            "g_protein": 1.0,
+            "g_carbs": 1.0,
+            "g_fat": 0.3,
+            "mg_sodium": 796.0,
+            "g_sugar": null
+          }
+        }
+      ],
+      "sections": [
+        "SOUPS",
+        "PREPARED SALADS",
+        "SALAD BAR",
+        "SALAD BAR PROTEINS",
+        "SALAD DRESSING",
+        "PI PIZZA",
+        "BUILD YOUR OWN PIZZA",
+        "MEZZE PROTEINS",
+        "MEZZE BASES",
+        "MEZZE TOPPINGS & SIDES",
+        "SPECIALTY SANDWICHES",
+        "KING'S HAWAIIAN PROTEINS",
+        "KING'S HAWAIIAN BREADS",
+        "KING'S HAWAIIAN SIDES",
+        "KING'S HAWAIIAN TOPPINGS",
+        "KING'S HAWAIIAN SAUCES",
+        "THREE CHILIES PROTEINS",
+        "THREE CHILIES BASES",
+        "THREE CHILIES TOPPINGS",
+        "SCARLET GINGER",
+        "SCARLET GINGER NOODLE BOWL BROTHS",
+        "SCARLET GINGER NOODLE BOWL PROTEINS",
+        "SCARLET GINGER NOODLE BOWL TOPPINGS",
+        "SUSHI & POKE BOWLS",
+        "GRAB AND GO",
+        "GRAB & GO WARMER"
+      ],
+      "weeklyFoodCounts": [
+        122,
+        169,
+        169,
+        169,
+        167,
+        169,
+        118
+      ],
+      "fixtureBytes": 6203237
+    },
+    "dinner": {
+      "url": "https://rutgers.api.nutrislice.com/menu/api/weeks/school/71385/menu-type/33318/2026/09/10/",
+      "bytes": 6203507,
+      "sha256": "734c61c1c5d729616a0d5f2629ce4ab51598bba851032735094ff3588934fb36",
+      "requestedDate": "2026-09-10",
+      "foodCount": 167,
+      "completeSixNutrients": 161,
+      "partialFoods": [
+        {
+          "id": 2047212,
+          "name": "EXTRA VIRGIN OLIVE OIL",
+          "nutrition": {
+            "calories": 221.0,
+            "g_protein": 0.0,
+            "g_carbs": 0.0,
+            "g_fat": 26.0,
+            "mg_sodium": 0.0,
+            "g_sugar": null
+          }
+        },
+        {
+          "id": 1926827,
+          "name": "RANCH DRESSING PACKET",
+          "nutrition": {
+            "calories": 204.0,
+            "g_protein": 0.0,
+            "g_carbs": 2.0,
+            "g_fat": 22.0,
+            "mg_sodium": 496.0,
+            "g_sugar": null
+          }
+        },
+        {
+          "id": 2239744,
+          "name": "VEGAN CHEESE SLICES",
+          "nutrition": {
+            "calories": 57.0,
+            "g_protein": 0.0,
+            "g_carbs": 4.0,
+            "g_fat": 4.3,
+            "mg_sodium": 170.0,
+            "g_sugar": null
+          }
+        },
+        {
+          "id": 2239800,
+          "name": "PICKLE SPEARS",
+          "nutrition": {
+            "calories": 6.0,
+            "g_protein": 0.0,
+            "g_carbs": 1.0,
+            "g_fat": 0.1,
+            "mg_sodium": 410.0,
+            "g_sugar": null
+          }
+        },
+        {
+          "id": 2218118,
+          "name": "QUESO FRESCO",
+          "nutrition": {
+            "calories": 82.0,
+            "g_protein": 7.0,
+            "g_carbs": 3.0,
+            "g_fat": 4.7,
+            "mg_sodium": 74.0,
+            "g_sugar": null
+          }
+        },
+        {
+          "id": 1926746,
+          "name": "SLICED JALAPENOS PEPPERS",
+          "nutrition": {
+            "calories": 22.0,
+            "g_protein": 1.0,
+            "g_carbs": 1.0,
+            "g_fat": 0.3,
+            "mg_sodium": 796.0,
+            "g_sugar": null
+          }
+        }
+      ],
+      "sections": [
+        "SOUPS",
+        "PREPARED SALADS",
+        "SALAD BAR",
+        "SALAD BAR PROTEINS",
+        "SALAD DRESSING",
+        "PI PIZZA",
+        "BUILD YOUR OWN PIZZA",
+        "MEZZE PROTEINS",
+        "MEZZE BASES",
+        "MEZZE TOPPINGS & SIDES",
+        "SPECIALTY SANDWICHES",
+        "KING'S HAWAIIAN PROTEINS",
+        "KING'S HAWAIIAN BREADS",
+        "KING'S HAWAIIAN SIDES",
+        "KING'S HAWAIIAN TOPPINGS",
+        "KING'S HAWAIIAN SAUCES",
+        "THREE CHILIES PROTEINS",
+        "THREE CHILIES BASES",
+        "THREE CHILIES TOPPINGS",
+        "SCARLET GINGER",
+        "SCARLET GINGER NOODLE BOWL BROTHS",
+        "SCARLET GINGER NOODLE BOWL PROTEINS",
+        "SCARLET GINGER NOODLE BOWL TOPPINGS",
+        "SUSHI & POKE BOWLS",
+        "GRAB AND GO",
+        "GRAB & GO WARMER"
+      ],
+      "weeklyFoodCounts": [
+        122,
+        169,
+        169,
+        169,
+        167,
+        169,
+        118
+      ],
+      "fixtureBytes": 6203237
+    }
+  }
+}

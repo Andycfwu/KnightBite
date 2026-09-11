@@ -1,0 +1,25 @@
+{
+  "normalization": "Line endings, terminal color codes and trailing whitespace only; validation content unchanged. Raw local logs remain in task temporary files.",
+  "files": [
+    {
+      "file": "candidate-pr-log-excerpts.txt",
+      "originalSha256": "bb540975058fe85ede9640a88027d5963f2dd94b02fc3190641e1c68376d2930",
+      "normalizedSha256": "a4a85cd58bbf819f6c607f51a554ee7dbd5cbafe4f3b4a8b6dca8ae0a5b7a217"
+    },
+    {
+      "file": "candidate-push-log-excerpts.txt",
+      "originalSha256": "1fcef557b2c1caa462ac6da06e53d62b9b915c8ff757dffcc6a4a214c1ec97cf",
+      "normalizedSha256": "f9574041f9581f80a905f7633ef323c6c868b90679a3dcb2d304667d9b1f2c56"
+    },
+    {
+      "file": "node-24.19-check.txt",
+      "originalSha256": "4b15257944700b00c473b2da64bb45925fdacef44e426f44dc564d86c45d35bb",
+      "normalizedSha256": "ed855a1f59764bab8e2cad78bfa885bc4f5b7fd97076966efbfb3779bbfb0def"
+    },
+    {
+      "file": "node-24.21-check.txt",
+      "originalSha256": "8fcfb67d9302abcaa3774cfe7c80d77bddba630302480a9c42e249a1207d7eb3",
+      "normalizedSha256": "e2cf011f22bf91e3624bd989ba9d008baec2521cc61d68cd703bd0c7ffb7fbe5"
+    }
+  ]
+}

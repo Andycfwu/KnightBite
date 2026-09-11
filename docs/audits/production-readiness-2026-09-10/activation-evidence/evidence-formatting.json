@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-09-10T21:22:41.492041+00:00",
+  "reason": "Staging previously untracked terminal logs revealed carriage returns, trailing spaces and extra blank EOF lines. Normalize only terminal whitespace for a clean release diff; preserve commands/results/failures. Earlier raw logs remain unchanged in the original worktree and baseline snapshot.",
+  "files": [
+    {
+      "file": "docs/audits/production-readiness-2026-09-10/activation-evidence/linux-release-checks.txt",
+      "beforeSha256": "ebb44396f146e520a6bf17481274ef2e5bc4c510ca4d9877f329bd6c67fb8f79",
+      "afterSha256": "8526af7f298b87c221b866bde1f205ee1244625fd736eb8ab200bdba80feed5d"
+    },
+    {
+      "file": "docs/audits/production-readiness-2026-09-10/activation-evidence/release-checks-before-safari-fix.txt",
+      "beforeSha256": "3a2967984516b7c7a701cde2b82e3d3d386ad6c77daf6732ae947b0339b4d7aa",
+      "afterSha256": "f8faa2eb3fe57b8540305381bacc9ac49d0d0b0f866457c7d6a517bfe2c68f62"
+    },
+    {
+      "file": "docs/audits/production-readiness-2026-09-10/activation-evidence/release-checks.txt",
+      "beforeSha256": "abc0e0cc4ab02e48b9e9e0477f0891e6349607ae044c8d5b23eff257eb0013b3",
+      "afterSha256": "b31aeba99bd50191f0dcb7fe92f3fc3107e31bf017ff69fe9d9a22ff31f70159"
+    },
+    {
+      "file": "docs/audits/production-readiness-2026-09-10/activation-evidence/webkit-focus-diagnostic.txt",
+      "beforeSha256": "98a94e21f8f50e14e1c3a2f5a1b5867b9b6b7385deab4220b089630c0d2ba6ed",
+      "afterSha256": "567291a4d305e934e3bf67281b00b33a95f3ec4f70184ff47dacf500119f08e5"
+    },
+    {
+      "file": "docs/audits/production-readiness-2026-09-10/activation-evidence/webkit-investigation.txt",
+      "beforeSha256": "440da9067bd31168e3da6defdbadac8f48c75fa8f9d01d46a326f38cbf79417f",
+      "afterSha256": "3c46ab67a852c42c0914560e72e561d360a0c02b495079fe90d522dce8c62d02"
+    },
+    {
+      "file": "docs/audits/production-readiness-2026-09-10/evidence/build.txt",
+      "beforeSha256": "2f3633d3c3a57892c6a491d7f491646dba768d99555dbcdfc1da870d570c03f5",
+      "afterSha256": "33a7d4951f0d4ba6f2288e71536c6b62c80e29d57d307d629022f0c58bdf3669"
+    },
+    {
+      "file": "docs/audits/production-readiness-2026-09-10/next-release-evidence/linux-release-checks.txt",
+      "beforeSha256": "d6fdecefacae0409be5adb8b327b05646f03892fcd70ed573d2c7b77540ae561",
+      "afterSha256": "ad5fb9682c7e21389befbd2755b034a199161555457e5416682cbe388a4c4519"
+    },
+    {
+      "file": "docs/audits/production-readiness-2026-09-10/next-release-evidence/linux-verification.txt",
+      "beforeSha256": "fd710c6b79dcf3806bf05d85b55d2b4b998fad2711726a4451fe7694922502e5",
+      "afterSha256": "2e97a3702d19813f7f82484c436b3012b4d7875e74e34c3beea82d0ce7985c1c"
+    },
+    {
+      "file": "docs/audits/production-readiness-2026-09-10/remediation-evidence/release-checks.txt",
+      "beforeSha256": "d99823c3eabcebcaf28ba65f6daee260e51426535b84d49376bbb99fc530aa6e",
+      "afterSha256": "5e530af5361e98b8d49b9a24ca241cc1984f69e9598a9786c208f7835b7f35c6"
+    }
+  ]
+}

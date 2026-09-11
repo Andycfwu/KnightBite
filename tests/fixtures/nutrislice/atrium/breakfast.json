@@ -1,0 +1,4640 @@
+{
+  "menu_type_id": "32934",
+  "days": [
+    {
+      "date": "2026-09-10",
+      "menu_items": [
+        {
+          "station_id": 83590,
+          "is_section_title": true,
+          "is_station_header": true,
+          "text": "HOT CEREAL",
+          "serving_size_amount": null,
+          "serving_size_unit": null
+        },
+        {
+          "station_id": 83590,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 6.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 1926721,
+            "name": "COUNTRY STYLE GRITS",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "6",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 140.0,
+              "g_fat": 0.2,
+              "g_saturated_fat": 0.0,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 15.0,
+              "g_added_sugar": null,
+              "g_sugar": 0.0,
+              "mg_potassium": null,
+              "mg_sodium": 207.0,
+              "g_fiber": 1.0,
+              "g_protein": 2.0,
+              "mg_iron": 5.7,
+              "mg_calcium": 8.5,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "WATER, CEREAL GRITS OLD FASHION COOK (DEGEMINATED WHITE CORN GRITS, NIACINAMIDE, REDUCED IRON, THIAMIN MONONITRATE, RIBOFLAVIN, FOLIC ACID,)",
+            "synced_ingredients": "WATER, CEREAL GRITS OLD FASHION COOK (DEGEMINATED WHITE CORN GRITS, NIACINAMIDE, REDUCED IRON, THIAMIN MONONITRATE, RIBOFLAVIN, FOLIC ACID,)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 437993,
+                "serving_size_amount": "6",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 140.0,
+                  "g_fat": 0.2,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 15.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 207.0,
+                  "g_fiber": 1.0,
+                  "g_protein": 2.0,
+                  "mg_iron": 5.7,
+                  "mg_calcium": 8.5,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 83590,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 6.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 1926094,
+            "name": "OATMEAL",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "6",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 80.0,
+              "g_fat": 1.2,
+              "g_saturated_fat": 0.0,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 13.0,
+              "g_added_sugar": null,
+              "g_sugar": 1.0,
+              "mg_potassium": null,
+              "mg_sodium": 5.0,
+              "g_fiber": 2.0,
+              "g_protein": 4.0,
+              "mg_iron": 0.9,
+              "mg_calcium": 14.9,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "WATER, WHOLE GRAIN OATS",
+            "synced_ingredients": "WATER, WHOLE GRAIN OATS",
+            "use_custom_sizes": false,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 437553,
+                "serving_size_amount": "6",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 80.0,
+                  "g_fat": 1.2,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 13.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 5.0,
+                  "g_fiber": 2.0,
+                  "g_protein": 3.0,
+                  "mg_iron": 0.9,
+                  "mg_calcium": 14.9,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 440833,
+                "serving_size_amount": "3",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 40.0,
+                  "g_fat": 0.6,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 7.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 2.0,
+                  "g_fiber": 1.0,
+                  "g_protein": 2.0,
+                  "mg_iron": 0.4,
+                  "mg_calcium": 7.4,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 517049,
+                "serving_size_amount": "4",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 53.0,
+                  "g_fat": 0.8,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 9.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 3.0,
+                  "g_fiber": 1.0,
+                  "g_protein": 2.0,
+                  "mg_iron": 0.6,
+                  "mg_calcium": 9.9,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 63892,
+          "is_section_title": true,
+          "is_station_header": true,
+          "text": "YOGURT BAR",
+          "serving_size_amount": null,
+          "serving_size_unit": null
+        },
+        {
+          "station_id": 63892,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 4.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 2344145,
+            "name": "VANILLA YOGURT",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "4",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 100.0,
+              "g_fat": 0.7,
+              "g_saturated_fat": 0.3,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 3.0,
+              "g_carbs": 20.0,
+              "g_added_sugar": null,
+              "g_sugar": 14.0,
+              "mg_potassium": null,
+              "mg_sodium": 53.0,
+              "g_fiber": 0.0,
+              "g_protein": 3.0,
+              "mg_iron": 0.0,
+              "mg_calcium": 120.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "YOGURT FRESH VANILLA BULK (CULTURED GRADE A LOW FAT MILK, SUGAR, MODIFIED CORN STARCH. CONTAINS 1 % OR LESS OF: CORN STARCH, NATURAL FLAVOR, POTASSIUM SORBATE ADDED TO MAINTAIN FRESHNESS, VITAMIN A ACETATE, VITAMIN D3.)",
+            "synced_ingredients": "YOGURT FRESH VANILLA BULK (CULTURED GRADE A LOW FAT MILK, SUGAR, MODIFIED CORN STARCH. CONTAINS 1 % OR LESS OF: CORN STARCH, NATURAL FLAVOR, POTASSIUM SORBATE ADDED TO MAINTAIN FRESHNESS, VITAMIN A ACETATE, VITAMIN D3.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Milk",
+                  "enabled": true,
+                  "slug": "milk",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 678473,
+                "serving_size_amount": "4",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 100.0,
+                  "g_fat": 0.7,
+                  "g_saturated_fat": 0.3,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 3.0,
+                  "g_carbs": 20.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 14.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 53.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 3.0,
+                  "mg_iron": 0.0,
+                  "mg_calcium": 120.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 63892,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 4.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 1926123,
+            "name": "PLAIN GREEK CHOBANI YOGURT",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "4",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 60.0,
+              "g_fat": 0.0,
+              "g_saturated_fat": 0.0,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 5.0,
+              "g_carbs": 5.0,
+              "g_added_sugar": null,
+              "g_sugar": 3.0,
+              "mg_potassium": null,
+              "mg_sodium": 42.0,
+              "g_fiber": 0.0,
+              "g_protein": 11.0,
+              "mg_iron": 0.0,
+              "mg_calcium": 125.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "YOGURT FRESH GREEK PLAIN  (CULTURED NONFAT MILK, 6 LIVE AND ACTIVE CULTURES: S. THERMOPHILUS, L. BULGARICUS, L. ACIDOPHILUS, BIFIDUS, L. CASEI, AND L. RHAMNOSUS )",
+            "synced_ingredients": "YOGURT FRESH GREEK PLAIN  (CULTURED NONFAT MILK, 6 LIVE AND ACTIVE CULTURES: S. THERMOPHILUS, L. BULGARICUS, L. ACIDOPHILUS, BIFIDUS, L. CASEI, AND L. RHAMNOSUS )",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Milk",
+                  "enabled": true,
+                  "slug": "milk",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": "o-49210",
+                "serving_size_amount": "2",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 30.0,
+                  "g_fat": 0.0,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 2.0,
+                  "g_carbs": 2.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 2.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 21.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 6.0,
+                  "mg_iron": 0.0,
+                  "mg_calcium": 62.4,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": "o-45081",
+                "serving_size_amount": "4",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 60.0,
+                  "g_fat": 0.0,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 5.0,
+                  "g_carbs": 5.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 3.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 42.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 11.0,
+                  "mg_iron": 0.0,
+                  "mg_calcium": 125.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 63892,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 4.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 1926128,
+            "name": "STRAWBERRY YOGURT",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "4",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 100.0,
+              "g_fat": 0.7,
+              "g_saturated_fat": 0.3,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 3.0,
+              "g_carbs": 20.0,
+              "g_added_sugar": null,
+              "g_sugar": 14.0,
+              "mg_potassium": null,
+              "mg_sodium": 53.0,
+              "g_fiber": 0.0,
+              "g_protein": 3.0,
+              "mg_iron": 0.0,
+              "mg_calcium": 120.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "LOWFAT STRAWBERRY YOGURT (CULTURED GRADE A LOW FAT MILK, SUGAR, MODIFIED CORN STARCH. CONTAINS 1 % OR LESS OF: NATURAL FLAVOR, CORN STARCH, CITRIC ACID, VEGETABLE JUICE (FOR COLOR), POTASSIUM SORBATE ADDED TO MAINTAIN FRESHNESS, VITAMIN A ACETATE, VITAMIN D3.)",
+            "synced_ingredients": "LOWFAT STRAWBERRY YOGURT (CULTURED GRADE A LOW FAT MILK, SUGAR, MODIFIED CORN STARCH. CONTAINS 1 % OR LESS OF: NATURAL FLAVOR, CORN STARCH, CITRIC ACID, VEGETABLE JUICE (FOR COLOR), POTASSIUM SORBATE ADDED TO MAINTAIN FRESHNESS, VITAMIN A ACETATE, VITAMIN D3.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Milk",
+                  "enabled": true,
+                  "slug": "milk",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 494080,
+                "serving_size_amount": "2",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 50.0,
+                  "g_fat": 0.4,
+                  "g_saturated_fat": 0.2,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 2.0,
+                  "g_carbs": 10.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 7.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 27.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 2.0,
+                  "mg_iron": 0.0,
+                  "mg_calcium": 60.1,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": "o-44409",
+                "serving_size_amount": "4",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 100.0,
+                  "g_fat": 0.7,
+                  "g_saturated_fat": 0.3,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 3.0,
+                  "g_carbs": 20.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 14.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 53.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 3.0,
+                  "mg_iron": 0.0,
+                  "mg_calcium": 120.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 63892,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 2.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 1926120,
+            "name": "GRANOLA OATS & HONEY",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "2",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 252.0,
+              "g_fat": 10.0,
+              "g_saturated_fat": 1.1,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 40.0,
+              "g_added_sugar": null,
+              "g_sugar": 15.0,
+              "mg_potassium": null,
+              "mg_sodium": 200.0,
+              "g_fiber": 2.0,
+              "g_protein": 4.0,
+              "mg_iron": 1.3,
+              "mg_calcium": 0.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "OATS & HONEY GRANOLA (WHOLE GRAIN OATS, SUGAR, CANOLA AND/OR SUNFLOWER OIL, RICE FLOUR, HONEY, BROWN SUGAR SYRUP, SALT, BAKING SODA, SOY LECITHIN, NATURAL FLAVOR.)",
+            "synced_ingredients": "OATS & HONEY GRANOLA (WHOLE GRAIN OATS, SUGAR, CANOLA AND/OR SUNFLOWER OIL, RICE FLOUR, HONEY, BROWN SUGAR SYRUP, SALT, BAKING SODA, SOY LECITHIN, NATURAL FLAVOR.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Soy",
+                  "enabled": true,
+                  "slug": "soy",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": "o-44523",
+                "serving_size_amount": "2",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 252.0,
+                  "g_fat": 10.0,
+                  "g_saturated_fat": 1.1,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 40.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 15.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 200.0,
+                  "g_fiber": 2.0,
+                  "g_protein": 4.0,
+                  "mg_iron": 1.3,
+                  "mg_calcium": 0.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 63892,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 2063089,
+            "name": "WHOLE STRAWBERRIES",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 10.0,
+              "g_fat": 0.0,
+              "g_saturated_fat": 0.0,
+              "g_trans_fat": null,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 3.0,
+              "g_added_sugar": null,
+              "g_sugar": 1.0,
+              "mg_potassium": null,
+              "mg_sodium": 1.0,
+              "g_fiber": 0.0,
+              "g_protein": 0.0,
+              "mg_iron": 0.2,
+              "mg_calcium": 4.5,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "FROZEN STRAWBERRIES",
+            "synced_ingredients": "FROZEN STRAWBERRIES",
+            "use_custom_sizes": false,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": []
+          }
+        },
+        {
+          "station_id": 63892,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 2.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 2194491,
+            "name": "BLUEBERRIES",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "2",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 29.0,
+              "g_fat": 0.4,
+              "g_saturated_fat": 0.0,
+              "g_trans_fat": null,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 7.0,
+              "g_added_sugar": null,
+              "g_sugar": 4.0,
+              "mg_potassium": null,
+              "mg_sodium": 1.0,
+              "g_fiber": 2.0,
+              "g_protein": 0.0,
+              "mg_iron": 0.1,
+              "mg_calcium": 4.5,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "BLUEBERRIES (BLUEBERRIES)",
+            "synced_ingredients": "BLUEBERRIES (BLUEBERRIES)",
+            "use_custom_sizes": false,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": []
+          }
+        },
+        {
+          "station_id": 63892,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 1926118,
+            "name": "CRAISINS",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 92.0,
+              "g_fat": 0.0,
+              "g_saturated_fat": 0.0,
+              "g_trans_fat": null,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 23.0,
+              "g_added_sugar": null,
+              "g_sugar": 22.0,
+              "mg_potassium": null,
+              "mg_sodium": 0.0,
+              "g_fiber": 1.0,
+              "g_protein": 0.0,
+              "mg_iron": 0.0,
+              "mg_calcium": 0.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "CRAISINS (CRANBERRIES, SUGAR, SUNFLOWER OIL.)",
+            "synced_ingredients": "CRAISINS (CRANBERRIES, SUGAR, SUNFLOWER OIL.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 437573,
+                "serving_size_amount": "1",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 92.0,
+                  "g_fat": 0.0,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 23.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 22.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 0.0,
+                  "g_fiber": 1.0,
+                  "g_protein": 0.0,
+                  "mg_iron": 0.0,
+                  "mg_calcium": 0.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 63892,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 2239692,
+            "name": "DRIED APRICOT",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 91.0,
+              "g_fat": 0.2,
+              "g_saturated_fat": 0.0,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 24.0,
+              "g_added_sugar": null,
+              "g_sugar": null,
+              "mg_potassium": null,
+              "mg_sodium": 4.0,
+              "g_fiber": null,
+              "g_protein": 1.0,
+              "mg_iron": 1.8,
+              "mg_calcium": 17.3,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "DRIED APRICOT (APRICOTS (SULPHUR DIOXIDE ADDED AS A PRESERVATIVE). PROCESSED ON SHARED EQUIPMENT & MAY CONTAIN: MILK, PEANUTS, TREE NUTS, WHEAT, SOY & EGG.)",
+            "synced_ingredients": "DRIED APRICOT (APRICOTS (SULPHUR DIOXIDE ADDED AS A PRESERVATIVE). PROCESSED ON SHARED EQUIPMENT & MAY CONTAIN: MILK, PEANUTS, TREE NUTS, WHEAT, SOY & EGG.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 644557,
+                "serving_size_amount": "1",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 91.0,
+                  "g_fat": 0.2,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 24.0,
+                  "g_added_sugar": null,
+                  "g_sugar": null,
+                  "mg_potassium": null,
+                  "mg_sodium": 4.0,
+                  "g_fiber": null,
+                  "g_protein": 1.0,
+                  "mg_iron": 1.8,
+                  "mg_calcium": 17.3,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 63892,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 2239694,
+            "name": "UNSWEETENED COCONUT FLAKES",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 187.0,
+              "g_fat": 18.0,
+              "g_saturated_fat": 16.0,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 7.0,
+              "g_added_sugar": null,
+              "g_sugar": 2.0,
+              "mg_potassium": null,
+              "mg_sodium": 11.0,
+              "g_fiber": 5.0,
+              "g_protein": 2.0,
+              "mg_iron": 0.9,
+              "mg_calcium": 7.4,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "COCONUT UNSWEETENED FLAKE",
+            "synced_ingredients": "COCONUT UNSWEETENED FLAKE",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 644559,
+                "serving_size_amount": "1",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 187.0,
+                  "g_fat": 18.0,
+                  "g_saturated_fat": 16.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 7.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 2.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 11.0,
+                  "g_fiber": 5.0,
+                  "g_protein": 2.0,
+                  "mg_iron": 0.9,
+                  "mg_calcium": 7.4,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 63892,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 2239693,
+            "name": "GOLDEN FLAX SEED",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 151.0,
+              "g_fat": 12.0,
+              "g_saturated_fat": 1.0,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 8.0,
+              "g_added_sugar": null,
+              "g_sugar": 0.0,
+              "mg_potassium": null,
+              "mg_sodium": 9.0,
+              "g_fiber": 8.0,
+              "g_protein": 5.0,
+              "mg_iron": 1.6,
+              "mg_calcium": 72.3,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "GOLDEN FLAX SEED (GOLDEN FLAX SEED)",
+            "synced_ingredients": "GOLDEN FLAX SEED (GOLDEN FLAX SEED)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 644558,
+                "serving_size_amount": "1",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 151.0,
+                  "g_fat": 12.0,
+                  "g_saturated_fat": 1.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 8.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 9.0,
+                  "g_fiber": 8.0,
+                  "g_protein": 5.0,
+                  "mg_iron": 1.6,
+                  "mg_calcium": 72.3,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 87703,
+          "is_section_title": true,
+          "is_station_header": true,
+          "text": "MEZZE BREAKFAST ENTREES",
+          "serving_size_amount": null,
+          "serving_size_unit": null
+        },
+        {
+          "station_id": 87703,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 5.0,
+          "serving_size_unit": "each",
+          "food": {
+            "id": 1926591,
+            "name": "FRENCH TOAST STICKS",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "5",
+              "serving_size_unit": "each"
+            },
+            "rounded_nutrition_info": {
+              "calories": 350.0,
+              "g_fat": 19.0,
+              "g_saturated_fat": 2.3,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 20.0,
+              "g_carbs": 40.0,
+              "g_added_sugar": null,
+              "g_sugar": 11.0,
+              "mg_potassium": null,
+              "mg_sodium": 340.0,
+              "g_fiber": 2.0,
+              "g_protein": 5.0,
+              "mg_iron": 1.8,
+              "mg_calcium": 65.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "FRENCH TOAST STICKS (ENRICHED BREAD (ENRICHED WHEAT FLOUR [FLOUR, MALTED BARLEY FLOUR, REDUCED IRON, NIACIN, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID], WATER, SUGAR, CONTAINS 2% OR LESS OF THE FOLLOWING: YEAST, SOYBEAN OIL, SALT, CALCIUM PROPIONATE [PRESERVATIVE], MONOGLYCERIDES, DATEM, GRAIN VINEGAR, CITRIC ACID, SPICE & COLORING, SOY LECITHIN), WATER, BATTER (BLEACHED WHEAT FLOUR, SUGAR, MODIFIED CORN STARCH, CONTAINS 2% OR LESS OF THE FOLLOWING: CINNAMON, NUTMEG, EGG, SKIM MILK, SALT, SOYBEAN OIL, NATURAL AND ARTIFICIAL FLAVOR, LEAVENING [SODIUM BICARBONATE], CORN SYRUP SOLIDS, MODIFIED CELLULOSE, SOY LECITHIN), SOYBEAN OIL. ), FRYING OIL (EXPELLER PRESSED CANOLA OIL.)",
+            "synced_ingredients": "FRENCH TOAST STICKS (ENRICHED BREAD (ENRICHED WHEAT FLOUR [FLOUR, MALTED BARLEY FLOUR, REDUCED IRON, NIACIN, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID], WATER, SUGAR, CONTAINS 2% OR LESS OF THE FOLLOWING: YEAST, SOYBEAN OIL, SALT, CALCIUM PROPIONATE [PRESERVATIVE], MONOGLYCERIDES, DATEM, GRAIN VINEGAR, CITRIC ACID, SPICE & COLORING, SOY LECITHIN), WATER, BATTER (BLEACHED WHEAT FLOUR, SUGAR, MODIFIED CORN STARCH, CONTAINS 2% OR LESS OF THE FOLLOWING: CINNAMON, NUTMEG, EGG, SKIM MILK, SALT, SOYBEAN OIL, NATURAL AND ARTIFICIAL FLAVOR, LEAVENING [SODIUM BICARBONATE], CORN SYRUP SOLIDS, MODIFIED CELLULOSE, SOY LECITHIN), SOYBEAN OIL. ), FRYING OIL (EXPELLER PRESSED CANOLA OIL.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Milk",
+                  "enabled": true,
+                  "slug": "milk",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Egg",
+                  "enabled": true,
+                  "slug": "egg",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Wheat",
+                  "enabled": true,
+                  "slug": "wheat",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Soy",
+                  "enabled": true,
+                  "slug": "soy",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 440951,
+                "serving_size_amount": "5",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 350.0,
+                  "g_fat": 19.0,
+                  "g_saturated_fat": 2.3,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 20.0,
+                  "g_carbs": 40.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 11.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 340.0,
+                  "g_fiber": 2.0,
+                  "g_protein": 5.0,
+                  "mg_iron": 1.8,
+                  "mg_calcium": 65.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 644590,
+                "serving_size_amount": "1",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 70.0,
+                  "g_fat": 3.9,
+                  "g_saturated_fat": 0.5,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 4.0,
+                  "g_carbs": 8.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 2.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 68.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 1.0,
+                  "mg_iron": 0.4,
+                  "mg_calcium": 13.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 87703,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 3.0,
+          "serving_size_unit": "each",
+          "food": {
+            "id": 2239728,
+            "name": "PANCAKE",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "3",
+              "serving_size_unit": "each"
+            },
+            "rounded_nutrition_info": {
+              "calories": 92.0,
+              "g_fat": 0.9,
+              "g_saturated_fat": 0.0,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 18.0,
+              "g_added_sugar": null,
+              "g_sugar": 3.0,
+              "mg_potassium": null,
+              "mg_sodium": 247.0,
+              "g_fiber": 1.0,
+              "g_protein": 2.0,
+              "mg_iron": 0.9,
+              "mg_calcium": 29.6,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "WATER, PANCAKE MIX (ENRICHED BLEACHED FLOUR (BLEACHED WHEAT LFOUR, NIACINAMIDE, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID), SUGAR, LEAVENING (BAKING SODA, SODIUM ALUMINUM PHOSPHATE, MONOCALCIUM PHOSPHATE), DEXTROSE, NONFAT DRY  MILK, PALM OIL, WHEAT GLUTEN, SALT, CORN SYRUP SOLIDS, SODIUM CASEINATE, MONO AND DIGLYCERIDES, DIPOTASSIUM PHOSPHATE, LACTIC ACID, TOCOPHEROLS (TO PRESERVE FRESHNESS))",
+            "synced_ingredients": "WATER, PANCAKE MIX (ENRICHED BLEACHED FLOUR (BLEACHED WHEAT LFOUR, NIACINAMIDE, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID), SUGAR, LEAVENING (BAKING SODA, SODIUM ALUMINUM PHOSPHATE, MONOCALCIUM PHOSPHATE), DEXTROSE, NONFAT DRY  MILK, PALM OIL, WHEAT GLUTEN, SALT, CORN SYRUP SOLIDS, SODIUM CASEINATE, MONO AND DIGLYCERIDES, DIPOTASSIUM PHOSPHATE, LACTIC ACID, TOCOPHEROLS (TO PRESERVE FRESHNESS))",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Milk",
+                  "enabled": true,
+                  "slug": "milk",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Wheat",
+                  "enabled": true,
+                  "slug": "wheat",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 644597,
+                "serving_size_amount": "1",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 31.0,
+                  "g_fat": 0.3,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 6.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 1.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 83.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 1.0,
+                  "mg_iron": 0.3,
+                  "mg_calcium": 10.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 652508,
+                "serving_size_amount": "3",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 92.0,
+                  "g_fat": 0.9,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 18.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 3.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 247.0,
+                  "g_fiber": 1.0,
+                  "g_protein": 2.0,
+                  "mg_iron": 0.9,
+                  "mg_calcium": 29.6,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84682,
+          "is_section_title": true,
+          "is_station_header": true,
+          "text": "MEZZE BREAKFAST PROTEINS",
+          "serving_size_amount": null,
+          "serving_size_unit": null
+        },
+        {
+          "station_id": 84682,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 4.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 1926727,
+            "name": "SCRAMBLED EGGS",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "4",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 168.0,
+              "g_fat": 12.0,
+              "g_saturated_fat": 3.6,
+              "g_trans_fat": null,
+              "mg_cholesterol": 490.0,
+              "g_carbs": 1.0,
+              "g_added_sugar": null,
+              "g_sugar": null,
+              "mg_potassium": null,
+              "mg_sodium": 151.0,
+              "g_fiber": 0.0,
+              "g_protein": 14.0,
+              "mg_iron": 2.1,
+              "mg_calcium": 66.9,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "LIQUID EGG (WHOLE EGGS, CITRIC ACID.)",
+            "synced_ingredients": "LIQUID EGG (WHOLE EGGS, CITRIC ACID.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Egg",
+                  "enabled": true,
+                  "slug": "egg",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": "o-48962",
+                "serving_size_amount": "3",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 126.0,
+                  "g_fat": 9.0,
+                  "g_saturated_fat": 2.7,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 367.0,
+                  "g_carbs": 1.0,
+                  "g_added_sugar": null,
+                  "g_sugar": null,
+                  "mg_potassium": null,
+                  "mg_sodium": 113.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 10.0,
+                  "mg_iron": 1.6,
+                  "mg_calcium": 50.2,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 528119,
+                "serving_size_amount": "4",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 168.0,
+                  "g_fat": 12.0,
+                  "g_saturated_fat": 3.6,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 490.0,
+                  "g_carbs": 1.0,
+                  "g_added_sugar": null,
+                  "g_sugar": null,
+                  "mg_potassium": null,
+                  "mg_sodium": 151.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 14.0,
+                  "mg_iron": 2.1,
+                  "mg_calcium": 66.9,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84682,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "each",
+          "food": {
+            "id": 2075988,
+            "name": "EGG PATTY",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "each"
+            },
+            "rounded_nutrition_info": {
+              "calories": 69.0,
+              "g_fat": 5.0,
+              "g_saturated_fat": 1.5,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 119.0,
+              "g_carbs": 1.0,
+              "g_added_sugar": null,
+              "g_sugar": 1.0,
+              "mg_potassium": null,
+              "mg_sodium": 208.0,
+              "g_fiber": 0.0,
+              "g_protein": 4.0,
+              "mg_iron": 0.7,
+              "mg_calcium": 149.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "EGG PATTY (WHOLE EGGS, WHEY, SKIM MILK, SOYBEAN OIL, CONTAINS 2% OR LESS OF THE FOLLOWING: DICALCIUM PHOSPHATE, SALT, SODIUM BICARBONATE, XANTHAN GUM, NATURAL BUTTER FLAVOR, CITRIC ACID, LIQUID PEPPER EXTRACT)",
+            "synced_ingredients": "EGG PATTY (WHOLE EGGS, WHEY, SKIM MILK, SOYBEAN OIL, CONTAINS 2% OR LESS OF THE FOLLOWING: DICALCIUM PHOSPHATE, SALT, SODIUM BICARBONATE, XANTHAN GUM, NATURAL BUTTER FLAVOR, CITRIC ACID, LIQUID PEPPER EXTRACT)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Milk",
+                  "enabled": true,
+                  "slug": "milk",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Egg",
+                  "enabled": true,
+                  "slug": "egg",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Soy",
+                  "enabled": true,
+                  "slug": "soy",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 522234,
+                "serving_size_amount": "1",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 69.0,
+                  "g_fat": 5.0,
+                  "g_saturated_fat": 1.5,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 119.0,
+                  "g_carbs": 1.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 1.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 208.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 4.0,
+                  "mg_iron": 0.7,
+                  "mg_calcium": 149.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84682,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "each",
+          "food": {
+            "id": 2239739,
+            "name": "EGG WHITE PATTY",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "each"
+            },
+            "rounded_nutrition_info": {
+              "calories": 20.0,
+              "g_fat": 0.0,
+              "g_saturated_fat": 0.0,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 1.0,
+              "g_added_sugar": null,
+              "g_sugar": 0.0,
+              "mg_potassium": null,
+              "mg_sodium": 130.0,
+              "g_fiber": 0.0,
+              "g_protein": 4.0,
+              "mg_iron": 0.0,
+              "mg_calcium": 0.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "SCRAMBLED EGG WHITE (EGG WHITES, FOOD STARCH (CORN), SALT, XANTHAN GUM.)",
+            "synced_ingredients": "SCRAMBLED EGG WHITE (EGG WHITES, FOOD STARCH (CORN), SALT, XANTHAN GUM.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Egg",
+                  "enabled": true,
+                  "slug": "egg",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 644681,
+                "serving_size_amount": "1",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 20.0,
+                  "g_fat": 0.0,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 1.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 130.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 4.0,
+                  "mg_iron": 0.0,
+                  "mg_calcium": 0.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84682,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "each",
+          "food": {
+            "id": 1926154,
+            "name": "HARDBOILED EGGS",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "each"
+            },
+            "rounded_nutrition_info": {
+              "calories": 78.0,
+              "g_fat": 5.0,
+              "g_saturated_fat": 1.6,
+              "g_trans_fat": null,
+              "mg_cholesterol": 187.0,
+              "g_carbs": 1.0,
+              "g_added_sugar": null,
+              "g_sugar": 1.0,
+              "mg_potassium": null,
+              "mg_sodium": 62.0,
+              "g_fiber": 0.0,
+              "g_protein": 6.0,
+              "mg_iron": 0.6,
+              "mg_calcium": 25.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "HARD BOILED EGGS (EGGS, WATER, CITRIC ACID, POTASSIUM SORBATE, SODIUM BENZOATE)",
+            "synced_ingredients": "HARD BOILED EGGS (EGGS, WATER, CITRIC ACID, POTASSIUM SORBATE, SODIUM BENZOATE)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Egg",
+                  "enabled": true,
+                  "slug": "egg",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 437608,
+                "serving_size_amount": "1",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 78.0,
+                  "g_fat": 5.0,
+                  "g_saturated_fat": 1.6,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 187.0,
+                  "g_carbs": 1.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 1.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 62.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 6.0,
+                  "mg_iron": 0.6,
+                  "mg_calcium": 25.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84682,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "each",
+          "food": {
+            "id": 2239749,
+            "name": "VEGAN EGG PATTY",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "each"
+            },
+            "rounded_nutrition_info": {
+              "calories": 100.0,
+              "g_fat": 7.0,
+              "g_saturated_fat": 0.5,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 3.0,
+              "g_added_sugar": null,
+              "g_sugar": 0.0,
+              "mg_potassium": null,
+              "mg_sodium": 300.0,
+              "g_fiber": 0.0,
+              "g_protein": 7.0,
+              "mg_iron": 0.0,
+              "mg_calcium": 195.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "VEGAN EGG PATTY (WATER, MUNG BEAN PROTEIN, EXPELLER-PRESSED CANOLA OIL, CORN STARCH, CONTAINS LESS THAN 2% OF: BAKING POWDER (SODIUM ACID PYROPHOSPHATE, SODIUM BICARBONATE, CORN STARCH, MONOCALCIUM PHOSPHATE), CARROT EXTRACTIES (COLOR), DEHYDRATED GARLIC, DEHYDRATED ONION, SALT, TANSGLUTAMINASE, TURMERIC EXTRACTIVES (COLOR). )",
+            "synced_ingredients": "VEGAN EGG PATTY (WATER, MUNG BEAN PROTEIN, EXPELLER-PRESSED CANOLA OIL, CORN STARCH, CONTAINS LESS THAN 2% OF: BAKING POWDER (SODIUM ACID PYROPHOSPHATE, SODIUM BICARBONATE, CORN STARCH, MONOCALCIUM PHOSPHATE), CARROT EXTRACTIES (COLOR), DEHYDRATED GARLIC, DEHYDRATED ONION, SALT, TANSGLUTAMINASE, TURMERIC EXTRACTIVES (COLOR). )",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 644682,
+                "serving_size_amount": "1",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 100.0,
+                  "g_fat": 7.0,
+                  "g_saturated_fat": 0.5,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 3.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 300.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 7.0,
+                  "mg_iron": 0.0,
+                  "mg_calcium": 195.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84682,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 2.0,
+          "serving_size_unit": "each",
+          "food": {
+            "id": 2239732,
+            "name": "PORK BACON",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "2",
+              "serving_size_unit": "each"
+            },
+            "rounded_nutrition_info": {
+              "calories": 150.0,
+              "g_fat": 13.0,
+              "g_saturated_fat": 5.0,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 38.0,
+              "g_carbs": 0.0,
+              "g_added_sugar": null,
+              "g_sugar": 0.0,
+              "mg_potassium": null,
+              "mg_sodium": 550.0,
+              "g_fiber": 0.0,
+              "g_protein": 8.0,
+              "mg_iron": 0.9,
+              "mg_calcium": 0.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "PORK BACON (WATER, SALT, SUGAR, SMOKE FLAVORING, SODIUM PHOSPHATES, SODIUM ERYTHORBATE, SODIUM NITRITE.)",
+            "synced_ingredients": "PORK BACON (WATER, SALT, SUGAR, SMOKE FLAVORING, SODIUM PHOSPHATES, SODIUM ERYTHORBATE, SODIUM NITRITE.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Medium Carbon Footprint",
+                  "enabled": true,
+                  "slug": "medium-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 644602,
+                "serving_size_amount": "2",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 150.0,
+                  "g_fat": 13.0,
+                  "g_saturated_fat": 5.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 38.0,
+                  "g_carbs": 0.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 550.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 8.0,
+                  "mg_iron": 0.9,
+                  "mg_calcium": 0.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84682,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 3.0,
+          "serving_size_unit": "slice",
+          "food": {
+            "id": 1926111,
+            "name": "PORK ROLL",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "3",
+              "serving_size_unit": "slice"
+            },
+            "rounded_nutrition_info": {
+              "calories": 273.0,
+              "g_fat": 24.0,
+              "g_saturated_fat": 11.0,
+              "g_trans_fat": null,
+              "mg_cholesterol": 61.0,
+              "g_carbs": 2.0,
+              "g_added_sugar": null,
+              "g_sugar": 2.0,
+              "mg_potassium": null,
+              "mg_sodium": 881.0,
+              "g_fiber": 0.0,
+              "g_protein": 14.0,
+              "mg_iron": null,
+              "mg_calcium": null,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "PORK ROLL (PORK, SALT, SUGAR, SODIUM ASCORBATE, SPICES, SODIUM NITRITE, SODIUM NITRATE, LACTIC ACID STARTER CULTURE.)",
+            "synced_ingredients": "PORK ROLL (PORK, SALT, SUGAR, SODIUM ASCORBATE, SPICES, SODIUM NITRITE, SODIUM NITRATE, LACTIC ACID STARTER CULTURE.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Medium Carbon Footprint",
+                  "enabled": true,
+                  "slug": "medium-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 437707,
+                "serving_size_amount": "2",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 182.0,
+                  "g_fat": 16.0,
+                  "g_saturated_fat": 7.0,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 41.0,
+                  "g_carbs": 1.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 1.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 587.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 9.0,
+                  "mg_iron": null,
+                  "mg_calcium": null,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 441708,
+                "serving_size_amount": "3",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 273.0,
+                  "g_fat": 24.0,
+                  "g_saturated_fat": 11.0,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 61.0,
+                  "g_carbs": 2.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 2.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 881.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 14.0,
+                  "mg_iron": null,
+                  "mg_calcium": null,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 615510,
+                "serving_size_amount": "2",
+                "serving_size_unit": "slice",
+                "nutrition_info": {
+                  "calories": 182.0,
+                  "g_fat": 16.0,
+                  "g_saturated_fat": 7.0,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 41.0,
+                  "g_carbs": 1.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 1.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 587.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 9.0,
+                  "mg_iron": null,
+                  "mg_calcium": null,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 617922,
+                "serving_size_amount": "3",
+                "serving_size_unit": "slice",
+                "nutrition_info": {
+                  "calories": 273.0,
+                  "g_fat": 24.0,
+                  "g_saturated_fat": 11.0,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 61.0,
+                  "g_carbs": 2.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 2.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 881.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 14.0,
+                  "mg_iron": null,
+                  "mg_calcium": null,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84682,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 2.0,
+          "serving_size_unit": "each",
+          "food": {
+            "id": 1926278,
+            "name": "PORK SAUSAGE PATTIES BREAKFAST",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "2",
+              "serving_size_unit": "each"
+            },
+            "rounded_nutrition_info": {
+              "calories": 288.0,
+              "g_fat": 24.0,
+              "g_saturated_fat": 8.0,
+              "g_trans_fat": 0.2,
+              "mg_cholesterol": 71.0,
+              "g_carbs": 0.0,
+              "g_added_sugar": null,
+              "g_sugar": 0.0,
+              "mg_potassium": null,
+              "mg_sodium": 637.0,
+              "g_fiber": 0.0,
+              "g_protein": 17.0,
+              "mg_iron": 1.2,
+              "mg_calcium": 11.1,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "PORK SAUSAGE PATTY (PORK, CONTAINS 2% OR LESS OF SALT, WATER, SPICES, DEXTROSE, CITRIC ACID, PROPYL GALLATE BHT.)",
+            "synced_ingredients": "PORK SAUSAGE PATTY (PORK, CONTAINS 2% OR LESS OF SALT, WATER, SPICES, DEXTROSE, CITRIC ACID, PROPYL GALLATE BHT.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Medium Carbon Footprint",
+                  "enabled": true,
+                  "slug": "medium-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 437789,
+                "serving_size_amount": "2",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 288.0,
+                  "g_fat": 24.0,
+                  "g_saturated_fat": 8.0,
+                  "g_trans_fat": 0.2,
+                  "mg_cholesterol": 71.0,
+                  "g_carbs": 0.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 637.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 17.0,
+                  "mg_iron": 1.2,
+                  "mg_calcium": 11.1,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 530148,
+                "serving_size_amount": "1",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 144.0,
+                  "g_fat": 12.0,
+                  "g_saturated_fat": 3.9,
+                  "g_trans_fat": 0.1,
+                  "mg_cholesterol": 36.0,
+                  "g_carbs": 0.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 319.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 8.0,
+                  "mg_iron": 0.6,
+                  "mg_calcium": 5.6,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84682,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "each",
+          "food": {
+            "id": 2104736,
+            "name": "HALAL TURKEY SAUSAGE LINKS",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "each"
+            },
+            "rounded_nutrition_info": {
+              "calories": 159.0,
+              "g_fat": 9.0,
+              "g_saturated_fat": 2.5,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 50.0,
+              "g_carbs": 5.0,
+              "g_added_sugar": null,
+              "g_sugar": 1.0,
+              "mg_potassium": null,
+              "mg_sodium": 836.0,
+              "g_fiber": 0.0,
+              "g_protein": 13.0,
+              "mg_iron": 0.7,
+              "mg_calcium": 0.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "HALAL TURKEY SAUSAGE LINKS (TURKEY, TURKEY SKIN, WATER, CORN SYRUP, MODIFIED FOOD STARCH, SALT, POTASSIUM LACTATE, FLAVORINGS, SODIUM PHOSPHATE, PAPRIKA, SODIUM DIACETATE, SODIUM EYRTHORBATE, SODIUM NITRITE)",
+            "synced_ingredients": "HALAL TURKEY SAUSAGE LINKS (TURKEY, TURKEY SKIN, WATER, CORN SYRUP, MODIFIED FOOD STARCH, SALT, POTASSIUM LACTATE, FLAVORINGS, SODIUM PHOSPHATE, PAPRIKA, SODIUM DIACETATE, SODIUM EYRTHORBATE, SODIUM NITRITE)",
+            "use_custom_sizes": false,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Medium Carbon Footprint",
+                  "enabled": true,
+                  "slug": "medium-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": []
+          }
+        },
+        {
+          "station_id": 84682,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 2.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 2149633,
+            "name": "BAKED CHORIZO SAUSAGE",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "2",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 258.0,
+              "g_fat": 22.0,
+              "g_saturated_fat": 8.0,
+              "g_trans_fat": null,
+              "mg_cholesterol": 50.0,
+              "g_carbs": 1.0,
+              "g_added_sugar": null,
+              "g_sugar": 0.0,
+              "mg_potassium": null,
+              "mg_sodium": 700.0,
+              "g_fiber": 0.0,
+              "g_protein": 14.0,
+              "mg_iron": 0.9,
+              "mg_calcium": 4.5,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "CHORIZO SAUSAGE (PORK, BEEF, WATER, SALT, PAPRIKA, WINE VINEGAR,FLAVORINGS,DEXTROSE,SODIUM ERYTHORBATE,SODIUM NITRATE.)",
+            "synced_ingredients": "CHORIZO SAUSAGE (PORK, BEEF, WATER, SALT, PAPRIKA, WINE VINEGAR,FLAVORINGS,DEXTROSE,SODIUM ERYTHORBATE,SODIUM NITRATE.)",
+            "use_custom_sizes": false,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "High Carbon Footprint",
+                  "enabled": true,
+                  "slug": "high-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": []
+          }
+        },
+        {
+          "station_id": 84682,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 2.0,
+          "serving_size_unit": "each",
+          "food": {
+            "id": 1926089,
+            "name": "SAVORY PLANT-BASED BREAKFAST PATTIES",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "2",
+              "serving_size_unit": "each"
+            },
+            "rounded_nutrition_info": {
+              "calories": 140.0,
+              "g_fat": 7.0,
+              "g_saturated_fat": 0.0,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 6.0,
+              "g_added_sugar": null,
+              "g_sugar": 0.0,
+              "mg_potassium": null,
+              "mg_sodium": 600.0,
+              "g_fiber": 2.0,
+              "g_protein": 12.0,
+              "mg_iron": 1.8,
+              "mg_calcium": 60.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "VEGAN BREAKFAST PATTY SAUS'AGE (WATER, TEXTURED SOY PROTEIN CONCENTRATE, CANOLA OIL, VITAL WHEAT GLUTEN, SOY PROTEIN ISOLATE, LESS THAN 2% OF: YEAST EXTRACT, METHYLCELLULOSE, SUGAR, SALT, POTATO STARCH, SPICES, CARAMEL COLOR, MALT EXTRACT (MALTED BARLEY, WATER), ONION POWDER, NATURAL FLAVORS, GARLIC POWDER, SMOKE FLAVOR.)",
+            "synced_ingredients": "VEGAN BREAKFAST PATTY SAUS'AGE (WATER, TEXTURED SOY PROTEIN CONCENTRATE, CANOLA OIL, VITAL WHEAT GLUTEN, SOY PROTEIN ISOLATE, LESS THAN 2% OF: YEAST EXTRACT, METHYLCELLULOSE, SUGAR, SALT, POTATO STARCH, SPICES, CARAMEL COLOR, MALT EXTRACT (MALTED BARLEY, WATER), ONION POWDER, NATURAL FLAVORS, GARLIC POWDER, SMOKE FLAVOR.)",
+            "use_custom_sizes": false,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Wheat",
+                  "enabled": true,
+                  "slug": "wheat",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Soy",
+                  "enabled": true,
+                  "slug": "soy",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 437548,
+                "serving_size_amount": "1",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 70.0,
+                  "g_fat": 3.5,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 3.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 300.0,
+                  "g_fiber": 1.0,
+                  "g_protein": 6.0,
+                  "mg_iron": 0.9,
+                  "mg_calcium": 30.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 437667,
+                "serving_size_amount": "2",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 140.0,
+                  "g_fat": 7.0,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 6.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 600.0,
+                  "g_fiber": 2.0,
+                  "g_protein": 12.0,
+                  "mg_iron": 1.8,
+                  "mg_calcium": 60.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 440949,
+                "serving_size_amount": "3",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 210.0,
+                  "g_fat": 11.0,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 9.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 900.0,
+                  "g_fiber": 3.0,
+                  "g_protein": 18.0,
+                  "mg_iron": 2.7,
+                  "mg_calcium": 90.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84685,
+          "is_section_title": true,
+          "is_station_header": true,
+          "text": "MEZZE BREAKFAST SIDES",
+          "serving_size_amount": null,
+          "serving_size_unit": null
+        },
+        {
+          "station_id": 84685,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 4.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 1926216,
+            "name": "CRISPY CUBE POTATOES",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "4",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 302.0,
+              "g_fat": 23.0,
+              "g_saturated_fat": 2.8,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 23.0,
+              "g_added_sugar": null,
+              "g_sugar": 1.0,
+              "mg_potassium": null,
+              "mg_sodium": 486.0,
+              "g_fiber": 1.0,
+              "g_protein": 1.0,
+              "mg_iron": 0.7,
+              "mg_calcium": 0.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "POTATO SEASONED CRISPY CUBES (POTATOES, VEGETABLE OIL (SOYBEAN, CANOLA, AND/OR COTTONSEED OILS), ENRICHED FLOUR (BLEACHED WHEAT FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID), CONTAINS LESS THAN 2% OF CELLULOSE GUM, COLOR (PAPRIKA OLEORESIN, TURMERIC OLEORESIN), DEGERMED YELLOW CORN MEAL, DEXTROSE, FOOD STARCH-MODIFIED, GARLIC POWDER, LEAVENING (SODIUM BICARBONATE, SODIUM ACID PYROPHOSPHATE), ONION POWDER, RICE FLOUR, SALT, SPICES, SUGAR, DISODIUM DIHYDROGEN PYROPHOSPHATE (TO MAINTAIN NATURAL COLOR).), FRYING OIL (EXPELLER PRESSED CANOLA OIL.)",
+            "synced_ingredients": "POTATO SEASONED CRISPY CUBES (POTATOES, VEGETABLE OIL (SOYBEAN, CANOLA, AND/OR COTTONSEED OILS), ENRICHED FLOUR (BLEACHED WHEAT FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID), CONTAINS LESS THAN 2% OF CELLULOSE GUM, COLOR (PAPRIKA OLEORESIN, TURMERIC OLEORESIN), DEGERMED YELLOW CORN MEAL, DEXTROSE, FOOD STARCH-MODIFIED, GARLIC POWDER, LEAVENING (SODIUM BICARBONATE, SODIUM ACID PYROPHOSPHATE), ONION POWDER, RICE FLOUR, SALT, SPICES, SUGAR, DISODIUM DIHYDROGEN PYROPHOSPHATE (TO MAINTAIN NATURAL COLOR).), FRYING OIL (EXPELLER PRESSED CANOLA OIL.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Wheat",
+                  "enabled": true,
+                  "slug": "wheat",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Soy",
+                  "enabled": true,
+                  "slug": "soy",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 437634,
+                "serving_size_amount": "4",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 302.0,
+                  "g_fat": 23.0,
+                  "g_saturated_fat": 2.8,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 23.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 1.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 486.0,
+                  "g_fiber": 1.0,
+                  "g_protein": 1.0,
+                  "mg_iron": 0.7,
+                  "mg_calcium": 0.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84687,
+          "is_section_title": true,
+          "is_station_header": true,
+          "text": "MEZZE BREAKFAST BAKERY",
+          "serving_size_amount": null,
+          "serving_size_unit": null
+        },
+        {
+          "station_id": 84687,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "each",
+          "food": {
+            "id": 2239798,
+            "name": "KINGS HAWAIIAN SANDWICH ROLL",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "each"
+            },
+            "rounded_nutrition_info": {
+              "calories": 164.0,
+              "g_fat": 4.1,
+              "g_saturated_fat": 2.5,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 25.0,
+              "g_carbs": 26.0,
+              "g_added_sugar": null,
+              "g_sugar": 7.0,
+              "mg_potassium": null,
+              "mg_sodium": 205.0,
+              "g_fiber": 2.0,
+              "g_protein": 5.0,
+              "mg_iron": 1.2,
+              "mg_calcium": 32.7,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "KINGS HAWAIIAN ROLL (ENRICHED FLOUR (WHEAT FLOUR,ENZYME, NIACIN, REDUCED IRON,THIAMINE, MONONITRATE,RIBOFLAVIN, FOLIC ACID), WATER, SUGAR, LIQUID SUGAR (WATER, SUGAR), BUTTER (PASTEURIZED CREAM, SALT), EGGS,  CONTAINS LESS THAT 2%OF EACH OF THE FOLLOWING: POTATO FLOUR, WHEY, YEAST, NONFAT MILK, SALT, WHEAT GLUTEN, SOY FLOUR, YELLOW CORN FLOUR, SODIUM STEAROYL LACTYLATE, DATEM, MONOCLACIUM, PHOSPHATE, SORBIC ACID PRESERVATIVE, WHEAT FLOUR, CALCIUM SULFATE, SODIUM SILICOALUMINATE, AMMONIUM SULFATE, ASCORBIC ACID ADDED AS A DOUGH CONDITIONER, SORBITAN MONOSTEARATE, MONO-& DIGLYCERIDES, CALCIUM SILICATE.)",
+            "synced_ingredients": "KINGS HAWAIIAN ROLL (ENRICHED FLOUR (WHEAT FLOUR,ENZYME, NIACIN, REDUCED IRON,THIAMINE, MONONITRATE,RIBOFLAVIN, FOLIC ACID), WATER, SUGAR, LIQUID SUGAR (WATER, SUGAR), BUTTER (PASTEURIZED CREAM, SALT), EGGS,  CONTAINS LESS THAT 2%OF EACH OF THE FOLLOWING: POTATO FLOUR, WHEY, YEAST, NONFAT MILK, SALT, WHEAT GLUTEN, SOY FLOUR, YELLOW CORN FLOUR, SODIUM STEAROYL LACTYLATE, DATEM, MONOCLACIUM, PHOSPHATE, SORBIC ACID PRESERVATIVE, WHEAT FLOUR, CALCIUM SULFATE, SODIUM SILICOALUMINATE, AMMONIUM SULFATE, ASCORBIC ACID ADDED AS A DOUGH CONDITIONER, SORBITAN MONOSTEARATE, MONO-& DIGLYCERIDES, CALCIUM SILICATE.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Milk",
+                  "enabled": true,
+                  "slug": "milk",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Egg",
+                  "enabled": true,
+                  "slug": "egg",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Wheat",
+                  "enabled": true,
+                  "slug": "wheat",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Soy",
+                  "enabled": true,
+                  "slug": "soy",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 644638,
+                "serving_size_amount": "1",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 164.0,
+                  "g_fat": 4.1,
+                  "g_saturated_fat": 2.5,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 25.0,
+                  "g_carbs": 26.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 7.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 205.0,
+                  "g_fiber": 2.0,
+                  "g_protein": 5.0,
+                  "mg_iron": 1.2,
+                  "mg_calcium": 32.7,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84687,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "each",
+          "food": {
+            "id": 1934141,
+            "name": "CROISSANT",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "each"
+            },
+            "rounded_nutrition_info": {
+              "calories": 330.0,
+              "g_fat": 17.0,
+              "g_saturated_fat": 10.0,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 50.0,
+              "g_carbs": 38.0,
+              "g_added_sugar": null,
+              "g_sugar": 5.0,
+              "mg_potassium": null,
+              "mg_sodium": 370.0,
+              "g_fiber": 1.0,
+              "g_protein": 6.0,
+              "mg_iron": 1.6,
+              "mg_calcium": 20.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "CROISSANT XLARGE 3.5OZ  (UNBLEACHED ENRICHED WHEAT FLOUR (WHEAT FLOUR, MALTED BARLEY FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID), BUTTER (PASTEURIZED CREAM), WATER, FRESH MILK, SUGAR, EGGS, YEAST, SALT, ASCORBIC ACID, ENZYMES.  MAY ALSO CONTAIN TRACE AMOUNTS OF ALMOND, PECAN, SOY, AND SESAME SEEDS.)",
+            "synced_ingredients": "CROISSANT XLARGE 3.5OZ  (UNBLEACHED ENRICHED WHEAT FLOUR (WHEAT FLOUR, MALTED BARLEY FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID), BUTTER (PASTEURIZED CREAM), WATER, FRESH MILK, SUGAR, EGGS, YEAST, SALT, ASCORBIC ACID, ENZYMES.  MAY ALSO CONTAIN TRACE AMOUNTS OF ALMOND, PECAN, SOY, AND SESAME SEEDS.)",
+            "use_custom_sizes": false,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Milk",
+                  "enabled": true,
+                  "slug": "milk",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Egg",
+                  "enabled": true,
+                  "slug": "egg",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Wheat",
+                  "enabled": true,
+                  "slug": "wheat",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 443362,
+                "serving_size_amount": "1",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 330.0,
+                  "g_fat": 17.0,
+                  "g_saturated_fat": 10.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 50.0,
+                  "g_carbs": 38.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 5.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 370.0,
+                  "g_fiber": 1.0,
+                  "g_protein": 6.0,
+                  "mg_iron": 1.6,
+                  "mg_calcium": 20.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84687,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "each",
+          "food": {
+            "id": 2239718,
+            "name": "12'' FLOUR TORTILLA",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "each"
+            },
+            "rounded_nutrition_info": {
+              "calories": 310.0,
+              "g_fat": 9.0,
+              "g_saturated_fat": 3.0,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 51.0,
+              "g_added_sugar": null,
+              "g_sugar": 1.0,
+              "mg_potassium": null,
+              "mg_sodium": 820.0,
+              "g_fiber": 2.0,
+              "g_protein": 7.0,
+              "mg_iron": 4.0,
+              "mg_calcium": 70.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "TORTILLA FLOUR 12 INCH (BLEACHED ENRICHED WHEAT FLOUR (FLOUR, MALTED BARLEY FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID), WATER, BLEND OF VEGETABLE OIL SHORTENING (SOYBEAN OIL, HYDROGENATED COTTONSEED OIL), CONTAINS 2% OR LESS OF THE FOLLOWING: LEAVENING (SODIUM BICARBONATE, SODIUM ACID PYROPHOSPHATE, CORN STARCH, MONOCALCIUM PHOSPHATE), SALT, FUMARIC ACID, DOUGH CONDITIONER (WHEAT FLOUR, SORBIC ACID), MONO AND DIGLYCERIDES, CALCIUM PROPIONATE (PRESERVATIVE), POTASSIUM SORBATE (PRESERVATIVE), SODIUM METABISULFITE)",
+            "synced_ingredients": "TORTILLA FLOUR 12 INCH (BLEACHED ENRICHED WHEAT FLOUR (FLOUR, MALTED BARLEY FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID), WATER, BLEND OF VEGETABLE OIL SHORTENING (SOYBEAN OIL, HYDROGENATED COTTONSEED OIL), CONTAINS 2% OR LESS OF THE FOLLOWING: LEAVENING (SODIUM BICARBONATE, SODIUM ACID PYROPHOSPHATE, CORN STARCH, MONOCALCIUM PHOSPHATE), SALT, FUMARIC ACID, DOUGH CONDITIONER (WHEAT FLOUR, SORBIC ACID), MONO AND DIGLYCERIDES, CALCIUM PROPIONATE (PRESERVATIVE), POTASSIUM SORBATE (PRESERVATIVE), SODIUM METABISULFITE)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Wheat",
+                  "enabled": true,
+                  "slug": "wheat",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Soy",
+                  "enabled": true,
+                  "slug": "soy",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 644595,
+                "serving_size_amount": "1",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 310.0,
+                  "g_fat": 9.0,
+                  "g_saturated_fat": 3.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 51.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 1.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 820.0,
+                  "g_fiber": 2.0,
+                  "g_protein": 7.0,
+                  "mg_iron": 4.0,
+                  "mg_calcium": 70.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84687,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "each",
+          "food": {
+            "id": 2239792,
+            "name": "HAMBURGER VEGAN BUN",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "each"
+            },
+            "rounded_nutrition_info": {
+              "calories": 127.0,
+              "g_fat": 1.1,
+              "g_saturated_fat": 0.0,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 24.0,
+              "g_added_sugar": null,
+              "g_sugar": 1.0,
+              "mg_potassium": null,
+              "mg_sodium": 222.0,
+              "g_fiber": 0.0,
+              "g_protein": 3.0,
+              "mg_iron": 1.1,
+              "mg_calcium": 5.3,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "HAMBURGER ROLL (ENRICHED WHEAT FLOUR (WHEAT FLOUR, MALTED BARLEY FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID), WATER, SUGAR, YEAST, CONTAINS LESS THAN 2% OF CALCIUM PROPIONATE, SALT, GUAR GUM, MONOGLYCERIDES, SODIUM STEAROYL LACTYLATE (SSL), ASCORBIC ACID (VITAMIN C), ENZYMES (WHEAT), SOYBEAN OIL.)",
+            "synced_ingredients": "HAMBURGER ROLL (ENRICHED WHEAT FLOUR (WHEAT FLOUR, MALTED BARLEY FLOUR, NIACIN, REDUCED IRON, THIAMINE MONONITRATE, RIBOFLAVIN, FOLIC ACID), WATER, SUGAR, YEAST, CONTAINS LESS THAN 2% OF CALCIUM PROPIONATE, SALT, GUAR GUM, MONOGLYCERIDES, SODIUM STEAROYL LACTYLATE (SSL), ASCORBIC ACID (VITAMIN C), ENZYMES (WHEAT), SOYBEAN OIL.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Wheat",
+                  "enabled": true,
+                  "slug": "wheat",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Soy",
+                  "enabled": true,
+                  "slug": "soy",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 644632,
+                "serving_size_amount": "1",
+                "serving_size_unit": "each",
+                "nutrition_info": {
+                  "calories": 127.0,
+                  "g_fat": 1.1,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 24.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 1.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 222.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 3.0,
+                  "mg_iron": 1.1,
+                  "mg_calcium": 5.3,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84686,
+          "is_section_title": true,
+          "is_station_header": true,
+          "text": "MEZZE BREAKFAST TOPPINGS",
+          "serving_size_amount": null,
+          "serving_size_unit": null
+        },
+        {
+          "station_id": 84686,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 2.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 1926168,
+            "name": "SHREDDED CHEDDAR  CHEESE",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "2",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 229.0,
+              "g_fat": 19.0,
+              "g_saturated_fat": 12.0,
+              "g_trans_fat": null,
+              "mg_cholesterol": 60.0,
+              "g_carbs": 1.0,
+              "g_added_sugar": null,
+              "g_sugar": 0.0,
+              "mg_potassium": null,
+              "mg_sodium": 352.0,
+              "g_fiber": 0.0,
+              "g_protein": 14.0,
+              "mg_iron": 0.4,
+              "mg_calcium": 409.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "SHREDDED CHEDDAR CHEESE (CHEDDAR CHEESE (CULTURED PASTEURIZED MILK, SALT, ENZYMES, ANNATTO [VEGETABLE COLOR]), ANTI-CAKING BLEND (POTATO STARCH, POWDERED CELLULOSE).)",
+            "synced_ingredients": "SHREDDED CHEDDAR CHEESE (CHEDDAR CHEESE (CULTURED PASTEURIZED MILK, SALT, ENZYMES, ANNATTO [VEGETABLE COLOR]), ANTI-CAKING BLEND (POTATO STARCH, POWDERED CELLULOSE).)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Milk",
+                  "enabled": true,
+                  "slug": "milk",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Medium Carbon Footprint",
+                  "enabled": true,
+                  "slug": "medium-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": "o-52895",
+                "serving_size_amount": "1",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 114.0,
+                  "g_fat": 9.0,
+                  "g_saturated_fat": 6.0,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 30.0,
+                  "g_carbs": 0.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 175.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 7.0,
+                  "mg_iron": 0.2,
+                  "mg_calcium": 204.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 535730,
+                "serving_size_amount": "2",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 229.0,
+                  "g_fat": 19.0,
+                  "g_saturated_fat": 12.0,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 60.0,
+                  "g_carbs": 1.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 352.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 14.0,
+                  "mg_iron": 0.4,
+                  "mg_calcium": 409.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84686,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 2.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 1926459,
+            "name": "SHREDDED MOZZARELLA CHEESE",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "2",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 182.0,
+              "g_fat": 14.0,
+              "g_saturated_fat": 8.0,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 41.0,
+              "g_carbs": 2.0,
+              "g_added_sugar": null,
+              "g_sugar": 0.0,
+              "mg_potassium": null,
+              "mg_sodium": 405.0,
+              "g_fiber": 0.0,
+              "g_protein": 12.0,
+              "mg_iron": 0.0,
+              "mg_calcium": 377.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "MOZZARELLA CHEESE (BACIO LOW MOISTURE WHOLE MILK CHEESE (LOW MOISTURE MOZZARELLA CHEESE (CULTURED PASTEURIZED MILK, SKIM MILK, SALT, AND ENZYMES), BUFFALO SKIM MILK, POWDERED CELLULOSE (ADDED TO PREVENT CAKING), NATAMYCIN (ADDED AS A PRESERVATIVE).)",
+            "synced_ingredients": "MOZZARELLA CHEESE (BACIO LOW MOISTURE WHOLE MILK CHEESE (LOW MOISTURE MOZZARELLA CHEESE (CULTURED PASTEURIZED MILK, SKIM MILK, SALT, AND ENZYMES), BUFFALO SKIM MILK, POWDERED CELLULOSE (ADDED TO PREVENT CAKING), NATAMYCIN (ADDED AS A PRESERVATIVE).)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Milk",
+                  "enabled": true,
+                  "slug": "milk",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Medium Carbon Footprint",
+                  "enabled": true,
+                  "slug": "medium-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 644576,
+                "serving_size_amount": "6",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 547.0,
+                  "g_fat": 43.0,
+                  "g_saturated_fat": 24.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 122.0,
+                  "g_carbs": 6.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 1217.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 37.0,
+                  "mg_iron": 0.0,
+                  "mg_calcium": 1132.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 644603,
+                "serving_size_amount": "1",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 91.0,
+                  "g_fat": 7.0,
+                  "g_saturated_fat": 4.1,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 20.0,
+                  "g_carbs": 1.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 203.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 6.0,
+                  "mg_iron": 0.0,
+                  "mg_calcium": 188.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": "o-48956",
+                "serving_size_amount": "2",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 182.0,
+                  "g_fat": 14.0,
+                  "g_saturated_fat": 8.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 41.0,
+                  "g_carbs": 2.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 405.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 12.0,
+                  "mg_iron": 0.0,
+                  "mg_calcium": 377.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84686,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "slice",
+          "food": {
+            "id": 1926214,
+            "name": "YELLOW AMERICAN CHEESE",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "slice"
+            },
+            "rounded_nutrition_info": {
+              "calories": 69.0,
+              "g_fat": 6.0,
+              "g_saturated_fat": 5.0,
+              "g_trans_fat": null,
+              "mg_cholesterol": 13.0,
+              "g_carbs": 0.0,
+              "g_added_sugar": null,
+              "g_sugar": 0.0,
+              "mg_potassium": null,
+              "mg_sodium": 241.0,
+              "g_fiber": 0.0,
+              "g_protein": 4.0,
+              "mg_iron": 0.0,
+              "mg_calcium": 129.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "CHEESE AMERICAN SLCD YELLOW (CULTURED MILK AND SKIM MILK, CREAM, NATURAL FLAVOR, SODIUM CITRATE, SALT, ANNATTO AND PAPRIKA (COLOR), ENZYMES, SORBIC ACID (PRESERVATIVE), SOY LECITHIN (ANTI-STICKING AGENT) )",
+            "synced_ingredients": "CHEESE AMERICAN SLCD YELLOW (CULTURED MILK AND SKIM MILK, CREAM, NATURAL FLAVOR, SODIUM CITRATE, SALT, ANNATTO AND PAPRIKA (COLOR), ENZYMES, SORBIC ACID (PRESERVATIVE), SOY LECITHIN (ANTI-STICKING AGENT) )",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Milk",
+                  "enabled": true,
+                  "slug": "milk",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Soy",
+                  "enabled": true,
+                  "slug": "soy",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": "o-43321",
+                "serving_size_amount": "2",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 206.0,
+                  "g_fat": 18.0,
+                  "g_saturated_fat": 16.0,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 39.0,
+                  "g_carbs": 0.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 718.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 13.0,
+                  "mg_iron": 0.0,
+                  "mg_calcium": 385.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 477126,
+                "serving_size_amount": "1",
+                "serving_size_unit": "slice",
+                "nutrition_info": {
+                  "calories": 69.0,
+                  "g_fat": 6.0,
+                  "g_saturated_fat": 5.0,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 13.0,
+                  "g_carbs": 0.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 241.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 4.0,
+                  "mg_iron": 0.0,
+                  "mg_calcium": 129.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 477314,
+                "serving_size_amount": "0.667",
+                "serving_size_unit": "slice",
+                "nutrition_info": {
+                  "calories": 46.0,
+                  "g_fat": 4.0,
+                  "g_saturated_fat": 3.5,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 9.0,
+                  "g_carbs": 0.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 160.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 3.0,
+                  "mg_iron": 0.0,
+                  "mg_calcium": 85.9,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 495249,
+                "serving_size_amount": "2",
+                "serving_size_unit": "slice",
+                "nutrition_info": {
+                  "calories": 137.0,
+                  "g_fat": 12.0,
+                  "g_saturated_fat": 10.0,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 26.0,
+                  "g_carbs": 0.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 478.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 9.0,
+                  "mg_iron": 0.0,
+                  "mg_calcium": 256.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84686,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 1926266,
+            "name": "SLICED PEPPERJACK CHEESE",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 106.0,
+              "g_fat": 9.0,
+              "g_saturated_fat": 5.0,
+              "g_trans_fat": null,
+              "mg_cholesterol": 25.0,
+              "g_carbs": 0.0,
+              "g_added_sugar": null,
+              "g_sugar": 0.0,
+              "mg_potassium": null,
+              "mg_sodium": 152.0,
+              "g_fiber": 0.0,
+              "g_protein": 7.0,
+              "mg_iron": 0.2,
+              "mg_calcium": 212.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "PEPPER JACK CHEESE (PASTEURIZED MILK, CHEESE CULTURE, PEPPER, SALT, ENZYMES.)",
+            "synced_ingredients": "PEPPER JACK CHEESE (PASTEURIZED MILK, CHEESE CULTURE, PEPPER, SALT, ENZYMES.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Milk",
+                  "enabled": true,
+                  "slug": "milk",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 437659,
+                "serving_size_amount": "1",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 106.0,
+                  "g_fat": 9.0,
+                  "g_saturated_fat": 5.0,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 25.0,
+                  "g_carbs": 0.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 152.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 7.0,
+                  "mg_iron": 0.2,
+                  "mg_calcium": 212.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 437857,
+                "serving_size_amount": "2",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 211.0,
+                  "g_fat": 17.0,
+                  "g_saturated_fat": 11.0,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 50.0,
+                  "g_carbs": 0.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 303.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 14.0,
+                  "mg_iron": 0.4,
+                  "mg_calcium": 421.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84686,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 1926268,
+            "name": "SLICED PROVOLONE CHEESE",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 100.0,
+              "g_fat": 8.0,
+              "g_saturated_fat": 4.8,
+              "g_trans_fat": null,
+              "mg_cholesterol": 20.0,
+              "g_carbs": 1.0,
+              "g_added_sugar": null,
+              "g_sugar": 0.0,
+              "mg_potassium": null,
+              "mg_sodium": 248.0,
+              "g_fiber": 0.0,
+              "g_protein": 7.0,
+              "mg_iron": 0.1,
+              "mg_calcium": 214.0,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "PROVOLONE CHEESE (PASTEURIZED MILK, CHEESE CULTURES, SALT, ENZYMES.)",
+            "synced_ingredients": "PROVOLONE CHEESE (PASTEURIZED MILK, CHEESE CULTURES, SALT, ENZYMES.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Milk",
+                  "enabled": true,
+                  "slug": "milk",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": "o-43558",
+                "serving_size_amount": "1",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 100.0,
+                  "g_fat": 8.0,
+                  "g_saturated_fat": 4.8,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 20.0,
+                  "g_carbs": 1.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 248.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 7.0,
+                  "mg_iron": 0.1,
+                  "mg_calcium": 214.0,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84686,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "slice",
+          "food": {
+            "id": 2239744,
+            "name": "VEGAN CHEESE SLICES",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "slice"
+            },
+            "rounded_nutrition_info": {
+              "calories": 57.0,
+              "g_fat": 4.3,
+              "g_saturated_fat": 3.8,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 4.0,
+              "g_added_sugar": null,
+              "g_sugar": null,
+              "mg_potassium": null,
+              "mg_sodium": 170.0,
+              "g_fiber": null,
+              "g_protein": 0.0,
+              "mg_iron": null,
+              "mg_calcium": null,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "vegan shredded (DAIYA OAT CREAM BLEND (WATER, GLUTEN-FREE OAT FLOUR, PEA PROTEIN, CULTURES, ENZYMES), COCONUT OIL, MODIFIED POTATO STARCH, CORN STARCH, LESS THAN 2% OF: KONJAC FLOUR, FRUIT AND VEGETABLE JUICE (FOR COLOR), YEAST EXTRACT, ANNATTO (FOR COLOR), SALT, TRICALCIUM PHOSPHATE, XANTHAN GUM, LACTIC ACID, NATURAL FLAVORS.)",
+            "synced_ingredients": "vegan shredded (DAIYA OAT CREAM BLEND (WATER, GLUTEN-FREE OAT FLOUR, PEA PROTEIN, CULTURES, ENZYMES), COCONUT OIL, MODIFIED POTATO STARCH, CORN STARCH, LESS THAN 2% OF: KONJAC FLOUR, FRUIT AND VEGETABLE JUICE (FOR COLOR), YEAST EXTRACT, ANNATTO (FOR COLOR), SALT, TRICALCIUM PHOSPHATE, XANTHAN GUM, LACTIC ACID, NATURAL FLAVORS.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 644651,
+                "serving_size_amount": "1",
+                "serving_size_unit": "slice",
+                "nutrition_info": {
+                  "calories": 57.0,
+                  "g_fat": 4.3,
+                  "g_saturated_fat": 3.8,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 4.0,
+                  "g_added_sugar": null,
+                  "g_sugar": null,
+                  "mg_potassium": null,
+                  "mg_sodium": 170.0,
+                  "g_fiber": null,
+                  "g_protein": 0.0,
+                  "mg_iron": null,
+                  "mg_calcium": null,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84686,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 2.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 1926598,
+            "name": "SAUTEED MUSHROOMS",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "2",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 30.0,
+              "g_fat": 2.2,
+              "g_saturated_fat": 0.3,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 2.0,
+              "g_added_sugar": null,
+              "g_sugar": 1.0,
+              "mg_potassium": null,
+              "mg_sodium": 21.0,
+              "g_fiber": 1.0,
+              "g_protein": 2.0,
+              "mg_iron": 0.3,
+              "mg_calcium": 1.8,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "SLICED MUSHROOMS, OLIVE AND CANOLA OIL BLEND (CANOLA OIL, VIRGIN OLIVE OIL.), SALT, GROUND BLACK PEPPER",
+            "synced_ingredients": "SLICED MUSHROOMS, OLIVE AND CANOLA OIL BLEND (CANOLA OIL, VIRGIN OLIVE OIL.), SALT, GROUND BLACK PEPPER",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 438051,
+                "serving_size_amount": "2",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 30.0,
+                  "g_fat": 2.2,
+                  "g_saturated_fat": 0.3,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 2.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 1.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 21.0,
+                  "g_fiber": 1.0,
+                  "g_protein": 2.0,
+                  "mg_iron": 0.3,
+                  "mg_calcium": 1.8,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 644598,
+                "serving_size_amount": "1",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 15.0,
+                  "g_fat": 1.1,
+                  "g_saturated_fat": 0.2,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 1.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 1.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 10.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 1.0,
+                  "mg_iron": 0.2,
+                  "mg_calcium": 0.9,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84686,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 2.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 1926726,
+            "name": "DICED TOMATOES",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "2",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 13.0,
+              "g_fat": 0.1,
+              "g_saturated_fat": 0.0,
+              "g_trans_fat": null,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 2.0,
+              "g_added_sugar": null,
+              "g_sugar": 2.0,
+              "mg_potassium": null,
+              "mg_sodium": 9.0,
+              "g_fiber": 0.0,
+              "g_protein": 1.0,
+              "mg_iron": 0.5,
+              "mg_calcium": 6.8,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "TOMATOES",
+            "synced_ingredients": "TOMATOES",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": "o-52887",
+                "serving_size_amount": "2",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 13.0,
+                  "g_fat": 0.1,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 2.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 2.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 9.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 1.0,
+                  "mg_iron": 0.5,
+                  "mg_calcium": 6.8,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 644567,
+                "serving_size_amount": "1",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 6.0,
+                  "g_fat": 0.0,
+                  "g_saturated_fat": 0.0,
+                  "g_trans_fat": null,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 1.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 1.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 4.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 0.0,
+                  "mg_iron": 0.2,
+                  "mg_calcium": 3.1,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84686,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 2239734,
+            "name": "SAUTEED ONION & PEPPERS",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 26.0,
+              "g_fat": 1.4,
+              "g_saturated_fat": 0.2,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 3.0,
+              "g_added_sugar": null,
+              "g_sugar": 2.0,
+              "mg_potassium": null,
+              "mg_sodium": 2.0,
+              "g_fiber": 1.0,
+              "g_protein": 0.0,
+              "mg_iron": 0.1,
+              "mg_calcium": 8.1,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "SPANISH ONION, GREEN BELL PEPPERS, OLIVE AND CANOLA OIL BLEND (CANOLA OIL, VIRGIN OLIVE OIL.)",
+            "synced_ingredients": "SPANISH ONION, GREEN BELL PEPPERS, OLIVE AND CANOLA OIL BLEND (CANOLA OIL, VIRGIN OLIVE OIL.)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 644641,
+                "serving_size_amount": "1",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 26.0,
+                  "g_fat": 1.4,
+                  "g_saturated_fat": 0.2,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 3.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 2.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 2.0,
+                  "g_fiber": 1.0,
+                  "g_protein": 0.0,
+                  "mg_iron": 0.1,
+                  "mg_calcium": 8.1,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84686,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 2.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 1926811,
+            "name": "PICO DE GALLO",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "2",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 28.0,
+              "g_fat": 2.2,
+              "g_saturated_fat": 0.3,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 2.0,
+              "g_added_sugar": null,
+              "g_sugar": 1.0,
+              "mg_potassium": null,
+              "mg_sodium": 449.0,
+              "g_fiber": 0.0,
+              "g_protein": 1.0,
+              "mg_iron": 0.3,
+              "mg_calcium": 8.1,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "TOMATOES, RED ONION, SCALLION (GREEN ONION), OLIVE OIL, KOSHER SALT, PEELED FRESH GARLIC, CILANTRO, LEMON JUICE (WATER, LEMON JUICE CONCENTRATE AND LESS THAN 2% OF: LEMON OIL, SODIUM BENZOATE AND SODIUM METABISULFITE (PRESERVATIVES). CONTAINS SULFITES.), FRESH LIME JUICE",
+            "synced_ingredients": "TOMATOES, RED ONION, SCALLION (GREEN ONION), OLIVE OIL, KOSHER SALT, PEELED FRESH GARLIC, CILANTRO, LEMON JUICE (WATER, LEMON JUICE CONCENTRATE AND LESS THAN 2% OF: LEMON OIL, SODIUM BENZOATE AND SODIUM METABISULFITE (PRESERVATIVES). CONTAINS SULFITES.), FRESH LIME JUICE",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 442331,
+                "serving_size_amount": "2",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 28.0,
+                  "g_fat": 2.2,
+                  "g_saturated_fat": 0.3,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 2.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 1.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 449.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 1.0,
+                  "mg_iron": 0.3,
+                  "mg_calcium": 8.1,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 644640,
+                "serving_size_amount": "1",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 14.0,
+                  "g_fat": 1.1,
+                  "g_saturated_fat": 0.2,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 1.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 1.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 225.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 0.0,
+                  "mg_iron": 0.2,
+                  "mg_calcium": 4.1,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84686,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 2.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 2239724,
+            "name": "GUACAMOLE",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "2",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 100.0,
+              "g_fat": 9.0,
+              "g_saturated_fat": 1.4,
+              "g_trans_fat": 0.0,
+              "mg_cholesterol": 0.0,
+              "g_carbs": 3.0,
+              "g_added_sugar": null,
+              "g_sugar": 0.0,
+              "mg_potassium": null,
+              "mg_sodium": 2.0,
+              "g_fiber": 3.0,
+              "g_protein": 1.0,
+              "mg_iron": 0.5,
+              "mg_calcium": 9.1,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "FROZEN AVOCADO PULP (HASS AVOCADO.), RED ONION, CILANTRO, FRESH LIME JUICE, OLIVE AND CANOLA OIL BLEND (CANOLA OIL, VIRGIN OLIVE OIL.), GROUND BLACK PEPPER, KOSHER SALT, PEELED FRESH GARLIC",
+            "synced_ingredients": "FROZEN AVOCADO PULP (HASS AVOCADO.), RED ONION, CILANTRO, FRESH LIME JUICE, OLIVE AND CANOLA OIL BLEND (CANOLA OIL, VIRGIN OLIVE OIL.), GROUND BLACK PEPPER, KOSHER SALT, PEELED FRESH GARLIC",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Vegan",
+                  "enabled": true,
+                  "slug": "vegan",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 644626,
+                "serving_size_amount": "1",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 50.0,
+                  "g_fat": 4.6,
+                  "g_saturated_fat": 0.7,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 1.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 1.0,
+                  "g_fiber": 1.0,
+                  "g_protein": 0.0,
+                  "mg_iron": 0.3,
+                  "mg_calcium": 4.6,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 644665,
+                "serving_size_amount": "8",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 400.0,
+                  "g_fat": 36.0,
+                  "g_saturated_fat": 6.0,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 11.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 7.0,
+                  "g_fiber": 11.0,
+                  "g_protein": 4.0,
+                  "mg_iron": 2.0,
+                  "mg_calcium": 36.4,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              },
+              {
+                "id": 644680,
+                "serving_size_amount": "2",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 100.0,
+                  "g_fat": 9.0,
+                  "g_saturated_fat": 1.4,
+                  "g_trans_fat": 0.0,
+                  "mg_cholesterol": 0.0,
+                  "g_carbs": 3.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 0.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 2.0,
+                  "g_fiber": 3.0,
+                  "g_protein": 1.0,
+                  "mg_iron": 0.5,
+                  "mg_calcium": 9.1,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        },
+        {
+          "station_id": 84686,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "serving_size_amount": 1.0,
+          "serving_size_unit": "oz",
+          "food": {
+            "id": 2239720,
+            "name": "CHIPOTLE SAUCE",
+            "description": "",
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "oz"
+            },
+            "rounded_nutrition_info": {
+              "calories": 56.0,
+              "g_fat": 5.0,
+              "g_saturated_fat": 3.0,
+              "g_trans_fat": 0.2,
+              "mg_cholesterol": 14.0,
+              "g_carbs": 2.0,
+              "g_added_sugar": null,
+              "g_sugar": 1.0,
+              "mg_potassium": null,
+              "mg_sodium": 143.0,
+              "g_fiber": 0.0,
+              "g_protein": 1.0,
+              "mg_iron": 0.0,
+              "mg_calcium": 30.8,
+              "mg_vitamin_c": null,
+              "iu_vitamin_a": null,
+              "re_vitamin_a": null,
+              "mcg_vitamin_a": null,
+              "mg_vitamin_d": null,
+              "mcg_vitamin_d": null
+            },
+            "ingredients": "SOUR CREAM (CULTURED PASTEURIZED CREAM AND ENZYMES.), HALF & HALF MILK PINT (MILK, CREAM, DISODIUM PHOSPHATE, SODIUM CITRATE, CARAGEENAN), SAUCE CHIPOTLE ADOBO (SMOKED RED JALAPENO, WATER, VINEGAR, SUGAR, SALT, TOMATO PASTE, ARTIFICIAL SMOKE FLAVOR, ONION POWDER, XANTHAM GUM, AND GARLIC POWDER.), CHIPOTLE BASE (DEHYDRATED VEGETABLES (CHIPOTLE CHILE, GARLIC, ONION, CARROT, AND CELERY), MALTODEXTRIN, SALT, SUGAR, DEXTROSE, FOOD STARCH \ufffd MODIFIED, YEAST EXTRACT, SPICES, OLIVE OIL, SUNFLOWER OIL, CORN STARCH, WHITE DISTILLED VINEGAR, NATURAL SMOKE FLAVOR, DISODIUM INOSINATE, DISODIUM GUANYLATE)",
+            "synced_ingredients": "SOUR CREAM (CULTURED PASTEURIZED CREAM AND ENZYMES.), HALF & HALF MILK PINT (MILK, CREAM, DISODIUM PHOSPHATE, SODIUM CITRATE, CARAGEENAN), SAUCE CHIPOTLE ADOBO (SMOKED RED JALAPENO, WATER, VINEGAR, SUGAR, SALT, TOMATO PASTE, ARTIFICIAL SMOKE FLAVOR, ONION POWDER, XANTHAM GUM, AND GARLIC POWDER.), CHIPOTLE BASE (DEHYDRATED VEGETABLES (CHIPOTLE CHILE, GARLIC, ONION, CARROT, AND CELERY), MALTODEXTRIN, SALT, SUGAR, DEXTROSE, FOOD STARCH \ufffd MODIFIED, YEAST EXTRACT, SPICES, OLIVE OIL, SUNFLOWER OIL, CORN STARCH, WHITE DISTILLED VINEGAR, NATURAL SMOKE FLAVOR, DISODIUM INOSINATE, DISODIUM GUANYLATE)",
+            "use_custom_sizes": true,
+            "has_options_or_sides": false,
+            "icons": {
+              "food_icons": [
+                {
+                  "name": "Milk",
+                  "enabled": true,
+                  "slug": "milk",
+                  "type": 1,
+                  "behavior": 1
+                },
+                {
+                  "name": "Vegetarian",
+                  "enabled": true,
+                  "slug": "vegetarian",
+                  "type": 1,
+                  "behavior": 2
+                },
+                {
+                  "name": "Low Carbon Footprint",
+                  "enabled": true,
+                  "slug": "low-carbon-footprint",
+                  "type": 1,
+                  "behavior": 2
+                }
+              ]
+            },
+            "food_sizes": [
+              {
+                "id": 644596,
+                "serving_size_amount": "1",
+                "serving_size_unit": "oz",
+                "nutrition_info": {
+                  "calories": 56.0,
+                  "g_fat": 5.0,
+                  "g_saturated_fat": 3.0,
+                  "g_trans_fat": 0.2,
+                  "mg_cholesterol": 14.0,
+                  "g_carbs": 2.0,
+                  "g_added_sugar": null,
+                  "g_sugar": 1.0,
+                  "mg_potassium": null,
+                  "mg_sodium": 143.0,
+                  "g_fiber": 0.0,
+                  "g_protein": 1.0,
+                  "mg_iron": 0.0,
+                  "mg_calcium": 30.8,
+                  "mg_vitamin_c": null,
+                  "iu_vitamin_a": null,
+                  "re_vitamin_a": null,
+                  "mcg_vitamin_a": null,
+                  "mg_vitamin_d": null,
+                  "mcg_vitamin_d": null
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

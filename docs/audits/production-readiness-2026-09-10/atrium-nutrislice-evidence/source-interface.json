@@ -1,0 +1,56 @@
+{
+  "observedAt": "2026-09-11T01:20:13.084014+00:00",
+  "tool": "Actual in-app browser interaction with Rutgers published Nutrislice interface",
+  "discovery": "Location listing selected The Atrium, address 126 College Avenue, New Brunswick",
+  "date": "2026-09-10",
+  "observations": [
+    {
+      "url": "https://rutgers.nutrislice.com/menu/the-atrium/breakfast",
+      "section": "HOT CEREAL",
+      "food": "COUNTRY STYLE GRITS",
+      "serving": "6 oz",
+      "calories": 140,
+      "protein": 2,
+      "carbs": 15,
+      "fat": 0.2,
+      "sodium": 207,
+      "sugar": 0
+    },
+    {
+      "url": "https://rutgers.nutrislice.com/menu/the-atrium/lunch-test/2026-09-10",
+      "section": "SOUPS",
+      "food": "CHICKEN NOODLE SOUP",
+      "serving": "6 ozl",
+      "calories": 85,
+      "protein": 7,
+      "carbs": 9,
+      "fat": 2.5,
+      "sodium": 391,
+      "sugar": 2
+    },
+    {
+      "url": "https://rutgers.nutrislice.com/menu/the-atrium/dinner/2026-09-10",
+      "section": "SOUPS",
+      "food": "CHICKEN NOODLE SOUP",
+      "calories": 85
+    },
+    {
+      "url": "https://rutgers.nutrislice.com/menu/the-atrium/breakfast/2026-09-10",
+      "food": "OATMEAL",
+      "selectedSize": "6 oz",
+      "calories": 80,
+      "protein": 3,
+      "sugar": 0,
+      "topLevelConflict": {
+        "protein": 4,
+        "sugar": 1
+      },
+      "resolution": "Use exact matching size nutrition then unchanged normalization; missing/ambiguous remains unknown"
+    }
+  ],
+  "limits": [
+    "Representative default items, not exhaustive independent nutritional validation",
+    "Published OATMEAL lists a 40\u201380 calorie range for alternate portions; the shared ingestion continues to use default serving_size_info/rounded_nutrition_info",
+    "Late Knight displayed as a separate fourth menu; not added to KnightBite three-meal interface"
+  ]
+}

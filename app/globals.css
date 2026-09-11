@@ -6,6 +6,11 @@
   color-scheme: light;
   --background: #f7f7f4;
   --foreground: #171717;
+  --livi-paper: #fcfbf8;
+  --livi-ink: #292d29;
+  --livi-muted: #6c716a;
+  --livi-accent: #a92335;
+  --livi-border: #e4e6df;
 }
 
 html {
@@ -59,3 +64,7 @@ input::placeholder {
       border-radius 220ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
+
+:where(button, a, input, summary):focus-visible { outline: 3px solid #b11f24; outline-offset: 3px; }
+dialog::backdrop { background: transparent; }
+@media (prefers-reduced-motion: reduce) { .sheet-transition { transition: none !important; } }

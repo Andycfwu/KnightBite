@@ -1,0 +1,34 @@
+2026-09-10T22:16:27.0719536Z 040a4d8d93c2ade9df23a385f408ab923597b452
+2026-09-10T22:16:32.9862265Z node: v24.21.0
+2026-09-10T22:16:33.1727117Z ##[group]Run git rev-parse HEAD
+2026-09-10T22:16:33.1727558Z git rev-parse HEAD
+2026-09-10T22:16:33.1727860Z git rev-parse HEAD^{tree}
+2026-09-10T22:16:33.1728202Z test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+2026-09-10T22:16:33.1877765Z 040a4d8d93c2ade9df23a385f408ab923597b452
+2026-09-10T22:16:33.1889275Z af356cf29f15180b79124a41887483ac833e7df6
+2026-09-10T22:16:42.7975584Z found 0 vulnerabilities
+2026-09-10T22:17:46.0891592Z {"event":"knightbite_build_runtime","commit":null,"node":"24.21.0","openssl":"3.5.8","undici":"7.29.1","llhttp":"9.4.3","platform":"linux","arch":"x64","sharp":{"aom":"3.15.0","archive":"3.8.9","cairo":"1.18.4","cgif":"0.5.3","exif":"0.6.26","expat":"2.8.3","ffi":"3.8.0","fontconfig":"2.18.3","freetype":"2.14.3","fribidi":"1.0.16","glib":"2.89.4","harfbuzz":"14.3.1","heif":"1.23.2","highway":"1.4.0","imagequant":"2.4.1","lcms":"2.19.1","mozjpeg":"0826579","pango":"1.58.2","pixman":"0.46.4","png":"1.6.58","proxy-libintl":"0.5","rsvg":"2.62.91","tiff":"4.7.2","uhdr":"2.0.2","vips":"8.18.6","webp":"1.6.0","xml2":"2.15.3","zlib-ng":"2.3.3","sharp":"0.35.4"}}
+2026-09-10T22:18:12.6041515Z Isolated production build passed: RWzyuM3712fcRNXvFPpSc
+2026-09-10T22:18:56.8973914Z   20 passed (43.6s)
+2026-09-10T22:19:03.8488645Z   2 passed (6.3s)
+2026-09-10T22:19:04.3770702Z found 0 vulnerabilities
+2026-09-10T22:19:09.1151072Z node: v24.19.0
+2026-09-10T22:19:17.6435995Z found 0 vulnerabilities
+2026-09-10T22:19:39.5686235Z {"event":"knightbite_build_runtime","commit":null,"node":"24.19.0","openssl":"3.5.7","undici":"7.29.0","llhttp":"9.4.3","platform":"linux","arch":"x64","sharp":{"aom":"3.15.0","archive":"3.8.9","cairo":"1.18.4","cgif":"0.5.3","exif":"0.6.26","expat":"2.8.3","ffi":"3.8.0","fontconfig":"2.18.3","freetype":"2.14.3","fribidi":"1.0.16","glib":"2.89.4","harfbuzz":"14.3.1","heif":"1.23.2","highway":"1.4.0","imagequant":"2.4.1","lcms":"2.19.1","mozjpeg":"0826579","pango":"1.58.2","pixman":"0.46.4","png":"1.6.58","proxy-libintl":"0.5","rsvg":"2.62.91","tiff":"4.7.2","uhdr":"2.0.2","vips":"8.18.6","webp":"1.6.0","xml2":"2.15.3","zlib-ng":"2.3.3","sharp":"0.35.4"}}
+2026-09-10T22:20:07.1122295Z Isolated production build passed: BA6ZO_mUhtliDHzYE48r3
+2026-09-10T22:20:38.9666839Z   20 passed (31.2s)
+2026-09-10T22:20:44.4889220Z   2 passed (5.0s)
+2026-09-10T22:17:30.8283955Z ℹ tests 245
+2026-09-10T22:17:30.8284996Z ℹ suites 0
+2026-09-10T22:17:30.8286672Z ℹ pass 245
+2026-09-10T22:17:30.8287704Z ℹ fail 0
+2026-09-10T22:17:30.8288747Z ℹ cancelled 0
+2026-09-10T22:17:30.8290192Z ℹ skipped 0
+2026-09-10T22:17:30.8291471Z ℹ todo 0
+2026-09-10T22:19:24.0428555Z ℹ tests 245
+2026-09-10T22:19:24.0429290Z ℹ suites 0
+2026-09-10T22:19:24.0429730Z ℹ pass 245
+2026-09-10T22:19:24.0430151Z ℹ fail 0
+2026-09-10T22:19:24.0430518Z ℹ cancelled 0
+2026-09-10T22:19:24.0430917Z ℹ skipped 0
+2026-09-10T22:19:24.0431264Z ℹ todo 0

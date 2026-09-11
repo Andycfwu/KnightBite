@@ -1,0 +1,104 @@
+{
+  "recordedAt": "2026-09-10T21:47:03.486858+00:00",
+  "method": "Authenticated Vercel UI observation and approved controls; persisted values re-read after full navigation/reload. No authentication secrets accessed.",
+  "team": "andycfwus-projects",
+  "plan": "Hobby",
+  "project": "knight-bite",
+  "memberReadinessBeforeEnforcement": {
+    "observedWindowUTC": "2026-09-10 21:37\u201321:38",
+    "members": 1,
+    "owners": 1,
+    "pendingInvitations": 0,
+    "twoFactorEnabledFilterMembers": 1,
+    "twoFactorDisabledFilterMembers": 0,
+    "source": "https://vercel.com/andycfwus-projects/~/settings/members",
+    "recoveryCodes": "Owner reports saved; never requested or inspected"
+  },
+  "teamSecurity": {
+    "persistedReadBackWindowUTC": "2026-09-10 21:41\u201321:42",
+    "source": "https://vercel.com/andycfwus-projects/~/settings/security",
+    "twoFactorEnforcement": true,
+    "uiState": "Enabled; checkbox value 1; Save disabled after reload",
+    "requireVerifiedCommits": false,
+    "effect": "Unenrolled future members and their user-managed pipeline tokens may lose team access. No members added or removed."
+  },
+  "deploymentCheck": {
+    "persistedReadBackWindowUTC": "2026-09-10 21:40\u201321:42",
+    "source": "https://vercel.com/andycfwus-projects/knight-bite/settings/build-and-deployment",
+    "name": "KnightBite release verification",
+    "provider": "GitHub",
+    "environment": "Production",
+    "behavior": "Blocking",
+    "uiReadBack": "KnightBite release verification GitHub; Production deployment behavior menu shows Blocking; Save disabled after reload",
+    "importSHA": "bb7007d13221c8cf34494495a642053b03eaf037",
+    "importedCheckLink": "https://github.com/Andycfwu/KnightBite/actions/runs/34532667740/job/103056890029",
+    "importSteps": "GitHub > Select checks to add > enter approved SHA > Show All Checks > select only release verification > Add",
+    "saveToast": "New deployment checks will take effect on your next production deployment.",
+    "otherChecksImported": [],
+    "productionLifecycleExercised": false,
+    "limitation": "No production deployment was authorized. The persisted commit-check gate is verified by UI and documented platform semantics; final main SHA/check/deployment matching and pending-to-success promotion remain unexercised. Owner Force Promote bypass remains available."
+  },
+  "productionPrerequisites": {
+    "observedWindowUTC": "2026-09-10 21:42\u201321:47",
+    "repository": "Andycfwu/KnightBite",
+    "repositorySource": "https://vercel.com/andycfwus-projects/knight-bite/settings/git",
+    "branch": "main",
+    "autoAssignCustomProductionDomains": true,
+    "environmentSource": "https://vercel.com/andycfwus-projects/knight-bite/settings/environments/production"
+  },
+  "preview": {
+    "observedWindowUTC": "2026-09-10 21:42\u201321:44",
+    "id": "dpl_DF9WnSqFv7b2uYcV2hnyo5rSpHsk",
+    "source": "https://vercel.com/andycfwus-projects/knight-bite/DF9WnSqFv7b2uYcV2hnyo5rSpHsk",
+    "status": "Ready",
+    "environment": "Preview",
+    "branch": "codex/release-readiness-2026-09-10",
+    "gitSHA": "bb7007d13221c8cf34494495a642053b03eaf037",
+    "url": "https://knight-bite-j0q7jpxew-andycfwus-projects.vercel.app",
+    "completedAt": "2026-09-10T21:32:24Z",
+    "durationSeconds": 48,
+    "customProductionDomainAssignment": "Skipped",
+    "build": {
+      "region": "iad1",
+      "machine": "2 cores / 8 GB",
+      "nextVersion": "15.5.25",
+      "nodeVersionInNpmWarning": "24.19.0",
+      "npmVersionInNpmWarning": "11.17.0",
+      "declaredNodeRange": ">=24.21.0 <25",
+      "buildCommand": "npm run build",
+      "reusedBuildCacheFrom": "BT9hARabzozdRpqMutPju4P2xF5F",
+      "installCommandAttestation": "Default installing-dependencies step; exact npm ci command not printed in observed excerpt",
+      "warnings": [
+        "EBADENGINE: actual Node 24.19.0 is below declared minimum 24.21.0",
+        "esbuild@0.28.2 postinstall not yet covered by allowScripts",
+        "Next.js ESLint plugin not detected; separate GitHub lint passes"
+      ]
+    },
+    "runtimePatchAttestation": "Build Node patch observed; function runtime patch/native binary inventory not independently attested",
+    "appVisited": false,
+    "analyticsTestEventsSent": 0
+  },
+  "productionUnchanged": {
+    "observedWindowUTC": "2026-09-10 21:45\u201321:46",
+    "source": "https://vercel.com/andycfwus-projects/knight-bite/BT9hARabzozdRpqMutPju4P2xF5F",
+    "id": "dpl_BT9hARabzozdRpqMutPju4P2xF5F",
+    "status": "Ready",
+    "environment": "Production",
+    "currentDomain": "knightbitenb.vercel.app",
+    "gitSHA": "70166c4fd04bb0d5ca25b792283924eff36c1f31",
+    "branch": "main"
+  },
+  "constraints": {
+    "productionDeploymentTriggeredByAgent": false,
+    "mergeOrPromotionPerformed": false,
+    "settingsWeakened": false,
+    "analyticsSettingChanged": false,
+    "runtimeMinimumLowered": false,
+    "vendorsOrPaidServicesAdded": false
+  },
+  "officialReferences": [
+    "https://vercel.com/docs/deployment-checks",
+    "https://vercel.com/docs/two-factor-enforcement",
+    "https://vercel.com/docs/functions/runtimes/node-js/node-js-versions"
+  ]
+}

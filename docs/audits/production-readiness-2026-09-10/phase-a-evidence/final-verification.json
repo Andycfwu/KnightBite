@@ -1,0 +1,26 @@
+{
+  "observedAt": "2026-09-10T21:50:51.346881+00:00",
+  "prUrl": "https://github.com/Andycfwu/KnightBite/pull/1",
+  "prHead": "bb7007d13221c8cf34494495a642053b03eaf037",
+  "prDraft": true,
+  "prMerged": false,
+  "prAutoMerge": null,
+  "prBodyVerified": true,
+  "prBodySha256": "0a46466cde62ea41bc21dc42b78370c385ab26d056e81e83426abd7f20e3d598",
+  "localChecks": [
+    {
+      "command": "git diff --check",
+      "cwd": "/Users/andywu/Desktop/Codex/Nutrition",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --check origin/main...HEAD",
+      "cwd": "/Users/andywu/Desktop/Codex/Nutrition-release-readiness",
+      "exitCode": 0
+    }
+  ],
+  "authoredArtifactWhitespaceAndLinkCheck": "Passed; see execution on 2026-09-10T21:50Z",
+  "sourceChangesThisPass": false,
+  "remoteReleaseChecks": "Both candidate push and PR integration passed; archived result excerpts and API metadata",
+  "productionApproved": false
+}

@@ -1,0 +1,295 @@
+/* Plate and profile share the existing dining palette and inherited app font. */
+.account-page { min-height: 100vh; color: var(--livi-ink); display: flex; flex-direction: column; }
+.account-topbar { gap: 24px; }
+.account-topbar .livi-brand, .account-topbar .livi-wordmark { display: flex; }
+.account-topbar .livi-wordmark { flex-direction: column; }
+.account-desktopNav { display: flex; gap: 5px; margin-left: auto; }
+.account-desktopNav a { padding: 12px 17px; border-radius: 10px; font-size: 13px; font-weight: 500; }
+.account-desktopNav a[aria-current], .account-desktopNav a:hover { background: #eeede9; }
+.account-headerPlate { display: flex; align-items: center; justify-content: center; gap: 9px; padding: 10px 14px; border-radius: 12px; background: var(--livi-accent); color: white; font-size: 12px; font-weight: 600; }
+.account-headerPlate svg { width: 21px; height: 21px; }
+.account-headerPlate b { display: grid; place-items: center; border-radius: 50%; min-width: 20px; height: 20px; padding-inline: 4px; background: #ffffff28; font-size: 10px; }
+.account-avatar { display: grid; place-items: center; width: 37px; height: 37px; flex-shrink: 0; border-radius: 50%; background: #f1e7e4; color: var(--livi-accent); }
+.account-avatar[aria-current] { background: var(--livi-accent); color: white; }
+.account-content { width: 100%; max-width: 1190px; margin: 0 auto; padding: 0 32px 50px; flex: 1; }
+.account-pageHeading { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 35px 0 28px; }
+.account-eyebrow { color: var(--livi-accent); font-size: 10px; letter-spacing: 1.5px; font-weight: 600; margin-bottom: 10px; }
+.account-pageHeading h1 { font-size: clamp(29px, 3.2vw, 39px); line-height: 1.15; letter-spacing: -1.4px; font-weight: 650; }
+.account-pageHeading h1 + p { margin-top: 10px; color: var(--livi-muted); font-size: 13px; line-height: 1.6; }
+.account-secondaryButton, .account-primaryButton { display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 12px 17px; min-height: 44px; border-radius: 11px; font-size: 12px; font-weight: 600; line-height: 1.4; }
+.account-secondaryButton { background: #eeede9; flex-shrink: 0; }
+.account-secondaryButton:hover { background: #e8e6e0; }
+.account-primaryButton { background: var(--livi-accent); color: white; }
+.account-primaryButton:hover, .account-headerPlate:hover { background: #8f1929; }
+.account-primaryButton svg, .account-secondaryButton svg { width: 17px; height: 17px; flex-shrink: 0; }
+.account-label { font-size: 11px; color: var(--livi-muted); font-weight: 500; }
+.account-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+.account-card { padding: 24px; border-radius: 19px; background: white; border: 1px solid var(--livi-border); box-shadow: 0 2px 3px #292d2902; min-width: 0; }
+.account-cardHeading { display: flex; align-items: center; gap: 10px; }
+.account-cardHeading h2 { font-size: 18px; letter-spacing: -.45px; line-height: 1.3; font-weight: 600; min-width: 0; }
+.account-cardIcon { display: grid; place-items: center; color: var(--livi-accent); flex-shrink: 0; }
+.account-cardIcon svg { width: 21px; height: 21px; }
+.account-cardDescription { font-size: 12px; color: var(--livi-muted); line-height: 1.8; margin-top: 10px; }
+.account-sectionHeading { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin: 0 0 15px; }
+.account-sectionHeading h2 { font-size: 23px; font-weight: 600; letter-spacing: -.7px; }
+.account-sectionHeading > span { color: var(--livi-muted); font-size: 11px; }
+.account-countBadge { margin-left: auto; font-size: 10px; color: var(--livi-muted); background: #f3f2ef; border-radius: 20px; padding: 5px 8px; white-space: nowrap; }
+.account-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: calc(100% - 64px); max-width: 1126px; margin: auto auto 0; border-top: 1px solid var(--livi-border); padding: 22px 0 26px; color: var(--livi-muted); font-size: 10px; }
+.account-footer a:hover { color: var(--livi-accent); }
+.account-mobileNav { display: none; }
+/* Nutrition colors stay consistent across totals, rows, and goal inputs. */
+.nutrient-calories, .nutrient-protein { --nutrient-color: #ac2439; }
+.nutrient-carbs { --nutrient-color: #47734c; }
+.nutrient-fat { --nutrient-color: #8a7161; }
+.plate-nutrientDot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--nutrient-color, #a3a59d); flex-shrink: 0; }
+.plate-overview { display: grid; grid-template-columns: 1.3fr .7fr 1fr; align-items: center; gap: 24px; padding: 26px; border: 1px solid var(--livi-border); background: white; border-radius: 20px; }
+.plate-calorieSummary { display: flex; align-items: center; gap: 20px; min-width: 0; }
+.plate-summaryIcon { display: grid; place-items: center; width: 72px; height: 72px; background: #faf0ef; border: 1px solid #f0d7d8; border-radius: 50%; color: var(--livi-accent); flex-shrink: 0; }
+.plate-summaryIcon svg { width: 38px; height: 38px; }
+.plate-calorieValue { font-size: 34px; font-weight: 650; letter-spacing: -1.3px; line-height: 1.3; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.plate-selectedCount { padding-left: 26px; border-left: 1px solid var(--livi-border); }
+.plate-selectedCount strong { display: flex; align-items: baseline; gap: 7px; color: var(--livi-accent); font-weight: 600; font-size: 32px; line-height: 1.4; }
+.plate-selectedCount small { font-size: 15px; font-weight: 500; }
+.plate-sessionNote { display: flex; align-items: baseline; gap: 8px; font-size: 11px; line-height: 1.8; color: var(--livi-muted); }
+.plate-sessionNote .account-dot { background: #9e9185; }
+.plate-macroGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 19px 0 32px; }
+.plate-macroCard { min-width: 0; padding: 21px 24px; border: 1px solid var(--livi-border); border-radius: 17px; background: white; }
+.plate-macroHeading { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.plate-macroHeading h2 { font-size: 11px; font-weight: 550; letter-spacing: .7px; text-transform: uppercase; color: var(--livi-muted); }
+.plate-macroValue { font-size: 26px; font-weight: 600; letter-spacing: -.7px; margin-top: 11px; line-height: 1.3; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.plate-macroValue > span { color: var(--livi-muted); font-size: 13px; font-weight: 450; letter-spacing: 0; }
+.plate-subtotalLabel { display: block; font-size: 10px; font-weight: 450; letter-spacing: 0; color: var(--livi-muted); margin-bottom: 4px; }
+.plate-macroTrack { height: 6px; margin-top: 15px; overflow: hidden; border-radius: 8px; background: #efeeea; }
+.plate-macroTrack > div { height: 100%; background: var(--nutrient-color); border-radius: inherit; transition: width 160ms ease; }
+.plate-macroCaption, .plate-coverageNote { font-size: 11px; line-height: 1.6; margin-top: 9px; color: var(--livi-muted); }
+.plate-coverageNote { margin-top: 4px; }
+.plate-detailLayout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 25px; align-items: start; }
+.plate-itemList { display: flex; flex-direction: column; gap: 12px; }
+.plate-foodCard { border: 1px solid var(--livi-border); border-radius: 16px; padding: 17px; background: white; min-width: 0; }
+.plate-foodCard.is-detailed { padding: 21px; }
+.plate-foodHeading { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.plate-foodHeading > div { min-width: 0; }
+.plate-foodHeading h3 { font-size: 15px; font-weight: 600; letter-spacing: -.25px; line-height: 1.4; overflow-wrap: anywhere; }
+.plate-foodHeading p { margin-top: 5px; color: var(--livi-muted); font-size: 11px; }
+.plate-removeItem { color: #74766f; font-size: 10px; min-height: 36px; padding: 7px 5px; border-radius: 7px; flex-shrink: 0; }
+.plate-removeItem:hover { background: #fbefee; color: var(--livi-accent); }
+.plate-foodBottom { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 16px; }
+.plate-quantity { display: inline-flex; align-items: center; padding: 2px; border-radius: 25px; background: #f3f2ef; flex-shrink: 0; }
+.plate-quantity button { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; font-size: 21px; color: #625952; }
+.plate-quantity button:hover:not(:disabled) { background: white; color: var(--livi-accent); }
+.plate-quantity button:disabled { opacity: .4; cursor: not-allowed; }
+.plate-quantity > span { min-width: 26px; text-align: center; font-size: 12px; font-weight: 600; }
+.plate-foodMacros { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 9px 15px; align-items: center; font-size: 12px; }
+.plate-foodMacros > div { display: flex; flex-direction: column; gap: 2px; }
+.plate-foodMacros dt:not(.sr-only) { font-size: 9px; color: var(--livi-muted); }
+.plate-foodMacros dd { font-weight: 600; }
+.plate-foodUnknown { color: var(--livi-muted); font-size: 12px; }
+.plate-addMore { display: flex; align-items: center; gap: 10px; justify-content: center; border-radius: 12px; background: #eeede9; padding: 14px 16px; min-height: 48px; font-size: 12px; font-weight: 600; color: var(--livi-accent); margin-top: 16px; }
+.plate-addMore:hover { background: #e8e5df; }
+.plate-addMore > span { font-size: 21px; font-weight: 400; }
+.plate-addMore svg { width: 16px; height: 16px; margin-left: auto; }
+.plate-empty { border: 1px solid var(--livi-border); border-radius: 19px; background: white; display: flex; flex-direction: column; align-items: center; padding: 39px 30px; text-align: center; }
+.plate-empty > span { display: grid; place-items: center; width: 63px; height: 63px; border-radius: 50%; color: var(--livi-accent); background: #faf0ef; margin-bottom: 18px; }
+.plate-empty > span svg { width: 30px; height: 30px; }
+.plate-empty h3 { font-size: 20px; line-height: 1.4; font-weight: 600; letter-spacing: -.6px; }
+.plate-empty p { font-size: 12px; line-height: 1.8; color: var(--livi-muted); max-width: 310px; margin: 10px 0 23px; }
+.plate-nutritionAside { min-width: 0; padding-top: 47px; }
+.plate-nutritionList { display: flex; flex-direction: column; gap: 7px; margin-top: 20px; }
+.plate-nutritionList > div { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; font-size: 12px; padding: 11px 12px; border-radius: 8px; background: #f6f5f2; }
+.plate-nutritionList dt { display: flex; align-items: center; gap: 8px; color: #63675e; }
+.plate-nutritionList dd { text-align: right; font-weight: 600; overflow-wrap: anywhere; }
+.plate-nutritionList .plate-nutrientDot { width: 6px; height: 6px; }
+.plate-clearButton { display: flex; justify-content: center; align-items: center; gap: 9px; width: 100%; padding: 15px; min-height: 47px; margin-top: 14px; border-radius: 12px; border: 1px solid #e9dcd8; color: var(--livi-accent); font-size: 12px; font-weight: 500; }
+.plate-clearButton:hover:not(:disabled) { background: #faeeec; }
+.plate-clearButton:disabled { color: #8c8983; border-color: #e5e3df; cursor: not-allowed; }
+.plate-clearButton svg { width: 17px; height: 17px; }
+/* Profile */
+.profile-intro { display: flex; align-items: center; gap: 18px; border: 1px solid var(--livi-border); border-radius: 18px; background: white; padding: 23px 25px; }
+.profile-introIcon { display: grid; place-items: center; flex-shrink: 0; width: 60px; height: 60px; border-radius: 50%; background: #fbf1ef; color: var(--livi-accent); border: 1px solid #eed9d6; }
+.profile-introIcon svg { width: 27px; height: 27px; }
+.profile-intro h2 { font-size: 21px; font-weight: 600; letter-spacing: -.6px; }
+.profile-intro p { font-size: 12px; color: var(--livi-muted); line-height: 1.7; margin-top: 5px; }
+.profile-localBadge { display: flex; align-items: center; gap: 5px; margin-left: auto; padding: 7px 10px; border-radius: 20px; color: #716b62; background: #f3f1ec; font-size: 10px; white-space: nowrap; }
+.profile-localBadge svg { width: 13px; height: 13px; }
+.profile-saveStatus { display: flex; align-items: baseline; gap: 8px; color: var(--livi-muted); font-size: 11px; line-height: 1.7; padding: 13px 3px 20px; }
+.profile-saveStatus[data-save-status="saved"] { color: #426b4a; }
+.profile-saveStatus[data-save-status="unavailable"], .profile-saveStatus[data-save-status="invalid"], .profile-saveStatus[data-save-status="clear_failed"] { color: #8c532e; }
+.profile-layout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.profile-column { display: flex; flex-direction: column; gap: 23px; min-width: 0; }
+.profile-card { scroll-margin-top: 24px; }
+.profile-toggles { display: grid; gap: 9px; margin-top: 20px; }
+.profile-toggleRow { display: flex; justify-content: space-between; align-items: center; gap: 15px; width: 100%; padding: 13px 15px; border-radius: 11px; background: #f6f5f2; text-align: left; }
+.profile-toggleRow:hover { background: #efeeea; }
+.profile-toggleRow > span:first-child { min-width: 0; }
+.profile-toggleRow strong { font-size: 13px; font-weight: 600; }
+.profile-toggleRow small { display: block; font-size: 10px; line-height: 1.5; color: var(--livi-muted); margin-top: 3px; }
+.profile-switch { position: relative; display: block; height: 26px; width: 45px; background: #ddded8; border-radius: 20px; flex-shrink: 0; transition: background 160ms; }
+.profile-switch > span { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: white; box-shadow: 0 1px 3px #292d2912; display: grid; place-items: center; transition: transform 160ms; }
+.profile-switch svg { width: 12px; height: 12px; stroke-width: 2.5; color: var(--livi-accent); }
+.profile-toggleRow[aria-checked="true"] .profile-switch { background: var(--livi-accent); }
+.profile-toggleRow[aria-checked="true"] .profile-switch > span { transform: translateX(19px); }
+.profile-preferenceNote { border-top: 1px solid #efeee9; margin-top: 19px; padding-top: 15px; color: var(--livi-muted); font-size: 11px; line-height: 1.8; }
+.profile-resetGoals { color: var(--livi-muted); font-size: 11px; min-height: 36px; margin-left: auto; border-radius: 6px; padding: 5px; }
+.profile-resetGoals:hover { color: var(--livi-accent); }
+.profile-goalGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 22px; }
+.profile-goalInput { display: flex; flex-direction: column; gap: 15px; min-width: 0; border: 1px solid transparent; padding: 15px; border-radius: 12px; background: #f5f4f0; }
+.profile-goalInput:focus-within { border-color: var(--livi-accent); box-shadow: 0 0 0 3px #a9233512; background: white; }
+.profile-goalLabel { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 10px; font-weight: 550; color: #676b61; text-transform: uppercase; letter-spacing: .45px; }
+.profile-goalLabel .plate-nutrientDot { width: 6px; height: 6px; }
+.profile-goalValue { display: flex; align-items: baseline; gap: 5px; min-width: 0; }
+.profile-goalValue input { width: 100%; min-width: 0; font-size: 29px; font-weight: 600; line-height: 1.3; letter-spacing: -.8px; background: transparent; outline: none; }
+.profile-goalValue > span { color: var(--livi-muted); font-size: 12px; }
+.profile-inlineLink { display: inline-flex; align-items: center; gap: 9px; color: var(--livi-accent); margin-top: 16px; padding-block: 5px; font-size: 11px; font-weight: 550; }
+.profile-inlineLink svg { width: 15px; height: 15px; }
+.profile-balancePanel { text-align: center; padding: 23px 22px; border-radius: 13px; margin-top: 19px; background: #f7f4f0; }
+.profile-balanceIcon { display: grid; place-items: center; width: 43px; height: 43px; margin: 0 auto 13px; border-radius: 11px; color: var(--livi-accent); background: white; }
+.profile-balanceIcon svg { width: 23px; height: 23px; }
+.profile-balancePanel h3 { font-size: 17px; font-weight: 600; letter-spacing: -.3px; }
+.profile-balancePanel p { color: var(--livi-muted); font-size: 12px; line-height: 1.7; margin-top: 8px; }
+.profile-externalLabel { display: inline-block; color: #847b71; font-size: 9px; letter-spacing: .6px; text-transform: uppercase; margin-top: 17px; }
+.profile-accountLink { display: flex; width: 100%; margin-top: 15px; justify-content: space-between; }
+.profile-accountNote { font-size: 10px; line-height: 1.8; color: var(--livi-muted); margin-top: 13px; }
+.profile-dataActions { display: flex; flex-direction: column; gap: 11px; margin-top: 17px; }
+.profile-dataActions a { display: flex; justify-content: space-between; gap: 12px; align-items: center; font-size: 12px; font-weight: 550; padding: 13px 14px; background: #f6f5f2; border-radius: 9px; }
+.profile-dataActions a svg { width: 16px; height: 16px; }
+.profile-dataActions button { display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid #e8dcd7; border-radius: 9px; min-height: 44px; color: var(--livi-accent); font-size: 12px; font-weight: 500; }
+.profile-dataActions button:hover { background: #fbf1ee; }
+.profile-dataActions button svg { width: 16px; height: 16px; }
+@media (max-width: 1050px) {
+  .account-topbar { gap: 16px; }
+  .account-desktopNav a { font-size: 12px; padding-inline: 12px; }
+  .account-headerPlate > span { display: none; }
+  .plate-overview { grid-template-columns: 1fr auto; gap: 20px; }
+  .plate-sessionNote { grid-column: 1 / -1; border-top: 1px solid #eeede7; padding-top: 14px; }
+  .plate-detailLayout { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 18px; }
+  .plate-foodCard.is-detailed .plate-foodBottom { flex-wrap: wrap; gap: 14px; }
+  .plate-foodCard.is-detailed .plate-foodMacros { flex: 1; }
+  .profile-layout { gap: 18px; }
+  .profile-card { padding: 21px; }
+  .profile-goalInput { padding: 12px; }
+}
+@media (max-width: 859px) {
+  .account-page { padding-bottom: calc(73px + env(safe-area-inset-bottom)); }
+  .account-topbar { min-height: 76px; padding: calc(14px + env(safe-area-inset-top)) 22px 14px; }
+  .account-topbar .livi-wordmark { font-size: 19px; }
+  .account-topbar .livi-wordmark small { font-size: 8px; margin-top: 5px; }
+  .account-topbar .livi-brandMark { width: 34px; height: 34px; font-size: 23px; border-radius: 10px; }
+  .account-desktopNav { display: none; }
+  .account-headerPlate { margin-left: auto; background: #f2eeea; color: var(--livi-accent); padding: 9px 11px; }
+  .account-headerPlate b { background: #e9d8d4; }
+  .account-headerPlate:hover { background: #e8dfdb; }
+  .account-avatar { width: 35px; height: 35px; }
+  .account-content { padding: 0 22px 35px; }
+  .account-pageHeading { padding: 26px 0 22px; gap: 16px; }
+  .account-pageHeading h1 { font-size: 31px; }
+  .account-pageHeading h1 + p { font-size: 12px; max-width: 430px; }
+  .account-mobileNav { position: fixed; inset: auto 0 0; z-index: 40; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); min-height: 71px; padding: 10px 12px calc(11px + env(safe-area-inset-bottom)); background: #fcfbf8f5; backdrop-filter: blur(15px); border-top: 1px solid var(--livi-border); }
+  .account-mobileNav > a { display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 10px; color: #797a72; min-height: 45px; padding: 1px 2px; border-radius: 7px; }
+  .account-mobileNav > a[aria-current] { color: var(--livi-accent); font-weight: 600; }
+  .account-navIcon { position: relative; display: grid; place-items: center; height: 23px; }
+  .account-navIcon svg { width: 23px; height: 23px; }
+  .account-navIcon b { position: absolute; right: -13px; top: -3px; background: var(--livi-accent); color: white; border-radius: 15px; min-width: 15px; padding: 1px 4px; font-size: 8px; text-align: center; }
+  .account-footer { width: calc(100% - 44px); }
+  .plate-macroCard { padding: 18px; }
+  .plate-foodCard.is-detailed { padding: 18px; }
+  .plate-nutrition { padding: 20px; }
+  .profile-layout { grid-template-columns: 1fr 1fr; }
+  .profile-localBadge { display: none; }
+  .profile-goalGrid { grid-template-columns: 1fr; gap: 8px; }
+  .profile-goalInput { flex-direction: row; align-items: center; justify-content: space-between; }
+  .profile-goalLabel { flex-direction: row-reverse; justify-content: flex-end; }
+  .profile-goalValue { max-width: 95px; }
+  .profile-goalValue input { text-align: right; font-size: 23px; }
+  .profile-card .account-cardHeading { flex-wrap: wrap; }
+  .account-countBadge { margin-left: 0; }
+}
+@media (max-width: 649px) {
+  .account-content { padding-inline: 18px; }
+  .account-topbar { padding-inline: 18px; gap: 12px; }
+  .account-headerPlate { padding: 7px 9px; }
+  .account-pageHeading { flex-wrap: wrap; gap: 13px; padding: 23px 0 20px; }
+  .account-pageHeading h1 { font-size: 30px; letter-spacing: -1.1px; }
+  .account-pageHeading h1 + p { margin-top: 8px; }
+  .account-eyebrow { font-size: 9px; letter-spacing: 1.2px; margin-bottom: 8px; }
+  .account-pageHeading .account-secondaryButton { font-size: 11px; padding: 9px 12px; min-height: 39px; }
+  .account-card { padding: 20px; border-radius: 17px; }
+  .account-cardHeading h2 { font-size: 18px; }
+  .account-cardDescription { font-size: 12px; line-height: 1.75; }
+  .account-footer { width: calc(100% - 36px); font-size: 9px; padding-block: 18px; }
+  .plate-overview { padding: 20px; gap: 16px 12px; border-radius: 18px; }
+  .plate-calorieSummary { gap: 12px; }
+  .plate-summaryIcon { width: 46px; height: 46px; }
+  .plate-summaryIcon svg { width: 27px; height: 27px; }
+  .plate-calorieValue { font-size: 27px; letter-spacing: -.8px; }
+  .account-label { font-size: 10px; }
+  .plate-selectedCount { padding-left: 14px; }
+  .plate-selectedCount strong { font-size: 25px; gap: 5px; }
+  .plate-selectedCount small { font-size: 12px; }
+  .plate-sessionNote { font-size: 10px; line-height: 1.7; padding-top: 12px; }
+  .plate-macroGrid { gap: 9px; margin: 13px 0 25px; }
+  .plate-macroCard { padding: 15px 12px; border-radius: 14px; }
+  .plate-macroHeading h2 { font-size: 10px; letter-spacing: .3px; }
+  .plate-macroHeading .plate-nutrientDot { width: 6px; height: 6px; }
+  .plate-macroValue { font-size: 22px; margin-top: 10px; }
+  .plate-macroValue > span { display: block; font-size: 10px; margin-top: 4px; }
+  .plate-macroCaption, .plate-coverageNote { font-size: 10px; }
+  .plate-macroTrack { margin-top: 12px; height: 5px; }
+  .plate-detailLayout { grid-template-columns: 1fr; gap: 25px; }
+  .account-sectionHeading h2 { font-size: 22px; }
+  .account-sectionHeading > span { font-size: 10px; }
+  .plate-foodCard.is-detailed { padding: 18px; }
+  .plate-foodCard.is-detailed .plate-foodBottom { flex-wrap: wrap; }
+  .plate-foodCard.is-detailed .plate-foodMacros { justify-content: flex-end; gap: 8px 12px; }
+  .plate-foodMacros { font-size: 11px; }
+  .plate-foodCard.is-detailed .plate-foodMacros > div:first-child { flex-basis: 100%; text-align: right; }
+  .plate-foodHeading h3 { font-size: 15px; }
+  .plate-foodHeading p { font-size: 11px; }
+  .plate-removeItem { font-size: 10px; min-height: 40px; }
+  .plate-quantity button { width: 38px; height: 38px; }
+  .plate-empty { padding: 30px 23px; }
+  .plate-empty h3 { font-size: 20px; }
+  .plate-nutritionAside { padding-top: 0; }
+  .plate-nutritionList { gap: 7px; }
+  .plate-nutritionList > div { padding: 12px; }
+  .profile-intro { padding: 19px; gap: 13px; }
+  .profile-introIcon { width: 46px; height: 46px; }
+  .profile-introIcon svg { width: 22px; height: 22px; }
+  .profile-intro h2 { font-size: 17px; line-height: 1.3; letter-spacing: -.4px; }
+  .profile-intro p { font-size: 11px; line-height: 1.6; }
+  .profile-saveStatus { font-size: 10px; padding: 12px 2px 17px; }
+  .profile-layout { grid-template-columns: 1fr; gap: 18px; }
+  .profile-column { gap: 18px; }
+  .profile-card .account-cardHeading { flex-wrap: nowrap; gap: 8px; }
+  .profile-card .account-countBadge { margin-left: auto; font-size: 9px; padding-inline: 6px; }
+  .profile-toggles { margin-top: 17px; }
+  .profile-toggleRow { padding: 13px; }
+  .profile-toggleRow strong { font-size: 13px; }
+  .profile-preferenceNote { font-size: 10px; line-height: 1.8; }
+  .profile-goalGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 17px; }
+  .profile-goalInput { flex-direction: column; align-items: stretch; padding: 12px 10px; gap: 13px; }
+  .profile-goalLabel { flex-direction: row; justify-content: space-between; font-size: 9px; gap: 4px; }
+  .profile-goalValue { max-width: none; }
+  .profile-goalValue input { font-size: 24px; text-align: left; }
+  .profile-goalValue > span { font-size: 11px; }
+  .profile-resetGoals { font-size: 10px; }
+  .profile-balancePanel { padding: 23px; }
+}
+@media (max-width: 359px) {
+  .account-content, .account-topbar { padding-inline: 14px; }
+  .account-pageHeading h1 { font-size: 27px; }
+  .account-headerPlate { gap: 5px; padding-inline: 7px; }
+  .plate-summaryIcon { display: none; }
+  .plate-macroCard { padding: 13px 10px; }
+  .plate-macroValue { font-size: 20px; }
+  .plate-foodCard.is-detailed .plate-foodMacros { flex-basis: 100%; justify-content: space-between; }
+  .plate-foodCard.is-detailed .plate-foodMacros > div:first-child { flex-basis: auto; text-align: left; justify-content: flex-end; }
+  .account-card { padding: 17px; }
+  .profile-card .account-cardHeading { flex-wrap: wrap; }
+  .profile-card .account-countBadge { margin-left: 0; }
+  .profile-goalInput { padding-inline: 8px; }
+  .profile-goalValue input { font-size: 21px; }
+  .account-footer { flex-wrap: wrap; gap: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .profile-switch, .profile-switch > span, .plate-macroTrack > div { transition: none; }
+}

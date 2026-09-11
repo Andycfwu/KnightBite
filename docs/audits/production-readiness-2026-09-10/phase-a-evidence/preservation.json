@@ -1,0 +1,24 @@
+{
+  "observedAt": "2026-09-10T21:50:17.509988+00:00",
+  "baselineAt": "2026-09-10T21:30:18.832746+00:00",
+  "originalBranch": "codex/dining-hall-overhaul",
+  "originalHead": "1fbe14b7805c95d69bffda11913b4739f8ce8db5",
+  "baselineFileCount": 225,
+  "changedBaselineFiles": [
+    "docs/audits/production-readiness-2026-09-10/NEXT_RELEASE_READINESS_STATUS.md",
+    "docs/audits/production-readiness-2026-09-10/RELEASE_ACTIVATION_PLAN.md"
+  ],
+  "unexpectedChangedBaselineFiles": [],
+  "indexUnchanged": true,
+  "originalBranchAndHeadUnchanged": true,
+  "releaseBranch": "codex/release-readiness-2026-09-10",
+  "releaseHead": "bb7007d13221c8cf34494495a642053b03eaf037",
+  "releaseTree": "089785116a135e47cd69a3e037523108684f818b",
+  "releaseWorktreeClean": true,
+  "remoteRefs": [
+    "bb7007d13221c8cf34494495a642053b03eaf037\trefs/heads/codex/release-readiness-2026-09-10",
+    "70166c4fd04bb0d5ca25b792283924eff36c1f31\trefs/heads/main"
+  ],
+  "prePhaseAReportArchivedExactly": true,
+  "candidateChangedOrRepublishedBeyondApproval": false
+}

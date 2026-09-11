@@ -1,0 +1,53 @@
+{
+  "method": "Authenticated Vercel deployment/build UI and application DOM observations",
+  "commit": "8f6b6230b724d4ff8df0aef90c0067bc6de019a7",
+  "tree": "96705dfd8cad612dd054029f7b25d78b82caad40",
+  "deploymentId": "dpl_C8H7wuyE6saK1Uj9YzuMhwNrPGiE",
+  "url": "https://knight-bite-rfgxc7s1h-andycfwus-projects.vercel.app",
+  "readyAt": "2026-09-10T22:56:12Z",
+  "buildDurationSeconds": 38,
+  "build": {
+    "observedAt": "2026-09-10T22:55:38.367Z",
+    "command": "npm run build (with normal prebuild)",
+    "next": "15.5.25",
+    "sharp": "0.35.4",
+    "node": "24.19.0",
+    "openssl": "3.5.7",
+    "undici": "7.29.0",
+    "llhttp": "9.4.3",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "requestTimeDiagnosticFunction": {
+    "observedAt": "2026-09-10T22:56:50.992Z",
+    "environment": "preview",
+    "commit": "8f6b6230b724d4ff8df0aef90c0067bc6de019a7",
+    "region": "iad1",
+    "node": "24.19.0",
+    "openssl": "3.5.7",
+    "undici": "7.29.0",
+    "llhttp": "9.4.3",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "requestTimeMenuLoaderFunction": {
+    "event": "knightbite.preview_function_runtime",
+    "caller": "menu_loader",
+    "observedAt": "2026-09-10T22:56:13.812Z",
+    "environment": "preview",
+    "commit": "8f6b6230b724d4ff8df0aef90c0067bc6de019a7",
+    "region": "iad1",
+    "node": "24.19.0",
+    "openssl": "3.5.7",
+    "undici": "7.29.0",
+    "llhttp": "9.4.3",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "runtimeLimits": [
+    "Observed invocations, not every instance/future patch or platform-internal library attestation",
+    "Managed major selector cannot independently pin function patch",
+    "Existing later bundled-component advisory exposure assessment in RUNTIME_POLICY.md still applies"
+  ],
+  "productionDomainAssignment": "Skipped"
+}

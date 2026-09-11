@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-09-10T21:12:11.358648+00:00",
+  "applicationCommit": "83161520e6a3a3a41699db3a68b53d6f2810f90e",
+  "applicationTree": "ec28c6c37c1b82deafb2a78c776d1c82cda4561d",
+  "linuxEvidenceReuse": {
+    "priorBuildId": "0ieWqu8yMrbGYWaa4lbI8",
+    "priorBuildSourceDigest": "9feab4f23c972fea04486fcb2cf81c4688fef0041da123cec55311501ed7d69f",
+    "allApplicationFilesMatch": true,
+    "differences": {
+      "tests/browser/release-evidence.spec.ts": {
+        "buildSha256": "734b1f1086bfa15e48c79d5246bb3631f24a07da962e78951fba5723b8c4db2e",
+        "candidateSha256": "f40eeb335ebc4bbd4417feeb061d01c36f62527e6498c9b1dbd09a2ca8c9ddff"
+      }
+    },
+    "missing": [],
+    "allChangedTestsMatchPassingLinuxRerun": true,
+    "additionalFixtureReadme": "tests/fixtures/nutrislice/README.md is documentation only, added after prior build",
+    "priorLinuxCommands": "npm ci, 242 tests, typecheck, lint, isolated production build, 20 Chromium/WebKit workflows, 4 captured-analytics/keyboard checks, npm audit; completed in documented phases",
+    "freshLinuxAttempt": "Two local Docker launch attempts stalled before a container or test process was created; interrupted. No fresh Linux test or build result claimed. Docker/global settings were not changed."
+  },
+  "workflow": {
+    "actionlintVersion": "1.7.12",
+    "actionlintExitCode": 0,
+    "output": "",
+    "checkoutGuardSmoke": {
+      "matchingCommit": 0,
+      "wrongCommit": 1
+    },
+    "requiredName": "KnightBite release verification",
+    "changedOnly": "release-branch push trigger and exact checkout SHA/tree record/guard",
+    "githubHostedExecution": "Not run; publication requires approval"
+  },
+  "credentialPatternScan": {
+    "matches": 0,
+    "scope": "Candidate nonignored text source and evidence; private-key, GitHub token, AWS key, literal bearer and JWT patterns. No authentication store was read; not a guarantee about every secret format."
+  }
+}

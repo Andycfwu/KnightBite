@@ -1,0 +1,305 @@
+{"node":"v24.21.0","platform":"linux","arch":"x64"}
+PRETTY_NAME="Ubuntu 24.04.4 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.4 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+
+added 232 packages, and audited 233 packages in 42s
+
+found 0 vulnerabilities
+npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+
+> knightbite@0.1.0 check
+> npm test && npm run typecheck && npm run lint && npm run build:isolated && npm run test:browser
+
+
+> knightbite@0.1.0 test
+> tsx --tsconfig tsconfig.test.json --require ./tests/support/synthetic-network.cjs --test --test-timeout=10000 tests/*.test.tsx
+
+✔ context helper accepts observed-lunch with its observed display formatting (502.445834ms)
+✔ context helper accepts observed-dinner with its observed display formatting (37.192209ms)
+✔ context helper accepts observed-breakfast with its observed display formatting (21.192875ms)
+✔ observed food response outside date options is unconfirmed (59.366416ms)
+✔ an observed echoed location heading cannot override the menu context (24.651542ms)
+✔ context helper rejects different displayed date (21.213916ms)
+✔ provider rejects different displayed date before labels and returns unavailable without mocks (554.481917ms)
+✔ context helper rejects different returned location (2.729125ms)
+✔ provider rejects different returned location before labels and returns unavailable without mocks (6.693833ms)
+✔ context helper rejects different returned meal (3.761541ms)
+✔ provider rejects different returned meal before labels and returns unavailable without mocks (5.225417ms)
+✔ context helper rejects missing date selector (1.019958ms)
+✔ provider rejects missing date selector before labels and returns unavailable without mocks (8.195125ms)
+✔ context helper rejects requested date only in unselected options and navigation (0.791042ms)
+✔ provider rejects requested date only in unselected options and navigation before labels and returns unavailable without mocks (2.512792ms)
+✔ context helper rejects malformed selected date (1.044959ms)
+✔ provider rejects malformed selected date before labels and returns unavailable without mocks (2.473541ms)
+✔ context helper rejects impossible calendar date (1.778333ms)
+✔ provider rejects impossible calendar date before labels and returns unavailable without mocks (1.696834ms)
+✔ context helper rejects incorrect weekday (0.734333ms)
+✔ provider rejects incorrect weekday before labels and returns unavailable without mocks (10.531875ms)
+✔ context helper rejects multiple selected dates (0.464708ms)
+✔ provider rejects multiple selected dates before labels and returns unavailable without mocks (97.723583ms)
+✔ context helper rejects duplicate date selector (2.604917ms)
+✔ provider rejects duplicate date selector before labels and returns unavailable without mocks (2.886959ms)
+✔ context helper rejects missing active meal with navigation still present (0.522542ms)
+✔ provider rejects missing active meal with navigation still present before labels and returns unavailable without mocks (1.625666ms)
+✔ context helper rejects multiple active meals (0.850416ms)
+✔ provider rejects multiple active meals before labels and returns unavailable without mocks (1.182ms)
+✔ context helper rejects active meal only in a link (1.224833ms)
+✔ provider rejects active meal only in a link before labels and returns unavailable without mocks (2.862625ms)
+✔ context helper rejects conflicting active-meal accessible label (3.103ms)
+✔ provider rejects conflicting active-meal accessible label before labels and returns unavailable without mocks (2.751208ms)
+✔ context helper rejects missing location footer despite Atrium item text (3.597333ms)
+✔ provider rejects missing location footer despite Atrium item text before labels and returns unavailable without mocks (2.409916ms)
+✔ context helper rejects ambiguous location footers (0.704875ms)
+✔ provider rejects ambiguous location footers before labels and returns unavailable without mocks (1.270041ms)
+✔ context helper rejects missing report-form context (0.59725ms)
+✔ provider rejects missing report-form context before labels and returns unavailable without mocks (1.401709ms)
+✔ context helper rejects report form points to another endpoint (0.286541ms)
+✔ provider rejects report form points to another endpoint before labels and returns unavailable without mocks (1.424ms)
+✔ context helper rejects report date conflicts with selected date (3.517416ms)
+✔ provider rejects report date conflicts with selected date before labels and returns unavailable without mocks (1.591833ms)
+✔ context helper rejects selected option URL conflicts with displayed date (0.893583ms)
+✔ provider rejects selected option URL conflicts with displayed date before labels and returns unavailable without mocks (2.586334ms)
+✔ context helper rejects malformed report date (0.348041ms)
+✔ provider rejects malformed report date before labels and returns unavailable without mocks (1.7265ms)
+✔ context helper rejects conflicting duplicate date parameters (1.441666ms)
+✔ provider rejects conflicting duplicate date parameters before labels and returns unavailable without mocks (1.051584ms)
+✔ context helper rejects report location conflicts with footer (0.35875ms)
+✔ provider rejects report location conflicts with footer before labels and returns unavailable without mocks (1.730875ms)
+✔ context helper rejects missing report location (0.397375ms)
+✔ provider rejects missing report location before labels and returns unavailable without mocks (3.225667ms)
+✔ context helper rejects duplicate report locations (1.71775ms)
+✔ provider rejects duplicate report locations before labels and returns unavailable without mocks (3.224625ms)
+✔ context helper rejects report meal conflicts with active tab (1.121833ms)
+✔ provider rejects report meal conflicts with active tab before labels and returns unavailable without mocks (1.582583ms)
+✔ context helper rejects conflicting nonempty location heading (1.337875ms)
+✔ provider rejects conflicting nonempty location heading before labels and returns unavailable without mocks (9.0975ms)
+✔ context helper rejects conflicting location name on report form (1.841958ms)
+✔ provider rejects conflicting location name on report form before labels and returns unavailable without mocks (1.583459ms)
+✔ context helper rejects missing menu box (0.255959ms)
+✔ provider rejects missing menu box before labels and returns unavailable without mocks (0.670167ms)
+✔ context helper rejects multiple menu boxes (0.230667ms)
+✔ provider rejects multiple menu boxes before labels and returns unavailable without mocks (2.870084ms)
+✔ context helper rejects nested conflicting forms (1.603ms)
+✔ provider rejects nested conflicting forms before labels and returns unavailable without mocks (1.541375ms)
+✔ context helper rejects context only in comments (0.486125ms)
+✔ provider rejects context only in comments before labels and returns unavailable without mocks (0.899333ms)
+✔ context helper rejects context only in script text (0.314959ms)
+✔ provider rejects context only in script text before labels and returns unavailable without mocks (0.696208ms)
+✔ matching context preserves normalized content, nutrition, identifiers, date, and timestamp (72.377167ms)
+✔ other validated meals survive a rejected meal that contains usable food (33.55975ms)
+✔ valid context with no menu items retains unavailable behavior (10.768791ms)
+✔ valid context with no meaningful nutrition retains existing usability rules (14.449ms)
+✔ context rejection diagnostics are concise and contain no upstream HTML (2.138792ms)
+✔ Atrium maps observed FoodProNet sections without dropping or duplicating source objects (18.083667ms)
+✔ Atrium matches section labels exactly, never cuisine or diet words in a food name (1.64675ms)
+✔ Atrium breakfast yogurt and later soup/salad use the same area with fresh meal groups (1.188959ms)
+✔ Atrium refrigerated islands share a group without decorative landmark labels (314.111083ms)
+✔ Atrium null menus keep the drawing, date and controls without inventing food or live metadata (111.96775ms)
+✔ Atrium real and sample rendering reuse menu, search and plate behavior (327.990375ms)
+✔ Busch groups observed section names without losing or duplicating upstream objects (16.628208ms)
+✔ Busch requires exact labels; similar words and vegetarian foods never establish a location (0.612417ms)
+✔ Busch distinguishes the two entree lines without inferring cuisine from food names (0.757875ms)
+✔ Busch meal regrouping cannot retain previous meal items (0.532167ms)
+✔ Busch unavailable state preserves the guide, disables search, and invents no food or retrieval time (333.903625ms)
+✔ Busch real menu renders station food, accessible controls and the existing plate entry (70.087167ms)
+✔ Busch fruit stands share one menu group and removed counters do not hide upstream food (94.886917ms)
+✔ Busch explicitly supplied samples have no live label or retrieval claim (273.003708ms)
+✔ explicit free-from labels are not allergens; contains and may-contain keep their meaning (72.090125ms)
+✔ unknown/missing labels never become dietary guarantees and conflicting labels do not pass filters (14.567833ms)
+✔ explicit returned recipe, portion and date must agree before nutrition is used (100.0645ms)
+✔ ambiguous fields reject; absent fields, scripts and ingredients supply no identity claim (54.718417ms)
+✔ permits the intended FoodProNet label path: label.aspx (38.063ms)
+✔ permits the intended FoodProNet label path: /FoodPronet/label.aspx (10.866709ms)
+✔ permits the intended FoodProNet label path: https://menuportal23.dining.rutgers.edu/FoodPronet/label.aspx (6.237708ms)
+✔ rejects unintended label destination: http://127.0.0.1/label.aspx (13.136542ms)
+✔ rejects unintended label destination: //evil.example/label.aspx (0.352708ms)
+✔ rejects unintended label destination: https://menuportal23.dining.rutgers.edu.evil.example/label.aspx (0.133834ms)
+✔ rejects unintended label destination: http://menuportal23.dining.rutgers.edu/FoodPronet/label.aspx (0.104209ms)
+✔ rejects unintended label destination: https://menuportal23.dining.rutgers.edu:444/FoodPronet/label.aspx (0.364542ms)
+✔ rejects unintended label destination: https://user:password@menuportal23.dining.rutgers.edu/FoodPronet/label.aspx (18.464459ms)
+✔ rejects unintended label destination: ../FoodPronet/label.aspx (24.721833ms)
+✔ rejects unintended label destination: %2e%2e/FoodPronet/label.aspx (10.127625ms)
+✔ rejects unintended label destination: /FoodPronet/x/../label.aspx (13.821208ms)
+✔ rejects unintended label destination: /FoodPronet/label.aspx/../other (11.2415ms)
+✔ rejects unintended label destination: /FoodPronet/%6cabel.aspx (0.38675ms)
+✔ rejects unintended label destination: \evil.example/label.aspx (0.348333ms)
+✔ rejects unintended label destination: data:text/html,label.aspx (0.310625ms)
+✔ rejects unintended label destination: /other/label.aspx (10.971667ms)
+✔ rejects unintended label destination: label.aspx
+ (0.122542ms)
+✔ rejects ambiguous label context: &dtdate=9/8/2026 (11.836375ms)
+✔ rejects ambiguous label context: &locationNum=12 (0.482125ms)
+✔ rejects ambiguous label context: &redirect=https://evil.example (0.672583ms)
+✔ rejects ambiguous label context: #fragment (0.499042ms)
+✔ rejects incorrect date and malformed recipe identity (8.83275ms)
+✔ home search uses the hall's actual stations and campus, including aliases (13.772375ms)
+✔ blank home search retains all halls and unrelated searches return none (0.610875ms)
+✔ home previews use the existing map artwork, station counts, and working hall links (429.009167ms)
+✔ declared and chunked oversized bodies are rejected and cancelled before buffering (284.667917ms)
+✔ JSON depth, collection and string limits reject excessive work without truncation (1.0625ms)
+✔ cache shares pending loads, bounds admission and never evicts active work (3.730208ms)
+✔ multi-day cache use plateaus and expires entries while respecting a byte budget (157.478791ms)
+✔ Livingston grouping preserves every upstream station and item exactly once (22.475ms)
+✔ Only exact normalized aliases map to a physical area (1.705208ms)
+✔ Grouping another meal cannot retain a previous meal's foods (0.387ms)
+✔ Livingston places fresh fruit on the shared island without inferring dietary locations (345.578416ms)
+✔ Livingston unavailable state keeps the guide but no food claims, add controls, or invented timestamp (59.426375ms)
+✔ Livingston uses real menu content, provides list/search alternatives and retains plate entry (50.454959ms)
+✔ Deliberately supplied samples cannot receive a live source label or retrieval time (31.719958ms)
+✔ loader returns unavailable without mock food when Rutgers nulls in development (145.318334ms)
+✔ loader returns unavailable without mock food when Rutgers throws in development (13.452416ms)
+✔ loader returns unavailable without mock food when Rutgers nulls in production (25.356833ms)
+✔ loader returns unavailable without mock food when Rutgers throws in production (10.598416ms)
+✔ loader preserves the successful Rutgers menu, including contents and timestamp (2.224459ms)
+✔ Atrium exits loading after 15 seconds when the provider never settles (1008.730792ms)
+✔ Atrium exits loading after 15 seconds when the provider resolves (479.375209ms)
+✔ Atrium exits loading after 15 seconds when the provider rejects (202.723667ms)
+✔ hall loading and error screens expose status and a way back to the hall list (17.664917ms)
+✔ homepage reports unconfirmed status when Rutgers nulls (104.083542ms)
+✔ homepage reports unconfirmed status when Rutgers throws (45.181125ms)
+✔ homepage stays unconfirmed after its timeout even if Rutgers later resolves (67.817292ms)
+✔ homepage stays unconfirmed after its timeout even if Rutgers later rejects (64.8145ms)
+✔ homepage mixed results count only confirmed real menus and use only real update times (32.508ms)
+✔ homepage uses singular wording for one confirmed menu without inventing its missing timestamp (37.472167ms)
+✔ closed hall cards still show that menu status is unavailable (24.662333ms)
+✔ hall failure (null) uses the requested Rutgers date at 2026-09-08T16:00:00.000Z (38.150333ms)
+✔ hall failure (throw) uses the requested Rutgers date at 2026-09-08T16:00:00.000Z (32.762833ms)
+✔ hall failure (null) uses the requested Rutgers date at 2026-09-09T01:00:00.000Z (31.301083ms)
+✔ hall failure (throw) uses the requested Rutgers date at 2026-09-09T01:00:00.000Z (160.6725ms)
+✔ unavailable view retains the supplied request date after the calendar advances (36.229292ms)
+✔ a successful hall page retains real menu items, meal controls, plate access, and source time (52.348792ms)
+✔ mock fixtures remain accessible only by deliberate use and are labeled as samples (36.168375ms)
+✔ Atrium keeps its station guide while unavailable and retains the requested date (36.1875ms)
+✔ dietary filters require explicit tags, never a food name or missing allergen data (7.10275ms)
+✔ protein filter uses the displayed 20g threshold and excludes variable nutrition (1.284834ms)
+✔ search intersects dietary filters, matches allergens and retains original food objects (5.118167ms)
+✔ empty meal and no matches return no phantom stations (1.047583ms)
+✔ production success logs actual counts and preserves normalized Nutrislice results (661.428875ms)
+✔ busch distinguishes HTTP and request failures while retaining a surviving meal (129.369458ms)
+✔ busch logs upstream timeout only after its existing deadline, not after 1.1 seconds (896.227709ms)
+✔ atrium distinguishes HTTP and request failures while retaining a surviving meal (132.698625ms)
+✔ atrium logs upstream timeout only after its existing deadline, not after 1.1 seconds (24.061708ms)
+✔ Nutrislice reports malformed JSON without raw content (19.815625ms)
+✔ Nutrislice reports failed body read without raw content (7.099375ms)
+✔ Nutrislice reports missing days shape without raw content (9.604334ms)
+✔ Nutrislice reports non-array days shape without raw content (16.132833ms)
+✔ Nutrislice reports null payload without raw content (13.718917ms)
+✔ Nutrislice reports malformed menu_items shape without raw content (8.3915ms)
+✔ Nutrislice reports nested normalization exception without raw content (10.19575ms)
+✔ Nutrislice reports missing requested date without raw content (7.917417ms)
+✔ malformed optional meal shape is rejected while other meals survive (6.99375ms)
+✔ school discovery HTTP failure remains visible after successful static mapping (14.701833ms)
+✔ school discovery malformed JSON remains visible after successful static mapping (10.320834ms)
+✔ school discovery unexpected shape remains visible after successful static mapping (12.429125ms)
+✔ school discovery missing mapping remains visible after successful static mapping (7.659125ms)
+✔ Atrium validator rejection remains separate from request failure and retains other meals (38.010541ms)
+✔ Atrium enrichment failures are aggregated per affected item without losing menu items (64.51825ms)
+✔ nutrition-label timeout keeps its endpoint and existing 2.5-second budget (175.56675ms)
+✔ busch settles when fetch never responds and ignores abort (19.991417ms)
+✔ atrium settles when fetch never responds and ignores abort (10.308209ms)
+✔ nutrislice body consumption shares the request deadline and handles a late resolve (17.368708ms)
+✔ nutrislice body consumption shares the request deadline and handles a late reject (7.221958ms)
+✔ foodpronet body consumption shares the request deadline and handles a late resolve (18.380167ms)
+✔ foodpronet body consumption shares the request deadline and handles a late reject (13.715166ms)
+✔ nutrition_label body consumption shares the request deadline and handles a late resolve (16.889667ms)
+✔ nutrition_label body consumption shares the request deadline and handles a late reject (26.57525ms)
+✔ Atrium bounds successive slow label batches while retaining retrieved food (79.961083ms)
+✔ busch distinguishes empty parsing (17.4975ms)
+✔ busch distinguishes parsed data rejected by usability (7.38ms)
+✔ atrium distinguishes empty parsing (10.0895ms)
+✔ atrium distinguishes parsed data rejected by usability (28.331834ms)
+✔ normalization counts distinguish dropped, deduped, returned, and heuristic items (17.379625ms)
+✔ cached success and concurrent callers emit one summary (25.48325ms)
+✔ cached unavailable result and concurrent callers emit one summary (13.248791ms)
+✔ immediate failure emits one error before sibling work that never settles (15.819041ms)
+✔ immediate failure emits one error before sibling work that resolves (8.523875ms)
+✔ immediate failure emits one error before sibling work that rejects (6.861125ms)
+✔ early Atrium error snapshots unfinished normalization before sibling resolution and rejection (63.511958ms)
+✔ finishIngestionAttempt builds, serializes, and emits before returning (3.659166ms)
+✔ Atrium portion variants retain their contents with distinct row and plate identities (44.586334ms)
+✔ many distinct enrichment errors remain bounded and report omitted occurrences (57.941583ms)
+✔ a console sink failure cannot change the returned real menu (22.213042ms)
+✔ Neilson maps verified section labels and conserves every original station and item (18.325084ms)
+✔ Neilson never guesses station placement from cuisine names or dietary tags (3.567667ms)
+✔ Neilson drawing orientation keeps entrance below counters and deli above the salad island (1.329ms)
+✔ Neilson unavailable state keeps its guide without inventing foods or retrieval claims (461.210042ms)
+✔ Neilson uses the shared menu and plate controls with real data and honest sample labeling (135.3395ms)
+✔ known zero, missing fields and partial plate subtotals remain distinct (8.160417ms)
+✔ portion IDs survive reordering and separate 120/240-calorie plate entries total 360 (9.818125ms)
+✔ plate snapshots retain missing/custom fields and separate refreshed dates or nutrition (0.785167ms)
+✔ goal progress at 0% stays within its track (23.889833ms)
+✔ goal progress at 100% stays within its track (6.975791ms)
+✔ goal progress at 250% stays within its track (3.219584ms)
+✔ storage SecurityError keeps preferences usable without claiming a save (92.590167ms)
+✔ storage QuotaExceededError keeps preferences usable without claiming a save (0.993292ms)
+✔ unreadable preferences are preserved: {bad (1.77725ms)
+✔ unreadable preferences are preserved: null (2.60575ms)
+✔ unreadable preferences are preserved: [] (0.89475ms)
+✔ unreadable preferences are preserved: {"version":2} (0.208542ms)
+✔ unreadable preferences are preserved: {"dietaryPreferences":{"vegan":"false"}} (3.887667ms)
+✔ unreadable preferences are preserved: {"macroGoals":{"protein":-3}} (2.344792ms)
+✔ unreadable preferences are preserved: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx (1.619ms)
+✔ valid legacy values read without rewriting and migrate on an explicit edit (12.9415ms)
+✔ unsafe upstream link never reaches fetch: http://127.0.0.1/label.aspx (221.689458ms)
+✔ unsafe upstream link never reaches fetch: https://evil.example/label.aspx (24.025833ms)
+✔ unsafe upstream link never reaches fetch: //evil.example/label.aspx (13.893166ms)
+✔ unsafe upstream link never reaches fetch: ../label.aspx (12.285875ms)
+✔ unsafe upstream link never reaches fetch: https://user@menuportal23.dining.rutgers.edu/FoodPronet/label.aspx (7.37175ms)
+✔ redirects are rejected without making a request to the Location destination (16.617166ms)
+✔ real loader preserves calorie-only values and distinct Nutrislice portions (11.402583ms)
+✔ invalid calories remain unknown: -1 (5.08975ms)
+✔ invalid calories remain unknown: 999999 (5.189958ms)
+✔ invalid calories remain unknown: 12not-a-number (10.784583ms)
+✔ invalid calories remain unknown: null (6.769125ms)
+✔ oversized menus reject while independent hall loads remain usable (155.4775ms)
+✔ a conflicting returned label identity cannot populate the requested food (32.457041ms)
+✔ a menu of supplied all-zero foods remains a real menu (3.836292ms)
+✔ excess food candidates reject a meal instead of truncating it (45.009917ms)
+✔ a large seven-day response preserves every requested-day item within the weekly budget (295.033417ms)
+✔ captured sanitized Livingston week fits all ingestion budgets without dropping requested-day food (2730.288584ms)
+ℹ tests 242
+ℹ suites 0
+ℹ pass 242
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 27616.460179
+
+> knightbite@0.1.0 typecheck
+> next typegen && tsc --noEmit --incremental false
+
+Generating route types...
+✓ Route types generated successfully
+
+> knightbite@0.1.0 lint
+> eslint . --max-warnings=0
+
+
+/work/captured-vercel-insights.js
+  1:283   error  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:1074  error  'n' is defined but never used                                          @typescript-eslint/no-unused-vars
+  1:1210  error  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:2329  error  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:2380  error  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:2404  error  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:2911  error  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:2956  error  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1:2976  error  'r' is defined but never used                                          @typescript-eslint/no-unused-vars
+  1:3028  error  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+✖ 10 problems (10 errors, 0 warnings)

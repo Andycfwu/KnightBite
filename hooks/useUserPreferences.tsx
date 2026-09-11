@@ -1,147 +1,72 @@
 "use client";
 
-import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { clearPreferences, decodePreferences, defaultPreferences, PREFERENCES_KEY, readPreferences, sanitizeGoalValue, savePreferences, SAVE_MESSAGES, type DietaryPreferences, type MacroGoals, type Preferences, type SaveStatus } from "@/lib/preferences-storage";
 
-type DietaryPreferences = {
-  vegetarian: boolean;
-  vegan: boolean;
-  nutFree: boolean;
-};
-
-type MacroGoals = {
-  protein: string;
-  carbs: string;
-  fat: string;
-};
-
-type ParsedMacroGoals = {
-  protein?: number;
-  carbs?: number;
-  fat?: number;
-};
-
-type UserPreferencesContextValue = {
-  dietaryPreferences: DietaryPreferences;
-  macroGoals: MacroGoals;
-  parsedMacroGoals: ParsedMacroGoals;
+function parsePositiveGoal(value: string) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : undefined;
+}
+type UserPreferencesContextValue = Preferences & {
+  parsedMacroGoals: { protein?: number; carbs?: number; fat?: number };
+  saveStatus: SaveStatus;
+  saveMessage: string;
   setDietaryPreference: (key: keyof DietaryPreferences, value: boolean) => void;
   setMacroGoal: (key: keyof MacroGoals, value: string) => void;
   resetMacroGoals: () => void;
+  clearLocalPreferences: () => void;
 };
-
-const STORAGE_KEY = "knightbite-user-preferences";
-
-const DEFAULT_DIETARY_PREFERENCES: DietaryPreferences = {
-  vegetarian: false,
-  vegan: false,
-  nutFree: false
-};
-
-const DEFAULT_MACRO_GOALS: MacroGoals = {
-  protein: "",
-  carbs: "",
-  fat: ""
-};
-
 const UserPreferencesContext = createContext<UserPreferencesContextValue | null>(null);
-
-function sanitizeGoalValue(value: string) {
-  return value.replace(/[^\d]/g, "").slice(0, 4);
-}
-
-function parsePositiveGoal(value: string) {
-  const trimmed = value.trim();
-  if (!trimmed) {
-    return undefined;
-  }
-
-  const parsed = Number(trimmed);
-  if (!Number.isFinite(parsed) || parsed <= 0) {
-    return undefined;
-  }
-
-  return parsed;
-}
-
+const browserStorage = () => window.localStorage;
 export function UserPreferencesProvider({ children }: { children: ReactNode }) {
-  const [dietaryPreferences, setDietaryPreferences] = useState<DietaryPreferences>(DEFAULT_DIETARY_PREFERENCES);
-  const [macroGoals, setMacroGoals] = useState<MacroGoals>(DEFAULT_MACRO_GOALS);
-  const [hydrated, setHydrated] = useState(false);
-
+  const [preferences, setPreferences] = useState(defaultPreferences);
+  const [saveStatus, setSaveStatus] = useState<SaveStatus>('loading');
+  const current = useRef(preferences);
   useEffect(() => {
-    try {
-      const rawValue = window.localStorage.getItem(STORAGE_KEY);
-      if (rawValue) {
-        const parsed = JSON.parse(rawValue) as {
-          dietaryPreferences?: Partial<DietaryPreferences>;
-          macroGoals?: Partial<MacroGoals>;
-        };
-
-        setDietaryPreferences({
-          vegetarian: Boolean(parsed?.dietaryPreferences?.vegetarian),
-          vegan: Boolean(parsed?.dietaryPreferences?.vegan),
-          nutFree: Boolean(parsed?.dietaryPreferences?.nutFree)
-        });
-
-        setMacroGoals({
-          protein: sanitizeGoalValue(String(parsed?.macroGoals?.protein ?? "")),
-          carbs: sanitizeGoalValue(String(parsed?.macroGoals?.carbs ?? "")),
-          fat: sanitizeGoalValue(String(parsed?.macroGoals?.fat ?? ""))
-        });
+    const loaded = readPreferences(browserStorage);
+    current.current = loaded.preferences;
+    setPreferences(loaded.preferences);
+    setSaveStatus(loaded.status);
+    const sync = (event: StorageEvent) => {
+      if(event.key !== PREFERENCES_KEY && event.key !== null) return;
+      let status: SaveStatus = 'unsaved';
+      let next = defaultPreferences();
+      if(event.newValue !== null) {
+        const parsed = decodePreferences(event.newValue);
+        if(!parsed) { setSaveStatus('invalid'); return; }
+        next = parsed; status = 'saved';
       }
-    } catch {
-      setDietaryPreferences(DEFAULT_DIETARY_PREFERENCES);
-      setMacroGoals(DEFAULT_MACRO_GOALS);
-    } finally {
-      setHydrated(true);
+      current.current = next;
+      setPreferences(next); setSaveStatus(status);
+    };
+    window.addEventListener('storage',sync);
+    return () => window.removeEventListener('storage',sync);
+  },[]);
+  const value = useMemo<UserPreferencesContextValue>(() => {
+    function update(change: (previous: Preferences) => Preferences) {
+      // Only explicit edits write. Merge against the latest readable cross-tab value;
+      // simultaneous edits use the browser's last successful whole-record write.
+      const latest = readPreferences(browserStorage);
+      const synchronized = saveStatus === 'saved' && (latest.status === 'saved' || latest.status === 'unsaved');
+      const next = change(synchronized ? latest.preferences : current.current);
+      current.current = next; setPreferences(next);
+      setSaveStatus(savePreferences(browserStorage,next));
     }
-  }, []);
-
-  useEffect(() => {
-    if (!hydrated) {
-      return;
-    }
-
-    window.localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        dietaryPreferences,
-        macroGoals
-      })
-    );
-  }, [dietaryPreferences, hydrated, macroGoals]);
-
-  const value = useMemo<UserPreferencesContextValue>(
-    () => ({
-      dietaryPreferences,
-      macroGoals,
-      parsedMacroGoals: {
-        protein: parsePositiveGoal(macroGoals.protein),
-        carbs: parsePositiveGoal(macroGoals.carbs),
-        fat: parsePositiveGoal(macroGoals.fat)
-      },
-      setDietaryPreference: (key, value) => {
-        setDietaryPreferences((current) => ({ ...current, [key]: value }));
-      },
-      setMacroGoal: (key, value) => {
-        setMacroGoals((current) => ({ ...current, [key]: sanitizeGoalValue(value) }));
-      },
-      resetMacroGoals: () => {
-        setMacroGoals(DEFAULT_MACRO_GOALS);
+    return { ...preferences, saveStatus, saveMessage: SAVE_MESSAGES[saveStatus],
+      parsedMacroGoals: { protein:parsePositiveGoal(preferences.macroGoals.protein), carbs:parsePositiveGoal(preferences.macroGoals.carbs), fat:parsePositiveGoal(preferences.macroGoals.fat) },
+      setDietaryPreference: (key,value) => update(previous => ({...previous,dietaryPreferences:{...previous.dietaryPreferences,[key]:value}})),
+      setMacroGoal: (key,value) => update(previous => ({...previous,macroGoals:{...previous.macroGoals,[key]:sanitizeGoalValue(value)}})),
+      resetMacroGoals: () => update(previous => ({...previous,macroGoals:defaultPreferences().macroGoals})),
+      clearLocalPreferences: () => {
+        const next = defaultPreferences(); current.current = next; setPreferences(next);
+        setSaveStatus(clearPreferences(browserStorage));
       }
-    }),
-    [dietaryPreferences, macroGoals]
-  );
-
+    };
+  },[preferences,saveStatus]);
   return <UserPreferencesContext.Provider value={value}>{children}</UserPreferencesContext.Provider>;
 }
-
 export function useUserPreferences() {
   const context = useContext(UserPreferencesContext);
-
-  if (!context) {
-    throw new Error("useUserPreferences must be used inside UserPreferencesProvider.");
-  }
-
+  if(!context) throw new Error("useUserPreferences must be used inside UserPreferencesProvider.");
   return context;
 }

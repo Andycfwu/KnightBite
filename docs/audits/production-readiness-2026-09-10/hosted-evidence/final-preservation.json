@@ -1,0 +1,13 @@
+{
+  "observedAt": "2026-09-10T23:12:18.919815+00:00",
+  "originalHead": "1fbe14b7805c95d69bffda11913b4739f8ce8db5",
+  "originalBranch": "codex/dining-hall-overhaul",
+  "baselineFiles": 276,
+  "changedBaselineFiles": [
+    "docs/PREVIEW_VERIFICATION.md",
+    "docs/audits/production-readiness-2026-09-10/NEXT_RELEASE_READINESS_STATUS.md"
+  ],
+  "allSourceUIBaselineFilesUnchanged": true,
+  "originalIndexUnchanged": true,
+  "newFiles": "Only readiness evidence/history and unsigned human checklist were copied into original worktree; code remains isolated/published in release worktree."
+}

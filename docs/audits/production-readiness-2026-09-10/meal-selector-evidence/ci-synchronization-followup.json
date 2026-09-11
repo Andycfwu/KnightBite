@@ -1,0 +1,18 @@
+{
+  "applicationCommit": "df489a0710fdf1ef22d0b993a65d9439c8b7a05e",
+  "failedRuns": [
+    34547700753,
+    34547703731
+  ],
+  "failure": "New test dispatched Escape before modal had reached open/focused state",
+  "fix": "Wait for Close plate focus before Escape; keep close, meal label and distinct food assertions",
+  "applicationChangesAfterDf489a0": false,
+  "retriesAdded": false,
+  "localFollowup": {
+    "lint": "pass",
+    "isolatedProductionBuildAndTypes": "pass",
+    "Node24.21": "18 focused Chromium/WebKit checks passed, repeat-each=3",
+    "Node24.19": "18 focused Chromium/WebKit checks passed, repeat-each=3"
+  },
+  "finalExactCommitCIGates": "required after publication"
+}

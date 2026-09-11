@@ -1,0 +1,136 @@
+{
+  "verifiedAt": "2026-09-10T23:39:07.557856+00:00",
+  "pr": {
+    "baseRefName": "main",
+    "headRefOid": "643412f5c878aebd0514b1464e2e43b496f3e509",
+    "isDraft": true,
+    "mergeStateStatus": "CLEAN",
+    "number": 1,
+    "state": "OPEN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-10T23:13:07Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Andycfwu/KnightBite/actions/runs/34540626078/job/103082231080",
+        "name": "KnightBite release verification",
+        "startedAt": "2026-09-10T23:06:26Z",
+        "status": "COMPLETED",
+        "workflowName": "Release checks"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-10T23:11:44Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/Andycfwu/KnightBite/actions/runs/34540619490/job/103082211165",
+        "name": "KnightBite release verification",
+        "startedAt": "2026-09-10T23:06:21Z",
+        "status": "COMPLETED",
+        "workflowName": "Release checks"
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "Vercel",
+        "startedAt": "2026-09-10T23:07:07Z",
+        "state": "SUCCESS",
+        "targetUrl": "https://vercel.com/andycfwus-projects/knight-bite/51XaMy2d5NbaCB376uiB1kQxQpi7"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-09-10T23:07:08Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://vercel.com/github",
+        "name": "Vercel Preview Comments",
+        "startedAt": "2026-09-10T23:07:08Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      }
+    ],
+    "url": "https://github.com/Andycfwu/KnightBite/pull/1"
+  },
+  "main": {
+    "ref": "refs/heads/main",
+    "node_id": "REF_kwDOSBbI2K9yZWZzL2hlYWRzL21haW4",
+    "url": "https://api.github.com/repos/Andycfwu/KnightBite/git/refs/heads/main",
+    "object": {
+      "sha": "70166c4fd04bb0d5ca25b792283924eff36c1f31",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Andycfwu/KnightBite/git/commits/70166c4fd04bb0d5ca25b792283924eff36c1f31"
+    }
+  },
+  "protection": {
+    "url": "https://api.github.com/repos/Andycfwu/KnightBite/branches/main/protection",
+    "required_status_checks": {
+      "url": "https://api.github.com/repos/Andycfwu/KnightBite/branches/main/protection/required_status_checks",
+      "strict": true,
+      "contexts": [
+        "KnightBite release verification"
+      ],
+      "contexts_url": "https://api.github.com/repos/Andycfwu/KnightBite/branches/main/protection/required_status_checks/contexts",
+      "checks": [
+        {
+          "context": "KnightBite release verification",
+          "app_id": 15368
+        }
+      ]
+    },
+    "required_pull_request_reviews": {
+      "url": "https://api.github.com/repos/Andycfwu/KnightBite/branches/main/protection/required_pull_request_reviews",
+      "dismiss_stale_reviews": true,
+      "require_code_owner_reviews": false,
+      "require_last_push_approval": false,
+      "required_approving_review_count": 0
+    },
+    "required_signatures": {
+      "url": "https://api.github.com/repos/Andycfwu/KnightBite/branches/main/protection/required_signatures",
+      "enabled": false
+    },
+    "enforce_admins": {
+      "url": "https://api.github.com/repos/Andycfwu/KnightBite/branches/main/protection/enforce_admins",
+      "enabled": true
+    },
+    "required_linear_history": {
+      "enabled": true
+    },
+    "allow_force_pushes": {
+      "enabled": false
+    },
+    "allow_deletions": {
+      "enabled": false
+    },
+    "block_creations": {
+      "enabled": false
+    },
+    "required_conversation_resolution": {
+      "enabled": true
+    },
+    "lock_branch": {
+      "enabled": false
+    },
+    "allow_fork_syncing": {
+      "enabled": false
+    }
+  },
+  "vercelReadOnlyUi": {
+    "observedAtUtc": "2026-09-10T23:38:00Z",
+    "timestampPrecision": "minute, observation window 23:36\u201323:39 UTC",
+    "project": "andycfwus-projects/knight-bite",
+    "plan": "Hobby",
+    "productionAlias": "knightbitenb.vercel.app",
+    "productionDeployment": "dpl_BT9hARabzozdRpqMutPju4P2xF5F",
+    "productionCommit": "70166c4fd04bb0d5ca25b792283924eff36c1f31",
+    "productionState": "Ready",
+    "previewDeployment": "dpl_51XaMy2d5NbaCB376uiB1kQxQpi7",
+    "previewCommit": "643412f5c878aebd0514b1464e2e43b496f3e509",
+    "previewUrl": "https://knight-bite-r0fu86efb-andycfwus-projects.vercel.app",
+    "previewState": "Ready",
+    "rollbackPicker": {
+      "offeredDeployment": "dpl_Cw8UgwpjjaqwStBK9FTqus6tn33D",
+      "offeredCommit": "906b5fd20433acb16b848a3eaf536cba9795a47b",
+      "earlierTargetsRequireUpgrade": true,
+      "action": "Cancelled; Continue never clicked",
+      "eligibilityAssessment": "Only pre-remediation predecessor offered; existing lockfile inspection retained. No patched eligible production rollback target."
+    }
+  },
+  "verificationReuse": "No candidate source change; same-evening full CI, hosted runtime, browser and header evidence reused. No new live provider requests or analytics events. No merge, deployment, promotion or setting mutation."
+}

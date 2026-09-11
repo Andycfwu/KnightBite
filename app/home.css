@@ -1,0 +1,214 @@
+/* Campus directory, sharing the hall explorer's colors and existing app font. */
+.home-page { min-height: 100vh; }
+.home-topbar { gap: 26px; }
+.home-desktopNav { display: flex; gap: 4px; align-items: center; margin-left: 10px; }
+.home-desktopNav a { padding: 12px 14px; border-radius: 10px; font-size: 12px; font-weight: 500; white-space: nowrap; }
+.home-desktopNav a[aria-current], .home-desktopNav a:hover { background: #efeeec; }
+.home-headerActions { display: flex; align-items: center; gap: 16px; margin-left: auto; }
+.home-headerDate { display: flex; align-items: center; gap: 8px; color: var(--livi-muted); font-size: 11px; white-space: nowrap; }
+.home-headerDate svg { width: 15px; height: 15px; }
+.home-topbar .home-searchShortcut { display: none; }
+.home-headerPlate { white-space: nowrap; }
+.home-headerPlate .home-plateLinkText { background: none; color: inherit; display: inline; width: auto; height: auto; padding: 0; font-size: 12px; }
+.home-content { width: 100%; max-width: 1300px; margin: 0 auto; padding: 0 32px; }
+.home-serviceBar { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 17px 0 15px; border-bottom: 1px solid var(--livi-border); }
+.home-serviceSummary { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.home-servicePill { display: inline-flex; align-items: center; gap: 6px; color: #62655f; background: #eeede9; padding: 6px 10px; border-radius: 20px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .4px; }
+.home-servicePill.has-service { color: #2c6439; background: #e9efe5; }
+.home-statusDot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+.home-openCount { color: #595d57; font-size: 11px; }
+.home-scheduleLabel { color: #898b84; }
+.home-confirmation { display: flex; align-items: center; gap: 7px; font-size: 10px; color: var(--livi-muted); }
+.home-hero { display: grid; grid-template-columns: 1.35fr 1fr; align-items: end; gap: 50px; padding: 24px 0 18px; }
+.home-hero .livi-eyebrow { font-size: 11px; letter-spacing: 1.4px; margin-bottom: 10px; }
+.home-hero h1 { font-size: clamp(32px, 3vw, 41px); font-weight: 650; line-height: 1.12; letter-spacing: -1.7px; }
+.home-mobileBreak { display: none; }
+.home-intro { font-size: 14px; line-height: 1.7; color: var(--livi-muted); margin-top: 12px; }
+.home-searchBlock { padding-bottom: 4px; }
+.home-searchLabel { display: block; margin-bottom: 9px; font-size: 10px; letter-spacing: .6px; text-transform: uppercase; color: #666963; }
+.home-search { display: flex; align-items: center; gap: 11px; min-height: 49px; padding: 0 15px; background: #f0efec; border: 1px solid transparent; border-radius: 11px; }
+.home-search:focus-within { border-color: #b11f2455; box-shadow: 0 0 0 3px #b11f240b; background: white; }
+.home-search > svg { color: #71756d; width: 19px; height: 19px; }
+.home-search input { min-width: 0; width: 100%; padding: 13px 0; background: transparent; outline: none; font-size: 13px; }
+.home-search input::placeholder { color: #81847c; }
+.home-search input::-webkit-search-cancel-button { -webkit-appearance: none; }
+.home-search button { display: grid; place-items: center; width: 30px; height: 32px; font-size: 23px; color: var(--livi-muted); flex-shrink: 0; border-radius: 50%; }
+.home-search button:hover { color: var(--livi-accent); }
+.home-halls { scroll-margin-top: 24px; }
+.home-filterBar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+.home-filters { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 4px; margin-left: -4px; }
+.home-filters button { display: flex; align-items: center; gap: 7px; min-height: 35px; padding: 7px 13px; font-size: 11px; border-radius: 22px; background: #efeeeb; color: #5e625a; white-space: nowrap; }
+.home-filters button[aria-pressed="true"] { background: var(--livi-ink); color: white; }
+.home-filters button:not([aria-pressed="true"]):hover { background: #e7e6e1; }
+.home-filterCount { display: grid; place-items: center; min-width: 18px; height: 18px; font-size: 9px; border-radius: 50%; background: #ffffff80; }
+.home-filters button[aria-pressed="true"] .home-filterCount { background: #ffffff24; }
+.home-resultCount { font-size: 11px; color: var(--livi-muted); white-space: nowrap; }
+.home-hallGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 25px; }
+.home-hallCard { background: white; border: 1px solid var(--livi-border); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px #20222103; }
+.home-hallLink { display: flex; flex-direction: column; height: 100%; }
+.home-page .home-hallLink:focus-visible { outline-offset: -3px; border-radius: 16px; }
+.home-hallCard:has(.home-hallLink:focus-visible) { outline: 3px solid var(--livi-accent); outline-offset: 3px; }
+.home-mapPreview { position: relative; display: grid; place-items: center; height: 220px; padding: 34px 48px 12px; overflow: hidden; background-color: #f3f2ee; background-image: linear-gradient(#d6d5cd22 1px, transparent 1px), linear-gradient(90deg, #d6d5cd22 1px, transparent 1px); background-size: 22px 22px; }
+.home-mapImage { width: 100%; height: 100%; min-height: 0; object-fit: contain; mix-blend-mode: multiply; transition: transform 200ms ease; }
+.home-hallLink:hover .home-mapImage { transform: scale(1.025); }
+.home-campusLabel { position: absolute; top: 15px; left: 16px; padding: 5px 8px; border-radius: 6px; background: #fffffff0; color: #51564d; font-size: 9px; letter-spacing: .5px; }
+.home-openBadge { position: absolute; top: 15px; right: 16px; display: flex; align-items: center; gap: 5px; padding: 5px 9px; border-radius: 16px; background: #fffffff5; font-size: 9px; color: #71756d; white-space: nowrap; }
+.home-openBadge.is-open { color: #31643d; }
+.home-openBadge.is-closed { color: #696b66; background: #eae9e4ed; }
+.home-badgeMeal { text-transform: none; }
+.home-mapCaption { position: absolute; right: 16px; bottom: 12px; display: flex; align-items: center; gap: 6px; color: #6e7369; font-size: 9px; letter-spacing: .5px; padding: 4px 6px; border-radius: 5px; background: #f3f2eecc; }
+.home-mapCaption svg { width: 12px; height: 12px; }
+.home-cardBody { display: flex; flex-direction: column; flex: 1; padding: 23px 23px 20px; }
+.home-cardHeading { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+.home-cardHeading h2 { font-size: clamp(21px, 2vw, 26px); font-weight: 600; line-height: 1.2; letter-spacing: -.9px; }
+.home-cardHeading > svg { display: none; }
+.home-stationMeta { display: flex; flex-wrap: wrap; align-items: center; gap: 9px 13px; margin-top: 10px; font-size: 10px; }
+.home-stationMeta > span { display: flex; align-items: center; gap: 5px; }
+.home-stationMeta > span:first-child { font-weight: 550; }
+.home-stationMeta svg { width: 13px; height: 13px; color: var(--livi-accent); }
+.home-cardSource { color: var(--livi-muted); }
+.home-cardSource > span { width: 5px; height: 5px; }
+.home-hallDescription { font-size: 12px; line-height: 1.65; color: var(--livi-muted); margin-top: 12px; }
+.home-hours { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 13px; font-size: 10px; color: #74786e; }
+.home-hours > span { font-size: 9px; white-space: nowrap; }
+.home-exploreButton { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 45px; background: #f5f4f1; border-radius: 10px; padding: 12px 14px; font-size: 12px; font-weight: 550; margin-top: 16px; transition: background 160ms, color 160ms; }
+.home-exploreButton svg { width: 16px; height: 16px; }
+.home-hallLink:hover .home-exploreButton { background: var(--livi-accent); color: white; }
+.home-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 55px 24px; border: 1px solid var(--livi-border); border-radius: 16px; background: white; text-align: center; }
+.home-empty > span { width: 50px; height: 50px; display: grid; place-items: center; background: #f5f0ec; border-radius: 50%; color: var(--livi-accent); }
+.home-empty h2 { font-size: 23px; font-weight: 600; letter-spacing: -.6px; margin-top: 17px; }
+.home-empty p { font-size: 13px; line-height: 1.7; color: var(--livi-muted); max-width: 390px; margin-top: 9px; }
+.home-empty button { display: flex; align-items: center; gap: 15px; background: var(--livi-accent); color: white; padding: 11px 17px; border-radius: 10px; font-size: 12px; margin-top: 22px; }
+.home-empty button svg { width: 16px; height: 16px; }
+.home-utilities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 25px; margin: 35px 0 54px; }
+.home-utilityCard { display: flex; align-items: center; gap: 14px; padding: 20px; background: white; border: 1px solid var(--livi-border); border-radius: 14px; }
+.home-utilityCard > div { min-width: 0; }
+.home-utilityCard:hover { background: #fdfcfb; border-color: #dedcd5; }
+.home-utilityIcon { width: 43px; height: 43px; display: grid; place-items: center; flex-shrink: 0; border-radius: 12px; background: #fae9e9; color: var(--livi-accent); }
+.home-utilityGreen { background: #e5eee3; color: #3d6545; }
+.home-utilityCard h2 { font-size: 13px; font-weight: 600; }
+.home-utilityCard p { font-size: 10px; line-height: 1.6; color: var(--livi-muted); margin-top: 4px; }
+.home-utilityAction { display: flex; align-items: center; gap: 10px; margin-left: auto; font-size: 10px; white-space: nowrap; padding-left: 6px; }
+.home-utilityAction svg { width: 16px; height: 16px; }
+.home-footer { background: #f2f1ed; border-top: 1px solid #eeede7; }
+.home-footerInner { display: grid; grid-template-columns: 1.5fr 1fr 1fr; column-gap: 55px; row-gap: 42px; max-width: 1300px; padding: 40px 32px 25px; margin: 0 auto; }
+.home-footer .livi-brand { display: flex; }
+.home-footer .livi-brandMark { width: 29px; height: 29px; border-radius: 9px; font-size: 20px; box-shadow: none; }
+.home-footer .livi-brandMark > span { font-size: 13px; }
+.home-footer .livi-wordmark { font-size: 17px; }
+.home-footer .livi-wordmark small { display: none; }
+.home-footerIntro > p { color: #73766e; font-size: 12px; line-height: 1.65; margin-top: 16px; }
+.home-footerIntro > span { display: block; color: #73766e; font-size: 10px; margin-top: 14px; }
+.home-footer nav { display: flex; flex-direction: column; gap: 9px; align-items: flex-start; }
+.home-footer nav h2 { font-size: 11px; text-transform: uppercase; letter-spacing: .6px; font-weight: 550; margin-bottom: 5px; }
+.home-footer nav a { font-size: 11px; color: var(--livi-muted); }
+.home-footer nav a:hover { color: var(--livi-accent); text-decoration: underline; text-underline-offset: 3px; }
+.home-footerNote { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 12px; font-size: 9px; color: #82867c; padding-top: 20px; border-top: 1px solid #e6e5df; }
+.home-loading .home-hero { min-height: 180px; }
+.home-loadingCard { height: 420px; background: white; border: 1px solid var(--livi-border); border-radius: 16px; overflow: hidden; }
+.home-loadingMap { height: 220px; border-radius: 0; }
+.home-loadingBody { padding: 24px; }
+.home-loadingBody .livi-loadingLabel { margin-bottom: 14px; }
+@media (max-width: 1199px) {
+  .home-topbar { gap: 18px; }
+  .home-headerDate { display: none; }
+  .home-desktopNav { margin-left: 0; }
+  .home-desktopNav a { font-size: 11px; padding: 11px; }
+  .home-headerActions { gap: 12px; }
+  .home-utilityAction { font-size: 0; padding-left: 0; gap: 0; }
+  .home-hero { gap: 30px; }
+}
+@media (max-width: 859px) {
+  .home-page { padding-bottom: calc(70px + env(safe-area-inset-bottom)); }
+  .home-topbar { min-height: 77px; padding: calc(14px + env(safe-area-inset-top)) 22px 14px; }
+  .home-topbar .livi-brand, .home-topbar .livi-wordmark { display: flex; }
+  .home-topbar .livi-wordmark { flex-direction: column; font-size: 19px; }
+  .home-topbar .livi-wordmark small { font-size: 8px; margin-top: 5px; }
+  .home-desktopNav { display: none; }
+  .home-topbar .home-searchShortcut { display: grid; }
+  .home-topbar .home-headerPlate { display: flex; padding: 8px 10px; }
+  .home-headerPlate .home-plateLinkText { display: none; }
+  .home-headerActions { gap: 10px; }
+  .home-content { padding: 0 22px; }
+  .home-hero { grid-template-columns: 1fr; gap: 20px; padding: 28px 0 18px; }
+  .home-hero h1 { font-size: 36px; letter-spacing: -1.4px; }
+  .home-searchBlock { padding: 0; }
+  .home-serviceBar { padding: 18px 0 16px; }
+  .home-serviceSummary { gap: 10px; }
+  .home-scheduleLabel { display: none; }
+  .home-confirmation { font-size: 9px; }
+  .home-search input { font-size: 16px; }
+  .home-search input::placeholder { font-size: 13px; }
+  .home-hero .livi-eyebrow { font-size: 10px; }
+  .home-cardBody { padding: 20px; }
+  .home-utilities { gap: 16px; }
+  .home-utilityCard { padding: 16px; gap: 10px; }
+  .home-footerInner { gap: 35px; padding: 32px 22px 22px; }
+  .home-mobileNav > a[aria-current] { color: var(--livi-accent); }
+  .home-mobileNav > a { font-size: 10px; }
+}
+@media (max-width: 699px) {
+  .home-topbar { padding-inline: 18px; gap: 12px; }
+  .home-topbar .livi-brandMark { width: 34px; height: 34px; font-size: 23px; border-radius: 10px; }
+  .home-topbar .home-headerPlate { display: none; }
+  .home-headerActions { gap: 11px; }
+  .home-content { padding: 0 18px; }
+  .home-serviceBar { flex-direction: column; align-items: stretch; gap: 6px; padding: 12px 0; }
+  .home-serviceSummary { justify-content: space-between; }
+  .home-servicePill { font-size: 9px; }
+  .home-openCount { font-size: 10px; }
+  .home-confirmation { margin-left: 2px; }
+  .home-hero { padding: 18px 0 10px; gap: 15px; }
+  .home-hero .livi-eyebrow, .home-introLead { display: none; }
+  .home-hero h1 { font-size: 29px; line-height: 1.15; letter-spacing: -1.1px; }
+  .home-mobileBreak { display: none; }
+  .home-intro { font-size: 12px; line-height: 1.65; margin-top: 9px; }
+  .home-searchLabel { display: none; }
+  .home-search { min-height: 47px; padding-inline: 12px; }
+  .home-filterBar { display: block; margin-bottom: 16px; }
+  .home-filters { gap: 6px; margin-right: -4px; }
+  .home-filters button { font-size: 10px; min-height: 35px; padding: 7px 10px; gap: 5px; }
+  .home-resultCount { margin-top: 11px; font-size: 10px; padding-left: 1px; }
+  .home-hallGrid { grid-template-columns: 1fr; gap: 17px; }
+  .home-hallCard { border-radius: 15px; }
+  .home-mapPreview { height: 184px; padding: 31px 37px 10px; }
+  .home-campusLabel { top: 12px; left: 13px; padding: 4px 6px; font-size: 8px; }
+  .home-openBadge { top: 12px; right: 13px; padding: 4px 7px; font-size: 8px; }
+  .home-mapCaption { font-size: 8px; bottom: 8px; right: 12px; }
+  .home-cardBody { padding: 19px 17px 16px; }
+  .home-cardHeading h2 { font-size: 22px; letter-spacing: -.7px; max-width: 260px; }
+  .home-stationMeta { margin-top: 10px; font-size: 9px; gap: 9px 12px; }
+  .home-hallDescription { font-size: 11px; margin-top: 11px; }
+  .home-hours { font-size: 9px; padding-top: 11px; gap: 7px; }
+  .home-hours > span { font-size: 8px; }
+  .home-exploreButton { margin-top: 15px; min-height: 43px; font-size: 11px; }
+  .home-utilities { grid-template-columns: 1fr; gap: 11px; margin: 26px 0 32px; }
+  .home-utilityCard { padding: 17px 14px; }
+  .home-utilityCard h2 { font-size: 12px; }
+  .home-utilityCard p { font-size: 10px; }
+  .home-utilityIcon { width: 39px; height: 39px; border-radius: 10px; }
+  .home-utilityAction { margin-left: auto; }
+  .home-empty { padding: 35px 20px; }
+  .home-empty h2 { font-size: 21px; }
+  .home-empty p { font-size: 12px; }
+  .home-footerInner { grid-template-columns: 1fr 1fr; padding: 30px 18px 22px; gap: 28px 15px; }
+  .home-footerIntro { grid-column: 1 / -1; }
+  .home-footerIntro > p { font-size: 11px; }
+  .home-footerIntro > span { font-size: 9px; }
+  .home-footer nav h2 { font-size: 10px; }
+  .home-footer nav a { font-size: 10px; }
+  .home-footerNote { flex-direction: column; gap: 7px; font-size: 8px; }
+  .home-loadingCard { height: 360px; }
+  .home-loadingMap { height: 184px; }
+}
+@media (max-width: 359px) {
+  .home-topbar, .home-content { padding-inline: 14px; }
+  .home-filters button { padding-inline: 8px; font-size: 9px; }
+  .home-serviceSummary { gap: 6px; }
+  .home-hero h1 { font-size: 27px; }
+  .home-cardHeading h2 { font-size: 20px; }
+  .home-hours { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-mapImage, .home-exploreButton { transition: none; }
+}

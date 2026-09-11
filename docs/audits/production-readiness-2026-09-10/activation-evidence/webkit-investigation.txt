@@ -1,0 +1,49 @@
+[WebServer] (node:7824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:7837) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [webkit] › tests/browser/account-pages.spec.ts:3:5 › plate portions, partial totals and saved profile goals work across client navigation (2.6s)
+  ✘  2 [webkit] › tests/browser/release-evidence.spec.ts:82:5 › plate dialog has a complete forward/backward keyboard cycle and named quantity actions (5.7s)
+
+
+  1) [webkit] › tests/browser/release-evidence.spec.ts:82:5 › plate dialog has a complete forward/backward keyboard cycle and named quantity actions
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('dialog', { name: 'My Plate', exact: true }).locator('button:visible:not(:disabled):not([tabindex="-1"]), a[href]:visible, input:visible:not(:disabled), select:visible, textarea:visible, [tabindex="0"]:visible').nth(1)
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" getByRole('dialog', { name: 'My Plate', exact: true }).locator('button:visible:not(:disabled):not([tabindex="-1"]), a[href]:visible, input:visible:not(:disabled), select:visible, textarea:visible, [tabindex="0"]:visible').nth(1) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: 'My Plate', exact: true }).locator('button:visible:not(:disabled):not([tabindex="-1"]), a[href]:visible, input:visible:not(:disabled), select:visible, textarea:visible, [tabindex="0"]:visible').nth(1)
+        14 × locator resolved to <button type="button" class="shrink-0 text-sm font-medium text-ink/45">Clear</button>
+           - unexpected value "inactive"
+
+
+       98 |   const count=await focusable.count();expect(count).toBeGreaterThan(3);
+       99 |   await expect(focusable.nth(0)).toBeFocused();
+    > 100 |   for(let index=1;index<=count;index++) {await page.keyboard.press('Tab');await expect(focusable.nth(index%count)).toBeFocused();}
+          |                                                                                                                    ^
+      101 |   for(let index=count-1;index>=0;index--) {await page.keyboard.press('Shift+Tab');await expect(focusable.nth(index)).toBeFocused();}
+      102 |   await dialog.getByRole('button',{name:'Increase quantity of Synthetic rice, 1 cup',exact:true}).focus();
+      103 |   await page.keyboard.press('Space');await expect(dialog).toContainText('240 kcal');
+        at /Users/andywu/Desktop/Codex/Nutrition-release-readiness/tests/browser/release-evidence.spec.ts:100:116
+
+    Error Context: test-results/playwright/release-evidence-plate-dia-38605--and-named-quantity-actions-webkit/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/playwright/release-evidence-plate-dia-38605--and-named-quantity-actions-webkit/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/playwright/release-evidence-plate-dia-38605--and-named-quantity-actions-webkit/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [webkit] › tests/browser/release-evidence.spec.ts:82:5 › plate dialog has a complete forward/backward keyboard cycle and named quantity actions
+  1 passed (10.6s)

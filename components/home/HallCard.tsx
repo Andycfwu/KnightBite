@@ -1,13 +1,13 @@
 import type { Route } from "next";
+import Image from "next/image";
 import Link from "next/link";
-
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
-import { DiningHall } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import { DiningIcon } from "@/components/ui/DiningIcon";
+import { HALL_GUIDES } from "@/lib/hall-guides";
+import type { DiningHall } from "@/lib/types";
 
 export type HallCardStatus = {
   state: "open" | "closed";
+  menuConfirmed: boolean;
   mealLabel?: string;
   detail: string;
   updatedLabel?: string;
@@ -19,55 +19,29 @@ type HallCardProps = {
   description: string;
   href: Route;
   status?: HallCardStatus;
+  priority?: boolean;
 };
 
-export function HallCard({ hall, href, status }: HallCardProps) {
+export function HallCard({ hall, description, href, status, priority = false }: HallCardProps) {
+  const map = HALL_GUIDES[hall.id];
   const isOpen = status?.state === "open";
 
-  return (
-    <Link href={href} className="group block">
-      <Card
-        className={cn(
-          "rounded-[30px] border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(243,244,246,0.9))] px-5 py-5 shadow-[0_16px_38px_rgba(23,23,23,0.08)] transition duration-200 group-active:scale-[0.99]",
-          isOpen ? "min-h-[180px]" : "min-h-[118px]"
-        )}
-      >
-        <div className="flex h-full flex-col">
-          <div className="flex items-start justify-between gap-3">
-            <div className="min-w-0">
-              <h2 className="text-[1.9rem] font-semibold tracking-[-0.05em] text-ink leading-none">
-                {hall.name}
-              </h2>
-            </div>
-            {status ? (
-              <Badge
-                variant={isOpen ? "live" : "neutral"}
-                className={cn(
-                  "px-3 py-1 text-[0.95rem] font-semibold tracking-[-0.02em] normal-case",
-                  isOpen ? "bg-[#48c774] text-white" : "bg-[#b9bcc2] text-white"
-                )}
-              >
-                {isOpen ? "OPEN" : "CLOSED"}
-              </Badge>
-            ) : null}
-          </div>
-
-          {isOpen ? (
-            <>
-              <div className="mt-3 flex items-center gap-3">
-                <span className="text-[1.05rem] font-semibold text-ink">{status?.mealLabel ?? "Serving now"}</span>
-                {status?.sourceLabel ? <span className="text-sm text-ink/42">{status.sourceLabel}</span> : null}
-              </div>
-              <p className="mt-3 max-w-[26ch] text-[1rem] leading-[1.28] text-ink/86">{status?.detail}</p>
-              {status?.updatedLabel ? <p className="mt-auto pt-5 text-sm text-ink/42">{status.updatedLabel}</p> : null}
-            </>
-          ) : (
-            <div className="mt-auto pt-4">
-              <p className="text-[1.15rem] leading-tight text-ink/88">{status?.detail ?? "Check today’s menu"}</p>
-            </div>
-          )}
-        </div>
-      </Card>
+  return <article className="home-hallCard" aria-labelledby={`home-${hall.id}-title`}>
+    <Link href={href} className="home-hallLink" aria-label={`Explore ${hall.name} map and menu`} aria-describedby={`home-${hall.id}-meta home-${hall.id}-hours`}>
+      <div className="home-mapPreview">
+        <Image src={map.image.src} alt={`${map.name} station layout preview`} width={map.image.width} height={map.image.height}
+          sizes="(min-width: 1280px) 560px, (min-width: 700px) 45vw, 90vw" priority={priority} className="home-mapImage" />
+        <span className="home-campusLabel">{map.campus.replace(/ CAMPUS$/, "")}</span>
+        {status ? <span className={`home-openBadge ${isOpen ? "is-open" : "is-closed"}`}><span className="home-statusDot" /><span>{isOpen ? "TYPICAL HOURS" : "OUTSIDE TYPICAL HOURS"}</span>{isOpen && status.mealLabel ? <span className="home-badgeMeal">· {status.mealLabel}</span> : null}</span> : null}
+        <span className="home-mapCaption"><DiningIcon name="map" />Station guide</span>
+      </div>
+      <div className="home-cardBody">
+        <div className="home-cardHeading"><h2 id={`home-${hall.id}-title`}>{hall.name}</h2><DiningIcon name="arrow" /></div>
+        <div id={`home-${hall.id}-meta`} className="home-stationMeta"><span><DiningIcon name="pin" />{map.zones.length} mapped stations</span><span className="home-cardSource"><span className={status?.menuConfirmed ? "livi-liveDot" : "livi-unknownDot"} />{status?.sourceLabel ?? "Menu status unavailable"}</span></div>
+        <p className="home-hallDescription">{description}</p>
+        <div id={`home-${hall.id}-hours`} className="home-hours"><p>{status?.detail ?? "Explore the station guide and today’s menu"}</p>{status?.updatedLabel ? <span>{status.updatedLabel}</span> : null}</div>
+        <span className="home-exploreButton">Explore map & menu<DiningIcon name="arrow" /></span>
+      </div>
     </Link>
-  );
+  </article>;
 }

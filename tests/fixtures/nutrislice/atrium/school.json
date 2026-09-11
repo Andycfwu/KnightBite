@@ -1,0 +1,57 @@
+{
+  "id": 71385,
+  "name": "The Atrium",
+  "slug": "the-atrium",
+  "address": "126 College Avenue, New Brunswick",
+  "timezone": "America/New_York",
+  "active_menu_types": [
+    {
+      "id": 32934,
+      "name": "Breakfast (Weekdays)",
+      "slug": "breakfast",
+      "urls": {
+        "digest_menu_by_date_api_url_template": "/menu/api/digest/school/the-atrium/menu-type/breakfast/date/{year}/{month}/{day}",
+        "digest_menu_by_week_api_url_template": "/menu/api/weeks/digest/school/the-atrium/menu-type/breakfast/date/{year}/{month}/{day}",
+        "full_menu_by_date_api_url_template": "/menu/api/weeks/school/71385/menu-type/32934/{year}/{month}/{day}"
+      },
+      "format_is_locked": true,
+      "menu_format": "day"
+    },
+    {
+      "id": 33316,
+      "name": "Lunch (Brunch on Weekends)",
+      "slug": "lunch-test",
+      "urls": {
+        "digest_menu_by_date_api_url_template": "/menu/api/digest/school/the-atrium/menu-type/lunch-test/date/{year}/{month}/{day}",
+        "digest_menu_by_week_api_url_template": "/menu/api/weeks/digest/school/the-atrium/menu-type/lunch-test/date/{year}/{month}/{day}",
+        "full_menu_by_date_api_url_template": "/menu/api/weeks/school/71385/menu-type/33316/{year}/{month}/{day}"
+      },
+      "format_is_locked": true,
+      "menu_format": "day"
+    },
+    {
+      "id": 33318,
+      "name": "Dinner",
+      "slug": "dinner",
+      "urls": {
+        "digest_menu_by_date_api_url_template": "/menu/api/digest/school/the-atrium/menu-type/dinner/date/{year}/{month}/{day}",
+        "digest_menu_by_week_api_url_template": "/menu/api/weeks/digest/school/the-atrium/menu-type/dinner/date/{year}/{month}/{day}",
+        "full_menu_by_date_api_url_template": "/menu/api/weeks/school/71385/menu-type/33318/{year}/{month}/{day}"
+      },
+      "format_is_locked": true,
+      "menu_format": "day"
+    },
+    {
+      "id": 33385,
+      "name": "Late Knight - Takeout",
+      "slug": "knight-room-takeout",
+      "urls": {
+        "digest_menu_by_date_api_url_template": "/menu/api/digest/school/the-atrium/menu-type/knight-room-takeout/date/{year}/{month}/{day}",
+        "digest_menu_by_week_api_url_template": "/menu/api/weeks/digest/school/the-atrium/menu-type/knight-room-takeout/date/{year}/{month}/{day}",
+        "full_menu_by_date_api_url_template": "/menu/api/weeks/school/71385/menu-type/33385/{year}/{month}/{day}"
+      },
+      "format_is_locked": true,
+      "menu_format": "day"
+    }
+  ]
+}

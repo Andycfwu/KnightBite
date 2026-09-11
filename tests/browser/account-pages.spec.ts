@@ -1,0 +1,48 @@
+import { test, expect } from '@playwright/test';
+
+test('plate portions, partial totals and saved profile goals work across client navigation', async ({ page, context, baseURL }) => {
+  const errors: string[] = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await context.route('**/*', async route => {
+    const url = new URL(route.request().url());
+    if (url.origin !== new URL(baseURL!).origin || url.pathname.startsWith('/_vercel/')) return route.abort();
+    return route.continue();
+  });
+  await page.goto('/hall/busch');
+  await page.getByRole('button', { name: 'Full menu', exact: true }).click();
+  const rice = page.getByRole('article').filter({ has: page.getByRole('heading', { name: 'Synthetic rice', exact: true }) });
+  await rice.nth(0).getByRole('button').click();
+  await rice.nth(1).getByRole('button').click();
+  await page.getByRole('article').filter({ has: page.getByRole('heading', { name: 'Synthetic partial food', exact: true }) }).getByRole('button').click();
+  await page.getByRole('link', { name: 'Your profile', exact: true }).click();
+  await page.getByRole('textbox', { name: 'Protein goal in grams', exact: true }).fill('100');
+  await page.getByRole('link', { name: 'View your plate', exact: true }).click();
+  const totals = page.getByRole('region', { name: 'Plate totals' });
+  await expect(totals).toContainText('460 kcal');
+  const macros = page.getByRole('region', { name: 'Plate macro totals' });
+  await expect(macros).toContainText('Known subtotal: 30g');
+  await expect(macros).toContainText('Known amount: 30% of goal');
+  await page.setViewportSize({ width: 320, height: 740 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  const firstPortion = page.getByRole('article').filter({ has: page.getByRole('button', { name: 'Increase quantity of Synthetic rice, 1 cup', exact: true }) });
+  await firstPortion.getByRole('button', { name: 'Increase quantity of Synthetic rice, 1 cup', exact: true }).click();
+  await expect(firstPortion).toContainText('240 kcal');
+  await expect(totals).toContainText('580 kcal');
+  await firstPortion.getByRole('button', { name: 'Decrease quantity of Synthetic rice, 1 cup', exact: true }).click();
+  await expect(totals).toContainText('460 kcal');
+  await page.getByRole('button', { name: 'Remove Synthetic partial food, 1 cup', exact: true }).click();
+  await expect(totals).toContainText('360 kcal');
+  await expect(macros).not.toContainText('Known subtotal');
+  await page.getByRole('link', { name: 'Edit goals', exact: true }).click();
+  await expect(page.getByRole('textbox', { name: 'Protein goal in grams', exact: true })).toHaveValue('100');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await page.getByRole('button', { name: 'Reset goals', exact: true }).click();
+  await expect(page.getByRole('textbox', { name: 'Protein goal in grams', exact: true })).toHaveValue('');
+  await page.getByRole('link', { name: 'See your goals on your plate', exact: true }).click();
+  await expect(totals).toContainText('360 kcal');
+  await expect(macros).toContainText('Current total · no goal set');
+  await page.getByRole('button', { name: 'Clear Plate', exact: true }).click();
+  await expect(page.getByText('Your plate is empty right now.', { exact: false })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Clear Plate', exact: true })).toBeDisabled();
+  expect(errors).toEqual([]);
+});

@@ -1,0 +1,25 @@
+{
+  "observedAt": "2026-09-10T22:55:14.116475+00:00",
+  "sourceDigest": "4eea8a93c90dcc1d30b91ad92732accd5cfb9a60fc64965385bc26b4e7a764f9",
+  "runtimes": [
+    "24.19.0",
+    "24.21.0"
+  ],
+  "each": {
+    "command": "npm run check",
+    "exitCode": 0,
+    "unitTests": 249,
+    "normalBrowserTests": 22,
+    "offlineUnavailableBrowserTests": 2,
+    "previewBrowserTests": 4,
+    "typecheck": "pass",
+    "lint": "pass",
+    "isolatedProductionBuild": "pass",
+    "isolatedPreviewBuild": "pass"
+  },
+  "audit": "0 vulnerabilities",
+  "actionlint": "pass",
+  "diffCheck": "pass",
+  "providers": "synthetic blocked transport, no live upstream",
+  "analytics": "normal production transport intercepted; Preview SDK omitted; zero delivered events"
+}

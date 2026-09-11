@@ -1,0 +1,31 @@
+KnightBite release verification	Record checked commit and tree	2026-09-10T23:06:31.6449257Z ##[group]Run git rev-parse HEAD
+KnightBite release verification	Record checked commit and tree	2026-09-10T23:06:31.6449681Z git rev-parse HEAD
+KnightBite release verification	Record checked commit and tree	2026-09-10T23:06:31.6449972Z git rev-parse HEAD^{tree}
+KnightBite release verification	Record checked commit and tree	2026-09-10T23:06:31.6450329Z test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+KnightBite release verification	Record checked commit and tree	2026-09-10T23:06:31.6496963Z shell: /usr/bin/bash -e {0}
+KnightBite release verification	Record checked commit and tree	2026-09-10T23:06:31.6497280Z ##[endgroup]
+KnightBite release verification	Record checked commit and tree	2026-09-10T23:06:31.6600633Z 643412f5c878aebd0514b1464e2e43b496f3e509
+KnightBite release verification	Record checked commit and tree	2026-09-10T23:06:31.6613550Z 36117c9f64dc3d7a498e93003e19c31dfb3971bf
+KnightBite release verification	Run npm ci	2026-09-10T23:06:38.3628141Z found 0 vulnerabilities
+KnightBite release verification	Run npm run check	2026-09-10T23:07:25.3053781Z ℹ tests 249
+KnightBite release verification	Run npm run check	2026-09-10T23:07:25.3055497Z ℹ pass 249
+KnightBite release verification	Run npm run check	2026-09-10T23:07:25.3055878Z ℹ fail 0
+KnightBite release verification	Run npm run check	2026-09-10T23:07:38.8022878Z {"event":"knightbite_build_runtime","commit":null,"node":"24.21.0","openssl":"3.5.8","undici":"7.29.1","llhttp":"9.4.3","platform":"linux","arch":"x64","sharp":{"aom":"3.15.0","archive":"3.8.9","cairo":"1.18.4","cgif":"0.5.3","exif":"0.6.26","expat":"2.8.3","ffi":"3.8.0","fontconfig":"2.18.3","freetype":"2.14.3","fribidi":"1.0.16","glib":"2.89.4","harfbuzz":"14.3.1","heif":"1.23.2","highway":"1.4.0","imagequant":"2.4.1","lcms":"2.19.1","mozjpeg":"0826579","pango":"1.58.2","pixman":"0.46.4","png":"1.6.58","proxy-libintl":"0.5","rsvg":"2.62.91","tiff":"4.7.2","uhdr":"2.0.2","vips":"8.18.6","webp":"1.6.0","xml2":"2.15.3","zlib-ng":"2.3.3","sharp":"0.35.4"}}
+KnightBite release verification	Run npm run check	2026-09-10T23:08:03.7393572Z Isolated production build passed: TzQgnivtcEJodv8uw1blA
+KnightBite release verification	Run npm run check	2026-09-10T23:08:43.0165247Z   22 passed (38.6s)
+KnightBite release verification	Run npm run check	2026-09-10T23:08:49.9982737Z   2 passed (6.4s)
+KnightBite release verification	Run npm run check	2026-09-10T23:08:57.0854686Z {"event":"knightbite_build_runtime","commit":null,"node":"24.21.0","openssl":"3.5.8","undici":"7.29.1","llhttp":"9.4.3","platform":"linux","arch":"x64","sharp":{"aom":"3.15.0","archive":"3.8.9","cairo":"1.18.4","cgif":"0.5.3","exif":"0.6.26","expat":"2.8.3","ffi":"3.8.0","fontconfig":"2.18.3","freetype":"2.14.3","fribidi":"1.0.16","glib":"2.89.4","harfbuzz":"14.3.1","heif":"1.23.2","highway":"1.4.0","imagequant":"2.4.1","lcms":"2.19.1","mozjpeg":"0826579","pango":"1.58.2","pixman":"0.46.4","png":"1.6.58","proxy-libintl":"0.5","rsvg":"2.62.91","tiff":"4.7.2","uhdr":"2.0.2","vips":"8.18.6","webp":"1.6.0","xml2":"2.15.3","zlib-ng":"2.3.3","sharp":"0.35.4"}}
+KnightBite release verification	Run npm run check	2026-09-10T23:09:21.8073308Z Isolated production build passed: 9NffKWIWgoNosu3hLpL7d
+KnightBite release verification	Run npm run check	2026-09-10T23:09:27.7813775Z   4 passed (5.2s)
+KnightBite release verification	Run npm audit --audit-level=moderate	2026-09-10T23:09:28.3064247Z found 0 vulnerabilities
+KnightBite release verification	Run npm ci	2026-09-10T23:09:41.6285081Z found 0 vulnerabilities
+KnightBite release verification	Run npm run check	2026-09-10T23:09:47.8659044Z ℹ tests 249
+KnightBite release verification	Run npm run check	2026-09-10T23:09:47.8660533Z ℹ pass 249
+KnightBite release verification	Run npm run check	2026-09-10T23:09:47.8664472Z ℹ fail 0
+KnightBite release verification	Run npm run check	2026-09-10T23:10:01.4007190Z {"event":"knightbite_build_runtime","commit":null,"node":"24.19.0","openssl":"3.5.7","undici":"7.29.0","llhttp":"9.4.3","platform":"linux","arch":"x64","sharp":{"aom":"3.15.0","archive":"3.8.9","cairo":"1.18.4","cgif":"0.5.3","exif":"0.6.26","expat":"2.8.3","ffi":"3.8.0","fontconfig":"2.18.3","freetype":"2.14.3","fribidi":"1.0.16","glib":"2.89.4","harfbuzz":"14.3.1","heif":"1.23.2","highway":"1.4.0","imagequant":"2.4.1","lcms":"2.19.1","mozjpeg":"0826579","pango":"1.58.2","pixman":"0.46.4","png":"1.6.58","proxy-libintl":"0.5","rsvg":"2.62.91","tiff":"4.7.2","uhdr":"2.0.2","vips":"8.18.6","webp":"1.6.0","xml2":"2.15.3","zlib-ng":"2.3.3","sharp":"0.35.4"}}
+KnightBite release verification	Run npm run check	2026-09-10T23:10:26.1854288Z Isolated production build passed: oJo5KZowC6k-5qQsigrzy
+KnightBite release verification	Run npm run check	2026-09-10T23:10:57.9919789Z   22 passed (31.2s)
+KnightBite release verification	Run npm run check	2026-09-10T23:11:03.8994107Z   2 passed (5.4s)
+KnightBite release verification	Run npm run check	2026-09-10T23:11:10.9656290Z {"event":"knightbite_build_runtime","commit":null,"node":"24.19.0","openssl":"3.5.7","undici":"7.29.0","llhttp":"9.4.3","platform":"linux","arch":"x64","sharp":{"aom":"3.15.0","archive":"3.8.9","cairo":"1.18.4","cgif":"0.5.3","exif":"0.6.26","expat":"2.8.3","ffi":"3.8.0","fontconfig":"2.18.3","freetype":"2.14.3","fribidi":"1.0.16","glib":"2.89.4","harfbuzz":"14.3.1","heif":"1.23.2","highway":"1.4.0","imagequant":"2.4.1","lcms":"2.19.1","mozjpeg":"0826579","pango":"1.58.2","pixman":"0.46.4","png":"1.6.58","proxy-libintl":"0.5","rsvg":"2.62.91","tiff":"4.7.2","uhdr":"2.0.2","vips":"8.18.6","webp":"1.6.0","xml2":"2.15.3","zlib-ng":"2.3.3","sharp":"0.35.4"}}
+KnightBite release verification	Run npm run check	2026-09-10T23:11:35.7236255Z Isolated production build passed: 28-xaEQ_0_sgU3SQ3VN2N
+KnightBite release verification	Run npm run check	2026-09-10T23:11:41.6274273Z   4 passed (5.2s)

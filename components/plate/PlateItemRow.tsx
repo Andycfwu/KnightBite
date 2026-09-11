@@ -1,3 +1,4 @@
+import { formatNutrient, multiplyNutrition } from "@/lib/nutrition";
 import { PlateItem } from "@/lib/types";
 
 type PlateItemRowProps = {
@@ -5,45 +6,31 @@ type PlateItemRowProps = {
   onIncrement: (itemId: string) => void;
   onDecrement: (itemId: string) => void;
   onRemove: (itemId: string) => void;
+  detailed?: boolean;
 };
 
-export function PlateItemRow({ item, onIncrement, onDecrement, onRemove }: PlateItemRowProps) {
+export function PlateItemRow({ item, onIncrement, onDecrement, onRemove, detailed = false }: PlateItemRowProps) {
+  const nutrition = multiplyNutrition(item.nutrition, item.quantity);
+  const portion = item.servingSize ?? "serving size unavailable";
   return (
-    <div className="rounded-[24px] border border-black/6 bg-white px-4 py-3.5 shadow-[0_12px_28px_rgba(23,23,23,0.05)]">
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <p className="line-clamp-2 text-[1rem] font-semibold leading-5 tracking-[-0.03em] text-ink">{item.name}</p>
-          <p className="mt-1 text-[13px] text-ink/46">{item.servingSize ?? "Serving size unavailable"}</p>
-        </div>
-        <button
-          type="button"
-          onClick={() => onRemove(item.itemId)}
-          className="rounded-full bg-black/[0.04] px-2.5 py-1 text-xs font-medium text-ink/42"
-        >
-          Remove
-        </button>
+    <article className={`plate-foodCard${detailed ? " is-detailed" : ""}`}>
+      <div className="plate-foodHeading">
+        <div><h3>{item.name}</h3><p>{item.servingSize ?? "Serving size unavailable"}</p></div>
+        <button type="button" aria-label={`Remove ${item.name}, ${portion}`} onClick={() => onRemove(item.itemId)} className="plate-removeItem">Remove</button>
       </div>
-
-      <div className="mt-3 flex items-center justify-between gap-3">
-        <div className="inline-flex items-center rounded-full bg-[#f0f1f3] p-1">
-          <button
-            type="button"
-            className="flex h-8 w-8 items-center justify-center rounded-full text-lg text-ink/75"
-            onClick={() => onDecrement(item.itemId)}
-          >
-            -
-          </button>
-          <span className="min-w-7 text-center text-sm font-semibold text-ink">{item.quantity}</span>
-          <button
-            type="button"
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-lg text-ink shadow-[0_2px_8px_rgba(23,23,23,0.08)]"
-            onClick={() => onIncrement(item.itemId)}
-          >
-            +
-          </button>
+      <div className="plate-foodBottom">
+        <div className="plate-quantity" aria-label={`Portions of ${item.name}`}>
+          <button type="button" aria-label={`Decrease quantity of ${item.name}, ${portion}`} onClick={() => onDecrement(item.itemId)}>−</button>
+          <span aria-label={`${item.quantity} portion${item.quantity === 1 ? "" : "s"}`}>{item.quantity}</span>
+          <button type="button" disabled={item.quantity >= 999} aria-label={`Increase quantity of ${item.name}, ${portion}`} onClick={() => onIncrement(item.itemId)}>+</button>
         </div>
-        <p className="text-sm font-semibold text-ink/70">{Math.round(item.nutrition.calories * item.quantity)} cal</p>
+        {item.isCustom ? <p className="plate-foodUnknown">Nutrition varies</p> : (
+          <dl className="plate-foodMacros" aria-label={`Nutrition for ${item.quantity} portion${item.quantity === 1 ? "" : "s"}`}>
+            <div><dt className="sr-only">Calories</dt><dd>{formatNutrient(nutrition.calories, " kcal")}</dd></div>
+            {detailed ? ([['protein', 'Protein'], ['carbs', 'Carbs'], ['fat', 'Fat']] as const).map(([key, label]) => <div key={key}><dt>{label}</dt><dd>{formatNutrient(nutrition[key], "g")}</dd></div>) : null}
+          </dl>
+        )}
       </div>
-    </div>
+    </article>
   );
 }
