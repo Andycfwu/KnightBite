@@ -16,9 +16,9 @@ test('Atrium failure settles with the requested Rutgers date and usable mobile n
   page.on('pageerror', error => errors.push(error.message));
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto('/hall/atrium');
-  await expect(page.getByRole('heading', { name: 'Menu unavailable right now.', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /^(Breakfast|Lunch|Dinner) menu unavailable right now\.$/ })).toBeVisible();
   await expect(page.getByRole('main').getByText('Tuesday, September 8', { exact: true })).toBeVisible();
-  await expect(page.getByRole('main').getByText('We couldn’t load a menu for this hall for today. Try another hall or check back later.', { exact: true })).toBeVisible();
+  await expect(page.getByRole('main').getByText(/We couldn’t load (breakfast|lunch|dinner) for this hall on the requested date\./)).toBeVisible();
   await expect(page.getByRole('button', { name: /^Add / })).toHaveCount(0);
   await expect(page.getByRole('article')).toHaveCount(0);
   await expect(page.locator('body')).not.toContainText(/Backup menu|Sample menu|Retrieved|Updated recently|Wednesday, September 9|Loading your dining hall/);

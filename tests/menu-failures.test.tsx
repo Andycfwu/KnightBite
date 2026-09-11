@@ -89,9 +89,9 @@ function assertUnavailableHome(html: string) {
 
 function assertUnavailableHall(html: string, date: string) {
   assert.ok(html.includes(formatDateLabel(date)));
-  assert.match(html, /Menu unavailable right now/);
-  assert.match(html, /We couldn’t load a menu for this hall for today\. Try another hall or check back later\./);
-  assert.doesNotMatch(html, /Backup menu|Sample menu|Updated|Live today|closed|Rutgers test entrée/i);
+  assert.match(html, /(?:Breakfast|Lunch|Dinner) menu unavailable right now/);
+  assert.match(html, /We couldn’t load (breakfast|lunch|dinner) for this hall on the requested date\./);
+  assert.doesNotMatch(html, /Backup menu|Sample menu|Updated|Live today|>Closed<|Rutgers test entrée/i);
   assert.doesNotMatch(html, /aria-label="Add |Retrieved|Listed on Rutgers/);
   for (const menu of dailyMenus) {
     for (const meal of menu.meals) {

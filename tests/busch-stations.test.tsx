@@ -71,7 +71,7 @@ function render(value: DailyMenu | null) {
 test("Busch unavailable state preserves the guide, disables search, and invents no food or retrieval time", () => {
   const html = render(null);
   assert.match(html, /September 8/);
-  assert.match(html, /Menu unavailable right now/);
+  assert.match(html, /(?:Breakfast|Lunch|Dinner) menu unavailable right now/);
   assert.match(html, /Approximate station layout/);
   assert.match(html, /type="search"[^>]*disabled=""/);
   assert.equal((html.match(/aria-label="Explore /g) ?? []).length, 18);

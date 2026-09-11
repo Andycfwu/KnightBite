@@ -1,0 +1,16 @@
+{
+  "observedAt": "2026-09-11T02:25:57.529888+00:00",
+  "main": "f0049cce5a70889f89ae7be5ab52c16c6275549c",
+  "production": {
+    "deployment": "dpl_E2GULsHLbSadXi8JeHQRXRvCpR9H",
+    "url": "https://knightbitenb.vercel.app",
+    "deploymentUrl": "https://knight-bite-8q67kdyi1-andycfwus-projects.vercel.app",
+    "status": "Ready",
+    "source": "f0049cce5a70889f89ae7be5ab52c16c6275549c",
+    "evidence": "Fresh authenticated Vercel overview, not an inference from GitHub main"
+  },
+  "isolation": "codex/fix-partial-meal-loading in Nutrition-partial-meal-loading",
+  "reproduction": "Controlled tests before-regression.log fail both recovery after thirty seconds and evening Dinner selection on original main. Successful Breakfast retained; Lunch/Dinner ignore abort and settle at original4.5s deadline.",
+  "reportedProductionLogs": "User-supplied Livingston/Busch Breakfast success, Lunch/Dinner timeout. Not recreated by repeatedly hitting live providers.",
+  "constraints": "No merge, production deployment, shared settings change, protection bypass or unrelated UI edits."
+}

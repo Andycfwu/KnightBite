@@ -108,6 +108,7 @@ test("production success logs actual counts and preserves normalized Nutrislice 
   assert.ok(menu);
   assert.deepEqual(menu, {
     hallId: "busch", hallName: school.name, date, isLiveData: true, lastUpdatedAt: new Date().toISOString(),
+    mealStatus: Object.fromEntries(meals.map(meal => [meal, { state: "available", retrievedAt: new Date().toISOString() }])),
     meals: meals.map((meal) => ({ id: `busch-${meal}`, type: meal, label: meal[0].toUpperCase() + meal.slice(1),
       stations: [{ id: "fixture", name: "Fixture Station", items: [1, 2].map((id) => ({
         id: `busch-${meal}-fixture-${id}`, name: `Fixture entrée ${id}`, hallId: "busch", mealType: meal,
@@ -298,9 +299,11 @@ for (const hall of ["busch", "atrium"] as const) {
   for (const empty of [true, false]) {
     test(`${hall} distinguishes ${empty ? "empty parsing" : "parsed data rejected by usability"}`, async (t) => {
       stubNutrislice(t, () => Response.json(week(date, empty ? [] : [{ food: { ...food(1).food, rounded_nutrition_info: null } }, { food: { ...food(2).food, rounded_nutrition_info: null } }])));
-      assert.equal(await getHallMenuForDate(hall, date), null);
+      const menu = await getHallMenuForDate(hall, date);
+      if (empty) { assert.ok(menu); assert.equal(menu.meals.length, 0); assert.ok(Object.values(menu.mealStatus!).every(status => status.state === "empty")); }
+      else assert.equal(menu, null);
       const log = await summary();
-      assert.equal(log.outcome, "unavailable");
+      assert.equal(log.outcome, empty ? "partial" : "unavailable");
       assert.deepEqual(log.returned, { meals: 0, stations: 0, items: 0 });
       assert.equal(log.diagnostics.normalization?.processedItemsBeforeDedup, empty ? 0 : 6);
       assert.equal(log.diagnostics.normalizationComplete, true);
@@ -346,8 +349,8 @@ for (const available of [true, false]) {
     await flush();
     assert.equal(logs.length, 1);
     assert.equal(calls.length, 4);
-    // Preserve both existing daily TTLs; the still-valid school cache is observed on the next load.
-    t.mock.timers.tick((available ? 15 : 2) * 60 * 1000 + 1);
+    // Successful meals keep fifteen minutes; failures become eligible after thirty seconds.
+    t.mock.timers.tick((available ? 15 * 60_000 : 30_000) + 1);
     await getHallMenuForDate("busch", date);
     await flush();
     assert.equal(logs.length, 2);
@@ -396,6 +399,11 @@ for (const later of ["never settles", "resolves", "rejects"] as const) {
     assert.equal(logs.length, 1);
     assert.equal(logs[0].raw, emitted, "Sibling work cannot update or replace the emitted record");
     assert.deepEqual(summary("error"), log, "Duration ends at the daily loader's exit");
+    // Per-meal sharing retains siblings until their real deadline. Settle that deadline
+    // before restoring fake timers, without permitting any second summary.
+    t.mock.timers.tick(4500);
+    await flush();
+    assert.equal(logs.length, 1);
   });
 }
 

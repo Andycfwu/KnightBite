@@ -4,11 +4,11 @@ import { assignUniqueItemIds } from "@/lib/menu-item-identity";
 import { hasMeaningfulNutrition, unknownNutrition } from "@/lib/nutrition";
 import { MenuProvider } from "@/lib/providers/menu-provider";
 import { addError, addFailure, createIngestionAttempt, finishIngestionAttempt, IngestionAttempt, IngestionFailure, MealAttempt, trackMeal } from "@/lib/providers/menu-ingestion-log";
-import { DailyMenu, DiningHallId, MealSection, MealType, MenuItem, Nutrition, Station } from "@/lib/types";
+import { DailyMenu, DiningHallId, MealSection, MealType, MealLoadResult, MenuItem, Nutrition, Station } from "@/lib/types";
 
 const NUTRISLICE_API_BASE = "https://rutgers.api.nutrislice.com/menu/api";
 const CACHE_TTL_MS = 1000 * 60 * 15;
-const FAILED_CACHE_TTL_MS = 1000 * 60 * 2;
+const FAILED_CACHE_TTL_MS = 30_000; // One demand-driven retry per hall/date/meal per cooldown.
 const SCHOOL_CACHE_TTL_MS = 1000 * 60 * 60 * 12;
 const FALLBACK_STATION_LABEL = "Menu Items";
 const MIN_MEANINGFUL_ITEM_COUNT = 2;
@@ -157,6 +157,9 @@ const NUTRITION_RULES: Record<NutritionKey, NutritionFieldRule> = {
 };
 
 let schoolCache: SchoolCacheEntry | null = null;
+type CachedMeal = MealLoadResult & { detail: MealAttempt; diagnostics: NormalizationDiagnostics; expiresAt: number };
+const mealCache = new BoundedPromiseCache<CachedMeal>(48, 16 * 1024 * 1024);
+let schoolLoad: Promise<RutgersSchool[]> | null = null;
 const menuCache = new BoundedPromiseCache<DailyMenu | null>(16, 16 * 1024 * 1024);
 
 function isDevelopment() {
@@ -461,7 +464,10 @@ async function getSchools() {
     return schoolCache.schools;
   }
 
-  const schools = await fetchJson<RutgersSchool[]>(`${NUTRISLICE_API_BASE}/schools/`);
+  if (!schoolLoad) {
+    schoolLoad = fetchJson<RutgersSchool[]>(`${NUTRISLICE_API_BASE}/schools/`).finally(() => { schoolLoad = null; });
+  }
+  const schools = await schoolLoad;
   schoolCache = {
     schools,
     expiresAt: now + SCHOOL_CACHE_TTL_MS
@@ -789,7 +795,8 @@ async function fetchMealSection(
     for (const station of section?.stations ?? []) for (const item of station.items) item.menuDate = date;
     detail.normalizationCompleted = true;
     if (!section) {
-      detail.outcome = "empty";
+      detail.outcome = Array.isArray(requestedDay.menu_items) && requestedDay.menu_items.every(entry => entry && typeof entry === "object" &&
+        (entry.is_section_title === true || entry.is_station_header === true)) && !shapeIssue ? "empty" : "failed";
       detail.parsed = { stations: 0, items: 0 };
       addFailure(detail, "no_items", "normalization");
     }
@@ -854,6 +861,35 @@ function isMeaningfullyUsableMenu(meals: MealSection[], diagnostics: Normalizati
   return trustworthyItemCount >= MIN_MEANINGFUL_ITEM_COUNT || meals.length >= 2;
 }
 
+// Cache each meal independently: an expired failure never evicts a successful sibling.
+// No automatic retry loop. Daily requests and explicit retries share this same key/promise.
+async function loadMeal(hallId: DiningHallId, date: string, school: RutgersSchool | null, type: MealType,
+  attempt: IngestionAttempt, diagnostics: NormalizationDiagnostics): Promise<CachedMeal> {
+  let fetched = false;
+  attempt.meals[type].outcome = "pending";
+  const result = await mealCache.load(`${hallId}:${date}:${type}`, async () => {
+    fetched = true;
+    const own = createIngestionAttempt(hallId, date);
+    const counts = createDiagnostics();
+    attempt.meals[type] = own.meals[type];
+    const resolvedSchool = school ?? await resolveSchool(hallId, attempt);
+    const section = resolvedSchool ? await trackMeal(own, type, () => fetchMealSection(hallId, date, resolvedSchool, type, counts, own.meals[type])) : null;
+    const state = section ? "available" : own.meals[type].outcome === "empty" ? "empty" : "unavailable";
+    const expiresAt = Date.now() + (state === "unavailable" ? FAILED_CACHE_TTL_MS : CACHE_TTL_MS);
+    return { hallId, date, mealType: type, section, status: state === "unavailable"
+      ? { state, retryAt: expiresAt } : { state, retrievedAt: new Date().toISOString() },
+      detail: own.meals[type], diagnostics: counts, expiresAt };
+  }, result => Math.max(0, result.expiresAt - Date.now()));
+  attempt.meals[type] = { ...result.detail, cacheHit: !fetched };
+  // Counts describe normalization of the returned sections; cacheHit identifies reused work.
+  for (const key of Object.keys(diagnostics) as Array<keyof NormalizationDiagnostics>) {
+    const value = result.diagnostics[key];
+    if (Array.isArray(value)) (diagnostics[key] as unknown[]).push(...value);
+    else (diagnostics[key] as number) += value;
+  }
+  return result;
+}
+
 async function loadDailyMenu(
   hallId: DiningHallId, date: string, diagnostics: NormalizationDiagnostics, attempt: IngestionAttempt
 ): Promise<DailyMenu | null> {
@@ -865,17 +901,14 @@ async function loadDailyMenu(
     return null;
   }
 
-  const mealSections = (
-    await Promise.all([
-      trackMeal(attempt, "breakfast", () => fetchMealSection(hallId, date, school, "breakfast", diagnostics, attempt.meals.breakfast)),
-      trackMeal(attempt, "lunch", () => fetchMealSection(hallId, date, school, "lunch", diagnostics, attempt.meals.lunch)),
-      trackMeal(attempt, "dinner", () => fetchMealSection(hallId, date, school, "dinner", diagnostics, attempt.meals.dinner))
-    ])
-  ).filter((meal): meal is MealSection => Boolean(meal));
+  const results = await Promise.all((["breakfast", "lunch", "dinner"] as MealType[]).map(type =>
+    loadMeal(hallId, date, school, type, attempt, diagnostics)));
+  const mealSections = results.map(result => result.section).filter((meal): meal is MealSection => Boolean(meal));
 
   logNormalizationDiagnostics(diagnostics);
 
-  if (!isMeaningfullyUsableMenu(mealSections, diagnostics)) {
+  const confirmedEmptyOnly = mealSections.length === 0 && results.some(result => result.status.state === "empty");
+  if (!confirmedEmptyOnly && !isMeaningfullyUsableMenu(mealSections, diagnostics)) {
     if (mealSections.length > 0) addFailure(attempt, "unusable_menu", "normalization");
     debugLog(`Live menu for ${hallId} on ${date} was not usable after normalization; returning unavailable.`, {
       mealCount: mealSections.length,
@@ -890,9 +923,26 @@ async function loadDailyMenu(
     hallId,
     hallName: school.name ?? hallConfig.hallName,
     meals: mealSections,
+    mealStatus: Object.fromEntries(results.map(result => [result.mealType, result.status])),
     isLiveData: true,
-    lastUpdatedAt: new Date().toISOString()
+    lastUpdatedAt: results.flatMap(result => result.status.retrievedAt ? [result.status.retrievedAt] : []).sort().at(-1)
   };
+}
+
+function diagnosticCounts(diagnostics: NormalizationDiagnostics) {
+  return {
+      processedItemsBeforeDedup: diagnostics.totalItems,
+      droppedItems: diagnostics.droppedItems.length,
+      deduplicatedItems: diagnostics.dedupedItems.length,
+      itemsWithMeaningfulNutritionBeforeDedup: diagnostics.itemsWithNutrition,
+      itemsWithoutMeaningfulNutritionBeforeDedup: diagnostics.itemsWithoutNutrition,
+      meaningfulOrCustomItemsBeforeDedup: diagnostics.usableItems,
+      blankStationHeaders: diagnostics.blankStationHeaders,
+      blankItemNames: diagnostics.blankItemNames,
+      fallbackStationLabels: diagnostics.fallbackStationLabels,
+      invalidNutritionFields: diagnostics.invalidNutritionFields.length,
+      parserWarnings: diagnostics.parserWarnings.length
+    };
 }
 
 async function loadDailyMenuWithSummary(hallId: DiningHallId, date: string) {
@@ -910,31 +960,42 @@ async function loadDailyMenuWithSummary(hallId: DiningHallId, date: string) {
     }
     throw error;
   } finally {
-    finishIngestionAttempt(attempt, menu, failed, () => ({
-      processedItemsBeforeDedup: diagnostics.totalItems,
-      droppedItems: diagnostics.droppedItems.length,
-      deduplicatedItems: diagnostics.dedupedItems.length,
-      itemsWithMeaningfulNutritionBeforeDedup: diagnostics.itemsWithNutrition,
-      itemsWithoutMeaningfulNutritionBeforeDedup: diagnostics.itemsWithoutNutrition,
-      meaningfulOrCustomItemsBeforeDedup: diagnostics.usableItems,
-      blankStationHeaders: diagnostics.blankStationHeaders,
-      blankItemNames: diagnostics.blankItemNames,
-      fallbackStationLabels: diagnostics.fallbackStationLabels,
-      invalidNutritionFields: diagnostics.invalidNutritionFields.length,
-      parserWarnings: diagnostics.parserWarnings.length
-    }));
+    finishIngestionAttempt(attempt, menu, failed, () => diagnosticCounts(diagnostics));
   }
 }
 
 export const rutgersMenuProvider: MenuProvider = {
   async getDailyMenu(hallId, date) {
     return menuCache.load(`${hallId}:${date}`, () => loadDailyMenuWithSummary(hallId, date),
-      menu => menu ? CACHE_TTL_MS : FAILED_CACHE_TTL_MS).catch((error) => {
+      menu => menu ? Math.max(0, Math.min(...Object.values(menu.mealStatus ?? {}).map(status =>
+        status!.retryAt ?? Date.parse(status!.retrievedAt!) + CACHE_TTL_MS)) - Date.now()) : FAILED_CACHE_TTL_MS).catch((error) => {
         logDevError(`Live Rutgers provider failed for ${hallId} on ${date}.`, error);
         return null;
       });
   }
 };
+
+/** Explicit demand-driven single-meal recovery. Same bounds, source, cache and diagnostics as daily loading. */
+export async function retryRutgersMeal(hallId: DiningHallId, date: string, mealType: MealType): Promise<MealLoadResult> {
+  const attempt = createIngestionAttempt(hallId, date);
+  attempt.requestedMeal = mealType;
+  const diagnostics = createDiagnostics();
+  let menu: DailyMenu | null = null;
+  const unavailable = (): MealLoadResult => ({ hallId, date, mealType, section: null,
+    status: { state: "unavailable", retryAt: Date.now() + FAILED_CACHE_TTL_MS } });
+  try {
+    const result = await loadMeal(hallId, date, null, mealType, attempt, diagnostics);
+    if (result.section) menu = { hallId, date, hallName: HALL_CONFIG[hallId].hallName, meals: [result.section], isLiveData: true };
+    menuCache.invalidate(`${hallId}:${date}`);
+    return { hallId, date, mealType, section: result.section, status: result.status };
+  } catch (error) {
+    addError(attempt, error, "ingestion");
+    return unavailable();
+  } finally {
+    // Non-requested siblings remain not_started; no synthetic success or measurements.
+    if (!attempt.meals[mealType].cacheHit) finishIngestionAttempt(attempt, menu, false, () => diagnosticCounts(diagnostics));
+  }
+}
 
 export async function debugRunLiveMenuSanityCheck(date: string): Promise<HallSanitySnapshot[] | null> {
   if (!isDevelopment()) {

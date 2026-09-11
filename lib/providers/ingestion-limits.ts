@@ -58,6 +58,11 @@ type Entry<T>={promise:Promise<T>;pending:boolean;expiresAt:number;bytes:number}
 export class BoundedPromiseCache<T> {
   private entries=new Map<string,Entry<T>>();
   constructor(private readonly capacity:number,private readonly byteLimit:number) {}
+  invalidate(key: string) {
+    // Keep in-flight daily callers joined. Their TTL is bounded by meal expiry;
+    // an already-expired failed section cannot become a long-lived snapshot.
+    if (!this.entries.get(key)?.pending) this.entries.delete(key);
+  }
   get size() { this.prune(); return this.entries.size; }
   get retainedBytes() { return [...this.entries.values()].reduce((sum,entry)=>sum+entry.bytes,0); }
   private prune() {

@@ -1,3 +1,48 @@
+# Partial-meal recovery fix — separate Production approval required
+
+Prepared September 11, 2026 UTC (September 10 New York) in isolated `Nutrition-partial-meal-loading`, branch **`codex/fix-partial-meal-loading`**, based on freshly verified main **`f0049cce5a70889f89ae7be5ab52c16c6275549c`**. PR #1 is now merged; this is a new focused fix. Authenticated Vercel overview confirmed Production **`dpl_E2GULsHLbSadXi8JeHQRXRvCpR9H`**, Ready, `knightbitenb.vercel.app`, source f0049cc. [Starting state](partial-meal-evidence/starting-state.json). No merge, Production deployment/promotion, settings change or protection bypass is authorized or performed. Original unrelated UI work remains untouched.
+
+## Root cause and reproduction
+
+The user supplied Production logs showing Livingston/Busch Breakfast success and Lunch/Dinner exceeding the body-inclusive **4.5-second** Nutrislice deadline. Atrium/Neilson succeeded in that observation. This pass does not manufacture more upstream failures through repeated live requests. Code inspection and [pre-fix controlled regressions](partial-meal-evidence/before-regression.log) establish:
+
+1. A daily load starts all three meal requests concurrently after school discovery. The homepage can start four hall loads; cold discovery previously was not shared. Meal deadlines include streamed body reads and reject even when fetch ignores abort. The hall's 15-second display deadline and homepage's 1.1-second status bound are separate.
+2. A single usable Breakfast made the daily result non-null, so the entire partial result received the **15-minute success TTL**. Failed Lunch/Dinner had no independent recovery path. Advancing thirty seconds and making upstream recovery possible still returned only cached Breakfast.
+3. The explorer rendered only returned meal tabs, and the selection helper chose an available meal when the scheduled one was absent. At controlled New York6pm a Breakfast-only result therefore selected Breakfast. This is distinct from the earlier stale-server-hint fix.
+
+The tests failed on current main before the remedy; their fixtures distinguish meal content and never contact live providers or analytics.
+
+## Focused changes and limits
+
+- Preserve the initial three parallel requests and each existing **4.5-second** body-inclusive deadline, accepted parsing/normalization, fixed Rutgers destinations, redirect rejection, byte/node/item limits, collision-safe item IDs and Atrium's Nutrislice authority. No automatic retries, global timeout increase, alternate source/date/meal or sample-food substitute.
+- Introduce independently shared **hall/date/meal** results: successful and explicitly empty meals retain **15 minutes from their own retrieval**; failed meals retain a **30-second cooldown**. The daily snapshot expires no later than its earliest meal. A new daily load after cooldown fetches only expired/missing meals, preserving successful sibling objects and original timestamps. Concurrent discovery and meal work are shared. Cache invalidation preserves in-flight daily joining.
+- Explicit same-origin `/api/menu/[hallId]/[date]/[mealType]` recovery requests **one meal**, with fixed source URLs and the same cache/bounds. Validate supported hall/meal, an actual calendar date, and a seven-day window around the current Rutgers date before requesting upstream. Private/no-store responses; at most one4.5-second school lookup plus one4.5-second meal request, client abort12seconds, route platform ceiling15seconds. Successful siblings and plate snapshots are not discarded when retry fails.
+- All three controls remain available. Today's default follows the existing hall-specific New York schedule even if its meal is unavailable; manual choices remain authoritative during retry completion, search, plate interaction and prop refresh. Missing meal panels name the meal, explain that failure does not establish closure, and expose a keyboard/touch retry action and live status. Cooldown prevents repeated UI requests without adding automatic polling.
+- Explicit valid empty/header-only requested-day responses retain empty evidence (including all-empty days); malformed/missing-date/normalization-rejected data remains unavailable. No missing meal borrows another section or retrieval time. Selected meal timestamps come only from its real result. Unknown nutrients, source item identities, artwork/positions, More/search/List access and temporary plates are preserved.
+- Daily cache remains bounded to16 entries/estimated16MiB; per-meal cache is bounded to48 entries/estimated16MiB. Active admission is bounded; settled entries may evict early. These are process-local estimates, not process RSS or distributed rate limiting. Different Vercel instances can make independent attempts. Persistent upstream slowness can still produce unavailable meals; this fix makes them reachable/recoverable, not guaranteed to arrive within4.5seconds. No durable/stored-real-menu recovery is added.
+- Synchronous safe ingestion summaries remain. `scope: daily` versus `scope: meal_retry` and `requestedMeal` distinguish operations; unrequested siblings stay not_started. `cacheHit` identifies reused normalized data/counts. Concurrent/cached retries do not duplicate actual recovery summaries. Failure categories remain unchanged.
+- Existing workflow now includes this exact fix branch in its push filter, so the named gate can verify the exact candidate and the prospective PR merge on both supported Node runtimes. No protection or dependency/runtime policy is weakened.
+
+## Verification and release integration
+
+Controlled unit coverage includes timeout reproduction, targeted success/failure/cooldown, concurrent retry sharing, original success TTL/timestamps, independent hall/date keys, exact dates, malformed versus empty, unchanged food/plate identities, body/discovery bounds, no automatic retry loop and preservation of active cache work. Existing Atrium fixtures conserve every accepted item and prohibit FoodProNet/mock fallback. Updated unavailable assertions require meal-specific wording and retain no-food/no-invented-time/date checks.
+
+Browser coverage includes delayed recovery while Breakfast is deliberately selected, retained plate snapshots, same-prop rerenders, cooldown failure then confirmed empty response, desktop/mobile control/content checks, actual HTTP recovery-route validation/no-store behavior and Production404 for the guarded scenario. Preview-only `/preview-check/partial` masks meals over **one returned real menu**, with clearly labeled controlled transport outcomes; retries make no upstream request and success can expose only the correctly dated source section actually retrieved. This is not evidence of an actual live outage/empty response. Preview analytics suppression remains on; Production analytics remains enabled.
+
+Both-runtime final local gates, exact published SHA/PR, exact-head Linux check, matching Preview runtime and final hosted observations will be added after completion/publication. Earlier candidate links below are historical and do not verify this fix. The final working report and PR body record post-publication evidence without changing a commit merely to insert its own SHA.
+
+## Production approval and recovery
+
+Production remains on verified **f0049cc**. Its source has the patched dependencies and Nutrislice migration and is a potential recovery baseline for an unrelated regression, but restoring it reintroduces the known Breakfast-only defect. This pass has not verified eligibility in Vercel's future Instant Rollback picker and authorizes no restoration/promotion. Never use pre-remediation70166c4 or promote a Preview-built artifact. Prefer reviewed forward correction preserving source and security controls; if baseline restoration becomes necessary, verify eligibility/source and obtain explicit approval with its known impact.
+
+After this fix is concrete and verified, request approval for its **exact candidate** and bounded merge/release steps. Approval must account for main merge triggering an automatic Production build; the actual new main commit/check, Production source, effective headers and alias assignment must be observed during that separately authorized release. Preview success alone does not verify that lifecycle. Use one normal affected-hall check and, if needed, one scoped retry; abort/escalate on wrong date/meal, missing controls, broken selection, fabricated food/metadata or plate/nutrition regression. Persistent honest upstream unavailability requires operational assessment, not a fallback menu.
+
+Retain prior owner decisions from the released PR; this technical fix does not invent new privacy, dietary or manual accessibility signoffs. Actual Safari/VoiceOver and broader payload coverage remain limitations. Further UI polish and correctly dated stored-real-menu recovery remain out of scope.
+
+---
+
+## Historical readiness records — partial-meal fix above takes precedence
+
 # Atrium Nutrislice migration — production remains paused
 
 Prepared September 10, 2026 New York, from the freshly verified Draft PR #1 head **`521a0883c1b24c3cd4e814f695a833261bac97b1`** in isolated worktree `Nutrition-atrium-nutrislice`, branch **`codex/atrium-nutrislice`**. This migration supersedes earlier FoodProNet-based candidates and their Atrium evidence. Original unrelated source/UI work is preserved. No merge, Production deployment or protection change is authorized or performed.

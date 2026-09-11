@@ -39,10 +39,10 @@ test("non-today dates start with chronological first listed meal, regardless of 
   assert.equal(getDefaultMealType(menu(["dinner", "breakfast", "lunch"], "2026-09-09"), at("18:00")), "breakfast");
   assert.equal(getDefaultMealType(menu(["dinner", "lunch"], "2026-09-11"), at("18:00")), "lunch");
 });
-test("missing expected meal selects a real next or last section; empty menus do not manufacture sections", () => {
-  assert.equal(getDefaultMealType(menu(["breakfast", "lunch"]), at("18:00")), "lunch");
-  assert.equal(getDefaultMealType(menu(["breakfast", "dinner"]), at("12:00")), "dinner");
-  assert.equal(getDefaultMealType(menu(["lunch"]), at("08:00")), "lunch");
+test("missing expected meal stays selected without manufacturing a section", () => {
+  assert.equal(getDefaultMealType(menu(["breakfast", "lunch"]), at("18:00")), "dinner");
+  assert.equal(getDefaultMealType(menu(["breakfast", "dinner"]), at("12:00")), "lunch");
+  assert.equal(getDefaultMealType(menu(["lunch"]), at("08:00")), "breakfast");
   assert.equal(menu([]).meals.find(m => m.type === getDefaultMealType(menu([]), at("18:00"))), undefined);
 });
 test("station evidence separates unconfirmed menus and empty listed meals; neither implies closed", () => {
@@ -78,7 +78,7 @@ test("missing dinner never displays lunch under a dinner label", () => {
   const html = renderToStaticMarkup(<UserPreferencesProvider><PlateProvider>
     <HallMenuView hall={diningHalls.find(h => h.id === "busch")!} menu={menu(["lunch"])} requestedDate="2026-09-10" initialMeal="dinner" />
   </PlateProvider></UserPreferencesProvider>);
-  assert.match(html, /Lunch MENU/);
-  assert.match(html, /No items listed for lunch/);
-  assert.doesNotMatch(html, /Dinner MENU|No items listed for dinner/);
+  assert.match(html, /Dinner MENU/);
+  assert.match(html, /Dinner menu unavailable/);
+  assert.doesNotMatch(html, /Lunch MENU|No items listed for dinner|No items listed for lunch/);
 });

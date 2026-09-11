@@ -20,6 +20,7 @@ const MAX_FAILURE_GROUPS = 16;
 const emptyFailures = (): Failures => ({ failures: [], omittedFailureCount: 0 });
 
 export type MealAttempt = Failures & {
+  cacheHit?: boolean;
   outcome: "not_started" | "pending" | "parsed" | "empty" | "rejected" | "failed";
   parsed: { stations: number; items: number } | null;
   normalizationStarted: boolean;
@@ -31,6 +32,7 @@ export type MealAttempt = Failures & {
 
 export type IngestionAttempt = Failures & {
   hallId: DiningHallId;
+  requestedMeal?: MealType;
   requestedDate: string;
   startedAtMs: number;
   schoolResolution: "not_started" | "discovered" | "cached" | "static_fallback" | "unavailable";
@@ -109,7 +111,8 @@ export function finishIngestionAttempt(
   // Serialize now so later sibling work cannot mutate or delay the emitted record.
   try {
     const details = MEALS.map((meal) => attempt.meals[meal]);
-    const hasIssues = attempt.failures.length > 0 || details.some((meal) =>
+    const relevant = attempt.requestedMeal ? [attempt.meals[attempt.requestedMeal]] : details;
+    const hasIssues = attempt.failures.length > 0 || relevant.some((meal) =>
       meal.outcome !== "parsed" || meal.failures.length > 0 || meal.enrichment.failedItems > 0 || meal.enrichment.skippedItems > 0);
     const outcome = failed ? "error" : !menu ? "unavailable" : hasIssues ? "partial" : "success";
     const counts = readDiagnostics();
@@ -117,6 +120,8 @@ export function finishIngestionAttempt(
     const summary = {
       event: "knightbite.menu_ingestion",
       source: "nutrislice",
+      scope: attempt.requestedMeal ? "meal_retry" : "daily",
+      ...(attempt.requestedMeal ? { requestedMeal: attempt.requestedMeal } : {}),
       hallId: ["busch", "livingston", "neilson", "atrium"].includes(attempt.hallId) ? attempt.hallId : "unknown",
       requestedDate: /^\d{4}-\d{2}-\d{2}$/.test(attempt.requestedDate) ? attempt.requestedDate : null,
       startedAt: new Date(attempt.startedAtMs).toISOString(),

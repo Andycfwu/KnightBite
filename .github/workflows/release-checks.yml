@@ -4,7 +4,7 @@ on:
   push:
     # Release-branch runs check the exact candidate SHA; PR runs also check the
     # prospective merge. Main runs gate Vercel's final production commit.
-    branches: [main, 'codex/release-*']
+    branches: [main, 'codex/release-*', 'codex/fix-partial-meal-loading']
 permissions:
   contents: read
 concurrency:

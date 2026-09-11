@@ -18,10 +18,14 @@ test('cache shares pending loads, bounds admission and never evicts active work'
   let resolve!:(value:string)=>void,calls=0;
   const loader=()=>{calls++;return new Promise<string>(r=>resolve=r);};
   const first=cache.load('a',loader,()=>1000);
+  cache.invalidate('a'); // Recovery must not detach a running daily snapshot.
   const second=cache.load('a',loader,()=>1000);
   assert.strictEqual(first,second);
   await assert.rejects(cache.load('b',async()=>'b',()=>1000),/resource_limit/);
   assert.equal(calls,1);resolve('a');await first;
+  cache.invalidate('a');
+  assert.equal(await cache.load('a',async()=>{calls++;return 'fresh';},()=>1000),'fresh');
+  assert.equal(calls,2);
   assert.equal(await cache.load('b',async()=>'b',()=>1000),'b');assert.equal(cache.size,1);
 });
 test('multi-day cache use plateaus and expires entries while respecting a byte budget',async(t)=>{

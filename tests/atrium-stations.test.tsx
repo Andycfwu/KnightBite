@@ -70,7 +70,7 @@ test("Atrium refrigerated islands share a group without decorative landmark labe
 test("Atrium null menus keep the drawing, date and controls without inventing food or live metadata", () => {
   const html = render(null);
   assert.match(html, /September 9/);
-  assert.match(html, /Menu unavailable right now/);
+  assert.match(html, /(?:Breakfast|Lunch|Dinner) menu unavailable right now/);
   assert.match(html, /type="search"[^>]*disabled=""/);
   assert.equal((html.match(/aria-label="Explore /g) ?? []).length, 8);
   assert.match(html, /Entrance/);

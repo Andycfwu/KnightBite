@@ -61,7 +61,7 @@ function render(value: DailyMenu | null) {
 test("Livingston unavailable state keeps the guide but no food claims, add controls, or invented timestamp", () => {
   const html = render(null);
   assert.match(html, /September 8/);
-  assert.match(html, /Menu unavailable right now/);
+  assert.match(html, /(?:Breakfast|Lunch|Dinner) menu unavailable right now/);
   assert.match(html, /Approximate station layout/);
   assert.equal((html.match(/aria-label="Explore /g) ?? []).length, 7);
   assert.doesNotMatch(html, /aria-label="Add |test dish|Retrieved|Listed on Rutgers|Sample menu|Backup menu/);

@@ -48,11 +48,26 @@ export type MealSection = {
   stations: Station[];
 };
 
+export type MealStatus = {
+  state: "available" | "empty" | "unavailable";
+  retrievedAt?: string;
+  retryAt?: number;
+};
+
+export type MealLoadResult = {
+  hallId: DiningHallId;
+  date: string;
+  mealType: MealType;
+  section: MealSection | null;
+  status: MealStatus;
+};
+
 export type DailyMenu = {
   date: string;
   hallId: DiningHallId;
   hallName: string;
   meals: MealSection[];
+  mealStatus?: Partial<Record<MealType, MealStatus>>;
   isLiveData?: boolean;
   lastUpdatedAt?: string;
 };
