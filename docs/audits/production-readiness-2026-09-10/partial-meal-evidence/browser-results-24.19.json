@@ -1,0 +1,1309 @@
+{
+  "config": {
+    "argv": [
+      "/private/tmp/node-v24.19.0-darwin-arm64/bin/node",
+      "/Users/andywu/Desktop/Codex/Nutrition-partial-meal-loading/node_modules/.bin/playwright",
+      "test"
+    ],
+    "configFile": "/Users/andywu/Desktop/Codex/Nutrition-partial-meal-loading/playwright.config.ts",
+    "rootDir": "/Users/andywu/Desktop/Codex/Nutrition-partial-meal-loading/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/andywu/Desktop/Codex/Nutrition-partial-meal-loading/test-results/playwright",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/andywu/Desktop/Codex/Nutrition-partial-meal-loading/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/andywu/Desktop/Codex/Nutrition-partial-meal-loading/test-results/playwright",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/andywu/Desktop/Codex/Nutrition-partial-meal-loading/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/browser-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "env": {
+        "KNIGHTBITE_TEST_NOW": "2026-09-10T12:00:00Z"
+      },
+      "command": "node scripts/synthetic-server.mjs",
+      "url": "http://127.0.0.1:3217/profile",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "account-pages.spec.ts",
+      "file": "account-pages.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "plate portions, partial totals and saved profile goals work across client navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4064,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:28:44.629Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a1ee2ab11dcaa43be464-79f9e0f3a07c0ea1aec7",
+          "file": "account-pages.spec.ts",
+          "line": 3,
+          "column": 5
+        },
+        {
+          "title": "plate portions, partial totals and saved profile goals work across client navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3193,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:02.149Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a1ee2ab11dcaa43be464-0b2482930fd2c1dfa542",
+          "file": "account-pages.spec.ts",
+          "line": 3,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "meal-selection.spec.ts",
+      "file": "meal-selection.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "6pm homepage entry and all meal contents (desktop)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1526,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:28:49.533Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a298a7d77dcce44593ef-04cb9f5c40ae1c000634",
+          "file": "meal-selection.spec.ts",
+          "line": 26,
+          "column": 41
+        },
+        {
+          "title": "6pm homepage entry and all meal contents (mobile)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1737,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:28:51.065Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a298a7d77dcce44593ef-735ed96335ffc8052206",
+          "file": "meal-selection.spec.ts",
+          "line": 26,
+          "column": 41
+        },
+        {
+          "title": "direct entry, hall navigation, and unavailable menus retain honest content",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 608,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:28:52.806Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a298a7d77dcce44593ef-e1fd93efa765a96ea48d",
+          "file": "meal-selection.spec.ts",
+          "line": 51,
+          "column": 5
+        },
+        {
+          "title": "Atrium Nutrislice homepage entry, meal contents and plate (desktop)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1794,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:28:53.418Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a298a7d77dcce44593ef-0c93d024353321a815e3",
+          "file": "meal-selection.spec.ts",
+          "line": 68,
+          "column": 41
+        },
+        {
+          "title": "Atrium Nutrislice homepage entry, meal contents and plate (mobile)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2240,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:28:55.217Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a298a7d77dcce44593ef-c6de4ae01a6e75f15e39",
+          "file": "meal-selection.spec.ts",
+          "line": 68,
+          "column": 41
+        },
+        {
+          "title": "single-meal recovery route validates scope and returns bounded real normalized results with no-store headers",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 116,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:28:57.462Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a298a7d77dcce44593ef-212e48b245dac28bfde4",
+          "file": "meal-selection.spec.ts",
+          "line": 99,
+          "column": 5
+        },
+        {
+          "title": "6pm homepage entry and all meal contents (desktop)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2327,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:06.617Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a298a7d77dcce44593ef-048ba71029b511589b2b",
+          "file": "meal-selection.spec.ts",
+          "line": 26,
+          "column": 41
+        },
+        {
+          "title": "6pm homepage entry and all meal contents (mobile)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2319,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:08.951Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a298a7d77dcce44593ef-f29cce9aa2416ada12c7",
+          "file": "meal-selection.spec.ts",
+          "line": 26,
+          "column": 41
+        },
+        {
+          "title": "direct entry, hall navigation, and unavailable menus retain honest content",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 936,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:11.282Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a298a7d77dcce44593ef-41b1fd4407028e9015f2",
+          "file": "meal-selection.spec.ts",
+          "line": 51,
+          "column": 5
+        },
+        {
+          "title": "Atrium Nutrislice homepage entry, meal contents and plate (desktop)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2411,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:12.234Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a298a7d77dcce44593ef-5124e9378e5f3a86bbf4",
+          "file": "meal-selection.spec.ts",
+          "line": 68,
+          "column": 41
+        },
+        {
+          "title": "Atrium Nutrislice homepage entry, meal contents and plate (mobile)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2037,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:14.656Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a298a7d77dcce44593ef-fa81b92f276cc961d7a7",
+          "file": "meal-selection.spec.ts",
+          "line": 68,
+          "column": 41
+        },
+        {
+          "title": "single-meal recovery route validates scope and returns bounded real normalized results with no-store headers",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 275,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:16.704Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a298a7d77dcce44593ef-ba2ab8285a449361c9fa",
+          "file": "meal-selection.spec.ts",
+          "line": 99,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "preview-guard.spec.ts",
+      "file": "preview-guard.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "normal production build does not expose Preview verification pages",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 116,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:28:57.587Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d721f435ac263f58f7db-e494e39731c34242e08f",
+          "file": "preview-guard.spec.ts",
+          "line": 3,
+          "column": 5
+        },
+        {
+          "title": "normal production build does not expose Preview verification pages",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 268,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:16.995Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d721f435ac263f58f7db-b263033ceb027da63526",
+          "file": "preview-guard.spec.ts",
+          "line": 3,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "release-evidence.spec.ts",
+      "file": "release-evidence.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "analytics-enabled bundle and CSP: synthetic transport probe",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 963,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:28:57.710Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "analytics-intercept-evidence",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY3JpcHRNb2RlIjogInN5bnRoZXRpYy10cmFuc3BvcnQtcHJvYmUiLAogICJzY3JpcHRTaGEyNTYiOiAiMjZlNjJjNDdhMjgwMTYwMTQyZDJmYTJjNTI2NzAzZTc0YTE2NTNiODIyNjJmMDg1YTc5ZjdkYTZiNjRkYzI2MyIsCiAgImJ1aWxkSWQiOiAiYnJPclk3TFhpbEJ1Qm1QRTR0Z0x0IiwKICAic2NyaXB0UmVxdWVzdHMiOiAyLAogICJpbnRlcmNlcHRlZFJlcXVlc3RzIjogWwogICAgewogICAgICAicGF0aCI6ICIvX3ZlcmNlbC9pbnNpZ2h0cy92aWV3IiwKICAgICAgImJvZHkiOiB7CiAgICAgICAgIm8iOiAiaHR0cDovLzEyNy4wLjAuMTozMjE3L3Byb2ZpbGUiLAogICAgICAgICJkcCI6ICIvcHJvZmlsZSIsCiAgICAgICAgInNka24iOiAiQHZlcmNlbC9hbmFseXRpY3MvbmV4dCIsCiAgICAgICAgInNka3YiOiAiMi4wLjEiCiAgICAgIH0KICAgIH0sCiAgICB7CiAgICAgICJwYXRoIjogIi9fdmVyY2VsL2luc2lnaHRzL3ZpZXciLAogICAgICAiYm9keSI6IHsKICAgICAgICAibyI6ICJodHRwOi8vMTI3LjAuMC4xOjMyMTcvcGxhdGUiLAogICAgICAgICJkcCI6ICIvcGxhdGUiLAogICAgICAgICJzZGtuIjogIkB2ZXJjZWwvYW5hbHl0aWNzL25leHQiLAogICAgICAgICJzZGt2IjogIjIuMC4xIgogICAgICB9CiAgICB9LAogICAgewogICAgICAicGF0aCI6ICIvX3ZlcmNlbC9pbnNpZ2h0cy92aWV3IiwKICAgICAgImJvZHkiOiB7CiAgICAgICAgIm8iOiAiaHR0cDovLzEyNy4wLjAuMTozMjE3L2hhbGwvYnVzY2giLAogICAgICAgICJkcCI6ICIvaGFsbC9baGFsbElkXSIsCiAgICAgICAgInNka24iOiAiQHZlcmNlbC9hbmFseXRpY3MvbmV4dCIsCiAgICAgICAgInNka3YiOiAiMi4wLjEiCiAgICAgIH0KICAgIH0sCiAgICB7CiAgICAgICJwYXRoIjogIi9fdmVyY2VsL2luc2lnaHRzL3ZpZXciLAogICAgICAiYm9keSI6IHsKICAgICAgICAibyI6ICJodHRwOi8vMTI3LjAuMC4xOjMyMTcvcHJvZmlsZSIsCiAgICAgICAgImRwIjogIi9wcm9maWxlIiwKICAgICAgICAic2RrbiI6ICJAdmVyY2VsL2FuYWx5dGljcy9uZXh0IiwKICAgICAgICAic2RrdiI6ICIyLjAuMSIKICAgICAgfQogICAgfQogIF0sCiAgImV4dGVybmFsUmVxdWVzdHMiOiBbXSwKICAiZGVsaXZlcmVkQW5hbHl0aWNzRXZlbnRzIjogMAp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1893a65209a45967956c-866b5a8594a2bb55e638",
+          "file": "release-evidence.spec.ts",
+          "line": 20,
+          "column": 5
+        },
+        {
+          "title": "plate dialog has a complete forward/backward keyboard cycle and named quantity actions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 549,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:28:58.677Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1893a65209a45967956c-834bbb788f3cd6137c69",
+          "file": "release-evidence.spec.ts",
+          "line": 82,
+          "column": 5
+        },
+        {
+          "title": "analytics-enabled bundle and CSP: synthetic transport probe",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 788,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:17.275Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "analytics-intercept-evidence",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY3JpcHRNb2RlIjogInN5bnRoZXRpYy10cmFuc3BvcnQtcHJvYmUiLAogICJzY3JpcHRTaGEyNTYiOiAiMjZlNjJjNDdhMjgwMTYwMTQyZDJmYTJjNTI2NzAzZTc0YTE2NTNiODIyNjJmMDg1YTc5ZjdkYTZiNjRkYzI2MyIsCiAgImJ1aWxkSWQiOiAiYnJPclk3TFhpbEJ1Qm1QRTR0Z0x0IiwKICAic2NyaXB0UmVxdWVzdHMiOiAyLAogICJpbnRlcmNlcHRlZFJlcXVlc3RzIjogWwogICAgewogICAgICAicGF0aCI6ICIvX3ZlcmNlbC9pbnNpZ2h0cy92aWV3IiwKICAgICAgImJvZHkiOiB7CiAgICAgICAgIm8iOiAiaHR0cDovLzEyNy4wLjAuMTozMjE3L3Byb2ZpbGUiLAogICAgICAgICJkcCI6ICIvcHJvZmlsZSIsCiAgICAgICAgInNka24iOiAiQHZlcmNlbC9hbmFseXRpY3MvbmV4dCIsCiAgICAgICAgInNka3YiOiAiMi4wLjEiCiAgICAgIH0KICAgIH0sCiAgICB7CiAgICAgICJwYXRoIjogIi9fdmVyY2VsL2luc2lnaHRzL3ZpZXciLAogICAgICAiYm9keSI6IHsKICAgICAgICAibyI6ICJodHRwOi8vMTI3LjAuMC4xOjMyMTcvcGxhdGUiLAogICAgICAgICJkcCI6ICIvcGxhdGUiLAogICAgICAgICJzZGtuIjogIkB2ZXJjZWwvYW5hbHl0aWNzL25leHQiLAogICAgICAgICJzZGt2IjogIjIuMC4xIgogICAgICB9CiAgICB9LAogICAgewogICAgICAicGF0aCI6ICIvX3ZlcmNlbC9pbnNpZ2h0cy92aWV3IiwKICAgICAgImJvZHkiOiB7CiAgICAgICAgIm8iOiAiaHR0cDovLzEyNy4wLjAuMTozMjE3L2hhbGwvYnVzY2giLAogICAgICAgICJkcCI6ICIvaGFsbC9baGFsbElkXSIsCiAgICAgICAgInNka24iOiAiQHZlcmNlbC9hbmFseXRpY3MvbmV4dCIsCiAgICAgICAgInNka3YiOiAiMi4wLjEiCiAgICAgIH0KICAgIH0sCiAgICB7CiAgICAgICJwYXRoIjogIi9fdmVyY2VsL2luc2lnaHRzL3ZpZXciLAogICAgICAiYm9keSI6IHsKICAgICAgICAibyI6ICJodHRwOi8vMTI3LjAuMC4xOjMyMTcvcHJvZmlsZSIsCiAgICAgICAgImRwIjogIi9wcm9maWxlIiwKICAgICAgICAic2RrbiI6ICJAdmVyY2VsL2FuYWx5dGljcy9uZXh0IiwKICAgICAgICAic2RrdiI6ICIyLjAuMSIKICAgICAgfQogICAgfQogIF0sCiAgImV4dGVybmFsUmVxdWVzdHMiOiBbXSwKICAiZGVsaXZlcmVkQW5hbHl0aWNzRXZlbnRzIjogMAp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1893a65209a45967956c-13b89215d0ffecd20668",
+          "file": "release-evidence.spec.ts",
+          "line": 20,
+          "column": 5
+        },
+        {
+          "title": "plate dialog has a complete forward/backward keyboard cycle and named quantity actions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 777,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:18.068Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1893a65209a45967956c-2da1acf8a7fdb515f24c",
+          "file": "release-evidence.spec.ts",
+          "line": 82,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "workflows.spec.ts",
+      "file": "workflows.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "menu portions, missing nutrients, plate snapshots and keyboard dialog",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 735,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:28:59.234Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "26aa48cee8983222f549-06035e1fdc3d13f5fd8c",
+          "file": "workflows.spec.ts",
+          "line": 14,
+          "column": 5
+        },
+        {
+          "title": "normal preferences persist, have checked state, synchronize tabs and clear without reappearing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 542,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:28:59.975Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "26aa48cee8983222f549-8517ddbaaca5a381de8e",
+          "file": "workflows.spec.ts",
+          "line": 38,
+          "column": 5
+        },
+        {
+          "title": "preferences handle SecurityError safely",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 167,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:00.523Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "26aa48cee8983222f549-ba8cde9effc26cdf8821",
+          "file": "workflows.spec.ts",
+          "line": 51,
+          "column": 95
+        },
+        {
+          "title": "preferences handle QuotaExceededError safely",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 167,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:00.695Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "26aa48cee8983222f549-440c0688181dc2f0c87a",
+          "file": "workflows.spec.ts",
+          "line": 51,
+          "column": 95
+        },
+        {
+          "title": "preferences handle malformed safely",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 165,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:00.867Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "26aa48cee8983222f549-4fcaddb1c1e2605c29ec",
+          "file": "workflows.spec.ts",
+          "line": 51,
+          "column": 95
+        },
+        {
+          "title": "preferences handle legacy safely",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 164,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:01.038Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "26aa48cee8983222f549-eca17e82541ff22ff86c",
+          "file": "workflows.spec.ts",
+          "line": 51,
+          "column": 95
+        },
+        {
+          "title": "maps, unavailable status, security headers and small-screen layout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 611,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:01.207Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "26aa48cee8983222f549-0933908088ad037af94e",
+          "file": "workflows.spec.ts",
+          "line": 66,
+          "column": 5
+        },
+        {
+          "title": "menu portions, missing nutrients, plate snapshots and keyboard dialog",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1109,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:18.859Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "26aa48cee8983222f549-7c8e4ede919f9291c292",
+          "file": "workflows.spec.ts",
+          "line": 14,
+          "column": 5
+        },
+        {
+          "title": "normal preferences persist, have checked state, synchronize tabs and clear without reappearing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 962,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:19.974Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "26aa48cee8983222f549-9f6d0c375f1d82402d7c",
+          "file": "workflows.spec.ts",
+          "line": 38,
+          "column": 5
+        },
+        {
+          "title": "preferences handle SecurityError safely",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 317,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:20.947Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "26aa48cee8983222f549-c350c7bcc4a80b29107e",
+          "file": "workflows.spec.ts",
+          "line": 51,
+          "column": 95
+        },
+        {
+          "title": "preferences handle QuotaExceededError safely",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 317,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:21.272Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "26aa48cee8983222f549-5f6067234f62754fbaf1",
+          "file": "workflows.spec.ts",
+          "line": 51,
+          "column": 95
+        },
+        {
+          "title": "preferences handle malformed safely",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 317,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:21.597Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "26aa48cee8983222f549-3d9f5df93cdbcd137bf0",
+          "file": "workflows.spec.ts",
+          "line": 51,
+          "column": 95
+        },
+        {
+          "title": "preferences handle legacy safely",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 312,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:21.920Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "26aa48cee8983222f549-405e907d08ce8ea7fd47",
+          "file": "workflows.spec.ts",
+          "line": 51,
+          "column": 95
+        },
+        {
+          "title": "maps, unavailable status, security headers and small-screen layout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1010,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-11T02:29:22.238Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "26aa48cee8983222f549-9a1b875f316ee5586706",
+          "file": "workflows.spec.ts",
+          "line": 66,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-11T02:28:43.832Z",
+    "duration": 39536.216,
+    "expected": 34,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

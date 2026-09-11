@@ -1,0 +1,27 @@
+{
+  "observedAt": "2026-09-11T02:33:57.735851+00:00",
+  "runtime24.21": {
+    "command": "npm run check",
+    "exitCode": 0,
+    "unit": 182,
+    "productionBrowser": 34,
+    "unavailableBrowser": 2,
+    "previewBrowser": 16,
+    "types": "passed",
+    "lint": "passed",
+    "isolatedProductionPreviewBuilds": "passed"
+  },
+  "runtime24.19": {
+    "earlierFullGate": "passed 182 unit and52 browser, types/lint/isolated builds",
+    "finalClassificationGuard": "all182 unit passed after final strict header-only empty validation",
+    "finalExactSourceFullGate": "in progress; final evidence to follow"
+  },
+  "audit": "npm audit --audit-level=moderate: zero vulnerabilities",
+  "whitespace": "git diff --check passed",
+  "network": "Offline synthetic/sanitized transport blocks upstream and analytics",
+  "developmentCorrections": [
+    "Existing generic unavailable assertions updated to require meal-specific wording",
+    "New CSS locator scoped to visible source panel to avoid hidden streamed markup",
+    "Never-settling sibling test advances remaining deadline before restoring fake timers so per-meal pending cache is not frozen by the test harness"
+  ]
+}

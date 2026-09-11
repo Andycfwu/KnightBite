@@ -58,7 +58,7 @@ test("Neilson drawing orientation keeps entrance below counters and deli above t
 test("Neilson unavailable state keeps its guide without inventing foods or retrieval claims", () => {
   const html = render(null);
   assert.match(html, /September 9/);
-  assert.match(html, /Menu unavailable right now/);
+  assert.match(html, /(?:Breakfast|Lunch|Dinner) menu unavailable right now/);
   assert.match(html, /type="search"[^>]*disabled=""/);
   assert.equal((html.match(/aria-label="Explore /g) ?? []).length, 9);
   assert.match(html, /Dietary support/);

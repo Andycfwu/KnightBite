@@ -38,7 +38,7 @@ test('hosted-check route renders an explicitly controlled unavailable Rutgers da
   await page.goto('/preview-check/unavailable');
   await expect(page.getByRole('complementary', { name: 'Controlled Preview scenario' })).toContainText('2026-09-11T00:30:00Z');
   await expect(page.getByRole('main').getByText('Thursday, September 10', { exact: true })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Menu unavailable right now.', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /^(Breakfast|Lunch|Dinner) menu unavailable right now\.$/ })).toBeVisible();
   await expect(page.getByRole('article')).toHaveCount(0);
   await expect(page.getByRole('button', { name: /^Add / })).toHaveCount(0);
   await expect(page.locator('body')).not.toContainText(/Backup menu|Sample menu|Retrieved|Updated recently/);
@@ -121,4 +121,48 @@ test('Atrium Nutrislice 6pm selection and manual meal contents survive prop refr
     await expect(page.getByRole('region',{name:'Menu items',exact:true}).locator('.livi-foodRow')).toHaveCount(count);
   }
   expect(await page.locator('script[src*="/_vercel/insights"]').count()).toBe(0);
+});
+
+for (const mobile of [false, true]) test(`partial missing Dinner stays selected and retry recovers content without resetting manual choice (${mobile ? 'mobile' : 'desktop'})`, async ({ page }) => {
+  if (mobile) await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto('/preview-check/partial?hall=livingston');
+  const controls=page.getByRole('group',{name:'Choose a meal'});
+  await expect(controls.getByRole('button')).toHaveCount(3);
+  await expect(controls.getByRole('button',{name:'Dinner',exact:true})).toHaveAttribute('aria-pressed','true');
+  await expect(page.getByRole('heading',{name:'Dinner menu unavailable right now.',exact:true})).toBeVisible();
+  await expect(page.locator('.livi-source:visible')).not.toContainText(/Retrieved|Listed on Rutgers/);
+  await expect(page.getByRole('article')).toHaveCount(0);
+  expect((await page.getByRole('button',{name:'Retry Dinner',exact:true}).boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  await page.getByRole('button',{name:'Retry Dinner',exact:true}).click();
+  await controls.getByRole('button',{name:'Breakfast',exact:true}).click();
+  await page.getByRole('button',{name:mobile?'Menu':'List view',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Synthetic Livingston breakfast omelet',exact:true})).toBeVisible();
+  await page.getByRole('button',{name:'Add Synthetic Livingston breakfast omelet',exact:true}).click();
+  await expect(page.getByRole('status').filter({hasText:'dinner menu loaded.'})).toHaveText('dinner menu loaded.');
+  await expect(controls.getByRole('button',{name:'Breakfast',exact:true})).toHaveAttribute('aria-pressed','true');
+  await page.getByRole('button',{name:'Rerender partial menu',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Synthetic Livingston breakfast omelet',exact:true})).toBeVisible();
+  await controls.getByRole('button',{name:'Dinner',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Synthetic Livingston dinner roast',exact:true})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Synthetic Livingston breakfast omelet',exact:true})).toHaveCount(0);
+  await page.getByRole('button',{name:mobile?'Open plate':'View your plate',exact:true}).click();
+  await expect(page.getByRole('dialog')).toContainText('Synthetic Livingston breakfast omelet');
+  await expect(page.getByRole('dialog').getByRole('button',{name:'Close plate',exact:true})).toBeFocused();
+  await page.keyboard.press('Escape');
+  await controls.getByRole('button',{name:'Lunch',exact:true}).click();
+  await page.getByLabel('Next retry outcome').selectOption('failure');
+  await page.getByRole('button',{name:'Retry Lunch',exact:true}).click();
+  await expect(page.getByRole('status').filter({hasText:'lunch menu is still unavailable.'})).toContainText('lunch menu is still unavailable.');
+  await expect(page.getByRole('button',{name:'Retry Lunch',exact:true})).toBeDisabled();
+  await expect(page.getByRole('article')).toHaveCount(0);
+  await expect(page.locator('.livi-source:visible')).not.toContainText('Retrieved');
+  // Controlled timers, not a real cooldown wait or upstream retry.
+  await page.clock.install();await page.clock.fastForward(31_000);
+  await page.getByLabel('Next retry outcome').selectOption('empty');
+  await page.getByRole('button',{name:'Retry Lunch',exact:true}).click();
+  await page.clock.fastForward(1600);
+  await expect(page.getByRole('heading',{name:'No items listed for lunch',exact:true})).toBeVisible();
+  await expect(page.locator('.livi-foodList:visible')).toContainText('Rutgers returned no items for lunch on this date');
+  await expect(page.getByRole('article')).toHaveCount(0);
+  await expect(page.locator('body')).not.toContainText(/Backup menu|Sample menu|Updated recently/);
 });

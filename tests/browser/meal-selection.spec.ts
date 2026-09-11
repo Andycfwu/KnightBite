@@ -60,7 +60,7 @@ test('direct entry, hall navigation, and unavailable menus retain honest content
   await assertMeal(page, 'Livingston', 'Dinner');
   await page.locator('.livi-hallPicker summary').click();
   await page.locator('.livi-hallOptions').getByRole('link', { name: 'Neilson Dining Hall', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Menu unavailable right now.', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /^(Breakfast|Lunch|Dinner) menu unavailable right now\.$/ })).toBeVisible();
   await expect(page.getByRole('article')).toHaveCount(0);
   await expect(page.locator('body')).not.toContainText(/Backup menu|Sample menu|Updated recently/);
 });
@@ -94,4 +94,16 @@ for (const mobile of [false, true]) test(`Atrium Nutrislice homepage entry, meal
   await expect(page.getByRole('button',{name:'Breakfast',exact:true})).toHaveAttribute('aria-pressed','true');
   await expect(foods.getByRole('heading',{name:'COUNTRY STYLE GRITS',exact:true})).toBeVisible();
   await expect(page.locator('body')).not.toContainText(/Backup menu|Sample menu|Updated recently/);
+});
+
+test('single-meal recovery route validates scope and returns bounded real normalized results with no-store headers', async ({ request }) => {
+  const valid=await request.get('/api/menu/livingston/2026-09-10/dinner');
+  expect(valid.status()).toBe(200);expect(valid.headers()['cache-control']).toContain('no-store');
+  const result=await valid.json();expect(result.status.state).toBe('available');
+  expect(result.section.type).toBe('dinner');
+  expect(result.section.stations.flatMap((station:{items:Array<{name:string}>})=>station.items).map((item:{name:string})=>item.name)).toContain('Synthetic Livingston dinner roast');
+  const failure=await request.get('/api/menu/neilson/2026-09-10/dinner');
+  const absent=await failure.json();expect(absent.status.state).toBe('unavailable');expect(absent.section).toBeNull();expect(absent.status.retrievedAt).toBeUndefined();
+  for(const path of ['/api/menu/busch/2026-02-30/dinner','/api/menu/busch/2026-09-10/night','/api/menu/not-a-hall/2026-09-10/lunch'])expect((await request.get(path)).status()).toBe(400);
+  expect((await request.get('/preview-check/partial')).status()).toBe(404);
 });

@@ -18,9 +18,5 @@ export function getAvailableMealTypes(menu: DailyMenu): MealType[] {
 export function getDefaultMealType(menu: DailyMenu, now = new Date()): MealType {
   const available = MEAL_ORDER.filter((type) => menu.meals.some((meal) => meal.type === type));
   if (menu.date !== getRutgersNowParts(now).isoDate) return available[0] ?? "breakfast";
-  const expected = getSuggestedMeal(menu.hallId, now);
-  // Prefer the expected or next listed meal; otherwise the last listed meal.
-  // The selected section always retains its own label and food identities.
-  return available.find((type) => MEAL_ORDER.indexOf(type) >= MEAL_ORDER.indexOf(expected))
-    ?? available[available.length - 1] ?? "breakfast";
+  return getSuggestedMeal(menu.hallId, now);
 }

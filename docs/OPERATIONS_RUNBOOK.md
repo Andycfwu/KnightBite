@@ -6,10 +6,10 @@ Prepared September 10, 2026. This is an actionable procedure for an authorized o
 
 - GitHub: `Andycfwu/KnightBite`, production branch `main`.
 - Vercel: Hobby team `andycfwus-projects`, project `knight-bite`, project ID `prj_9YAmvm8vdwwNn8hdgLhl4ZqomKDw`.
-- Public alias: `knightbitenb.vercel.app`. At inspection it served `dpl_BT9hARabzozdRpqMutPju4P2xF5F`, commit `70166c4fd04bb0d5ca25b792283924eff36c1f31`. Recheck the [project overview](https://vercel.com/andycfwus-projects/knight-bite) each time; this is historical identity, not a permanently designated rollback target.
+- Public alias: `knightbitenb.vercel.app`. At the September 11 partial-meal inspection it served `dpl_E2GULsHLbSadXi8JeHQRXRvCpR9H`, commit `f0049cce5a70889f89ae7be5ab52c16c6275549c`. Recheck the [project overview](https://vercel.com/andycfwus-projects/knight-bite) each time; this is historical identity, not a permanently designated rollback target.
 - Runtime shown: Node 24.x, Fluid Compute, `iad1`, 1 vCPU/2 GB; project default duration 300 seconds. App deadlines and per-process caches are separate.
 
-The inspected production deployment predates the remediation, including its structured ingestion summaries. Do not expect the new log schema until a reviewed patched release is actually deployed.
+Production now includes PR #1’s remediation and Atrium Nutrislice migration. The partial-meal recovery and `scope`/`cacheHit` log additions remain candidate-only until separately approved and deployed.
 
 ## Ownership and coverage to fill before broad release
 
@@ -31,7 +31,7 @@ Use the existing hosting platform only if its available plan supports the requir
 | Rejected destination or resource budget | Any `destination_rejected`, `response_too_large` or `resource_limit`: examine sanitized counts/context before changing a validator or limit. Never follow the rejected URL. |
 | No observations | No logs/traffic is an evidence gap, not a success or outage. A periodic synthetic check would be a separately scoped operational decision, not something this pass installed. |
 
-Use `event = knightbite.menu_ingestion`, hall/date, `startedAt`, outcome and bounded failure groups. Count attempts, not request rows, meal subrecords or homepage card timeouts. A 200 response can contain an unavailable menu. A 1.1-second homepage status timeout does not prove provider failure. Cached menus and shared loads suppress new attempts; a fifteen-minute positive TTL and two-minute null TTL mean this log-based trigger cannot promise detection within five minutes of the upstream outage itself. Vercel's [native alerts](https://vercel.com/docs/alerts) concern platform anomalies; the semantic ingestion trigger still needs an approved implementation or human inspection.
+Use `event = knightbite.menu_ingestion`, hall/date, `startedAt`, outcome and bounded failure groups. Count attempts, not request rows, meal subrecords or homepage card timeouts. Use `scope: daily` for all-hall meal completeness; `scope: meal_retry` concerns only `requestedMeal`. Cached meal normalization counts are marked by `cacheHit`; do not count them as fresh fetches. A 200 response can contain an unavailable menu. A 1.1-second homepage status timeout does not prove provider failure. Cached menus and shared loads suppress new attempts; a fifteen-minute successful-meal TTL and thirty-second failed-meal cooldown mean this log-based trigger cannot promise detection within five minutes of the upstream outage itself. Vercel's [native alerts](https://vercel.com/docs/alerts) concern platform anomalies; the semantic ingestion trigger still needs an approved implementation or human inspection.
 
 Example human escalation, to be sent only by the assigned operator: “KnightBite menu retrieval is degraded for [hall(s)] for Rutgers date [date], first observed [UTC time], deployment [ID/SHA], category [bounded category]. Menu availability is unconfirmed. Owner [name] is investigating; next update [time].” Do not include bodies, ingredients, preference/plate values, IP addresses, secrets or arbitrary exception strings.
 
@@ -57,3 +57,9 @@ After restoration, verify alias-to-deployment mapping, HTTPS/headers, navigation
 The required rehearsal remains open: an isolated/staging synthetic ingestion outage, detection acknowledgement, and an authorized rollback between two reviewed patched artifacts, followed by domain/check verification. No staging deployment, alert notification or rollback was performed in this pass.
 
 **Correctly dated stored-real-menu recovery remains future work.** No snapshots, database, scheduler or plate persistence were added.
+
+## Breakfast-only timeout incident (partial-meal fix)
+
+For the reported Livingston/Busch issue, distinguish a selected missing meal from the historical initial-selection bug. Check the requested Rutgers date and per-meal `timeout` category. Do not generate load by cache-busting or repeated live refreshes. On the patched candidate, choose the affected Lunch/Dinner control and use one Retry after the visible thirty-second cooldown; successful Breakfast and plate snapshots remain available. Record whether that one request returns food, explicitly empty data, or unavailable, and its exact hall/date/meal. Persistent failures remain unavailable; do not switch sources or extend every timeout. Caches/deduplication are per function process, not a cross-instance guarantee.
+
+Production f0049cce5a70889f89ae7be5ab52c16c6275549c / dpl_E2GULsHLbSadXi8JeHQRXRvCpR9H was verified as the starting deployment for this fix. It already contains the patched dependencies and Atrium Nutrislice migration, but retains the known partial-menu defect. Unlike pre-remediation 70166c4, it is a potential source recovery baseline for an unrelated regression; do not assume Instant Rollback eligibility without inspecting the picker at release. Restoring it reintroduces Breakfast-only behavior and needs explicit approval. This pass does not deploy, change settings or authorize any rollback. Correctly dated stored-real-menu recovery remains future work.
